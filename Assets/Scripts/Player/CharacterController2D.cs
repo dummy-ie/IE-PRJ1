@@ -1,16 +1,23 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
+    //public InputAction ia;
+    //[SerializeField] private InputActionAsset controls;
+    //public InputActionMap iaa;
+
+    private PlayerInput pi;
     private Rigidbody2D rb;
     // private bool isGrounded;
     private uint jumpsLeft;
     private float horizontal;
     private float coyoteTimeCounter;
     private bool isFacingRight;
-
+    private bool isJumping;
 
     [SerializeField] LayerMask groundLayer;
 
@@ -22,21 +29,86 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 5)][SerializeField] private float coyoteTime, boxCastDistance;
     [SerializeField] Vector2 boxSize;
 
+    public void onMove(InputAction.CallbackContext context)
+    {
+        float moveX = context.ReadValue<Vector2>().x;
+        if (context.started)
+        {
+            Debug.Log("Move pressed");
+        }
+        else if (context.performed)
+        {
+            Debug.Log("Moving now" + moveX);
+
+            if (moveX >= 0.5f || moveX <= -0.5f)
+                horizontal = moveX;
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("Move released");
+            horizontal = 0;
+        }
+    }
+
+    public void onJump(InputAction.CallbackContext context)
+    {
+        if (isJumping = context.started)
+        {
+            if (coyoteTimeCounter > 0f || jumpsLeft > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpsLeft--;
+            }
+        }
+        else if (context.performed)
+        {
+        }
+        else if (isJumping = context.canceled)
+        {
+            if (rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                coyoteTimeCounter = 0f;
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        pi = GetComponent<PlayerInput>();
+
+        jumpsLeft = jumpLimit;
+        //playerAction.Player.Jump.performed;
+    }
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        Jump();
         Flip();
-        // processInput();
+        BetterJump();
+
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+            jumpsLeft = jumpLimit;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -49,48 +121,13 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
-    void Move()
-    {
-        // float moveBy = x * speed;
-        // rb.velocity = new Vector2(moveBy, rb.velocity.y);
-    }
-
-    void Jump()
-    {
-        // if (Input.GetKeyDown(KeyCode.Space) && (isGrounded() || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0))
-        // {
-        //     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        //     additionalJumps--;
-        // }
-
-        if (IsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        if (Input.GetKeyDown("Jump") && coyoteTimeCounter > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-
-        if (Input.GetKeyUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteTimeCounter = 0f;
-        }
-    }
-
     void BetterJump()
     {
         if (rb.velocity.y < 0)
         {
             rb.velocity += (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if (rb.velocity.y > 0 && !isJumping)
         {
             rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
