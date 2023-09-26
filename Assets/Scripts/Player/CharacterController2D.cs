@@ -1,9 +1,15 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
+    //private PlayerAction pa;
+    //public InputAction ia;
+    //[SerializeField] private InputActionAsset controls;
+    //public InputActionMap iaa;
+
     private Rigidbody2D rb;
     // private bool isGrounded;
     private uint jumpsLeft;
@@ -22,17 +28,37 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 5)][SerializeField] private float coyoteTime, boxCastDistance;
     [SerializeField] Vector2 boxSize;
 
+    public void onMove(InputAction.CallbackContext context)
+    { 
+        if (context.started)
+            Debug.Log("Moving");
+        else if (context.performed)
+        {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        //horizontal = Input.GetAxisRaw("Horizontal");
 
         Jump();
         Flip();
@@ -63,37 +89,37 @@ public class CharacterController2D : MonoBehaviour
         //     additionalJumps--;
         // }
 
-        if (IsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
+        //if (IsGrounded())
+        //{
+        //    coyoteTimeCounter = coyoteTime;
+        //}
+        //else
+        //{
+        //    coyoteTimeCounter -= Time.deltaTime;
+        //}
 
-        if (Input.GetKeyDown("Jump") && coyoteTimeCounter > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+        //if (Input.GetKeyDown("Jump") && coyoteTimeCounter > 0f)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //}
 
-        if (Input.GetKeyUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteTimeCounter = 0f;
-        }
+        //if (Input.GetKeyUp("Jump") && rb.velocity.y > 0f)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        //    coyoteTimeCounter = 0f;
+        //}
     }
 
     void BetterJump()
     {
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
-        {
-            rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
-        }
+        //if (rb.velocity.y < 0)
+        //{
+        //    rb.velocity += (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+        //}
+        //else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        //{
+        //    rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+        //}
     }
 
     private void Flip()
