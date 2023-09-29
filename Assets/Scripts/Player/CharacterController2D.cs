@@ -17,7 +17,14 @@ public class CharacterController2D : MonoBehaviour
     private float horizontal;
     private float coyoteTimeCounter;
     private bool isFacingRight;
+
     private bool isJumping;
+
+    private bool isDashing;
+    private float dashDuration;
+    private float dashSpeed;
+
+
 
     [SerializeField] LayerMask groundLayer;
 
@@ -71,6 +78,25 @@ public class CharacterController2D : MonoBehaviour
                 coyoteTimeCounter = 0f;
             }
         }
+        else if (context.canceled)
+        {
+            horizontal = 0;
+        }
+    }
+
+    public void onDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+         {
+            dashSpeed = 30;
+
+            dashDuration = .2f;
+            isDashing = true;
+
+            if (!isFacingRight)
+                dashSpeed *= -1;
+        }
+        
     }
 
     private void Awake()
@@ -98,6 +124,7 @@ public class CharacterController2D : MonoBehaviour
     void Update()
     {
         Flip();
+
         BetterJump();
 
         if (IsGrounded())
@@ -109,11 +136,16 @@ public class CharacterController2D : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
+
+        
+        // processInput();
+
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if(!isDashing)rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        Dash();
     }
 
     void ProcessInput()
@@ -131,6 +163,26 @@ public class CharacterController2D : MonoBehaviour
         {
             rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
+    }
+
+    private void Dash()
+    {
+        if (isDashing)
+        {
+            
+
+            dashDuration -= Time.deltaTime;
+
+            rb.velocity = new Vector2(dashSpeed, 0); 
+        }
+
+        if (dashDuration <= 0)
+        {
+           // dashSpeed = 0;
+            isDashing=false;
+        }
+
+        
     }
 
     private void Flip()
