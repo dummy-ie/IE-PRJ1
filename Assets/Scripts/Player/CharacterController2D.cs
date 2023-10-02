@@ -17,7 +17,10 @@ public class CharacterController2D : MonoBehaviour
     private float horizontal;
     private float coyoteTimeCounter;
     private bool isFacingRight;
+    private bool isDashing;
     private bool isJumping;
+    private float dashDuration;
+    private float dashSpeed;
 
     [SerializeField] LayerMask groundLayer;
 
@@ -48,6 +51,21 @@ public class CharacterController2D : MonoBehaviour
             Debug.Log("Move released");
             horizontal = 0;
         }
+    }
+
+    public void onDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            dashSpeed = 30;
+
+            dashDuration = .2f;
+            isDashing = true;
+
+            if (!isFacingRight)
+                dashSpeed *= -1;
+        }
+
     }
 
     public void onJump(InputAction.CallbackContext context)
@@ -113,7 +131,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        Dash();
     }
 
     void ProcessInput()
@@ -131,6 +150,26 @@ public class CharacterController2D : MonoBehaviour
         {
             rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
+    }
+
+    private void Dash()
+    {
+        if (isDashing)
+        {
+
+
+            dashDuration -= Time.deltaTime;
+
+            rb.velocity = new Vector2(dashSpeed, 0);
+        }
+
+        if (dashDuration <= 0)
+        {
+            // dashSpeed = 0;
+            isDashing = false;
+        }
+
+
     }
 
     private void Flip()
