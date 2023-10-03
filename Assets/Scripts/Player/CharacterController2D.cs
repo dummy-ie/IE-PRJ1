@@ -72,10 +72,12 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isJumping = context.started)
         {
+            if (jumpsLeft > 0)
+                jumpsLeft--;
+            Debug.Log("Jumps Left: " + jumpsLeft.ToString());
             if (coyoteTimeCounter > 0f || jumpsLeft > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpsLeft--;
             }
         }
         else if (context.performed)
@@ -115,11 +117,17 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         Flip();
         BetterJump();
 
         if (IsGrounded())
         {
+            Debug.Log("Grounded");
             coyoteTimeCounter = coyoteTime;
             jumpsLeft = jumpLimit;
         }
@@ -127,10 +135,6 @@ public class CharacterController2D : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-    }
-
-    private void FixedUpdate()
-    {
         if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         Dash();
     }
