@@ -160,7 +160,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d921d36d13b02544db629f90b7add183, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -289,13 +289,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
-  jumpForce: 5
+  jumpForce: 15
   jumpLimit: 1
   fallMultiplier: 0.5
   lowJumpMultiplier: 0.3
   coyoteTime: 0.3
-  boxCastDistance: 0.75
-  boxSize: {x: 0.8, y: 0.4}
+  boxCastDistance: 0.5
+  boxSize: {x: 0.3, y: 0.4}
+  dashDuration: 0.1
+  dashOriginalSpeed: 30
 --- !u!114 &43171028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +403,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bda27d66-8cb7-4571-9076-6e5a8800bfd8
     m_ActionName: Player/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 43171027}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: onDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2649d89b-ea1e-4eb7-a4c5-8a1216c02153
+    m_ActionName: Player/Dash[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

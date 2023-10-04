@@ -17,14 +17,10 @@ public class CharacterController2D : MonoBehaviour
     private float horizontal;
     private float coyoteTimeCounter;
     private bool isFacingRight;
-
-    private bool isJumping;
-
     private bool isDashing;
-    private float dashDuration;
+    private bool isJumping;
+    private float dashTime;
     private float dashSpeed;
-
-
 
     [SerializeField] LayerMask groundLayer;
 
@@ -35,6 +31,8 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 10)][SerializeField] private float fallMultiplier, lowJumpMultiplier;
     [Range(0, 5)][SerializeField] private float coyoteTime, boxCastDistance;
     [SerializeField] Vector2 boxSize;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashOriginalSpeed;
 
     public void onMove(InputAction.CallbackContext context)
     {
@@ -57,14 +55,29 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public void onDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            dashSpeed = dashOriginalSpeed;
+            isDashing = true;
+
+            if (!isFacingRight)
+                dashSpeed *= -1;
+        }
+
+    }
+
     public void onJump(InputAction.CallbackContext context)
     {
         if (isJumping = context.started)
         {
+            if (jumpsLeft > 0)
+                jumpsLeft--;
+            Debug.Log("Jumps Left: " + jumpsLeft.ToString());
             if (coyoteTimeCounter > 0f || jumpsLeft > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpsLeft--;
             }
         }
         else if (context.performed)
@@ -78,25 +91,6 @@ public class CharacterController2D : MonoBehaviour
                 coyoteTimeCounter = 0f;
             }
         }
-        else if (context.canceled)
-        {
-            horizontal = 0;
-        }
-    }
-
-    public void onDash(InputAction.CallbackContext context)
-    {
-        if (context.started)
-         {
-            dashSpeed = 30;
-
-            dashDuration = .2f;
-            isDashing = true;
-
-            if (!isFacingRight)
-                dashSpeed *= -1;
-        }
-        
     }
 
     private void Awake()
@@ -124,11 +118,11 @@ public class CharacterController2D : MonoBehaviour
     void Update()
     {
         Flip();
-
         BetterJump();
 
         if (IsGrounded())
         {
+            Debug.Log("Grounded");
             coyoteTimeCounter = coyoteTime;
             jumpsLeft = jumpLimit;
         }
@@ -136,16 +130,13 @@ public class CharacterController2D : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-
-        
-        // processInput();
-
+        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        Dash();
     }
 
     private void FixedUpdate()
     {
-        if(!isDashing)rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        Dash();
+        
     }
 
     void ProcessInput()
@@ -169,20 +160,20 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isDashing)
         {
-            
 
-            dashDuration -= Time.deltaTime;
 
-            rb.velocity = new Vector2(dashSpeed, 0); 
+            dashTime -= Time.deltaTime;
+
+            rb.velocity = new Vector2(dashSpeed, 0);
         }
 
-        if (dashDuration <= 0)
+        if (dashTime <= 0)
         {
-           // dashSpeed = 0;
-            isDashing=false;
+            dashTime = dashDuration;
+            isDashing = false;
         }
 
-        
+
     }
 
     private void Flip()
