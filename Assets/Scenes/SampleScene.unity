@@ -296,6 +296,8 @@ MonoBehaviour:
   coyoteTime: 0.3
   boxCastDistance: 0.5
   boxSize: {x: 0.3, y: 0.4}
+  dashDuration: 0.1
+  dashOriginalSpeed: 30
 --- !u!114 &43171028
 MonoBehaviour:
   m_ObjectHideFlags: 0

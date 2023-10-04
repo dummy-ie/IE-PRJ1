@@ -19,7 +19,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isFacingRight;
     private bool isDashing;
     private bool isJumping;
-    private float dashDuration;
+    private float dashTime;
     private float dashSpeed;
 
     [SerializeField] LayerMask groundLayer;
@@ -31,6 +31,8 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 10)][SerializeField] private float fallMultiplier, lowJumpMultiplier;
     [Range(0, 5)][SerializeField] private float coyoteTime, boxCastDistance;
     [SerializeField] Vector2 boxSize;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashOriginalSpeed;
 
     public void onMove(InputAction.CallbackContext context)
     {
@@ -57,9 +59,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
-            dashSpeed = 30;
-
-            dashDuration = .2f;
+            dashSpeed = dashOriginalSpeed;
             isDashing = true;
 
             if (!isFacingRight)
@@ -117,11 +117,6 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
         Flip();
         BetterJump();
 
@@ -137,6 +132,11 @@ public class CharacterController2D : MonoBehaviour
         }
         if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         Dash();
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     void ProcessInput()
@@ -162,14 +162,14 @@ public class CharacterController2D : MonoBehaviour
         {
 
 
-            dashDuration -= Time.deltaTime;
+            dashTime -= Time.deltaTime;
 
             rb.velocity = new Vector2(dashSpeed, 0);
         }
 
-        if (dashDuration <= 0)
+        if (dashTime <= 0)
         {
-            // dashSpeed = 0;
+            dashTime = dashDuration;
             isDashing = false;
         }
 
