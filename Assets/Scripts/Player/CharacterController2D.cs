@@ -7,25 +7,52 @@ using UnityEngine.InputSystem;
 public class CharacterController2D : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private uint jumpsLeft;
+    private uint jumpsLeft = 0;
     private float horizontal;
-    private float coyoteTimeCounter, jumpBufferCounter;
-    private bool isFacingRight;
-    private bool isDashing;
-    private bool isJumping;
-    private float dashTime;
-    private float dashSpeed;
+    private float coyoteTimeCounter = 0f, jumpBufferCounter = 0f;
+    private bool isFacingRight = false;
+    private bool isDashing = false;
+    private bool isJumpPress = false;
+    private float dashTime = 0f;
+    private float dashSpeed = 0f;
 
     [SerializeField] LayerMask groundLayer;
 
+    // have default values for all fields to prevent null errors
     [Header("Movement")]
-    [Range(0, 100)][SerializeField] private float speed, jumpForce;
+    [Range(0, 100)][SerializeField] private float speed = 6f;
+
+    [Header("Jumping")]
+    [Range(0, 100)][SerializeField] private float jumpForce = 14f;
     [SerializeField] private uint jumpLimit = 1;
-    [Range(0, 10)][SerializeField] private float fallMultiplier, lowJumpMultiplier;
-    [Range(0, 5)][SerializeField] private float coyoteTime, jumpBufferTime, boxCastDistance;
-    [SerializeField] Vector2 boxSize;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashOriginalSpeed;
+    [Range(0, 10)][SerializeField] private float fallMultiplier = 4f, lowJumpMultiplier = 1f;
+    [Range(0, 5)][SerializeField] private float coyoteTime = 0.2f, jumpBufferTime = 0.2f;
+
+    [Header("Ground Check Box Cast")]
+    [Range(0, 5)][SerializeField] private float boxCastDistance = 0.4f;
+    [SerializeField] Vector2 boxSize = new(0.3f, 0.4f);
+
+    [Header("Dashing")]
+    [SerializeField] private float dashDuration = 0.1f;
+    [SerializeField] private float dashOriginalSpeed = 30f;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        jumpsLeft = jumpLimit;
+    }
+
+    private void Update()
+    {
+        Jump();
+        Dash();
+        Flip();
+    }
+
+    private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
+    {
+        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -48,6 +75,60 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            // reset jump buffer counter
+            jumpBufferCounter = jumpBufferTime;
+            isJumpPress = true;
+        }
+        else if (context.canceled)
+        {
+            isJumpPress = false;
+            if (rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                coyoteTimeCounter = 0f;
+            }
+        }
+    }
+
+
+    private void Jump()
+    {
+        // while grounded, set coyote time and jump limit
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+            jumpsLeft = jumpLimit;
+        }
+        else // otherwise, count down the coyote time
+            coyoteTimeCounter -= Time.deltaTime;
+
+        if (!isJumpPress) jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
+
+        // jump while jumps available and jump is buffered and coyote time still active 
+        if (jumpsLeft > 0f && jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        {
+            // Debug.Log("Jumping!");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpBufferCounter = 0f;
+            // decrement jumps
+            if (jumpsLeft > 0f)
+                jumpsLeft--;
+        }
+
+        if (rb.velocity.y < 0) // fast fall
+        {
+            rb.velocity += (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+        }
+        else if (rb.velocity.y > 0 && !isJumpPress) // low jump
+        {
+            rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+        }
+    }
+
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -57,88 +138,6 @@ public class CharacterController2D : MonoBehaviour
 
             if (!isFacingRight)
                 dashSpeed *= -1;
-        }
-
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (isJumping = context.started)
-        {
-            // start jump buffer counter
-            jumpBufferCounter = jumpBufferTime;
-
-            Debug.Log("Jump Buffer Counter Before Jump: " + jumpBufferCounter.ToString());
-            // Debug.Log("Coyote Counter Before Jump: " + coyoteTimeCounter.ToString());
-            // Debug.Log("Jumps Left Before Jump: " + jumpsLeft.ToString());
-
-            // jump while coyote time available and jumps available
-            if (jumpsLeft > 0f && coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
-            {
-                Debug.Log("Jumping!");
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpBufferCounter = 0f;
-            }
-
-            // decrement jumps
-            if (jumpsLeft > 0f)
-                jumpsLeft--;
-
-            // Debug.Log("Jumps Left After Jump: " + jumpsLeft.ToString());
-
-        }
-        else if (context.performed)
-        {
-        }
-        else if (context.canceled)
-        {
-            isJumping = false;
-            if (rb.velocity.y > 0f)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-                coyoteTimeCounter = 0f;
-            }
-        }
-    }
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        jumpsLeft = jumpLimit;
-        jumpBufferCounter = jumpBufferTime;
-    }
-
-    private void FixedUpdate()
-    {
-        Flip();
-        BetterJump();
-
-        if (IsGrounded())
-        {
-            // Debug.Log("Grounded"); // shane you mf why would you print this every frame!!!
-            coyoteTimeCounter = coyoteTime;
-            jumpsLeft = jumpLimit;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        if (!isJumping) jumpBufferCounter -= Time.deltaTime;
-
-        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        Dash();
-    }
-
-    void BetterJump()
-    {
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
-        }
-        else if (rb.velocity.y > 0 && !isJumping)
-        {
-            rb.velocity += (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
     }
 
