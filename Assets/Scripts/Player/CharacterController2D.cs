@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class CharacterController2D : MonoBehaviour
     private float dashSpeed;
 
     [SerializeField] LayerMask groundLayer;
+
+    [SerializeField] SpriteRenderer render2D;
+    [SerializeField] MeshRenderer render3D;
+
+    [SerializeField] VisualEffect visEffect;
 
     [Header("Movement")]
     [Range(0, 100)][SerializeField] private float speed, jumpForce;
@@ -57,13 +63,21 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
-            dashSpeed = 30;
+            dashSpeed = 15;
 
             dashDuration = .2f;
             isDashing = true;
 
             if (!isFacingRight)
+            {
                 dashSpeed *= -1;
+            }
+
+            render2D.enabled = false;
+            render3D.enabled = true;
+
+            visEffect.Play();
+            
         }
 
     }
@@ -112,12 +126,12 @@ public class CharacterController2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        visEffect.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void FixedUpdate()
@@ -126,8 +140,7 @@ public class CharacterController2D : MonoBehaviour
         BetterJump();
 
         if (IsGrounded())
-        {
-            Debug.Log("Grounded");
+        { 
             coyoteTimeCounter = coyoteTime;
             jumpsLeft = jumpLimit;
         }
@@ -135,7 +148,10 @@ public class CharacterController2D : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isDashing)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
         Dash();
     }
 
@@ -171,6 +187,9 @@ public class CharacterController2D : MonoBehaviour
         {
             // dashSpeed = 0;
             isDashing = false;
+            render2D.enabled = true;
+            render3D.enabled = false;
+            visEffect.Stop();
         }
 
 
