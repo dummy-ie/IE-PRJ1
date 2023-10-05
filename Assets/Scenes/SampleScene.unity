@@ -1722,7 +1722,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228219794}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1228219799
 Transform:
   m_ObjectHideFlags: 0
@@ -1777,7 +1777,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9fb31a3d047be44b0e7d2ce8c1d2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  maxVelocity: 50
+  offsetFromPlayer: {x: 1, y: 1, z: 0}
+  springConstant: 0
 --- !u!1 &1249881030
 GameObject:
   m_ObjectHideFlags: 0
