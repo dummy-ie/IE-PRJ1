@@ -1543,6 +1543,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 207511811344072622, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1761,7 +1765,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1777,9 +1781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9fb31a3d047be44b0e7d2ce8c1d2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 50
+  acceleration: 0
   offsetFromPlayer: {x: 1, y: 1, z: 0}
-  springConstant: 0
+  catchUpTime: 0.5
 --- !u!1 &1249881030
 GameObject:
   m_ObjectHideFlags: 0
