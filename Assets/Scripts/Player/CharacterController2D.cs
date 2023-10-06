@@ -40,6 +40,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashOriginalSpeed = 30f;
 
+    public bool IsFacingRight {
+        get { return isFacingRight; }
+    }
+
     private void Awake()
     {
         cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
