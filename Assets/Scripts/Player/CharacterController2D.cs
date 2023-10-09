@@ -9,16 +9,23 @@ public class CharacterController2D : MonoBehaviour
     private CinemachineVirtualCamera cmVC;
     private Cinemachine3rdPersonFollow cmTP;
 
-    private bool extraJump = false;
+    
     private float horizontal = 0f;
     private float coyoteTimeCounter = 0f, jumpBufferCounter = 0f;
+    
+    private float vectorShift = 100f;
+
     private bool isFacingRight = false;
+
     private bool isDashing = false;
-    private bool isJumpPress = false;
     private float dashTime = 0f;
     private float dashSpeed = 0f;
-    private float vectorShift = 100f;
+
+    private bool isJumpPress = false;
+    private bool extraJump = false;
     private bool isGrounded = false;
+
+    
 
     [SerializeField] LayerMask groundLayer;
 
@@ -39,6 +46,9 @@ public class CharacterController2D : MonoBehaviour
     [Header("Dashing")]
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashOriginalSpeed = 30f;
+
+
+    
 
     public bool IsFacingRight {
         get { return isFacingRight; }
@@ -64,7 +74,7 @@ public class CharacterController2D : MonoBehaviour
 
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
-        if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
+        //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -166,7 +176,9 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void Flip()
+    
+
+        private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
