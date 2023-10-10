@@ -11,6 +11,10 @@ public class CharacterController2D : MonoBehaviour
 
     
     private float horizontal = 0f;
+    private float vertical = 0f;
+
+    public float Vertical{ get { return vertical; } }
+
     private float coyoteTimeCounter = 0f, jumpBufferCounter = 0f;
     
     private float vectorShift = 100f;
@@ -80,6 +84,7 @@ public class CharacterController2D : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         float moveX = context.ReadValue<Vector2>().x;
+        float moveY = context.ReadValue<Vector2>().y;
         if (context.started)
         {
             // Debug.Log("Move pressed");
@@ -90,11 +95,14 @@ public class CharacterController2D : MonoBehaviour
 
             if (moveX >= 0.5f || moveX <= -0.5f)
                 horizontal = moveX;
+            if (moveY >= 0.5f || moveY <= -0.5f)
+                vertical = moveY;
         }
         else if (context.canceled)
         {
             // Debug.Log("Move released");
             horizontal = 0;
+            vertical = 0;
         }
     }
 
