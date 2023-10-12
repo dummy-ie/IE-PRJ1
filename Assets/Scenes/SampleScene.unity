@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 113414087}
   m_Layer: 0
   m_Name: PickupVacuum
-  m_TagString: Pickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,8 +195,8 @@ Transform:
   m_GameObject: {fileID: 113414082}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 19.68504}
+  m_LocalPosition: {x: -0.5, y: -0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1584279747}
@@ -213,9 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de38e46d77f9c554197a9f378302f368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 100
-  offsetFromPlayer: {x: 0, y: 0, z: 0}
-  catchUpTime: 0.1
+  catchUpTime: 0.4
 --- !u!70 &113414087
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -735,7 +733,7 @@ Transform:
   m_GameObject: {fileID: 477746305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -4.5, z: 0}
+  m_LocalPosition: {x: -5.95, y: -5.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1185,7 +1183,7 @@ Transform:
   m_GameObject: {fileID: 688355699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -3.5, z: 0}
+  m_LocalPosition: {x: -4.59, y: -5.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2004,6 +2002,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962612819004959911, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6421102
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962612819004959911, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1693058
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962612819004959911, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0020409226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962612819004959911, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.06328201
+      objectReference: {fileID: 0}
     - target: {fileID: 6500837453471319468, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: attackHitboxVDebug
       value: 
@@ -2511,6 +2525,7 @@ GameObject:
   - component: {fileID: 1584279748}
   - component: {fileID: 1584279751}
   - component: {fileID: 1584279750}
+  - component: {fileID: 1584279752}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Pickup
@@ -2546,10 +2561,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 907657ad81372a345bf7f7c66240d626, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2560,7 +2575,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1584279749
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2593,8 +2608,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: -0.005419731, y: -0.010685921}
+  m_Size: {x: 1.0717258, y: 1.0717258}
   m_Direction: 0
 --- !u!23 &1584279750
 MeshRenderer:
@@ -2646,6 +2661,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584279743}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1584279752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584279743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd44527ca67ec24db8407d2840858bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610464754
 GameObject:
   m_ObjectHideFlags: 0

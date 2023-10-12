@@ -5,10 +5,9 @@ using UnityEngine.AI;
 
 public class VacuumScript : MonoBehaviour
 {
-    [SerializeField] private float acceleration;
     //*[SerializeField]*/ private float speed = 1;
     //[SerializeField] private float maxVelocity;
-    [SerializeField] private Vector3 offsetFromPlayer;
+    
     //[SerializeField] private float springConstant;
     [SerializeField] private float catchUpTime = 0.4f;
     //private float velocity = 0;
@@ -22,14 +21,7 @@ public class VacuumScript : MonoBehaviour
     private float ticks;
 
    
-    
-    private enum State {
-        
-        DEFAULT,
-        FOLLOW,
-    }
-
-    private State state;
+    private bool isMoving;
 
     /*public static float EaseInOutBack(float x) {
         const float c1 = 1.70158f;
@@ -42,12 +34,12 @@ public class VacuumScript : MonoBehaviour
 
     private void FollowPlayer() {
         Vector3 target;
-        if (player.GetComponent<CharacterController2D>().IsFacingRight) {
-            target = new Vector3(-offsetFromPlayer.x, offsetFromPlayer.y, offsetFromPlayer.z) + player.transform.position;
-        }
-        else { 
-            target = offsetFromPlayer + player.transform.position; 
-        }
+        //if (player.GetComponent<CharacterController2D>().IsFacingRight) {
+            //target = new Vector3(-offsetFromPlayer.x, offsetFromPlayer.y, offsetFromPlayer.z) + player.transform.position;
+        //}
+        //else { 
+            target = player.transform.position; 
+        //}
         //springJoint.anchor = target;
 
         /*if (Vector3.Distance(target, transform.position) >= 1) {
@@ -81,19 +73,19 @@ public class VacuumScript : MonoBehaviour
         pickup = GameObject.FindGameObjectWithTag("Pickup");
         rb = pickup.GetComponent<Rigidbody>();
         ticks = 0;
-        state = State.DEFAULT;
+        this.isMoving = false;
         //springJoint = GetComponent<SpringJoint>();
         //companionMesh = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void Update() {
 
         if (player == null)
             return;
-        if (state == State.FOLLOW)
+        if (this.isMoving == true)
             FollowPlayer();
-
+            Debug.Log("Moving.");
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -102,8 +94,10 @@ public class VacuumScript : MonoBehaviour
 
         if(col.gameObject.CompareTag("Vacuum")){
             Debug.Log("Triggered");
-            this.state = State.FOLLOW;
+            this.isMoving = true;
         }
     }
+
+    
 
 }
