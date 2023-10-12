@@ -70,7 +70,7 @@ public class VacuumScript : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
-        pickup = GameObject.FindGameObjectWithTag("Pickup");
+        pickup = transform.parent.gameObject;
         rb = pickup.GetComponent<Rigidbody>();
         ticks = 0;
         this.isMoving = false;

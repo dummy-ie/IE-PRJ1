@@ -11,8 +11,13 @@ public class CollisionScript : MonoBehaviour
        
         if(collider.gameObject.CompareTag("Player")){
             
-            Debug.Log("Object destroyed");
-            Destroy(gameObject);
+            if(collider.gameObject != null){
+
+                Debug.Log("Object destroyed");
+                Destroy(gameObject);
+
+            }
+            
 
         }
 
