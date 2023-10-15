@@ -2945,27 +2945,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1242402999953186194, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
       propertyPath: m_Name
-      value: PlayerVacuum
-      objectReference: {fileID: 0}
-    - target: {fileID: 1844382684988204374, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
-      propertyPath: m_Size.x
-      value: 5.7487507
-      objectReference: {fileID: 0}
-    - target: {fileID: 1844382684988204374, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
-      propertyPath: m_Size.y
-      value: 5.7487507
-      objectReference: {fileID: 0}
-    - target: {fileID: 1844382684988204374, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.008391738
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415036341365036423, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
-      propertyPath: m_Radius
-      value: 2.2730074
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415036341365036423, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.07470369
+      value: XD1Vacuum
       objectReference: {fileID: 0}
     - target: {fileID: 3921615099613653288, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
       propertyPath: m_LocalPosition.x
