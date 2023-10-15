@@ -7,6 +7,7 @@ TagManager:
   - Breakable
   - Pickup
   - Vacuum
+  - XD1
   layers:
   - Default
   - TransparentFX

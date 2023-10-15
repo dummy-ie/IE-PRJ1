@@ -5,11 +5,10 @@ using UnityEngine;
 public class CollisionScript : MonoBehaviour
 {
    
-
-    private void OnCollisionEnter2D(Collision2D collider){
+    private void OnTriggerEnter2D(Collider2D collider){
 
        
-        if(collider.gameObject.CompareTag("Player")){
+        if(collider.gameObject.CompareTag("XD1")){
             
             if(collider.gameObject != null){
 
