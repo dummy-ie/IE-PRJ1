@@ -80,6 +80,24 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Vector Shift"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e6a6902-d277-4f34-9a9d-06e89b32d15b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Charged Thrust"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd54f896-c341-4728-8b24-d975a595ff96"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +342,61 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a418c808-dda1-4221-9eb9-04e9b3074ddc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Vector Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b6a3548-5eb0-458d-9ec6-8133a69dc0b7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Vector Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""449c36d2-1f9f-420f-b90c-bef2bbc860d3"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Charged Thrust"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""39e7327c-2193-4326-9a93-818d509d1d0a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Charged Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""25858f8b-852c-4a51-86a2-9600b911c8f7"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Charged Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -915,6 +988,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_VectorShift = m_Player.FindAction("Vector Shift", throwIfNotFound: true);
+        m_Player_ChargedThrust = m_Player.FindAction("Charged Thrust", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -994,6 +1069,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_VectorShift;
+    private readonly InputAction m_Player_ChargedThrust;
     public struct PlayerActions
     {
         private @StuckinBetween m_Wrapper;
@@ -1004,6 +1081,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @VectorShift => m_Wrapper.m_Player_VectorShift;
+        public InputAction @ChargedThrust => m_Wrapper.m_Player_ChargedThrust;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1031,6 +1110,12 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @VectorShift.started += instance.OnVectorShift;
+            @VectorShift.performed += instance.OnVectorShift;
+            @VectorShift.canceled += instance.OnVectorShift;
+            @ChargedThrust.started += instance.OnChargedThrust;
+            @ChargedThrust.performed += instance.OnChargedThrust;
+            @ChargedThrust.canceled += instance.OnChargedThrust;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1053,6 +1138,12 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @VectorShift.started -= instance.OnVectorShift;
+            @VectorShift.performed -= instance.OnVectorShift;
+            @VectorShift.canceled -= instance.OnVectorShift;
+            @ChargedThrust.started -= instance.OnChargedThrust;
+            @ChargedThrust.performed -= instance.OnChargedThrust;
+            @ChargedThrust.canceled -= instance.OnChargedThrust;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1241,6 +1332,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnVectorShift(InputAction.CallbackContext context);
+        void OnChargedThrust(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
