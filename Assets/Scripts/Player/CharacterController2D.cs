@@ -25,7 +25,10 @@ public class CharacterController2D : MonoBehaviour
     private bool extraJump = false;
     private bool isGrounded = false;
 
-    
+
+
+    [SerializeField] SpriteRenderer _2DRender;
+    [SerializeField] MeshRenderer _3DModel;
 
     [SerializeField] LayerMask groundLayer;
 
@@ -167,6 +170,14 @@ public class CharacterController2D : MonoBehaviour
             dashTime -= Time.deltaTime;
 
             rb.velocity = new Vector2(dashSpeed, 0);
+
+            _2DRender.enabled = false;
+            _3DModel.enabled = true;
+        }
+        else
+        {
+            _2DRender.enabled = true;
+            _3DModel.enabled = false;
         }
 
         if (dashTime <= 0)
