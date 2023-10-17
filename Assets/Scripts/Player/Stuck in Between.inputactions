@@ -344,7 +344,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "One Modifier",
+                    "name": "Left [K]",
                     "id": "449c36d2-1f9f-420f-b90c-bef2bbc860d3",
                     "path": "OneModifier",
                     "interactions": "",
@@ -367,8 +367,107 @@
                 },
                 {
                     "name": "binding",
-                    "id": "25858f8b-852c-4a51-86a2-9600b911c8f7",
+                    "id": "14f2af13-447f-4e7d-b9d4-d7b45ff975f6",
                     "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left [G]",
+                    "id": "d3c491a1-5e5b-4612-8781-e715a9ab4d81",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charged Thrust",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "2c0d3931-8d67-4cf2-a5c5-8701b7a2388a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "25858f8b-852c-4a51-86a2-9600b911c8f7",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right [K]",
+                    "id": "57630d18-0448-4917-bbf2-9c04762e09cf",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charged Thrust",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "20f1496f-34e5-4a88-94c2-515b730558e5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "7bf73bcc-bc25-4298-92e2-9e83ee87966d",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right [G]",
+                    "id": "22fc139e-d464-41dd-b198-b1d81fb6d8c5",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charged Thrust",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "7dba554a-7b68-44de-8704-2df36ae24005",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Charged Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "b43df20a-1a64-4906-aed5-c26dfbf9f517",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
