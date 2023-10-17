@@ -23,7 +23,9 @@ public class CharacterController2D : MonoBehaviour
 
     private bool isDashing = false;
     private float dashTime = 0f;
-    private float dashSpeed = 0f;
+    private float dashDuration;
+    private bool aerialDash = true;
+    private bool canDash = true;
 
     private bool isJumpPress = false;
     private bool extraJump = false;
@@ -48,11 +50,14 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] Vector2 boxSize = new(0.3f, 0.4f);
 
     [Header("Dashing")]
-    [SerializeField] private float dashDuration = 0.1f;
-    [SerializeField] private float dashOriginalSpeed = 30f;
+    [SerializeField] private float dashDistance = 4f;
+    [SerializeField] private float dashCooldown = .5f;
+    [SerializeField] private float dashCooldownTime = 0f;
+    [SerializeField] private float dashSpeed = 0f;
+    [SerializeField] private float dashOriginalSpeed = 20f;
 
 
-    
+
 
     public bool IsFacingRight {
         get { return isFacingRight; }
@@ -63,13 +68,18 @@ public class CharacterController2D : MonoBehaviour
         cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         cmTP = cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         rb = GetComponent<Rigidbody2D>();
+
+        dashSpeed = dashOriginalSpeed;
+        updateDashDuration();
     }
 
     private void Update()
     {
         Jump();
         Dash();
-        Flip();
+        if (!isDashing) Flip();
+
+        
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
@@ -127,6 +137,7 @@ public class CharacterController2D : MonoBehaviour
         {
             coyoteTimeCounter = coyoteTime;
             extraJump = true; // refresh double jump
+            aerialDash = true; //refresh aerialDash
         }
         else
             coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
@@ -158,12 +169,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
+        if (context.started && canDash) //check if player can dash
+        { 
             dashSpeed = dashOriginalSpeed;
+            updateDashDuration();
             isDashing = true;
+            aerialDash = false;
 
-            if (!isFacingRight)
+            if (!isFacingRight) //dash direction based on where playr is facing
                 dashSpeed *= -1;
         }
     }
@@ -172,21 +185,32 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isDashing)
         {
-            dashTime -= Time.deltaTime;
+            dashTime -= Time.deltaTime;// dash duration countdown
 
-            rb.velocity = new Vector2(dashSpeed, 0);
+            rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
+
+            dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
         }
 
-        if (dashTime <= 0)
+        if (dashTime <= 0) //when player stops dashing
         {
-            dashTime = dashDuration;
-            isDashing = false;
+            
+            dashTime = dashDuration; //reset dash duration
+            isDashing = false; // player is no longer dashing
         }
+
+        if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
+        {
+            dashCooldownTime -= Time.deltaTime;
+        }
+
+        if (!isDashing && dashCooldownTime <= 0 && aerialDash) canDash = true; //checks if the player is able to dash
+        else canDash = false;
     }
 
     
 
-        private void Flip()
+    private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
@@ -200,6 +224,11 @@ public class CharacterController2D : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, boxCastDistance, groundLayer);
+    }
+
+    private void updateDashDuration()
+    {
+        dashTime = dashDuration = dashDistance / dashSpeed;
     }
 
     private void OnDrawGizmos()
