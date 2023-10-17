@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/GameStyle.uss?fileID=7433441132597879392&amp;guid=7c618b3492475c4429cb8f9650f3fc25&amp;type=3#GameStyle" />
+    <ui:ProgressBar value="0" title="0/100" name="ManiteBar" />
+    <PlayerUI />
+</ui:UXML>
