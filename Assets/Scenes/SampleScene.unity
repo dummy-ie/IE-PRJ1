@@ -737,17 +737,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &504662901 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8115552840724647759, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-  m_PrefabInstance: {fileID: 1191004501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8154fc76f0846384b94ef888cbcdc665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,6 +2063,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2184766912117530324, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0488515
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184766912117530324, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3223522
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184766912117530324, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02442386
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184766912117530324, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.013637915
+      objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.34
@@ -2114,29 +2119,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6500837453471319468, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6933529248856894337, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176358806896291459, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176358806896291459, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 504662901}
-    - target: {fileID: 7176358806896291459, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnChargedThrust
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176358806896291459, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChargedThrust, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
