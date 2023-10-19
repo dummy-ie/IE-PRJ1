@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 2184766912117530324}
   - component: {fileID: 4819540350561358096}
   m_Layer: 0
-  m_Name: AbilityHitbox
+  m_Name: ThrustHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,8 +768,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.018474134, y: 0.016388964}
-  m_Size: {x: 1.0369496, y: 0.96199906}
+  m_Offset: {x: -0.02442386, y: -0.013637915}
+  m_Size: {x: 1.0488515, y: 1.3223522}
   m_Direction: 1
 --- !u!114 &4819540350561358096
 MonoBehaviour:
