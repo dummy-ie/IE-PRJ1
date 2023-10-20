@@ -40,14 +40,9 @@ public class ChargedThrust : MonoBehaviour
 
             RaycastHit2D[] hits;
 
-            if (controller.Vertical >= .9f)
-            {
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, transform.up, 2);
-            }
-            else
-            {
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
-            }
+            
+            hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
+            
 
             foreach (RaycastHit2D hit in hits)
             {
