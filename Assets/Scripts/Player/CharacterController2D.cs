@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
+
+    [SerializeField] SpriteRenderer render2D;
+    [SerializeField] MeshRenderer model3D;
+
     private Rigidbody2D rb;
 
     private CinemachineVirtualCamera cmVC;
@@ -190,7 +194,10 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
 
             dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
+
+            // ShiftTo3D();
         }
+        // else ShiftTo2D();
 
         if (dashTime <= 0) //when player stops dashing
         {
@@ -234,5 +241,17 @@ public class CharacterController2D : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
+    }
+
+    private void ShiftTo2D()
+    {
+        render2D.enabled = true;
+        model3D.enabled = false;
+    }
+
+    private void ShiftTo3D()
+    {
+        render2D.enabled = false;
+        model3D.enabled = true;
     }
 }
