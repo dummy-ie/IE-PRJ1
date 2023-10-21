@@ -145,10 +145,11 @@ GameObject:
   - component: {fileID: 4010041928622623733}
   - component: {fileID: 5962612819004959911}
   - component: {fileID: 207511811344072622}
+  - component: {fileID: 7176358806896291459}
   - component: {fileID: 3489200118419860923}
   - component: {fileID: 6500837453471319468}
-  - component: {fileID: 7176358806896291459}
   - component: {fileID: 8115552840724647759}
+  - component: {fileID: 8300612678563695145}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -288,50 +289,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3489200118419860923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6933529248856894337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  speed: 6
-  allowDoubleJump: 0
-  jumpForce: 14
-  fallMultiplier: 4
-  lowJumpMultiplier: 0.3
-  coyoteTime: 0.1
-  jumpBufferTime: 0.2
-  boxCastDistance: 0.4
-  boxSize: {x: 0.3, y: 0.4}
-  dashDistance: 4
-  dashCooldown: 0.5
-  dashCooldownTime: 0
-  dashSpeed: 0
-  dashOriginalSpeed: 30
---- !u!114 &6500837453471319468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6933529248856894337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406ef516660c87e46912cfe406687129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackHitboxDebug: {fileID: 496892192983152945}
-  attackHitboxVDebug: {fileID: 496892192983152945}
-  attackHitbox: {fileID: 2653795914489541926}
 --- !u!114 &7176358806896291459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,11 +446,71 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cd54f896-c341-4728-8b24-d975a595ff96
     m_ActionName: Player/Charged Thrust[/Keyboard/a,/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8300612678563695145}
+        m_TargetAssemblyTypeName: ManiteSlash, Assembly-CSharp
+        m_MethodName: OnManiteSlash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 99ff6a69-522c-4fc6-a6e0-21b4eab474e3
+    m_ActionName: Player/Manite Slash[/Keyboard/a]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3489200118419860923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  speed: 6
+  allowDoubleJump: 0
+  jumpForce: 14
+  fallMultiplier: 4
+  lowJumpMultiplier: 0.3
+  coyoteTime: 0.1
+  jumpBufferTime: 0.2
+  boxCastDistance: 0.4
+  boxSize: {x: 0.3, y: 0.4}
+  dashDistance: 4
+  dashCooldown: 0.5
+  dashCooldownTime: 0
+  dashSpeed: 0
+  dashOriginalSpeed: 30
+--- !u!114 &6500837453471319468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406ef516660c87e46912cfe406687129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackHitboxDebug: {fileID: 496892192983152945}
+  attackHitboxVDebug: {fileID: 496892192983152945}
+  attackHitbox: {fileID: 2653795914489541926}
 --- !u!114 &8115552840724647759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +526,20 @@ MonoBehaviour:
   attackHitboxDebug: {fileID: 3860380033148128222}
   attackHitboxVDebug: {fileID: 3860380033148128222}
   attackHitbox: {fileID: 2184766912117530324}
+--- !u!114 &8300612678563695145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7200517ff3a5f949a9bf72a45f98ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slashProjectile: {fileID: 5631643489139863568, guid: 1e73d14f702558041b18a9251440ce40, type: 3}
+  slashDistance: 1
 --- !u!1 &7742219906878768100
 GameObject:
   m_ObjectHideFlags: 0
