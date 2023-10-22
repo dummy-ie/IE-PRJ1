@@ -18,7 +18,7 @@ public class ManiteSlash : MonoBehaviour
     
     [SerializeField]
     [Range(0, 5)]
-    private int slashDistance = 1;
+    private int slashSpawnDistance = 1;
 
     public void OnManiteSlash(InputAction.CallbackContext context)
     {
@@ -40,7 +40,7 @@ public class ManiteSlash : MonoBehaviour
 
             GameObject projectile = Instantiate(
                 slashProjectile,
-                new Vector3(controller.transform.position.x + slashDistance * -flip, controller.transform.position.y, controller.transform.position.z),
+                new Vector3(controller.transform.position.x + slashSpawnDistance * -flip, controller.transform.position.y, controller.transform.position.z),
                 Quaternion.identity);
 
             // rotate dat bitch
