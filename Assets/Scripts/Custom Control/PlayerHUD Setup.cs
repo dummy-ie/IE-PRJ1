@@ -9,6 +9,6 @@ public class PlayerUISetup : MonoBehaviour
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
 
-        PlayerUI playerUI = new PlayerUI();
+        PlayerHUD playerUI = new PlayerHUD();
     }
 }

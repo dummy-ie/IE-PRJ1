@@ -1,4 +1,9 @@
 VisualElement {
+    flex-direction: row;
+}
+
+.unity-image {
+    --unity-image: scale-to-fit;
 }
 
 .unity-progress-bar {
@@ -20,6 +25,15 @@ VisualElement {
 
 .unity-progress-bar__title {
     color: rgb(255, 255, 255);
+}
+
+#ManiteCrystal {
+    background-image: url('project://database/Assets/Sprites/shtManiteCrystal.png?fileID=834124856&guid=91b58b58eaa42e647b54193712856e7c&type=3#shtManiteCrystal_0');
+    width: 64px;
+    height: 64px;
+    transition-property: background-image;
+    transition-timing-function: linear;
+    transition-duration: 1s;
 }
 
 #ManiteBar {
