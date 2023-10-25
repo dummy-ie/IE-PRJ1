@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 91b58b58eaa42e647b54193712856e7c
+guid: 10e07bdafd1288b40b2ad4a611a95221
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shtManiteCrystal_0
+      name: trudee_enemy01_slime_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 64
-        height: 64
+        x: 6
+        y: 81
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b1f0d40cf5460142865a926134deca5
-      internalID: -944790019
+      spriteID: c276f432c2bafa3499cca2b740e723de
+      internalID: 341753649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shtManiteCrystal_1
+      name: trudee_enemy01_slime_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
+        x: 70
+        y: 81
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0fc6db99d5ef6c4a93d5f5a5c227275
-      internalID: -1314211174
+      spriteID: 459c01256803ad848b429cd5b532a54b
+      internalID: -445383263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shtManiteCrystal_2
+      name: trudee_enemy01_slime_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
+        x: 134
+        y: 81
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 625b55daf52919f438cf48d901f57689
-      internalID: -1444771850
+      spriteID: 6beff852ae20bf64b87f1a2bf2f0a5b0
+      internalID: -391019348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shtManiteCrystal_3
+      name: trudee_enemy01_slime_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
-        width: 64
-        height: 64
+        x: 6
+        y: 17
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13aa06359a4a1f94c84fe8d441483d0c
-      internalID: 388340028
+      spriteID: 90cc90374b0590a449b1f4d2600cff90
+      internalID: 1707537411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shtManiteCrystal_4
+      name: trudee_enemy01_slime_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
+        x: 70
+        y: 17
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 751363ddbd2bfb348989a6337eb33445
-      internalID: -792395473
+      spriteID: 7e439c3471ffd9e42b848f8354654837
+      internalID: -1081810061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shtManiteCrystal_5
+      name: trudee_enemy01_slime_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
+        x: 134
+        y: 17
+        width: 52
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,113 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f8d71901a05e9240b08a3f1288d10f3
-      internalID: -2021887277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shtManiteCrystal_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77a3acc36052f4647a83179f6eb83c82
-      internalID: -1831830192
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shtManiteCrystal_7
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 510b384f5053cd04296efd33e6781213
-      internalID: -462109328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shtManiteCrystal_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c938f96effe69ca4f9dd3374b7253aca
-      internalID: -1027528781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shtManiteCrystal_9
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f02334be0f1285846bd77f31e714e5e2
-      internalID: 248887891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shtManiteCrystal_10
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63aa95a1bd5a684489339394ec473c85
-      internalID: -1043161173
+      spriteID: d09e7e3eca08fe6438e7206e9f1413f4
+      internalID: -828300253
       vertices: []
       indices: 
       edges: []
@@ -377,18 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shtManiteCrystal_0: -944790019
-      shtManiteCrystal_1: -1314211174
-      shtManiteCrystal_10: -1043161173
-      shtManiteCrystal_11: -179288543
-      shtManiteCrystal_2: -1444771850
-      shtManiteCrystal_3: 388340028
-      shtManiteCrystal_4: -792395473
-      shtManiteCrystal_5: -2021887277
-      shtManiteCrystal_6: -1831830192
-      shtManiteCrystal_7: -462109328
-      shtManiteCrystal_8: -1027528781
-      shtManiteCrystal_9: 248887891
+      trudee_enemy01_slime_spritesheet_0: 341753649
+      trudee_enemy01_slime_spritesheet_1: -445383263
+      trudee_enemy01_slime_spritesheet_2: -391019348
+      trudee_enemy01_slime_spritesheet_3: 1707537411
+      trudee_enemy01_slime_spritesheet_4: -1081810061
+      trudee_enemy01_slime_spritesheet_5: -828300253
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
