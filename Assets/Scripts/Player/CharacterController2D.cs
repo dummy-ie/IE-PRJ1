@@ -35,7 +35,7 @@ public class CharacterController2D : MonoBehaviour
     private bool extraJump = false;
     private bool isGrounded = false;
 
-    
+
 
     [SerializeField] LayerMask groundLayer;
 
