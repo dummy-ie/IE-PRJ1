@@ -1,62 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class ViewManager : MonoBehaviour {
-    public static ViewManager Instance;
+public class ViewManager : Singleton {
+    //[SerializeField]
+    //private View _startingView;
 
-    [SerializeField]
-    private View _startingView;
-
-    [SerializeField]
+    //[SerializeField]
     private View[] _views;
 
-    private View _currentView;
+    private Stack<View> _currentViews;
 
     public T GetView<T>() where T : View { 
         for (int i = 0; i < this._views.Length; i++) { 
             if (this._views[i] is T view) {
-                Debug.Log("Returning View.");
                 return view;
             }
         }
-        Debug.Log("Returning Default");
         return default;
     }
     
     public void Show<T>() where T : View {
         for (int i = 0; i < this._views.Length; i++) {
             if (this._views[i] is T view) {
-                Debug.Log("Showing View.");
-                this._currentView.Hide();
-                this.Show(this._views[i]);
+                if (this._currentViews.Count != 0)
+                    this._currentViews.Pop().Hide();
+                view.Show();
+                this._currentViews.Push(view);
             }
         }
     }
 
     public void Show(View view) {
-        if (this._currentView != null) {
-            this._currentView.Hide();
-        }
+        //if (this._currentViews.Count != 0)
+        //    this._currentViews.Pop().Hide();
         view.Show();
-        this._currentView = view;
+        //this._currentViews.Push(view);
+    }
+    
+    public void PopUp<T>() where T : View {
+        for (int i = 0; i < this._views.Length; i++) {
+            if (this._views[i] is T view) {
+                if (this._currentViews.Count != 0)
+                    view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
+                view.Show();
+                this._currentViews.Push(view);
+            }
+        }
     }
 
-    void Awake() {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+    public void PopUp(View view) {
+        if (this._currentViews.Count != 0)
+            view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
+        view.Show();
+        this._currentViews.Push(view);
     }
 
-    void Start() {
+    public void HideRecentView() {
+        this._currentViews.Pop().Hide();
+    }
+
+    protected override void OnAwake() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        _views = FindObjectsOfType<View>();
         for (int i = 0; i < this._views.Length;i++) {
             _views[i].Initialize();
             _views[i].Hide();
-        }
-        if (this._startingView != null) {
-            Show(this._startingView);
+            if (_views[i].OnStart)
+                Show(_views[i]);
         }
     }
 }

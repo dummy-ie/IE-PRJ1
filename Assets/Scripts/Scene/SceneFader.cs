@@ -44,12 +44,11 @@ public class SceneFader : MonoBehaviour
 
     public static SceneFader Instance;
 
-    public Animator animator;
+    private Animator animator;
     private string _sceneName;
 
-    public void Fade(string sceneName) {
+    public void FadeAndLoadScene(string sceneName) {
         _sceneName = sceneName;
-        Debug.Log(_sceneName);
         animator.SetTrigger("FadeOut");
     }
 
@@ -61,11 +60,9 @@ public class SceneFader : MonoBehaviour
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            animator = this.GetComponentInChildren<Animator>();
         }
         else
             Destroy(gameObject);
-    }
-    void Start() {
-        //animator = this.GetComponentInChildren<Animator>();
     }
 }
