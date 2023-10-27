@@ -52,9 +52,15 @@ public class PlayerAttack : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.tag == "Breakable")
+                if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
-                    hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(hit.point);
+                    EnemyBaseScript enemy;
+                    enemy = hit.collider.gameObject.GetComponent<EnemyBaseScript>();
+
+                    if (enemy != null)
+                    {
+                        enemy.Hit(gameObject, gameObject.transform.position);
+                    }
                 }
             }
 

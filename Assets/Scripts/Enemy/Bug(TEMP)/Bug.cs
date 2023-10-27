@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class SlimeMovement : EnemyBaseScript
+public class BugMovement : EnemyBaseScript
 {
 
     GameObject target;
@@ -18,6 +18,8 @@ public class SlimeMovement : EnemyBaseScript
 
     bool iFramed;
 
+    Vector3 velocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +27,9 @@ public class SlimeMovement : EnemyBaseScript
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void Update()
+    { 
+
         Flip();
         if (isAttackPhase)
         {
@@ -52,8 +55,7 @@ public class SlimeMovement : EnemyBaseScript
     {
         if (canMove)
         {
-            Vector2 pos = new(transform.position.x + (GetPlayerDirection() * speed) , .5f);
-            transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
+            rb.transform.position = Vector3.SmoothDamp(rb.transform.position, target.transform.position, ref velocity, 1f, speed);
         }
     }
 
@@ -61,23 +63,28 @@ public class SlimeMovement : EnemyBaseScript
     {
         isAttacking = true;
 
+        Vector2 vec = new Vector2(target.transform.position.x - rb.transform.position.x, target.transform.position.y - rb.transform.position.y);
+
         yield return new WaitForSeconds(.2f);
 
         if (isAttacking)
         {
             rb.velocity = Vector2.zero;
-            Vector2 vec = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y);
+            
             vec.Normalize();
-            vec /= new Vector2(Mathf.Abs(vec.x), Mathf.Abs(vec.y));
 
-            rb.AddForce(new Vector2(vec.x * 5, 3f), ForceMode2D.Impulse);
+            rb.AddForce(vec * 8, ForceMode2D.Impulse);
         }
+
+        yield return new WaitForSeconds(.3f);
+
+        rb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(1);
 
         isAttacking = false;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         canAttack = true;
 
@@ -87,11 +94,12 @@ public class SlimeMovement : EnemyBaseScript
     {
         iFramed = true;
         canAttack = canMove = isAttacking = false;
-
+        
         yield return new WaitForSeconds(.7f);
 
-        iFramed = false;
+        rb.velocity = Vector3.zero;
         canMove = true;
+        iFramed = false;
 
         yield return new WaitForSeconds(.7f);
 
@@ -108,7 +116,7 @@ public class SlimeMovement : EnemyBaseScript
                 target = player;
                 isAttackPhase = true;
             }
-            Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
+            Vector2 vec = new Vector2(rb.transform.position.x - dmgSourcePos.x, 0);
             vec.Normalize();
             rb.velocity = Vector2.zero;
             rb.AddForce(vec * 5, ForceMode2D.Impulse);
@@ -116,7 +124,7 @@ public class SlimeMovement : EnemyBaseScript
 
             StartCoroutine(Stagger());
 
-            Debug.Log("Slime Hit");
+            Debug.Log("BUG Hit");
         }
     }
 
@@ -134,15 +142,15 @@ public class SlimeMovement : EnemyBaseScript
         if (isFacingRight && flip < 0f || !isFacingRight && flip > 0f)
         {
             isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
+            Vector3 localScale = rb.transform.localScale;
             localScale.x *= -1f;
-            transform.localScale = localScale;
+            rb.transform.localScale = localScale;
         }
     }
 
     private float GetPlayerDirection()
     {
-        float value = target.transform.position.x - transform.position.x;
+        float value = target.transform.position.x - rb.transform.position.x;
         if (value < 0)
             return -1;
         else
@@ -151,12 +159,10 @@ public class SlimeMovement : EnemyBaseScript
 
     RaycastHit2D[] Detect()
     {      
-        int flip = 1;
-        if (isFacingRight) flip = -1;
         RaycastHit2D[] hits;
 
         
-        hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, 1f), 0, -transform.right * flip, 2.5f);
+        hits = Physics2D.CircleCastAll(rb.transform.position, 1.5f, Vector2.zero);
         
 
         return hits;
@@ -182,7 +188,7 @@ public class SlimeMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (canAttack && IsGrounded())
+                if (canAttack)
                 {
                     StartCoroutine(AttackLunge());
                     canAttack = false;

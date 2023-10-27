@@ -37,7 +37,7 @@ public class EnemyBaseScript : MonoBehaviour
         }
     }
 
-    virtual public void Hit(Vector2 dmgSourcePos)
+    virtual public void Hit(GameObject player, Vector2 dmgSourcePos)
     {
         Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, transform.position.y - dmgSourcePos.y);
         vec.Normalize();
@@ -48,5 +48,13 @@ public class EnemyBaseScript : MonoBehaviour
     protected bool IsGrounded()
     {
         return Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, boxCastDistance, groundLayer);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject));
+        }
     }
 }

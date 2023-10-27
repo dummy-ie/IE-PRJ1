@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +36,11 @@ public class CharacterController2D : MonoBehaviour
     private bool extraJump = false;
     private bool isGrounded = false;
 
+    private bool isHit = false;
+    private float setHitTime = .5f;
+    private float hitTime = .5f;
 
+    private float iFrames = 0;
 
     [SerializeField] LayerMask groundLayer;
 
@@ -83,12 +88,12 @@ public class CharacterController2D : MonoBehaviour
         Dash();
         if (!isDashing) Flip();
 
-        
+        Hits();
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
     {
-        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!(isDashing || isHit)) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
@@ -215,7 +220,24 @@ public class CharacterController2D : MonoBehaviour
         else canDash = false;
     }
 
-    
+    void Hits()
+    {
+        if (isHit)
+        {
+            hitTime -= Time.deltaTime;
+        }
+
+        if (hitTime <= 0)
+        {
+            isHit = false;
+            hitTime = setHitTime;
+        }
+
+        if (iFrames > 0)
+        {
+            iFrames -= Time.deltaTime;
+        }
+    }
 
     private void Flip()
     {
@@ -253,5 +275,26 @@ public class CharacterController2D : MonoBehaviour
     {
         render2D.enabled = false;
         model3D.enabled = true;
+    }
+
+
+    public IEnumerator Hit(GameObject enemy)
+    {
+        if (!isHit && iFrames <= 0)
+        {
+            Debug.Log("Player Has Been Hit");
+            isHit = true;
+
+            iFrames = 2;
+
+            Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
+            vec.Normalize();
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(.2f);
+
+            rb.velocity = Vector3.zero;
+        }
     }
 }

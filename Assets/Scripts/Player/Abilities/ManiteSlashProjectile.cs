@@ -14,6 +14,9 @@ public class ManiteSlashProjectile : MonoBehaviour
     [Range(0.1f, 100f)]
     private float speed = 1f;
 
+    [SerializeField]
+    GameObject sourcePlayer;
+
     private int CheckFlipped()
     {
         if (transform.localScale.y < 0)
@@ -44,6 +47,6 @@ public class ManiteSlashProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Breakable"))
-            other.gameObject.GetComponent<EnemyBaseScript>().Hit(transform.position);
+            other.gameObject.GetComponent<EnemyBaseScript>().Hit(sourcePlayer, transform.position);
     }
 }
