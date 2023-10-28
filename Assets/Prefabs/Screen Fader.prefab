@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4844166739576774020}
-  - component: {fileID: 5768130626449375502}
+  - component: {fileID: 4294826774119950457}
   - component: {fileID: 7159453681783983266}
   m_Layer: 0
-  m_Name: Scene Fader
+  m_Name: Screen Fader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2014569900747391654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5768130626449375502
+--- !u!114 &4294826774119950457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4423535715167427980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deaf577a5b23b264a974fb6c34470ac1, type: 3}
+  m_Script: {fileID: 11500000, guid: b6b25e0bcac70834aadf381868dbbb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7159453681783983266}
+  _persistent: 1
 --- !u!95 &7159453681783983266
 Animator:
   serializedVersion: 5

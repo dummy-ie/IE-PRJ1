@@ -3,12 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public abstract class Singleton<T> : Singleton where T : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    
-}*/
+    [CanBeNull]
+    private static T _instance;
+    public static T Instance {
+        get { return _instance; }
+    }
 
-public abstract class Singleton : MonoBehaviour
+    [SerializeField]
+    bool _persistent = true;
+
+    protected virtual void OnAwake() { }
+    void Awake() {
+        if (_instance == null) {
+            _instance = this as T;
+        }
+        else
+            Destroy(gameObject);
+        if (_persistent)
+            DontDestroyOnLoad(gameObject);
+        OnAwake();
+    }
+}
+
+/*public abstract class Singleton : MonoBehaviour
 {
     [CanBeNull]
     private static Singleton _instance;
@@ -30,4 +49,4 @@ public abstract class Singleton : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         OnAwake();
     }
-}
+}*/

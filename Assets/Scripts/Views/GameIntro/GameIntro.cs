@@ -31,7 +31,7 @@ public class GameIntro : MonoBehaviour {
             this._logo.AddToClassList("logo--hidden");
             yield return new WaitForSeconds(transitionDuration + logoUpTime);
         }
-        SceneFader.Instance.FadeAndLoadScene("SampleScene");
+        StartCoroutine(SceneLoader.Instance.FadeAndLoadScene("SampleScene"));
     }
 
     void Start() {
