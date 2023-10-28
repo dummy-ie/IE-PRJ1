@@ -80,10 +80,12 @@ public class ManiteSlash : MonoBehaviour
     IEnumerator VecShift() //temp
     {
         controller.ShiftTo3D();
+        controller.RB.drag = 100f;
 
         yield return new WaitForSeconds(.7f);
 
         controller.ShiftTo2D();
+        controller.RB.drag = 0;
     }
 
     IEnumerator Cooldown()

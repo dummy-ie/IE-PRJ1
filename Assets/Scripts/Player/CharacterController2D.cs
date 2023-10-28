@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] MeshRenderer model3D;
 
     private Rigidbody2D rb;
+    public Rigidbody2D RB { 
+        get { return rb; } 
+        set { rb = value; }
+    }
 
     private CinemachineVirtualCamera cmVC;
     private Cinemachine3rdPersonFollow cmTP;
@@ -225,7 +230,12 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isHit)
         {
-            hitTime -= Time.deltaTime;
+            if (isDashing)
+            {
+                isDashing = false;
+                ShiftTo2D();
+            }
+                hitTime -= Time.deltaTime;
         }
 
         if (hitTime <= 0)
@@ -283,15 +293,15 @@ public class CharacterController2D : MonoBehaviour
     {
         if (!isHit && iFrames <= 0)
         {
+            rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
             isHit = true;
-            isDashing = false;
 
             iFrames = 2;
 
             Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
             vec.Normalize();
-            rb.velocity = Vector2.zero;
+            
             rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(.2f);
