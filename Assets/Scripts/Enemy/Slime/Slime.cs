@@ -87,6 +87,7 @@ public class SlimeMovement : EnemyBaseScript
     {
         iFramed = true;
         canAttack = canMove = isAttacking = false;
+        StopCoroutine(AttackLunge());
 
         yield return new WaitForSeconds(.7f);
 

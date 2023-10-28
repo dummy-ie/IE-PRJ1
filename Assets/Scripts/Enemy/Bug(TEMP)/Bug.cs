@@ -94,6 +94,7 @@ public class BugMovement : EnemyBaseScript
     {
         iFramed = true;
         canAttack = canMove = isAttacking = false;
+        StopCoroutine(AttackLunge());
         
         yield return new WaitForSeconds(.7f);
 
@@ -116,7 +117,7 @@ public class BugMovement : EnemyBaseScript
                 target = player;
                 isAttackPhase = true;
             }
-            Vector2 vec = new Vector2(rb.transform.position.x - dmgSourcePos.x, 0);
+            Vector2 vec = new Vector2(rb.transform.position.x - dmgSourcePos.x, rb.transform.position.y - dmgSourcePos.y);
             vec.Normalize();
             rb.velocity = Vector2.zero;
             rb.AddForce(vec * 5, ForceMode2D.Impulse);
