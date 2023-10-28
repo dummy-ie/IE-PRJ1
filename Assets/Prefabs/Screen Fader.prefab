@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
+  _clips:
+  - {fileID: 7400000, guid: 56cb31b2a0bdc09489db0e2a8b07c232, type: 2}
+  - {fileID: 7400000, guid: fc8a566482a63b44aa05010f5297184a, type: 2}
 --- !u!95 &7159453681783983266
 Animator:
   serializedVersion: 5

@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
-    public static AudioManager Instance;
+public class AudioManager : Singleton<AudioManager> {
 
     private AudioSource _bgmSource;
     private AudioSource _sfxSource;
@@ -26,26 +24,22 @@ public class AudioManager : MonoBehaviour
         this._sfxSource.Stop();
     }
 
+    public void ChangeBGM(AudioClip bgm) {
+        if (_bgmSource.clip.name == bgm.name)
+            return;
+        _bgmSource.Stop();
+        _bgmSource.clip = bgm;
+        _bgmSource.Play();
+    }
+
     public void StopBGM()
     {
         this._bgmSource.Stop();
     }
 
-    /* UNITY LIFECYCLE METHODS */
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-            Destroy(this.gameObject);
-    }
-
     private void Start()
     {
-        this._bgmSource = this.transform.Find("Background Theme").GetComponent<AudioSource>();
+        this._bgmSource = this.transform.Find("BGM").GetComponent<AudioSource>();
         this._bgmSource.clip = this._bgmTheme;
 
         this._sfxSource = this.transform.Find("SFX").GetComponent<AudioSource>();
