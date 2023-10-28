@@ -200,15 +200,16 @@ public class CharacterController2D : MonoBehaviour
 
             dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
 
-            // ShiftTo3D();
+             ShiftTo3D();
         }
-        // else ShiftTo2D();
 
         if (dashTime <= 0) //when player stops dashing
         {
             
             dashTime = dashDuration; //reset dash duration
             isDashing = false; // player is no longer dashing
+
+            ShiftTo2D();
         }
 
         if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
@@ -265,13 +266,13 @@ public class CharacterController2D : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
     }
 
-    private void ShiftTo2D()
+    public void ShiftTo2D()
     {
         render2D.enabled = true;
         model3D.enabled = false;
     }
 
-    private void ShiftTo3D()
+    public void ShiftTo3D()
     {
         render2D.enabled = false;
         model3D.enabled = true;
@@ -284,6 +285,7 @@ public class CharacterController2D : MonoBehaviour
         {
             Debug.Log("Player Has Been Hit");
             isHit = true;
+            isDashing = false;
 
             iFrames = 2;
 

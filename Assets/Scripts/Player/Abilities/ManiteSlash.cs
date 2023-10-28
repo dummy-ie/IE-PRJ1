@@ -7,9 +7,10 @@ public class ManiteSlash : MonoBehaviour
 
     CharacterController2D controller;
 
+    private bool isAttacking = false;
     // private bool isAttacking = false;
     private float attackTime;
-    private float attackCooldown = .2f;
+    private float attackCooldown = 1.5f;
 
     private bool canAttack = true;
 
@@ -33,6 +34,7 @@ public class ManiteSlash : MonoBehaviour
     {
         if (canAttack)
         {
+            
             canAttack = false;
 
             int flip = 1;
@@ -43,6 +45,10 @@ public class ManiteSlash : MonoBehaviour
                 new Vector3(controller.transform.position.x + slashSpawnDistance * -flip, controller.transform.position.y, controller.transform.position.z),
                 Quaternion.identity);
 
+            // slash owner
+            var temp = projectile.GetComponent<ManiteSlashProjectile>();
+            temp.SourcePlayer = gameObject;
+
             // rotate dat bitch
             projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
 
@@ -51,20 +57,39 @@ public class ManiteSlash : MonoBehaviour
             projectileScale.y *= flip;
             projectile.transform.localScale = projectileScale;
 
+            StartCoroutine(VecShift());
+            StartCoroutine(Cooldown());
+
             attackTime = attackCooldown;
         }
     }
 
     private void ManiteSlashUpdate()
     {
-        if (attackTime > 0 && canAttack)
+        /*if (isAttacking)
         {
             attackTime -= Time.deltaTime;
         }
-        else
+
+        if (attackTime <= 0)
         {
-            canAttack = true;
-        }
+            isAttacking = false;
+        }*/
+    }
+
+    IEnumerator VecShift() //temp
+    {
+        controller.ShiftTo3D();
+
+        yield return new WaitForSeconds(.7f);
+
+        controller.ShiftTo2D();
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // Start is called before the first frame update

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ManiteSlashProjectile : MonoBehaviour
 {
+
+
+
     private float lifespanCounter = 0f;
 
     [SerializeField]
@@ -14,8 +17,12 @@ public class ManiteSlashProjectile : MonoBehaviour
     [Range(0.1f, 100f)]
     private float speed = 1f;
 
-    [SerializeField]
     GameObject sourcePlayer;
+    public GameObject SourcePlayer
+    {
+        get { return sourcePlayer; }
+        set { sourcePlayer = value; }
+    }
 
     private int CheckFlipped()
     {
