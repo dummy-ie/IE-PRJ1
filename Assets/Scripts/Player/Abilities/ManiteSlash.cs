@@ -82,10 +82,13 @@ public class ManiteSlash : MonoBehaviour
         controller.ShiftTo3D();
         controller.RB.drag = 100f;
 
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(.4f);
+
+        controller.RB.drag = 0;
+
+        yield return new WaitForSeconds(.2f);
 
         controller.ShiftTo2D();
-        controller.RB.drag = 0;
     }
 
     IEnumerator Cooldown()
