@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGMManager : MonoBehaviour
-{
-    public static BGMManager Instance;
-
+public class BGMManager : Singleton<BGMManager> {
     [SerializeField]    
     private List<AudioClip> _clips;
     private AudioSource _source;
@@ -33,14 +30,6 @@ public class BGMManager : MonoBehaviour
     public void Stop() { 
         this._source.Stop();
         this._source.clip = null;
-    }
-
-
-    void Awake() {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
     }
 
     void Start() {

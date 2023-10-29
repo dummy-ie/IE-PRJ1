@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class ViewManager : Singleton {
+public class ViewManager : Singleton<ViewManager> {
     //[SerializeField]
     //private View _startingView;
 
@@ -34,10 +34,10 @@ public class ViewManager : Singleton {
     }
 
     public void Show(View view) {
-        //if (this._currentViews.Count != 0)
-        //    this._currentViews.Pop().Hide();
+        if (this._currentViews.Count != 0)
+            this._currentViews.Pop().Hide();
         view.Show();
-        //this._currentViews.Push(view);
+        this._currentViews.Push(view);
     }
     
     public void PopUp<T>() where T : View {
@@ -64,6 +64,14 @@ public class ViewManager : Singleton {
 
     protected override void OnAwake() {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        _views = FindObjectsOfType<View>();
+        for (int i = 0; i < this._views.Length;i++) {
+            _views[i].Initialize();
+            _views[i].Hide();
+            if (_views[i].OnStart) {
+                _views[i].Show();
+            }
+        }
     }
     void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -74,8 +82,9 @@ public class ViewManager : Singleton {
         for (int i = 0; i < this._views.Length;i++) {
             _views[i].Initialize();
             _views[i].Hide();
-            if (_views[i].OnStart)
-                Show(_views[i]);
+            if (_views[i].OnStart) {
+                _views[i].Show();
+            }
         }
     }
 }
