@@ -100,9 +100,6 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator FlipInterval()
     {
-
-        Debug.Log("Direction is flipped.");
-
         if (this.impState == EStateEnemy.PATROL)
         {
 
@@ -131,7 +128,6 @@ public class ImpMovement : EnemyBaseScript
 
         if (isAttacking)
         {
-            Debug.Log("Spawn enemy projectile");
             GameObject projectile = Instantiate(
                 impProjectile,
                 new Vector3(transform.position.x + 1f * GetPlayerDirection(), transform.position.y, transform.position.z),
@@ -191,7 +187,7 @@ public class ImpMovement : EnemyBaseScript
 
             StartCoroutine(Stagger());
 
-            Debug.Log("Imp Hit");
+            // Debug.Log("Imp Hit");
         }
     }
 
@@ -251,7 +247,6 @@ public class ImpMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Imp detects player");
                 target = hit.collider.gameObject;
                 this.impState = EStateEnemy.ATTACK;
                 StopCoroutine(this.FlipInterval());
@@ -265,9 +260,9 @@ public class ImpMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Imp detects player");
-                Debug.Log("Imp can attack: " + canAttack);
-                Debug.Log("Imp is grounded: " + IsGrounded());
+                // Debug.Log("Imp detects player");
+                // Debug.Log("Imp can attack: " + canAttack);
+                // Debug.Log("Imp is grounded: " + IsGrounded());
                 if (canAttack && IsGrounded())
 
                 {
@@ -278,7 +273,7 @@ public class ImpMovement : EnemyBaseScript
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         int flip = 1;
         if (isFacingRight) flip = -1;
