@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManiteSlashProjectile : MonoBehaviour
+public class HorizontalProjectile : MonoBehaviour
 {
-
-
-
     private float lifespanCounter = 0f;
 
     [SerializeField]
@@ -16,6 +13,12 @@ public class ManiteSlashProjectile : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 100f)]
     private float speed = 1f;
+
+    [SerializeField]
+    private bool destroyOnImpactWithTarget = true;
+
+    [SerializeField]
+    private bool destroyOnCollisionWithGround = true;
 
     GameObject sourcePlayer;
     public GameObject SourcePlayer
@@ -34,13 +37,11 @@ public class ManiteSlashProjectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("slash projectile flip: " + CheckFlipped());
+        // Debug.Log("slash projectile flip: " + CheckFlipped());
         float projectileSpeed = speed * CheckFlipped() * Time.deltaTime;
-        Debug.Log("slash projectile sped: " + projectileSpeed);
+        // Debug.Log("slash projectile sped: " + projectileSpeed);
         if (lifespanCounter <= lifespanTime)
-            transform.Translate(new Vector3(0,
-                                            projectileSpeed,
-                                            0));        
+            transform.Translate(new Vector3(projectileSpeed, 0, 0), Space.World);
     }
 
     private void Update()
@@ -53,7 +54,22 @@ public class ManiteSlashProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Breakable"))
+        if (sourcePlayer.CompareTag("Player") && other.gameObject.CompareTag("Breakable"))
+        {
             other.gameObject.GetComponent<EnemyBaseScript>().Hit(sourcePlayer, transform.position);
+            if (destroyOnImpactWithTarget)
+                Destroy(gameObject);
+        }
+        else if (sourcePlayer.CompareTag("Breakable") && other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(other.gameObject.GetComponent<CharacterController2D>().Hit(sourcePlayer));
+            if (destroyOnImpactWithTarget)
+                Destroy(gameObject);
+        }
+
+        if (destroyOnCollisionWithGround && other.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

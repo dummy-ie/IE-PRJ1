@@ -13,11 +13,11 @@ public class SlimeMovement : EnemyBaseScript
     private float flipDirection = 1;
 
     [SerializeField]
-    private EStateEnemy _slimeState;
+    private EStateEnemy slimeState;
 
     public EStateEnemy SlimeState {
-        get {return this._slimeState; }
-        set {this._slimeState = value; }
+        get {return this.slimeState; }
+        set {this.slimeState = value; }
     }
 
     bool isAttacking = false;
@@ -27,9 +27,9 @@ public class SlimeMovement : EnemyBaseScript
     bool iFramed;
 
     // Start is called before the first frame update
-    void onEnable()
+    void OnEnable()
     {
-       this._slimeState = EStateEnemy.PATROL;
+       this.slimeState = EStateEnemy.PATROL;
        this.StartCoroutine(FlipInterval());
        
     }
@@ -42,7 +42,7 @@ public class SlimeMovement : EnemyBaseScript
     void FixedUpdate()
     {
         Flip();
-        if (this._slimeState == EStateEnemy.ATTACK)
+        if (this.slimeState == EStateEnemy.ATTACK)
         {
 
             CheckAttack(Detect());
@@ -54,7 +54,7 @@ public class SlimeMovement : EnemyBaseScript
 
             
         }
-        else if(this._slimeState == EStateEnemy.PATROL)
+        else if(this.slimeState == EStateEnemy.PATROL)
         {
             CheckForPlayer(Detect());
             Move();
@@ -65,13 +65,13 @@ public class SlimeMovement : EnemyBaseScript
 
     void Move()
     {
-        if (canMove && this._slimeState == EStateEnemy.ATTACK)
+        if (canMove && this.slimeState == EStateEnemy.ATTACK)
         {
             Vector2 pos = new(transform.position.x + (this.GetPlayerDirection() * speed), .5f);
             transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
         }
 
-        else if(canMove && this._slimeState == EStateEnemy.PATROL){
+        else if(canMove && this.slimeState == EStateEnemy.PATROL){
 
             Vector2 pos = new(transform.position.x + (this.flipDirection * speed), .5f);
             transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
@@ -82,7 +82,7 @@ public class SlimeMovement : EnemyBaseScript
 
         Debug.Log("Direction is flipped.");
         
-        if(this._slimeState == EStateEnemy.PATROL){
+        if(this.slimeState == EStateEnemy.PATROL){
 
             this.flipDirection = Random.Range(0,2);
 
@@ -147,10 +147,10 @@ public class SlimeMovement : EnemyBaseScript
         
         if (!iFramed)
         {
-            if (this._slimeState != EStateEnemy.ATTACK)
+            if (this.slimeState != EStateEnemy.ATTACK)
             {
                 target = player;
-                this._slimeState = EStateEnemy.ATTACK;
+                this.slimeState = EStateEnemy.ATTACK;
             }
             Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
             vec.Normalize();
@@ -167,12 +167,12 @@ public class SlimeMovement : EnemyBaseScript
     override protected void Flip()
     {
         float flip;
-        if (this._slimeState == EStateEnemy.ATTACK && target != null)
+        if (this.slimeState == EStateEnemy.ATTACK && target != null)
         {
             flip = GetPlayerDirection();
         }
 
-        else if (this._slimeState == EStateEnemy.PATROL){
+        else if (this.slimeState == EStateEnemy.PATROL){
             flip = this.flipDirection;
         }
 
@@ -220,7 +220,7 @@ public class SlimeMovement : EnemyBaseScript
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 target = hit.collider.gameObject;
-                this._slimeState = EStateEnemy.ATTACK;
+                this.slimeState = EStateEnemy.ATTACK;
                 StopCoroutine(this.FlipInterval());
             }
         }

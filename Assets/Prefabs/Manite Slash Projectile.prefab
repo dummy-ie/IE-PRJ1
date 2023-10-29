@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5631643489139863568}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70710707, w: 0.70710653}
-  m_LocalPosition: {x: -2.0700023, y: -4.9639997, z: -0.13}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1971053207 &9052841165925272199
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -205,12 +205,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5631643489139863568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe8c336b9693d842abdab861a21dc63, type: 3}
+  m_Script: {fileID: 11500000, guid: ad428691095b4eb488448ce85c035d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifespanTime: 1
   speed: 10
-  sourcePlayer: {fileID: 6933529248856894337, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+  destroyOnImpactWithTarget: 0
+  destroyOnCollisionWithGround: 0
 --- !u!68 &1462932214807088662
 EdgeCollider2D:
   m_ObjectHideFlags: 0

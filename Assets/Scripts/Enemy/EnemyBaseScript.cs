@@ -23,7 +23,7 @@ public class EnemyBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     virtual protected void Flip()
@@ -56,5 +56,10 @@ public class EnemyBaseScript : MonoBehaviour
         {
             StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject));
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(transform.position + (boxCastDistance * -transform.up), boxSize);
     }
 }

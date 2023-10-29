@@ -46,16 +46,17 @@ public class ManiteSlash : MonoBehaviour
                 Quaternion.identity);
 
             // slash owner
-            var temp = projectile.GetComponent<ManiteSlashProjectile>();
+            var temp = projectile.GetComponent<HorizontalProjectile>();
             temp.SourcePlayer = gameObject;
 
-            // rotate dat bitch
-            projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
 
             // flip projectile based on player face direction
             Vector3 projectileScale = projectile.transform.localScale;
             projectileScale.y *= flip;
             projectile.transform.localScale = projectileScale;
+
+            // rotate dat bitch
+            projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
 
             StartCoroutine(VecShift());
             StartCoroutine(Cooldown());
