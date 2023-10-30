@@ -3,5 +3,19 @@
     <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
         <ui:Image name="ManiteCrystal" />
         <ui:ProgressBar value="0" title="0/100" name="ManiteBar" />
+        <ui:Image name="ManiteBarBase">
+            <ui:VisualElement name="ManiteBarGaugeContainer">
+                <ui:Image name="ManiteBarGaugeFillStart" />
+                <ui:Image name="ManiteBarGaugeFillMid" />
+                <ui:Image name="ManiteBarGaugeFillMid" />
+                <ui:Image name="ManiteBarGaugeFillMid" />
+                <ui:Image name="ManiteBarGaugeFillEnd" />
+            </ui:VisualElement>
+            <ui:Image name="ManiteBarHexIcon">
+                <ui:Image name="ManiteBarGaugeCircuit">
+                    <ui:Image name="ManiteBarPartition" />
+                </ui:Image>
+            </ui:Image>
+        </ui:Image>
     </ui:VisualElement>
 </ui:UXML>

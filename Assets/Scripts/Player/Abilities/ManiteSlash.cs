@@ -32,36 +32,41 @@ public class ManiteSlash : MonoBehaviour
 
     private void OnPressManiteSlash()
     {
-        if (canAttack)
+        if (controller.HasSlash)
         {
-            
-            canAttack = false;
-
-            int flip = 1;
-            if (controller.IsFacingRight) flip = -1;
-
-            GameObject projectile = Instantiate(
-                slashProjectile,
-                new Vector3(controller.transform.position.x + slashSpawnDistance * -flip, controller.transform.position.y, controller.transform.position.z),
-                Quaternion.identity);
-
-            // slash owner
-            var temp = projectile.GetComponent<HorizontalProjectile>();
-            temp.SourcePlayer = gameObject;
 
 
-            // flip projectile based on player face direction
-            Vector3 projectileScale = projectile.transform.localScale;
-            projectileScale.y *= flip;
-            projectile.transform.localScale = projectileScale;
+            if (canAttack)
+            {
 
-            // rotate dat bitch
-            projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
+                canAttack = false;
 
-            StartCoroutine(VecShift());
-            StartCoroutine(Cooldown());
+                int flip = 1;
+                if (controller.IsFacingRight) flip = -1;
 
-            attackTime = attackCooldown;
+                GameObject projectile = Instantiate(
+                    slashProjectile,
+                    new Vector3(controller.transform.position.x + slashSpawnDistance * -flip, controller.transform.position.y, controller.transform.position.z),
+                    Quaternion.identity);
+
+                // slash owner
+                var temp = projectile.GetComponent<HorizontalProjectile>();
+                temp.SourcePlayer = gameObject;
+
+
+                // flip projectile based on player face direction
+                Vector3 projectileScale = projectile.transform.localScale;
+                projectileScale.y *= flip;
+                projectile.transform.localScale = projectileScale;
+
+                // rotate dat bitch
+                projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
+
+                StartCoroutine(VecShift());
+                StartCoroutine(Cooldown());
+
+                attackTime = attackCooldown;
+            }
         }
     }
 

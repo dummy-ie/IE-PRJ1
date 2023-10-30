@@ -131,6 +131,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 380320493}
     m_Modifications:
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: hasDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: hasSlash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: currentManite
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.396027
@@ -2083,6 +2095,7 @@ GameObject:
   - component: {fileID: 857570621}
   - component: {fileID: 857570620}
   - component: {fileID: 857570622}
+  - component: {fileID: 857570623}
   m_Layer: 5
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -2131,6 +2144,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5aa25f1760d2ae4496144f920ad78ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStart: 1
+  maniteSpriteSheet: []
+  animateTicks: 0.1
+--- !u!114 &857570623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857570619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d6391008cdaac4ca50c9c2335452f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1

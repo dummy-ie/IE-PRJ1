@@ -49,6 +49,18 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField] LayerMask groundLayer;
 
+    [Header("Stats")]
+    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private int currentHealth = 3;
+    [SerializeField] private float maxManite = 100;
+    public float MaxManite { get { return maxManite; } }
+    [SerializeField] private float currentManite = 100;
+    public float CurrentManite { get { return currentManite; } }
+    [SerializeField] private bool hasDash = false;
+    public bool HasDash { get { return hasDash; } }
+    [SerializeField] private bool hasSlash = false;
+    public bool HasSlash { get { return hasSlash; } }
+
     // have default values for all fields to prevent null errors
     [Header("Movement")]
     [Range(0, 100)][SerializeField] private float speed = 6f;
@@ -70,9 +82,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float dashSpeed = 0f;
     [SerializeField] private float dashOriginalSpeed = 20f;
 
-
-
-
     public bool IsFacingRight {
         get { return isFacingRight; }
     }
@@ -89,20 +98,16 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        Jump();
-        Dash();
-        if (!isDashing) Flip();
 
         Hits();
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
     {
-        if (!(isDashing || isHit)) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        // interpolate the camera towards where the player is currently moving if they are moving?
-        // propose the idea later on idk
-        //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
+        Move();
+        Jump();
+        Dash();
+        if (!isDashing) Flip();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -142,6 +147,14 @@ public class CharacterController2D : MonoBehaviour
         {
             isJumpPress = false;
         }
+    }
+    private void Move()
+    {
+        if (!(isDashing || isHit)) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // interpolate the camera towards where the player is currently moving if they are moving?
+        // propose the idea later on idk
+        //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
     }
 
     private void Jump()
@@ -183,7 +196,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash) //check if player can dash
+        if (context.started && canDash && hasDash) //check if player can dash
         { 
             dashSpeed = dashOriginalSpeed;
             updateDashDuration();
@@ -194,36 +207,38 @@ public class CharacterController2D : MonoBehaviour
                 dashSpeed *= -1;
         }
     }
-
     private void Dash()
     {
-        if (isDashing)
+        if (hasDash)
         {
-            dashTime -= Time.deltaTime;// dash duration countdown
+            if (isDashing)
+            {
+                dashTime -= Time.deltaTime;// dash duration countdown
 
-            rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
+                rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
 
-            dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
+                dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
 
-             ShiftTo3D();
+                ShiftTo3D();
+            }
+
+            if (dashTime <= 0) //when player stops dashing
+            {
+
+                dashTime = dashDuration; //reset dash duration
+                isDashing = false; // player is no longer dashing
+
+                ShiftTo2D();
+            }
+
+            if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
+            {
+                dashCooldownTime -= Time.deltaTime;
+            }
+
+            if (!isDashing && dashCooldownTime <= 0 && aerialDash) canDash = true; //checks if the player is able to dash
+            else canDash = false;
         }
-
-        if (dashTime <= 0) //when player stops dashing
-        {
-            
-            dashTime = dashDuration; //reset dash duration
-            isDashing = false; // player is no longer dashing
-
-            ShiftTo2D();
-        }
-
-        if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
-        {
-            dashCooldownTime -= Time.deltaTime;
-        }
-
-        if (!isDashing && dashCooldownTime <= 0 && aerialDash) canDash = true; //checks if the player is able to dash
-        else canDash = false;
     }
 
     void Hits()
@@ -235,7 +250,7 @@ public class CharacterController2D : MonoBehaviour
                 isDashing = false;
                 ShiftTo2D();
             }
-                hitTime -= Time.deltaTime;
+            hitTime -= Time.deltaTime;
         }
 
         if (hitTime <= 0)
@@ -308,5 +323,17 @@ public class CharacterController2D : MonoBehaviour
 
             rb.velocity = Vector3.zero;
         }
+    }
+
+    public void AddManite(float value) {
+        currentManite += value;
+        if (currentManite >= maxManite)
+            currentManite = maxManite;
+    }
+
+    public void ReduceManite(float value) {
+        currentManite -= value;
+        if (currentManite <= 0)
+            currentManite = 0;
     }
 }

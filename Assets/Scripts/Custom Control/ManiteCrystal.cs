@@ -8,6 +8,6 @@ public class ManiteCrystal : VisualElement {
     [UnityEngine.Scripting.Preserve]
     public new class UxmlFactory : UxmlFactory<ManiteCrystal> { }
     public ManiteCrystal() { 
-        Sprite
+        //Sprite
     }
 }
