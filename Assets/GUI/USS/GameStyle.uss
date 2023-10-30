@@ -65,19 +65,26 @@ VisualElement {
 }
 
 #ManiteBarGaugeContainer {
-    --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarPartition.png?fileID=21300000&guid=a32da61f1625c504ba25ffffa9210425&type=3#sprManiteBarPartition');
     flex-shrink: 0;
     top: 24px;
 }
 
+#ManiteBarGaugeMask {
+    overflow: hidden;
+    width: 100%;
+}
+
 #ManiteBarGaugeFillStart {
     --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillStart.png?fileID=21300000&guid=426b13cb03a59a845b7e79a455bbd0ba&type=3#sprManiteBarGaugeFillStart');
+    flex-shrink: 0;
 }
 
 #ManiteBarGaugeFillMid {
     --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillMid.png?fileID=21300000&guid=da68cadc805fc6c4692e29a365dfbb0c&type=3#sprManiteBarGaugeFillMid');
+    flex-shrink: 0;
 }
 
 #ManiteBarGaugeFillEnd {
     --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillEnd.png?fileID=21300000&guid=dabfb40defe9618499c4d14a28e46447&type=3#sprManiteBarGaugeFillEnd');
+    flex-shrink: 0;
 }
