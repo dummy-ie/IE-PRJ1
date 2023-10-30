@@ -98,6 +98,15 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Manite Slash"",
+                    ""type"": ""Button"",
+                    ""id"": ""99ff6a69-522c-4fc6-a6e0-21b4eab474e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -496,6 +505,28 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""action"": ""Charged Thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06e2b214-480a-460c-b70e-e1bed652d3ed"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Manite Slash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eaf7ff9b-eaab-4637-94c4-65f7b903b04a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Manite Slash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1089,6 +1120,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_VectorShift = m_Player.FindAction("Vector Shift", throwIfNotFound: true);
         m_Player_ChargedThrust = m_Player.FindAction("Charged Thrust", throwIfNotFound: true);
+        m_Player_ManiteSlash = m_Player.FindAction("Manite Slash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1170,6 +1202,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_VectorShift;
     private readonly InputAction m_Player_ChargedThrust;
+    private readonly InputAction m_Player_ManiteSlash;
     public struct PlayerActions
     {
         private @StuckinBetween m_Wrapper;
@@ -1182,6 +1215,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @VectorShift => m_Wrapper.m_Player_VectorShift;
         public InputAction @ChargedThrust => m_Wrapper.m_Player_ChargedThrust;
+        public InputAction @ManiteSlash => m_Wrapper.m_Player_ManiteSlash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1215,6 +1249,9 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @ChargedThrust.started += instance.OnChargedThrust;
             @ChargedThrust.performed += instance.OnChargedThrust;
             @ChargedThrust.canceled += instance.OnChargedThrust;
+            @ManiteSlash.started += instance.OnManiteSlash;
+            @ManiteSlash.performed += instance.OnManiteSlash;
+            @ManiteSlash.canceled += instance.OnManiteSlash;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1243,6 +1280,9 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @ChargedThrust.started -= instance.OnChargedThrust;
             @ChargedThrust.performed -= instance.OnChargedThrust;
             @ChargedThrust.canceled -= instance.OnChargedThrust;
+            @ManiteSlash.started -= instance.OnManiteSlash;
+            @ManiteSlash.performed -= instance.OnManiteSlash;
+            @ManiteSlash.canceled -= instance.OnManiteSlash;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1433,6 +1473,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnVectorShift(InputAction.CallbackContext context);
         void OnChargedThrust(InputAction.CallbackContext context);
+        void OnManiteSlash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

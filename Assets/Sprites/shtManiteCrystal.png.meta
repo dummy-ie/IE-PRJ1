@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d17594d4c71fd094a8c5945e7f666dd9
-      internalID: 834124856
+      spriteID: 2b1f0d40cf5460142865a926134deca5
+      internalID: -944790019
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a4db91bcd212c24ca19544825ace6c6
-      internalID: 2057888410
+      spriteID: c0fc6db99d5ef6c4a93d5f5a5c227275
+      internalID: -1314211174
       vertices: []
       indices: 
       edges: []
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fdc40cccb628094a8628df54dbd1c85
-      internalID: 1528735250
+      spriteID: 625b55daf52919f438cf48d901f57689
+      internalID: -1444771850
       vertices: []
       indices: 
       edges: []
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd70006f615da6141b28c39aa96376d8
-      internalID: -1045509763
+      spriteID: 13aa06359a4a1f94c84fe8d441483d0c
+      internalID: 388340028
       vertices: []
       indices: 
       edges: []
@@ -234,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca7506dfcfc7a94418138b7679f37b27
-      internalID: -1228095526
+      spriteID: 751363ddbd2bfb348989a6337eb33445
+      internalID: -792395473
       vertices: []
       indices: 
       edges: []
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecbc2e832b64fe5478b34ea89510d012
-      internalID: 155627278
+      spriteID: 8f8d71901a05e9240b08a3f1288d10f3
+      internalID: -2021887277
       vertices: []
       indices: 
       edges: []
@@ -276,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 623ee6fbc65f0564195d65b923d1bed6
-      internalID: 426177597
+      spriteID: 77a3acc36052f4647a83179f6eb83c82
+      internalID: -1831830192
       vertices: []
       indices: 
       edges: []
@@ -297,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fa7e2ae98a2d3d49835ef8d3e03fd6d
-      internalID: -347959307
+      spriteID: 510b384f5053cd04296efd33e6781213
+      internalID: -462109328
       vertices: []
       indices: 
       edges: []
@@ -318,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e75fb1deb498e74bacc0ef92b464453
-      internalID: 2005267792
+      spriteID: c938f96effe69ca4f9dd3374b7253aca
+      internalID: -1027528781
       vertices: []
       indices: 
       edges: []
@@ -339,8 +339,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17ffd88f41e469f428b411613b5469fa
-      internalID: -2014243304
+      spriteID: f02334be0f1285846bd77f31e714e5e2
+      internalID: 248887891
       vertices: []
       indices: 
       edges: []
@@ -360,8 +360,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f2545ab117ac084dbef2e1983fa924b
-      internalID: 1217607855
+      spriteID: 63aa95a1bd5a684489339394ec473c85
+      internalID: -1043161173
       vertices: []
       indices: 
       edges: []
@@ -377,17 +377,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shtManiteCrystal_0: 834124856
-      shtManiteCrystal_1: 2057888410
-      shtManiteCrystal_10: 1217607855
-      shtManiteCrystal_2: 1528735250
-      shtManiteCrystal_3: -1045509763
-      shtManiteCrystal_4: -1228095526
-      shtManiteCrystal_5: 155627278
-      shtManiteCrystal_6: 426177597
-      shtManiteCrystal_7: -347959307
-      shtManiteCrystal_8: 2005267792
-      shtManiteCrystal_9: -2014243304
+      shtManiteCrystal_0: -944790019
+      shtManiteCrystal_1: -1314211174
+      shtManiteCrystal_10: -1043161173
+      shtManiteCrystal_11: -179288543
+      shtManiteCrystal_2: -1444771850
+      shtManiteCrystal_3: 388340028
+      shtManiteCrystal_4: -792395473
+      shtManiteCrystal_5: -2021887277
+      shtManiteCrystal_6: -1831830192
+      shtManiteCrystal_7: -462109328
+      shtManiteCrystal_8: -1027528781
+      shtManiteCrystal_9: 248887891
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

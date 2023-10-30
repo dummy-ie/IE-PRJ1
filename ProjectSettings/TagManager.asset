@@ -8,15 +8,16 @@ TagManager:
   - Pickup
   - Vacuum
   - XD1
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 

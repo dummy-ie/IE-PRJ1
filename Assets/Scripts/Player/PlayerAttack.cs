@@ -11,8 +11,9 @@ public class PlayerAttack : MonoBehaviour
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
     private float attackTime;
-    private float attackCooldown = .2f;
+    private float attackCooldown = .3f;
 
+    [SerializeField]
     private bool canAttack = true;
 
     [SerializeField]
@@ -34,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (canAttack)
         {
+            isAttacking = true;
             canAttack = false;
 
             int flip = 1;
@@ -52,13 +54,19 @@ public class PlayerAttack : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.tag == "Breakable")
+                if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
-                    hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(hit.point);
+                    EnemyBaseScript enemy;
+                    enemy = hit.collider.gameObject.GetComponent<EnemyBaseScript>();
+
+                    if (enemy != null)
+                    {
+                        enemy.Hit(gameObject, gameObject.transform.position);
+                    }
                 }
             }
 
-
+            StartCoroutine(Cooldown());
 
             attackTime = attackCooldown;
         }
@@ -66,18 +74,25 @@ public class PlayerAttack : MonoBehaviour
 
     private void AttackUpdate()
     {
-        if (attackTime > 0 && canAttack)
+        if (isAttacking)
         {
             if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
             else attackHitboxDebug.enabled = true;
             attackTime -= Time.deltaTime;
         }
-        else
+
+        if (attackTime <= 0)
         {
             attackHitboxDebug.enabled = false;
             attackHitboxVDebug.enabled = false;
-            canAttack = true;
+            isAttacking = false;
         }
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     /*public void HitDetected(EnemyBaseScript enemy)
@@ -87,6 +102,15 @@ public class PlayerAttack : MonoBehaviour
             enemy.Hit();
         }
     }*/
+
+    IEnumerator VecShift() //temp
+    {
+        controller.ShiftTo3D();
+
+        yield return new WaitForSeconds(1);
+
+        controller.ShiftTo2D();
+    }
 
     // Start is called before the first frame update
     void Start()

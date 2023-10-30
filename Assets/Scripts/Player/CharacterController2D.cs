@@ -1,10 +1,20 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class CharacterController2D : MonoBehaviour
 {
+
+    [SerializeField] SpriteRenderer render2D;
+    [SerializeField] MeshRenderer model3D;
+
     private Rigidbody2D rb;
+    public Rigidbody2D RB { 
+        get { return rb; } 
+        set { rb = value; }
+    }
 
     private CinemachineVirtualCamera cmVC;
     private Cinemachine3rdPersonFollow cmTP;
@@ -31,7 +41,11 @@ public class CharacterController2D : MonoBehaviour
     private bool extraJump = false;
     private bool isGrounded = false;
 
-    
+    private bool isHit = false;
+    private float setHitTime = .5f;
+    private float hitTime = .5f;
+
+    private float iFrames = 0;
 
     [SerializeField] LayerMask groundLayer;
 
@@ -79,12 +93,12 @@ public class CharacterController2D : MonoBehaviour
         Dash();
         if (!isDashing) Flip();
 
-        
+        Hits();
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
     {
-        if (!isDashing) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!(isDashing || isHit)) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
@@ -190,6 +204,8 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
 
             dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
+
+             ShiftTo3D();
         }
 
         if (dashTime <= 0) //when player stops dashing
@@ -197,6 +213,8 @@ public class CharacterController2D : MonoBehaviour
             
             dashTime = dashDuration; //reset dash duration
             isDashing = false; // player is no longer dashing
+
+            ShiftTo2D();
         }
 
         if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
@@ -208,7 +226,29 @@ public class CharacterController2D : MonoBehaviour
         else canDash = false;
     }
 
-    
+    void Hits()
+    {
+        if (isHit)
+        {
+            if (isDashing)
+            {
+                isDashing = false;
+                ShiftTo2D();
+            }
+                hitTime -= Time.deltaTime;
+        }
+
+        if (hitTime <= 0)
+        {
+            isHit = false;
+            hitTime = setHitTime;
+        }
+
+        if (iFrames > 0)
+        {
+            iFrames -= Time.deltaTime;
+        }
+    }
 
     private void Flip()
     {
@@ -234,5 +274,39 @@ public class CharacterController2D : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
+    }
+
+    public void ShiftTo2D()
+    {
+        render2D.enabled = true;
+        model3D.enabled = false;
+    }
+
+    public void ShiftTo3D()
+    {
+        render2D.enabled = false;
+        model3D.enabled = true;
+    }
+
+
+    public IEnumerator Hit(GameObject enemy)
+    {
+        if (!isHit && iFrames <= 0)
+        {
+            rb.velocity = Vector2.zero;
+            Debug.Log("Player Has Been Hit");
+            isHit = true;
+
+            iFrames = 2;
+
+            Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
+            vec.Normalize();
+            
+            rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(.2f);
+
+            rb.velocity = Vector3.zero;
+        }
     }
 }

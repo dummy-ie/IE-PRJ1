@@ -85,7 +85,7 @@ public class VacuumScript : MonoBehaviour
             return;
         if (this.isMoving == true)
             FollowPlayer();
-            Debug.Log("Moving.");
+            // Debug.Log("Moving.");
     }
 
     private void OnTriggerEnter2D(Collider2D col)
