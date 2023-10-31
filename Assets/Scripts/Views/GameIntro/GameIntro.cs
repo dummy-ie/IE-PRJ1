@@ -13,7 +13,8 @@ public class GameIntro : MonoBehaviour {
     [SerializeField]
     private float logoUpTime = 4.0f;
     [SerializeField]
-    private VectorImage[] _logos;
+    //private VectorImage[] _logos;
+    private Sprite[] _logos;
 
     private VisualElement _root;
 
@@ -25,7 +26,7 @@ public class GameIntro : MonoBehaviour {
     IEnumerator ShowLogo(string className) {
         yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < _logos.Length; i++) {
-            this._logo.vectorImage = _logos[i];
+            this._logo.sprite = _logos[i];
             this._logo.RemoveFromClassList("logo--hidden");
             yield return new WaitForSeconds(transitionDuration + logoUpTime);
             this._logo.AddToClassList("logo--hidden");
