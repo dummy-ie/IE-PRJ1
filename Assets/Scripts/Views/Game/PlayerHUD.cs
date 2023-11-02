@@ -62,7 +62,7 @@ public class PlayerHUD : View {
     private IEnumerator AnimateBar() {
         yield return new WaitForSeconds(animateTicks);
         currentFrame %= maxFrames;
-        Debug.Log("Current Frame: " + currentFrame);
+        //Debug.Log("Current Frame: " + currentFrame);
         maniteBarBase.sprite = shtManiteBarBase[currentFrame];
         maniteBarHexIcon.sprite = shtManiteBarHexIcon[currentFrame];
         maniteBarGaugeCircuit.sprite = shtManiteBarGaugeCircuit[currentFrame];

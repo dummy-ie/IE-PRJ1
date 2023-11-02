@@ -35,8 +35,9 @@ public class SceneChanger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SceneConnection.ActiveConnection = _sceneConnection;
-            // StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
+            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            SceneLoader.Instance.LoadScene(_targetSceneName, true);
         }
     }
 }
