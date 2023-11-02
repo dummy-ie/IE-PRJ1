@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 0c3c90a2dfc9abb4d8cd41e716a58c94
+  - enabled: 1
+    path: Assets/Scenes/Underground Left.unity
+    guid: 980bab57ab862c54ea652236b34333f4
+  - enabled: 1
+    path: Assets/Scenes/Manite Slash.unity
+    guid: 83bed9f85617ead4ab604f2a985439a9
   m_configObjects: {}
