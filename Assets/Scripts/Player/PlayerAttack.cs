@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,6 +64,18 @@ public class PlayerAttack : MonoBehaviour
                     {
                         enemy.Hit(gameObject, gameObject.transform.position);
                     }
+                }
+
+                else if(hit.collider.gameObject.CompareTag("EnvBreakable"))
+                {
+                    BreakEnvironment environment;
+                    environment = hit.collider.gameObject.GetComponent<BreakEnvironment>();
+
+                    if (environment != null){
+                        environment.Hit();
+                    }
+
+
                 }
             }
 

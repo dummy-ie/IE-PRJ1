@@ -10,6 +10,7 @@ TagManager:
   - XD1
   - Ground
   - Dash Pickup
+  - EnvBreakable
   layers:
   - Default
   - TransparentFX
