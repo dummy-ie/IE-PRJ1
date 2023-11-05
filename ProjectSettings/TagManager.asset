@@ -9,6 +9,7 @@ TagManager:
   - Vacuum
   - XD1
   - Ground
+  - Dash Pickup
   layers:
   - Default
   - TransparentFX

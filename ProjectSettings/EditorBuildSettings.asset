@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manite Slash.unity
     guid: 83bed9f85617ead4ab604f2a985439a9
+  - enabled: 1
+    path: Assets/Scenes/Jungle Log Trap.unity
+    guid: 9cfa6c4a7c54fc54298047cee9bade99
+  - enabled: 1
+    path: Assets/Scenes/Jungle Dash.unity
+    guid: cf25f3182d499914db973d8210a873c3
   m_configObjects: {}

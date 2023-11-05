@@ -41,4 +41,15 @@ public class SceneChanger : MonoBehaviour
             SceneLoader.Instance.LoadScene(_targetSceneName, true);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SceneConnection.ActiveConnection = _sceneConnection;
+            //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
+            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+        }
+    }
 }

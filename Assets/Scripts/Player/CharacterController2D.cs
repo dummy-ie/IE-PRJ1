@@ -336,4 +336,8 @@ public class CharacterController2D : MonoBehaviour
         if (currentManite <= 0)
             currentManite = 0;
     }
+
+    public void ObtainDash() {
+        hasDash = true;
+    }
 }
