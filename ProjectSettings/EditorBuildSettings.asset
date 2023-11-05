@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manite Slash.unity
     guid: 83bed9f85617ead4ab604f2a985439a9
+  - enabled: 1
+    path: Assets/Scenes/Underground Exit.unity
+    guid: 2de6b0bbf3daff1449761660a5407338
+  - enabled: 1
+    path: Assets/Scenes/Underground Middle.unity
+    guid: 5771f2c2b9a571840b8b141c33f83f98
   m_configObjects: {}
