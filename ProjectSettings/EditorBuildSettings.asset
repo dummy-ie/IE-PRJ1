@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Underground Middle.unity
     guid: 5771f2c2b9a571840b8b141c33f83f98
+  - enabled: 1
+    path: Assets/Scenes/Jungle Exit.unity
+    guid: bf6d308a218fe7b4394deb0a685b420b
+  - enabled: 1
+    path: Assets/Scenes/Drawbridge.unity
+    guid: 2f90b8ea8b51d804c9906a71d424ef92
+  - enabled: 1
+    path: Assets/Scenes/Drawbridge Hole.unity
+    guid: 3746885644a76284990787b9a77da463
   m_configObjects: {}
