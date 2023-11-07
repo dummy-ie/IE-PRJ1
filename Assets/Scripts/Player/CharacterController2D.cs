@@ -52,6 +52,7 @@ public class CharacterController2D : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private int currentHealth = 3;
+    public int CurrentHealth { get { return currentHealth; } }
     [SerializeField] private float maxManite = 100;
     public float MaxManite { get { return maxManite; } }
     [SerializeField] private float currentManite = 100;
