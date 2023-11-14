@@ -494,6 +494,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 99ff6a69-522c-4fc6-a6e0-21b4eab474e3
     m_ActionName: Player/Manite Slash[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 58b5d2c8-4966-4a81-9200-e900d535d53b
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -511,31 +515,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  render2D: {fileID: 7954051531114291530}
-  model3D: {fileID: 2659381263334121756}
-  groundLayer:
+  _render2D: {fileID: 7954051531114291530}
+  _model3D: {fileID: 2659381263334121756}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 3
-  currentHealth: 3
-  maxManite: 100
-  currentManite: 100
-  hasDash: 0
-  hasSlash: 0
-  speed: 6
-  allowDoubleJump: 0
-  jumpForce: 14
-  fallMultiplier: 4
-  lowJumpMultiplier: 0.3
-  coyoteTime: 0.1
-  jumpBufferTime: 0.2
-  boxCastDistance: 0.6
-  boxSize: {x: 0.3, y: 0.4}
-  dashDistance: 4
-  dashCooldown: 0.5
-  dashCooldownTime: 0
-  dashSpeed: 0
-  dashOriginalSpeed: 20
+  _maxHealth: 3
+  _currentHealth: 3
+  _maxManite: 100
+  _currentManite: 100
+  _hasDash: 1
+  _hasSlash: 0
+  _speed: 6
+  _allowDoubleJump: 0
+  _jumpForce: 14
+  _fallMultiplier: 4
+  _lowJumpMultiplier: 0.3
+  _coyoteTime: 0.1
+  _jumpBufferTime: 0.2
+  _boxCastDistance: 0.6
+  _boxSize: {x: 0.3, y: 0.4}
+  _dashDistance: 4
+  _dashCooldown: 0.5
+  _dashCooldownTime: 0
+  _dashSpeed: 0
+  _dashOriginalSpeed: 20
 --- !u!114 &6500837453471319468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406ef516660c87e46912cfe406687129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttackDamage: 2
   canAttack: 1
   attackHitboxDebug: {fileID: 496892192983152945}
   attackHitboxVDebug: {fileID: 496892192983152945}
@@ -723,7 +728,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: -8}
+  m_LocalPosition: {x: 0.000000059604645, y: 0.40000027, z: -8}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

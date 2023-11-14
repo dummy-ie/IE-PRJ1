@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1
-  animateTicks: 0.1
+  _animateTicks: 0.1
 --- !u!114 &88825341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2449,6 +2449,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1682043316}
     - target: {fileID: 8396684250934554421, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396684250934554421, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.4000001
       objectReference: {fileID: 0}
@@ -2560,9 +2564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCastDistance: 1.26
-  boxSize: {x: 1, y: 1}
-  groundLayer:
+  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
+  _boxCastDistance: 0.4
+  _boxSize: {x: 0.3, y: 0.4}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!50 &1104052267
@@ -5059,9 +5064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCastDistance: 1.26
-  boxSize: {x: 1, y: 1}
-  groundLayer:
+  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
+  _boxCastDistance: 0.4
+  _boxSize: {x: 0.3, y: 0.4}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!61 &1511313300
@@ -5952,9 +5958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCastDistance: 1.26
-  boxSize: {x: 1, y: 1}
-  groundLayer:
+  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
+  _boxCastDistance: 0.4
+  _boxSize: {x: 0.3, y: 0.4}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!61 &1888115783

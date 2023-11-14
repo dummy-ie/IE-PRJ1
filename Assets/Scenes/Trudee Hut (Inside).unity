@@ -427,6 +427,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bc880a49337d5644b3de2320107923c, type: 3}
+--- !u!23 &157361169 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9168658922032898211, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+  m_PrefabInstance: {fileID: 570616191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185325034
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +646,34 @@ PrefabInstance:
     - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: hasDash
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _hasDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _model3D
+      value: 
+      objectReference: {fileID: 157361169}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _render2D
+      value: 
+      objectReference: {fileID: 1713029708}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _coyoteTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _boxCastDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _lowJumpMultiplier
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7823627639726853198, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1385,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1
-  animateTicks: 0.1
+  _animateTicks: 0.1
 --- !u!114 &1091399887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4233,7 +4266,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1630820407
@@ -4269,6 +4302,11 @@ Transform:
   - {fileID: 1254347959}
   m_Father: {fileID: 769761115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1713029708 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3870822046864285941, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+  m_PrefabInstance: {fileID: 570616191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1824050565
 GameObject:
   m_ObjectHideFlags: 0
