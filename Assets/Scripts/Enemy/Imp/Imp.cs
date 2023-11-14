@@ -6,37 +6,37 @@ using UnityEngine.InputSystem.XR;
 
 public class ImpMovement : EnemyBaseScript
 {
-    private GameObject target;
+    private GameObject _target;
 
-    private float speed = 4;
+    private float _speed = 4;
 
-    private float flipDirection = 1;
-
-    [SerializeField]
-    private EStateEnemy impState;
+    private float _flipDirection = 1;
 
     [SerializeField]
-    private float distanceFromTarget = 5f;
+    private EStateEnemy _impState;
 
     [SerializeField]
-    private GameObject impProjectile;
+    private float _distanceFromTarget = 5f;
+
+    [SerializeField]
+    private GameObject _impProjectile;
 
     public EStateEnemy ImpState
     {
-        get { return this.impState; }
-        set { this.impState = value; }
+        get { return this._impState; }
+        set { this._impState = value; }
     }
 
-    bool isAttacking = false;
-    bool canAttack = true;
-    bool canMove = true;
+    bool _isAttacking = false;
+    bool _canAttack = true;
+    bool _canMove = true;
 
-    bool iFramed;
+    bool _iFramed;
 
     // Start is called before the first frame update
     void OnEnable()
     {
-        this.impState = EStateEnemy.PATROL;
+        this._impState = EStateEnemy.PATROL;
         this.StartCoroutine(FlipInterval());
 
     }
@@ -50,16 +50,16 @@ public class ImpMovement : EnemyBaseScript
     void FixedUpdate()
     {
         Flip();
-        if (this.impState == EStateEnemy.ATTACK)
+        if (this._impState == EStateEnemy.ATTACK)
         {
             CheckAttack(Detect());
 
-            if (!isAttacking)
+            if (!_isAttacking)
             {
                 Move();
             }
         }
-        else if (this.impState == EStateEnemy.PATROL)
+        else if (this._impState == EStateEnemy.PATROL)
         {
             CheckForPlayer(Detect());
             Move();
@@ -68,31 +68,31 @@ public class ImpMovement : EnemyBaseScript
 
     void Move()
     {
-        if (canMove && this.impState == EStateEnemy.ATTACK)
+        if (_canMove && this._impState == EStateEnemy.ATTACK)
         {
             MaintainDistanceFromTarget();
         }
-        else if (canMove && this.impState == EStateEnemy.PATROL)
+        else if (_canMove && this._impState == EStateEnemy.PATROL)
         {
             // Vector2 pos = new(transform.position.x + (this.flipDirection * speed), 0);
             // transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
-            rb.velocity = new(Mathf.Lerp(0, flipDirection * speed, 0.5f), rb.velocity.y);
+            _rb.velocity = new(Mathf.Lerp(0, _flipDirection * _speed, 0.5f), _rb.velocity.y);
         }
     }
 
     void MaintainDistanceFromTarget()
     {
-        float calculatedDistance = Mathf.Abs(Vector2.Distance(target.transform.position, transform.position));
+        float calculatedDistance = Mathf.Abs(Vector2.Distance(_target.transform.position, transform.position));
         // Debug.Log("Distance from target: " + calculatedDistance);
-        if (calculatedDistance < distanceFromTarget - 0.5f)
+        if (calculatedDistance < _distanceFromTarget - 0.5f)
         {
-            rb.velocity = new(Mathf.Lerp(0, -GetPlayerDirection() * speed, 0.5f), rb.velocity.y);
+            _rb.velocity = new(Mathf.Lerp(0, -GetPlayerDirection() * _speed, 0.5f), _rb.velocity.y);
             // Vector2 pos = new(transform.position.x - (this.GetPlayerDirection() * speed), 0);
             // transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
         }
-        else if (calculatedDistance > distanceFromTarget + 0.5f)
+        else if (calculatedDistance > _distanceFromTarget + 0.5f)
         {
-            rb.velocity = new(Mathf.Lerp(0, GetPlayerDirection() * speed, 0.5f), rb.velocity.y);
+            _rb.velocity = new(Mathf.Lerp(0, GetPlayerDirection() * _speed, 0.5f), _rb.velocity.y);
             // Vector2 pos = new(transform.position.x + (this.GetPlayerDirection() * speed), 0);
             // transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
         }
@@ -100,14 +100,14 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator FlipInterval()
     {
-        if (this.impState == EStateEnemy.PATROL)
+        if (this._impState == EStateEnemy.PATROL)
         {
 
-            this.flipDirection = UnityEngine.Random.Range(0, 2);
+            this._flipDirection = UnityEngine.Random.Range(0, 2);
 
-            if (this.flipDirection == 0)
+            if (this._flipDirection == 0)
             {
-                this.flipDirection = -1;
+                this._flipDirection = -1;
             }
 
         }
@@ -122,14 +122,14 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator AttackShoot()
     {
-        isAttacking = true;
+        _isAttacking = true;
 
         yield return new WaitForSeconds(.2f);
 
-        if (isAttacking)
+        if (_isAttacking)
         {
             GameObject projectile = Instantiate(
-                impProjectile,
+                _impProjectile,
                 new Vector3(transform.position.x + 1f * GetPlayerDirection(), transform.position.y, transform.position.z),
                 Quaternion.identity);
 
@@ -146,44 +146,44 @@ public class ImpMovement : EnemyBaseScript
 
         yield return new WaitForSeconds(1);
 
-        isAttacking = false;
+        _isAttacking = false;
 
         yield return new WaitForSeconds(1);
 
-        canAttack = true;
+        _canAttack = true;
 
     }
 
     IEnumerator Stagger()
     {
-        iFramed = true;
-        canAttack = canMove = isAttacking = false;
+        _iFramed = true;
+        _canAttack = _canMove = _isAttacking = false;
         StopCoroutine(AttackShoot());
 
         yield return new WaitForSeconds(.7f);
 
-        iFramed = false;
-        canMove = true;
+        _iFramed = false;
+        _canMove = true;
 
         yield return new WaitForSeconds(.7f);
 
-        canAttack = true;
+        _canAttack = true;
     }
 
     override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
 
-        if (!iFramed)
+        if (!_iFramed)
         {
-            if (this.impState != EStateEnemy.ATTACK)
+            if (this._impState != EStateEnemy.ATTACK)
             {
-                target = player;
-                this.impState = EStateEnemy.ATTACK;
+                _target = player;
+                this._impState = EStateEnemy.ATTACK;
             }
             Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
             vec.Normalize();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(vec * 5, ForceMode2D.Impulse);
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
             if (damageTaken > 0)
                 Damage(damageTaken);
@@ -197,23 +197,23 @@ public class ImpMovement : EnemyBaseScript
     override protected void Flip()
     {
         float flip;
-        if (this.impState == EStateEnemy.ATTACK && target != null)
+        if (this._impState == EStateEnemy.ATTACK && _target != null)
         {
             flip = GetPlayerDirection();
         }
 
-        else if (this.impState == EStateEnemy.PATROL)
+        else if (this._impState == EStateEnemy.PATROL)
         {
-            flip = this.flipDirection;
+            flip = this._flipDirection;
         }
 
         else
         {
-            flip = rb.velocity.x;
+            flip = _rb.velocity.x;
         }
-        if (isFacingRight && flip < 0f || !isFacingRight && flip > 0f)
+        if (_isFacingRight && flip < 0f || !_isFacingRight && flip > 0f)
         {
-            isFacingRight = !isFacingRight;
+            _isFacingRight = !_isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -222,7 +222,7 @@ public class ImpMovement : EnemyBaseScript
 
     private float GetPlayerDirection()
     {
-        float value = target.transform.position.x - transform.position.x;
+        float value = _target.transform.position.x - transform.position.x;
         if (value < 0)
             return -1;
         else
@@ -232,7 +232,7 @@ public class ImpMovement : EnemyBaseScript
     RaycastHit2D[] Detect()
     {
         int flip = 1;
-        if (isFacingRight) flip = -1;
+        if (_isFacingRight) flip = -1;
         RaycastHit2D[] hits;
 
 
@@ -250,8 +250,8 @@ public class ImpMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                target = hit.collider.gameObject;
-                this.impState = EStateEnemy.ATTACK;
+                _target = hit.collider.gameObject;
+                this._impState = EStateEnemy.ATTACK;
                 StopCoroutine(this.FlipInterval());
             }
         }
@@ -266,11 +266,11 @@ public class ImpMovement : EnemyBaseScript
                 // Debug.Log("Imp detects player");
                 // Debug.Log("Imp can attack: " + canAttack);
                 // Debug.Log("Imp is grounded: " + IsGrounded());
-                if (canAttack && IsGrounded())
+                if (_canAttack && IsGrounded())
 
                 {
                     StartCoroutine(AttackShoot());
-                    canAttack = false;
+                    _canAttack = false;
                 }
             }
         }
@@ -279,7 +279,7 @@ public class ImpMovement : EnemyBaseScript
     private void OnDrawGizmosSelected()
     {
         int flip = 1;
-        if (isFacingRight) flip = -1;
+        if (_isFacingRight) flip = -1;
 
         Gizmos.DrawWireCube(transform.position + (2.5f * flip * -transform.right), new Vector2(10f, 1f));
     }

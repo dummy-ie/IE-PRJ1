@@ -9,19 +9,19 @@ public class VacuumScript : MonoBehaviour
     //[SerializeField] private float maxVelocity;
     
     //[SerializeField] private float springConstant;
-    [SerializeField] private float catchUpTime = 0.4f;
+    [SerializeField] private float _catchUpTime = 0.4f;
     //private float velocity = 0;
-    private Vector3 velocity;
+    private Vector3 _velocity;
     //private SpringJoint springJoint;
-    private GameObject player;
+    private GameObject _player;
 
-    private GameObject pickup;
+    private GameObject _pickup;
     //private NavMeshAgent companionMesh;
-    private Rigidbody rb;
-    private float ticks;
+    private Rigidbody _rb;
+    private float _ticks;
 
    
-    private bool isMoving;
+    private bool _isMoving;
 
     /*public static float EaseInOutBack(float x) {
         const float c1 = 1.70158f;
@@ -38,7 +38,7 @@ public class VacuumScript : MonoBehaviour
             //target = new Vector3(-offsetFromPlayer.x, offsetFromPlayer.y, offsetFromPlayer.z) + player.transform.position;
         //}
         //else { 
-            target = player.transform.position; 
+            target = _player.transform.position; 
         //}
         //springJoint.anchor = target;
 
@@ -55,13 +55,13 @@ public class VacuumScript : MonoBehaviour
         //Vector2 D*/
         
         //transform.position = Vector2.LerpUnclamped(transform.position, target, EaseInOutBack(speed) * Time.deltaTime);
-        pickup.transform.position = Vector3.SmoothDamp(pickup.transform.position, target, ref velocity, catchUpTime);
-        if (velocity.magnitude <= 1f) {
-            ticks += Time.deltaTime;
+        _pickup.transform.position = Vector3.SmoothDamp(_pickup.transform.position, target, ref _velocity, _catchUpTime);
+        if (_velocity.magnitude <= 1f) {
+            _ticks += Time.deltaTime;
                 
         }
         else {
-            ticks = 0;
+            _ticks = 0;
         }
     }
 
@@ -69,11 +69,11 @@ public class VacuumScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        player = GameObject.FindGameObjectWithTag("XD1");
-        pickup = transform.parent.gameObject;
-        rb = pickup.GetComponent<Rigidbody>();
-        ticks = 0;
-        this.isMoving = false;
+        _player = GameObject.FindGameObjectWithTag("XD1");
+        _pickup = transform.parent.gameObject;
+        _rb = _pickup.GetComponent<Rigidbody>();
+        _ticks = 0;
+        this._isMoving = false;
         //springJoint = GetComponent<SpringJoint>();
         //companionMesh = GetComponent<NavMeshAgent>();
     }
@@ -81,9 +81,9 @@ public class VacuumScript : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-        if (player == null)
+        if (_player == null)
             return;
-        if (this.isMoving == true)
+        if (this._isMoving == true)
             FollowPlayer();
             // Debug.Log("Moving.");
     }
@@ -94,7 +94,7 @@ public class VacuumScript : MonoBehaviour
 
         if(col.gameObject.CompareTag("Vacuum")){
             Debug.Log("Triggered");
-            this.isMoving = true;
+            this._isMoving = true;
         }
     }
 

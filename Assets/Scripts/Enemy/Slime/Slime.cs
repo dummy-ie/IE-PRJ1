@@ -6,30 +6,30 @@ using UnityEngine.InputSystem.XR;
 public class SlimeMovement : EnemyBaseScript
 {
 
-    private GameObject target;
+    private GameObject _target;
 
-    private float speed = 4;
+    private float _speed = 4;
 
-    private float flipDirection = 1;
+    private float _flipDirection = 1;
 
     [SerializeField]
-    private EStateEnemy slimeState;
+    private EStateEnemy _slimeState;
 
     public EStateEnemy SlimeState {
-        get {return this.slimeState; }
-        set {this.slimeState = value; }
+        get {return this._slimeState; }
+        set {this._slimeState = value; }
     }
 
-    bool isAttacking = false;
-    bool canAttack = true;
-    bool canMove = true;
+    bool _isAttacking = false;
+    bool _canAttack = true;
+    bool _canMove = true;
 
-    bool iFramed;
+    bool _iFramed;
 
     // Start is called before the first frame update
     void OnEnable()
     {
-       this.slimeState = EStateEnemy.PATROL;
+       this._slimeState = EStateEnemy.PATROL;
        this.StartCoroutine(FlipInterval());
        
     }
@@ -42,19 +42,19 @@ public class SlimeMovement : EnemyBaseScript
     void FixedUpdate()
     {
         Flip();
-        if (this.slimeState == EStateEnemy.ATTACK)
+        if (this._slimeState == EStateEnemy.ATTACK)
         {
 
             CheckAttack(Detect());
 
-            if (!isAttacking)
+            if (!_isAttacking)
             {
                 Move();
             }
 
             
         }
-        else if(this.slimeState == EStateEnemy.PATROL)
+        else if(this._slimeState == EStateEnemy.PATROL)
         {
             CheckForPlayer(Detect());
             Move();
@@ -65,16 +65,16 @@ public class SlimeMovement : EnemyBaseScript
 
     void Move()
     {
-        if (canMove && this.slimeState == EStateEnemy.ATTACK)
+        if (_canMove && this._slimeState == EStateEnemy.ATTACK)
         {
-            Vector2 pos = new(transform.position.x + (this.GetPlayerDirection() * speed), .5f);
-            transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
+            Vector2 pos = new(transform.position.x + (this.GetPlayerDirection() * _speed), .5f);
+            transform.position = Vector2.MoveTowards(_rb.transform.position, pos, Time.deltaTime * _speed);
         }
 
-        else if(canMove && this.slimeState == EStateEnemy.PATROL){
+        else if(_canMove && this._slimeState == EStateEnemy.PATROL){
 
-            Vector2 pos = new(transform.position.x + (this.flipDirection * speed), .5f);
-            transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
+            Vector2 pos = new(transform.position.x + (this._flipDirection * _speed), .5f);
+            transform.position = Vector2.MoveTowards(_rb.transform.position, pos, Time.deltaTime * _speed);
         }
     }
 
@@ -82,12 +82,12 @@ public class SlimeMovement : EnemyBaseScript
 
         Debug.Log("Direction is flipped.");
         
-        if(this.slimeState == EStateEnemy.PATROL){
+        if(this._slimeState == EStateEnemy.PATROL){
 
-            this.flipDirection = Random.Range(0,2);
+            this._flipDirection = Random.Range(0,2);
 
-            if(this.flipDirection == 0){
-                this.flipDirection = -1;
+            if(this._flipDirection == 0){
+                this._flipDirection = -1;
             }
 
         }
@@ -102,60 +102,60 @@ public class SlimeMovement : EnemyBaseScript
 
     IEnumerator AttackLunge()
     {
-        isAttacking = true;
+        _isAttacking = true;
 
         yield return new WaitForSeconds(.2f);
 
-        if (isAttacking)
+        if (_isAttacking)
         {
-            rb.velocity = Vector2.zero;
-            Vector2 vec = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y);
+            _rb.velocity = Vector2.zero;
+            Vector2 vec = new Vector2(_target.transform.position.x - transform.position.x, _target.transform.position.y - transform.position.y);
             vec.Normalize();
             vec /= new Vector2(Mathf.Abs(vec.x), Mathf.Abs(vec.y));
 
-            rb.AddForce(new Vector2(vec.x * 5, 3f), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(vec.x * 5, 3f), ForceMode2D.Impulse);
         }
 
         yield return new WaitForSeconds(1);
 
-        isAttacking = false;
+        _isAttacking = false;
 
         yield return new WaitForSeconds(1);
 
-        canAttack = true;
+        _canAttack = true;
 
     }
 
     IEnumerator Stagger()
     {
-        iFramed = true;
-        canAttack = canMove = isAttacking = false;
+        _iFramed = true;
+        _canAttack = _canMove = _isAttacking = false;
         StopCoroutine(AttackLunge());
 
         yield return new WaitForSeconds(.7f);
 
-        iFramed = false;
-        canMove = true;
+        _iFramed = false;
+        _canMove = true;
 
         yield return new WaitForSeconds(.7f);
 
-        canAttack = true;
+        _canAttack = true;
     }
 
     override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         
-        if (!iFramed)
+        if (!_iFramed)
         {
-            if (this.slimeState != EStateEnemy.ATTACK)
+            if (this._slimeState != EStateEnemy.ATTACK)
             {
-                target = player;
-                this.slimeState = EStateEnemy.ATTACK;
+                _target = player;
+                this._slimeState = EStateEnemy.ATTACK;
             }
             Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
             vec.Normalize();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(vec * 5, ForceMode2D.Impulse);
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
             if (damageTaken > 0)
                 Damage(damageTaken);
@@ -170,22 +170,22 @@ public class SlimeMovement : EnemyBaseScript
     override protected void Flip()
     {
         float flip;
-        if (this.slimeState == EStateEnemy.ATTACK && target != null)
+        if (this._slimeState == EStateEnemy.ATTACK && _target != null)
         {
             flip = GetPlayerDirection();
         }
 
-        else if (this.slimeState == EStateEnemy.PATROL){
-            flip = this.flipDirection;
+        else if (this._slimeState == EStateEnemy.PATROL){
+            flip = this._flipDirection;
         }
 
         else
         {
-            flip = rb.velocity.x;
+            flip = _rb.velocity.x;
         }
-        if (isFacingRight && flip < 0f || !isFacingRight && flip > 0f)
+        if (_isFacingRight && flip < 0f || !_isFacingRight && flip > 0f)
         {
-            isFacingRight = !isFacingRight;
+            _isFacingRight = !_isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -194,7 +194,7 @@ public class SlimeMovement : EnemyBaseScript
 
     private float GetPlayerDirection()
     {
-        float value = target.transform.position.x - transform.position.x;
+        float value = _target.transform.position.x - transform.position.x;
         if (value < 0)
             return -1;
         else
@@ -204,7 +204,7 @@ public class SlimeMovement : EnemyBaseScript
     RaycastHit2D[] Detect()
     {      
         int flip = 1;
-        if (isFacingRight) flip = -1;
+        if (_isFacingRight) flip = -1;
         RaycastHit2D[] hits;
 
         
@@ -222,8 +222,8 @@ public class SlimeMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                target = hit.collider.gameObject;
-                this.slimeState = EStateEnemy.ATTACK;
+                _target = hit.collider.gameObject;
+                this._slimeState = EStateEnemy.ATTACK;
                 StopCoroutine(this.FlipInterval());
             }
         }
@@ -235,10 +235,10 @@ public class SlimeMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (canAttack && IsGrounded())
+                if (_canAttack && IsGrounded())
                 {
                     StartCoroutine(AttackLunge());
-                    canAttack = false;
+                    _canAttack = false;
                 }
             }
         }

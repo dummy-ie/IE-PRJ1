@@ -7,93 +7,93 @@ using UnityEngine.InputSystem.XR;
 public class CharacterController2D : MonoBehaviour
 {
 
-    [SerializeField] SpriteRenderer render2D;
-    [SerializeField] MeshRenderer model3D;
+    [SerializeField] SpriteRenderer _render2D;
+    [SerializeField] MeshRenderer _model3D;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
     public Rigidbody2D RB { 
-        get { return rb; } 
-        set { rb = value; }
+        get { return _rb; } 
+        set { _rb = value; }
     }
 
-    private CinemachineVirtualCamera cmVC;
-    private Cinemachine3rdPersonFollow cmTP;
+    private CinemachineVirtualCamera _cmVC;
+    private Cinemachine3rdPersonFollow _cmTP;
 
     
-    private float horizontal = 0f;
-    private float vertical = 0f;
+    private float _deltaX = 0f;
+    private float _deltaY = 0f;
 
-    public float Vertical{ get { return vertical; } }
+    public float Vertical{ get { return _deltaY; } }
 
-    private float coyoteTimeCounter = 0f, jumpBufferCounter = 0f;
+    private float _coyoteTimeCounter = 0f, _jumpBufferCounter = 0f;
     
-    private float vectorShift = 100f;
+    private float _vectorShift = 100f;
 
-    private bool isFacingRight = false;
+    private bool _isFacingRight = false;
 
-    private bool isDashing = false;
-    private float dashTime = 0f;
-    private float dashDuration;
-    private bool aerialDash = true;
-    private bool canDash = true;
+    private bool _isDashing = false;
+    private float _dashTime = 0f;
+    private float _dashDuration;
+    private bool _aerialDash = true;
+    private bool _canDash = true;
 
-    private bool isJumpPress = false;
-    private bool extraJump = false;
-    private bool isGrounded = false;
+    private bool _isJumpPress = false;
+    private bool _extraJump = false;
+    private bool _isGrounded = false;
 
-    private bool isHit = false;
-    private float setHitTime = .5f;
-    private float hitTime = .5f;
+    private bool _isHit = false;
+    private float _setHitTime = .5f;
+    private float _hitTime = .5f;
 
-    private float iFrames = 0;
+    private float _iFrames = 0;
 
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask _groundLayer;
 
     [Header("Stats")]
-    [SerializeField] private int maxHealth = 3;
-    [SerializeField] private int currentHealth = 3;
-    public int CurrentHealth { get { return currentHealth; } }
-    [SerializeField] private float maxManite = 100;
-    public float MaxManite { get { return maxManite; } }
-    [SerializeField] private float currentManite = 100;
-    public float CurrentManite { get { return currentManite; } }
-    [SerializeField] private bool hasDash = false;
-    public bool HasDash { get { return hasDash; } }
-    [SerializeField] private bool hasSlash = false;
-    public bool HasSlash { get { return hasSlash; } }
+    [SerializeField] private int _maxHealth = 3;
+    [SerializeField] private int _currentHealth = 3;
+    public int CurrentHealth { get { return _currentHealth; } }
+    [SerializeField] private float _maxManite = 100;
+    public float MaxManite { get { return _maxManite; } }
+    [SerializeField] private float _currentManite = 100;
+    public float CurrentManite { get { return _currentManite; } }
+    [SerializeField] private bool _hasDash = false;
+    public bool HasDash { get { return _hasDash; } }
+    [SerializeField] private bool _hasSlash = false;
+    public bool HasSlash { get { return _hasSlash; } }
 
     // have default values for all fields to prevent null errors
     [Header("Movement")]
-    [Range(0, 100)][SerializeField] private float speed = 6f;
+    [Range(0, 100)][SerializeField] private float _speed = 6f;
 
     [Header("Jumping")]
-    [SerializeField] private bool allowDoubleJump = false;
-    [Range(0, 100)][SerializeField] private float jumpForce = 14f;
-    [Range(0, 10)][SerializeField] private float fallMultiplier = 4f, lowJumpMultiplier = 0.8f;
-    [Range(0, 5)][SerializeField] private float coyoteTime = 0.2f, jumpBufferTime = 0.2f;
+    [SerializeField] private bool _allowDoubleJump = false;
+    [Range(0, 100)][SerializeField] private float _jumpForce = 14f;
+    [Range(0, 10)][SerializeField] private float _fallMultiplier = 4f, _lowJumpMultiplier = 0.8f;
+    [Range(0, 5)][SerializeField] private float _coyoteTime = 0.2f, _jumpBufferTime = 0.2f;
 
     [Header("Ground Check Box Cast")]
-    [Range(0, 5)][SerializeField] private float boxCastDistance = 0.4f;
-    [SerializeField] Vector2 boxSize = new(0.3f, 0.4f);
+    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
+    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     [Header("Dashing")]
-    [SerializeField] private float dashDistance = 4f;
-    [SerializeField] private float dashCooldown = .5f;
-    [SerializeField] private float dashCooldownTime = 0f;
-    [SerializeField] private float dashSpeed = 0f;
-    [SerializeField] private float dashOriginalSpeed = 20f;
+    [SerializeField] private float _dashDistance = 4f;
+    [SerializeField] private float _dashCooldown = .5f;
+    [SerializeField] private float _dashCooldownTime = 0f;
+    [SerializeField] private float _dashSpeed = 0f;
+    [SerializeField] private float _dashOriginalSpeed = 20f;
 
     public bool IsFacingRight {
-        get { return isFacingRight; }
+        get { return _isFacingRight; }
     }
 
     private void Awake()
     {
-        cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
-        cmTP = cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        rb = GetComponent<Rigidbody2D>();
+        _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
+        _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        _rb = GetComponent<Rigidbody2D>();
 
-        dashSpeed = dashOriginalSpeed;
+        _dashSpeed = _dashOriginalSpeed;
         updateDashDuration();
     }
 
@@ -102,7 +102,7 @@ public class CharacterController2D : MonoBehaviour
 
         Hits();
 
-        if (this.currentHealth <= 0)
+        if (this._currentHealth <= 0)
         
             this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
         
@@ -113,7 +113,7 @@ public class CharacterController2D : MonoBehaviour
         Move();
         Jump();
         Dash();
-        if (!isDashing) Flip();
+        if (!_isDashing) Flip();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -129,15 +129,15 @@ public class CharacterController2D : MonoBehaviour
             // Debug.Log("Moving now" + moveX);
 
             if (moveX >= 0.5f || moveX <= -0.5f)
-                horizontal = moveX;
+                _deltaX = moveX;
             if (moveY >= 0.5f || moveY <= -0.5f)
-                vertical = moveY;
+                _deltaY = moveY;
         }
         else if (context.canceled)
         {
             // Debug.Log("Move released");
-            horizontal = 0;
-            vertical = 0;
+            _deltaX = 0;
+            _deltaY = 0;
         }
     }
 
@@ -145,18 +145,18 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
-            isJumpPress = true;
+            _isJumpPress = true;
             // reset jump buffer counter
-            jumpBufferCounter = jumpBufferTime;
+            _jumpBufferCounter = _jumpBufferTime;
         }
         else if (context.canceled)
         {
-            isJumpPress = false;
+            _isJumpPress = false;
         }
     }
     private void Move()
     {
-        if (!(isDashing || isHit)) rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!(_isDashing || _isHit)) _rb.velocity = new Vector2(_deltaX * _speed, _rb.velocity.y);
 
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
@@ -166,116 +166,116 @@ public class CharacterController2D : MonoBehaviour
     private void Jump()
     {
         // while grounded, set coyote time and jump limit
-        if (isGrounded = IsGrounded())
+        if (_isGrounded = IsGrounded())
         {
-            coyoteTimeCounter = coyoteTime;
-            extraJump = true; // refresh double jump
-            aerialDash = true; //refresh aerialDash
+            _coyoteTimeCounter = _coyoteTime;
+            _extraJump = true; // refresh double jump
+            _aerialDash = true; //refresh aerialDash
         }
         else
-            coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
+            _coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
 
         if (!IsGrounded())
-            jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
+            _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
 
-        if (!isJumpPress && rb.velocity.y > 0f)
+        if (!_isJumpPress && _rb.velocity.y > 0f)
         {
             // fall when releasing the jump button early (allows low jumping)
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * lowJumpMultiplier);
-            coyoteTimeCounter = 0f;
+            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _lowJumpMultiplier);
+            _coyoteTimeCounter = 0f;
         }
-        else if (rb.velocity.y < 0f) // fast fall over time
+        else if (_rb.velocity.y < 0f) // fast fall over time
         {
-            rb.velocity += (fallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            _rb.velocity += (_fallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
 
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
-        if (jumpBufferCounter > 0f && (coyoteTimeCounter > 0f || (extraJump && allowDoubleJump)))
+        if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _allowDoubleJump)))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpBufferCounter = 0f;
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            _jumpBufferCounter = 0f;
 
-            if (!isGrounded && coyoteTimeCounter <= 0f)
-                extraJump = false;
+            if (!_isGrounded && _coyoteTimeCounter <= 0f)
+                _extraJump = false;
         }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && hasDash) //check if player can dash
+        if (context.started && _canDash && _hasDash) //check if player can dash
         { 
-            dashSpeed = dashOriginalSpeed;
+            _dashSpeed = _dashOriginalSpeed;
             updateDashDuration();
-            isDashing = true;
-            aerialDash = false;
+            _isDashing = true;
+            _aerialDash = false;
 
-            if (!isFacingRight) //dash direction based on where playr is facing
-                dashSpeed *= -1;
+            if (!_isFacingRight) //dash direction based on where playr is facing
+                _dashSpeed *= -1;
         }
     }
     private void Dash()
     {
-        if (hasDash)
+        if (_hasDash)
         {
-            if (isDashing)
+            if (_isDashing)
             {
-                dashTime -= Time.deltaTime;// dash duration countdown
+                _dashTime -= Time.deltaTime;// dash duration countdown
 
-                rb.velocity = new Vector2(dashSpeed, 0); // the actual dashing code 
+                _rb.velocity = new Vector2(_dashSpeed, 0); // the actual dashing code 
 
-                dashCooldownTime = dashCooldown; //set dash cooldown to max dashCooldon
+                _dashCooldownTime = _dashCooldown; //set dash cooldown to max dashCooldon
 
                 ShiftTo3D();
             }
 
-            if (dashTime <= 0) //when player stops dashing
+            if (_dashTime <= 0) //when player stops dashing
             {
 
-                dashTime = dashDuration; //reset dash duration
-                isDashing = false; // player is no longer dashing
+                _dashTime = _dashDuration; //reset dash duration
+                _isDashing = false; // player is no longer dashing
 
                 ShiftTo2D();
             }
 
-            if (dashCooldownTime > 0 && !isDashing) // ticks down the dash cooldown
+            if (_dashCooldownTime > 0 && !_isDashing) // ticks down the dash cooldown
             {
-                dashCooldownTime -= Time.deltaTime;
+                _dashCooldownTime -= Time.deltaTime;
             }
 
-            if (!isDashing && dashCooldownTime <= 0 && aerialDash) canDash = true; //checks if the player is able to dash
-            else canDash = false;
+            if (!_isDashing && _dashCooldownTime <= 0 && _aerialDash) _canDash = true; //checks if the player is able to dash
+            else _canDash = false;
         }
     }
 
     void Hits()
     {
-        if (isHit)
+        if (_isHit)
         {
-            if (isDashing)
+            if (_isDashing)
             {
-                isDashing = false;
+                _isDashing = false;
                 ShiftTo2D();
             }
-            hitTime -= Time.deltaTime;
+            _hitTime -= Time.deltaTime;
         }
 
-        if (hitTime <= 0)
+        if (_hitTime <= 0)
         {
-            isHit = false;
-            hitTime = setHitTime;
+            _isHit = false;
+            _hitTime = _setHitTime;
         }
 
-        if (iFrames > 0)
+        if (_iFrames > 0)
         {
-            iFrames -= Time.deltaTime;
+            _iFrames -= Time.deltaTime;
         }
     }
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaY > 0f)
         {
-            isFacingRight = !isFacingRight;
+            _isFacingRight = !_isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -284,84 +284,84 @@ public class CharacterController2D : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, boxCastDistance, groundLayer);
+        return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _groundLayer);
     }
 
     private void updateDashDuration()
     {
-        dashTime = dashDuration = dashDistance / dashSpeed;
+       _dashTime = _dashDuration = _dashDistance / _dashSpeed;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
+        Gizmos.DrawWireCube(transform.position - transform.up * _boxCastDistance, _boxSize);
     }
 
     public void ShiftTo2D()
     {
-        render2D.enabled = true;
-        model3D.enabled = false;
+        _render2D.enabled = true;
+        _model3D.enabled = false;
     }
 
     public void ShiftTo3D()
     {
-        render2D.enabled = false;
-        model3D.enabled = true;
+        _render2D.enabled = false;
+        _model3D.enabled = true;
     }
 
 
     public IEnumerator Hit(GameObject enemy, int damageTaken = 0)
     {
-        if (!isHit && iFrames <= 0)
+        if (!_isHit && _iFrames <= 0)
         {
-            rb.velocity = Vector2.zero;
+            _rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
-            isHit = true;
+            _isHit = true;
 
-            iFrames = 2;
+            _iFrames = 2;
 
             Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
             vec.Normalize();
             
-            rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
 
             if (damageTaken > 0)
                 Damage(damageTaken);
 
             yield return new WaitForSeconds(.2f);
 
-            rb.velocity = Vector3.zero;
+            _rb.velocity = Vector3.zero;
         }
     }
 
     public void Damage(int amount)
     {
 
-        if (this.currentHealth - amount >= 0)
+        if (this._currentHealth - amount >= 0)
         {
-            this.currentHealth -= amount;
+            this._currentHealth -= amount;
         }
 
         else
         {
-            this.currentHealth = 0;
+            this._currentHealth = 0;
         }
 
     }
 
     public void AddManite(float value) {
-        currentManite += value;
-        if (currentManite >= maxManite)
-            currentManite = maxManite;
+        _currentManite += value;
+        if (_currentManite >= _maxManite)
+            _currentManite = _maxManite;
     }
 
     public void ReduceManite(float value) {
-        currentManite -= value;
-        if (currentManite <= 0)
-            currentManite = 0;
+        _currentManite -= value;
+        if (_currentManite <= 0)
+            _currentManite = 0;
     }
 
     public void ObtainDash() {
-        hasDash = true;
+        _hasDash = true;
     }
 }

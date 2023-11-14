@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    private Vector3 velocity;
-    private GameObject entity;
+    private Vector3 _velocity;
+    private GameObject _entity;
 
-    private SlimeMovement slimeBehavior;
+    private SlimeMovement _slimeBehavior;
     
-    private Rigidbody rb;
-    private float ticks;
+    private Rigidbody _rb;
+    private float _ticks;
 
    
     private void OnEnable(){
 
-        entity = this.transform.parent.gameObject;
+        _entity = this.transform.parent.gameObject;
 
 
     }

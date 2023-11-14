@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 
 public class ManiteAdd : MonoBehaviour
 {
-    CharacterController2D controller;
-    [SerializeField] private int maniteIncrease = 10;
+    CharacterController2D _controller;
+    [SerializeField] private int _maniteIncrease = 10;
     private bool pickUp = false;
 
     public bool PickUp {
@@ -14,13 +14,13 @@ public class ManiteAdd : MonoBehaviour
     }
     private void Start()
     {
-        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        _controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
     }
     // Update is called once per frame
     void Update()
     {
         if (pickUp) {
-            controller.AddManite(maniteIncrease);
+            _controller.AddManite(_maniteIncrease);
             pickUp = false;
         }
     }

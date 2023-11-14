@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CollisionScript : MonoBehaviour
 {
-    private ManiteAdd maniteAdd;
+    private ManiteAdd _maniteAdd;
     
     private void Start() {
-        maniteAdd = GameObject.Find("Pickup").GetComponent<ManiteAdd>();
+        _maniteAdd = GameObject.Find("Pickup").GetComponent<ManiteAdd>();
     }
 
     private void OnEnable() {
-        maniteAdd = GameObject.Find("Pickup").GetComponent<ManiteAdd>();
+        _maniteAdd = GameObject.Find("Pickup").GetComponent<ManiteAdd>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider){
@@ -22,7 +22,7 @@ public class CollisionScript : MonoBehaviour
             if(collider.gameObject != null){
 
                 Debug.Log("Object destroyed");
-                maniteAdd.PickUp = true;
+                _maniteAdd.PickUp = true;
                 Destroy(gameObject);
 
             }

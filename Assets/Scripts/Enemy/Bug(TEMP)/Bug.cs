@@ -6,19 +6,19 @@ using UnityEngine.InputSystem.XR;
 public class BugMovement : EnemyBaseScript
 {
 
-    GameObject target;
+    GameObject _target;
 
-    float speed = 4;
+    float _speed = 4;
 
-    bool isAttackPhase = false;
+    bool _isAttackPhase = false;
 
-    bool isAttacking = false;
-    bool canAttack = true;
-    bool canMove = true;
+    bool _isAttacking = false;
+    bool _canAttack = true;
+    bool _canMove = true;
 
-    bool iFramed;
+    bool _iFramed;
 
-    Vector3 velocity;
+    Vector3 _velocity;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +31,12 @@ public class BugMovement : EnemyBaseScript
     { 
 
         Flip();
-        if (isAttackPhase)
+        if (_isAttackPhase)
         {
 
             CheckAttack(Detect());
 
-            if (!isAttacking)
+            if (!_isAttacking)
             {
                 Move();
             }
@@ -53,74 +53,74 @@ public class BugMovement : EnemyBaseScript
 
     void Move()
     {
-        if (canMove)
+        if (_canMove)
         {
-            rb.transform.position = Vector3.SmoothDamp(rb.transform.position, target.transform.position, ref velocity, 1f, speed);
+            _rb.transform.position = Vector3.SmoothDamp(_rb.transform.position, _target.transform.position, ref _velocity, 1f, _speed);
         }
     }
 
     IEnumerator AttackLunge()
     {
-        isAttacking = true;
+        _isAttacking = true;
 
-        Vector2 vec = new Vector2(target.transform.position.x - rb.transform.position.x, target.transform.position.y - rb.transform.position.y);
+        Vector2 vec = new Vector2(_target.transform.position.x - _rb.transform.position.x, _target.transform.position.y - _rb.transform.position.y);
 
         yield return new WaitForSeconds(.2f);
 
-        if (isAttacking)
+        if (_isAttacking)
         {
-            rb.velocity = Vector2.zero;
+            _rb.velocity = Vector2.zero;
             
             vec.Normalize();
 
-            rb.AddForce(vec * 8, ForceMode2D.Impulse);
+            _rb.AddForce(vec * 8, ForceMode2D.Impulse);
         }
 
         yield return new WaitForSeconds(.3f);
 
-        rb.velocity = Vector2.zero;
+        _rb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(1);
 
-        isAttacking = false;
+        _isAttacking = false;
 
         yield return new WaitForSeconds(2);
 
-        canAttack = true;
+        _canAttack = true;
 
     }
 
     IEnumerator Stagger()
     {
-        iFramed = true;
-        canAttack = canMove = isAttacking = false;
+        _iFramed = true;
+        _canAttack = _canMove = _isAttacking = false;
         StopCoroutine(AttackLunge());
         
         yield return new WaitForSeconds(.7f);
 
-        rb.velocity = Vector3.zero;
-        canMove = true;
-        iFramed = false;
+        _rb.velocity = Vector3.zero;
+        _canMove = true;
+        _iFramed = false;
 
         yield return new WaitForSeconds(.7f);
 
-        canAttack = true;
+        _canAttack = true;
     }
 
     override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         
-        if (!iFramed)
+        if (!_iFramed)
         {
-            if (!isAttackPhase)
+            if (!_isAttackPhase)
             {
-                target = player;
-                isAttackPhase = true;
+                _target = player;
+                _isAttackPhase = true;
             }
-            Vector2 vec = new Vector2(rb.transform.position.x - dmgSourcePos.x, rb.transform.position.y - dmgSourcePos.y);
+            Vector2 vec = new Vector2(_rb.transform.position.x - dmgSourcePos.x, _rb.transform.position.y - dmgSourcePos.y);
             vec.Normalize();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(vec * 5, ForceMode2D.Impulse);
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
 
             StartCoroutine(Stagger());
@@ -132,26 +132,26 @@ public class BugMovement : EnemyBaseScript
     override protected void Flip()
     {
         float flip;
-        if (isAttackPhase && target != null)
+        if (_isAttackPhase && _target != null)
         {
             flip = GetPlayerDirection();
         }
         else
         {
-            flip = rb.velocity.x;
+            flip = _rb.velocity.x;
         }
-        if (isFacingRight && flip < 0f || !isFacingRight && flip > 0f)
+        if (_isFacingRight && flip < 0f || !_isFacingRight && flip > 0f)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = rb.transform.localScale;
+            _isFacingRight = !_isFacingRight;
+            Vector3 localScale = _rb.transform.localScale;
             localScale.x *= -1f;
-            rb.transform.localScale = localScale;
+            _rb.transform.localScale = localScale;
         }
     }
 
     private float GetPlayerDirection()
     {
-        float value = target.transform.position.x - rb.transform.position.x;
+        float value = _target.transform.position.x - _rb.transform.position.x;
         if (value < 0)
             return -1;
         else
@@ -163,7 +163,7 @@ public class BugMovement : EnemyBaseScript
         RaycastHit2D[] hits;
 
         
-        hits = Physics2D.CircleCastAll(rb.transform.position, 1.5f, Vector2.zero);
+        hits = Physics2D.CircleCastAll(_rb.transform.position, 1.5f, Vector2.zero);
         
 
         return hits;
@@ -177,8 +177,8 @@ public class BugMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                target = hit.collider.gameObject;
-                isAttackPhase = true;
+                _target = hit.collider.gameObject;
+                _isAttackPhase = true;
             }
         }
     }
@@ -189,10 +189,10 @@ public class BugMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (canAttack)
+                if (_canAttack)
                 {
                     StartCoroutine(AttackLunge());
-                    canAttack = false;
+                    _canAttack = false;
                 }
             }
         }
