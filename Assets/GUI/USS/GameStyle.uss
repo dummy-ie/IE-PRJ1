@@ -38,35 +38,38 @@ VisualElement {
 }
 
 #ManiteBar {
-    width: 20%;
+    align-self: flex-start;
 }
 
 #ManiteBarBase {
-    --unity-image: url('project://database/Assets/Resources/Sprites/shtManiteBarBase.png?fileID=-2122278582&guid=9b8a8b664bf220a4b8be6644b06c0c7a&type=3#shtManiteBarBase_0');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/shtManiteBarBase.png?fileID=-2122278582&guid=9b8a8b664bf220a4b8be6644b06c0c7a&type=3#shtManiteBarBase_0');
     flex-direction: column;
     flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 #ManiteBarHexIcon {
-    --unity-image: url('project://database/Assets/Resources/Sprites/shtManiteBarHexIcon.png?fileID=-1240813884&guid=beb5638905c4e13409e1be88502d0783&type=3#shtManiteBarHexIcon_0');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/shtManiteBarHexIcon.png?fileID=-1240813884&guid=beb5638905c4e13409e1be88502d0783&type=3#shtManiteBarHexIcon_0');
     flex-direction: row;
     flex-shrink: 0;
-    top: -24px;
+    top: -25%;
 }
 
 #ManiteBarGaugeCircuit {
-    --unity-image: url('project://database/Assets/Resources/Sprites/shtManiteBarGaugeCircuit.png?fileID=961867531&guid=c0c377ac99e38064f8c2e2ff1095a8ef&type=3#shtManiteBarGaugeCircuit_0');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/shtManiteBarGaugeCircuit.png?fileID=961867531&guid=c0c377ac99e38064f8c2e2ff1095a8ef&type=3#shtManiteBarGaugeCircuit_0');
     flex-direction: row;
 }
 
 #ManiteBarPartition {
-    --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarPartition.png?fileID=21300000&guid=a32da61f1625c504ba25ffffa9210425&type=3#sprManiteBarPartition');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/sprManiteBarPartition.png?fileID=21300000&guid=a32da61f1625c504ba25ffffa9210425&type=3#sprManiteBarPartition');
     flex-direction: row;
 }
 
 #ManiteBarGaugeContainer {
     flex-shrink: 0;
-    top: 24px;
+    top: 25%;
+    margin-left: 6%;
 }
 
 #ManiteBarGaugeMask {
@@ -75,16 +78,16 @@ VisualElement {
 }
 
 #ManiteBarGaugeFillStart {
-    --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillStart.png?fileID=21300000&guid=426b13cb03a59a845b7e79a455bbd0ba&type=3#sprManiteBarGaugeFillStart');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/sprManiteBarGaugeFillStart.png?fileID=21300000&guid=426b13cb03a59a845b7e79a455bbd0ba&type=3#sprManiteBarGaugeFillStart');
     flex-shrink: 0;
 }
 
 #ManiteBarGaugeFillMid {
-    --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillMid.png?fileID=21300000&guid=da68cadc805fc6c4692e29a365dfbb0c&type=3#sprManiteBarGaugeFillMid');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/sprManiteBarGaugeFillMid.png?fileID=21300000&guid=da68cadc805fc6c4692e29a365dfbb0c&type=3#sprManiteBarGaugeFillMid');
     flex-shrink: 0;
 }
 
 #ManiteBarGaugeFillEnd {
-    --unity-image: url('project://database/Assets/Resources/Sprites/sprManiteBarGaugeFillEnd.png?fileID=21300000&guid=dabfb40defe9618499c4d14a28e46447&type=3#sprManiteBarGaugeFillEnd');
+    --unity-image: url('project://database/Assets/Resources/Sprites/HUD/sprManiteBarGaugeFillEnd.png?fileID=21300000&guid=dabfb40defe9618499c4d14a28e46447&type=3#sprManiteBarGaugeFillEnd');
     flex-shrink: 0;
 }
