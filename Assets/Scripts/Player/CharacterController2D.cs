@@ -51,6 +51,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private int _maxHealth = 3;
+    public int MaxHealth { get { return _maxHealth; } }
     [SerializeField] private int _currentHealth = 3;
     public int CurrentHealth { get { return _currentHealth; } }
     [SerializeField] private float _maxManite = 100;
@@ -273,7 +274,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Flip()
     {
-        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaY > 0f)
+        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
         {
             _isFacingRight = !_isFacingRight;
             Vector3 localScale = transform.localScale;

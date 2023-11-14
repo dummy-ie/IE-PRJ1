@@ -6,6 +6,10 @@ using UnityEngine.UIElements;
 public class PlayerHUD : View {
     CharacterController2D _controller;
     private VisualElement _mask;
+    private VisualElement _heartContainer;
+
+    private Image _heart;
+    private Image _emptyHeart;
 
     private Sprite[] _shtManiteCrystal;
     private Image _maniteCrystal;
@@ -26,6 +30,9 @@ public class PlayerHUD : View {
     {
         this._controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
         this._mask = this._root.Q<VisualElement>("ManiteBarGaugeMask");
+        _heartContainer = this._root.Q<VisualElement>("HeartContainer");
+        _heart = this._root.Q<Image>("Heart");
+        _emptyHeart = this._root.Q<Image>("EmptyHeart");
         _maniteCrystal = _root.Q<Image>("ManiteCrystal");
         _maniteBarBase = _root.Q<Image>("ManiteBarBase");
         _maniteBarHexIcon = _root.Q<Image>("ManiteBarHexIcon");
@@ -33,9 +40,9 @@ public class PlayerHUD : View {
         //shtManiteCrystal = Resources.LoadAll<Sprite>("Sprites/shtManiteCrystal");
         //maniteCrystal.sprite = shtManiteCrystal[0];
         //maxCrystalFrame = shtManiteCrystal.Length;
-        _shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/HUD/shtManiteBarBase");
-        _shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/HUD/shtManiteBarHexIcon");
-        _shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/HUD/shtManiteBarGaugeCircuit");
+        _shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarBase");
+        _shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarHexIcon");
+        _shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarGaugeCircuit");
         _maxFrames = _shtManiteBarBase.Length;
         _maniteBarBase.sprite = _shtManiteBarBase[0];
         _maniteBarHexIcon.sprite = _shtManiteBarHexIcon[0];
@@ -47,6 +54,20 @@ public class PlayerHUD : View {
     {
         this._mask.style.width = Length.Percent((this._controller.CurrentManite / this._controller.MaxManite) * 100);
         //Debug.Log(this.mask.style.width);
+        int i = 0;
+        _heartContainer.Clear();
+        for (; i < _controller.CurrentHealth; i++) {
+            Image heart = new Image();
+            heart.name = "Heart";
+            _heartContainer.Add(heart);
+        }
+        i = _controller.CurrentHealth;
+        for (; i < _controller.MaxHealth; i++) {
+            Image heart = new Image();
+            heart.name = "EmptyHeart";
+            _heartContainer.Add(heart);
+            Debug.Log("empty" + i);
+        }
     }
 
     /*private IEnumerator AnimateCrystal()
