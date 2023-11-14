@@ -142,7 +142,7 @@ public class SlimeMovement : EnemyBaseScript
         canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos)
+    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         
         if (!iFramed)
@@ -157,6 +157,9 @@ public class SlimeMovement : EnemyBaseScript
             rb.velocity = Vector2.zero;
             rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
+            if (damageTaken > 0)
+                Damage(damageTaken);
+            
 
             StartCoroutine(Stagger());
 

@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
 {
     CharacterController2D controller;
 
+    [SerializeField]
+    int playerAttackDamage = 2;
 
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
@@ -62,7 +64,7 @@ public class PlayerAttack : MonoBehaviour
 
                     if (enemy != null)
                     {
-                        enemy.Hit(gameObject, gameObject.transform.position);
+                        enemy.Hit(gameObject, gameObject.transform.position, playerAttackDamage);
                     }
                 }
 

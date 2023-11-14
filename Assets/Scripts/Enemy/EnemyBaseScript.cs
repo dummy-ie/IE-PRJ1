@@ -9,6 +9,11 @@ public class EnemyBaseScript : MonoBehaviour
 
     protected bool isFacingRight;
 
+    [SerializeField]
+    EnemyData enemyData;
+
+    int currentHealth;
+
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float boxCastDistance = 0.4f;
     [SerializeField] Vector2 boxSize = new(0.3f, 0.4f);
@@ -18,12 +23,17 @@ public class EnemyBaseScript : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        currentHealth = enemyData.health;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (this.currentHealth <= 0)
+        {
+            this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
+        }
     }
 
     virtual protected void Flip()
@@ -37,12 +47,27 @@ public class EnemyBaseScript : MonoBehaviour
         }
     }
 
-    virtual public void Hit(GameObject player, Vector2 dmgSourcePos)
+    virtual public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, transform.position.y - dmgSourcePos.y);
         vec.Normalize();
         rb.AddForce(vec * 5, ForceMode2D.Impulse);
         Debug.Log("Hit");
+    }
+
+    virtual public void Damage(int amount)
+    {
+
+        if (this.currentHealth - amount >= 0)
+        {
+            this.currentHealth -= amount;
+        }
+
+        else
+        {
+            this.currentHealth = 0;
+        }
+
     }
 
     protected bool IsGrounded()
@@ -54,7 +79,7 @@ public class EnemyBaseScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject));
+            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, enemyData.damage));
         }
     }
 

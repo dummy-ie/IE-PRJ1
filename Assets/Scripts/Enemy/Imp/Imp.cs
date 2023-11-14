@@ -170,7 +170,7 @@ public class ImpMovement : EnemyBaseScript
         canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos)
+    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
 
         if (!iFramed)
@@ -184,6 +184,9 @@ public class ImpMovement : EnemyBaseScript
             vec.Normalize();
             rb.velocity = Vector2.zero;
             rb.AddForce(vec * 5, ForceMode2D.Impulse);
+
+            if (damageTaken > 0)
+                Damage(damageTaken);
 
             StartCoroutine(Stagger());
 

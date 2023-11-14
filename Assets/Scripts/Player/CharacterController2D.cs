@@ -101,6 +101,11 @@ public class CharacterController2D : MonoBehaviour
     {
 
         Hits();
+
+        if (this.currentHealth <= 0)
+        
+            this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
+        
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
@@ -305,7 +310,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    public IEnumerator Hit(GameObject enemy)
+    public IEnumerator Hit(GameObject enemy, int damageTaken = 0)
     {
         if (!isHit && iFrames <= 0)
         {
@@ -320,10 +325,28 @@ public class CharacterController2D : MonoBehaviour
             
             rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
 
+            if (damageTaken > 0)
+                Damage(damageTaken);
+
             yield return new WaitForSeconds(.2f);
 
             rb.velocity = Vector3.zero;
         }
+    }
+
+    public void Damage(int amount)
+    {
+
+        if (this.currentHealth - amount >= 0)
+        {
+            this.currentHealth -= amount;
+        }
+
+        else
+        {
+            this.currentHealth = 0;
+        }
+
     }
 
     public void AddManite(float value) {

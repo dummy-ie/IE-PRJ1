@@ -107,7 +107,7 @@ public class BugMovement : EnemyBaseScript
         canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos)
+    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         
         if (!iFramed)

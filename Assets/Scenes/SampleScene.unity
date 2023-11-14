@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3daab35c5dd1a942808b2e9bcbeae4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 0}
   boxCastDistance: 0.4
   boxSize: {x: 0.3, y: 0.4}
   groundLayer:
@@ -1940,6 +1941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 1298420928248171375, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6785307845035562149, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
@@ -1951,6 +1956,26 @@ PrefabInstance:
     - target: {fileID: 6785307845035562149, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: currentHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396684250934554421, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3494,6 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fe5844d1f2f9a4a8aead068b3d6d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 0}
   boxCastDistance: 0.4
   boxSize: {x: 0.3, y: 0.4}
   groundLayer:

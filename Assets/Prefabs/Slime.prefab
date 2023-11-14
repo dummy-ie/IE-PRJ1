@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73a001b9a141bc47b3400d90f27e41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: adc0af77e14f9154992a862fd7b61c48, type: 2}
   boxCastDistance: 0.15
   boxSize: {x: 0.3, y: 0.4}
   groundLayer:
