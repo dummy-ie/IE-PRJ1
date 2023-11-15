@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: sprDirt_Block
+  m_Name: sprGrass_Block_CurvedRight
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: dc1dc6fffd4b5bf4aa6012b22401854c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83c1dd1fe1a987d4da56d40cfaa05b8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
