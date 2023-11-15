@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
+
+public class DoorScript : InteractableBaseScript
+{   
+    [SerializeField]
+    InteractableData _interactableData;
+    private SpriteRenderer _renderer;
+    private bool _wasUsed;
+    private Collider2D _collider;
+    override public void OnInteract(){
+
+        if(this._wasUsed == true){
+            this._collider.enabled = true;
+            this._wasUsed = false;
+        }
+
+        else {
+            this._collider.enabled = false;
+            this._wasUsed = true;
+        }
+
+        Sprite tempSprite = this._renderer.sprite;
+        this._renderer.sprite = this._interactableData._sprite;
+        this._interactableData._sprite = tempSprite;
+        //"Save" the data if the object was interacted or not      
+        this._interactableData._wasInteracted = this._wasUsed;   
+    }
+
+    
+    private void Awake(){
+
+        
+        this._renderer = this.gameObject.GetComponent<SpriteRenderer>();
+        
+         //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
+        this._wasUsed = this._interactableData._wasInteracted;
+        this._collider = this.gameObject.GetComponent<Collider2D>();
+
+    }
+}

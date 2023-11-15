@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Dash Pickup
   - EnvBreakable
+  - Interactable
   layers:
   - Default
   - TransparentFX
