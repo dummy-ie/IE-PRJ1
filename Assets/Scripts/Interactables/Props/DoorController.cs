@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class DoorScript : InteractableBaseScript
-{   
+public class DoorController : MonoBehaviour
+{
     [SerializeField]
     InteractableData _interactableData;
     private SpriteRenderer _renderer;
     private bool _wasUsed;
     private Collider2D _collider;
-    override public void OnInteract(){
-
+    public void OnInteract(){
         if(this._wasUsed == true){
             this._collider.enabled = true;
             this._wasUsed = false;
@@ -26,7 +25,7 @@ public class DoorScript : InteractableBaseScript
         this._renderer.sprite = this._interactableData._sprite;
         this._interactableData._sprite = tempSprite;
         //"Save" the data if the object was interacted or not      
-        this._interactableData._wasInteracted = this._wasUsed;   
+        this._interactableData._wasInteracted = this._wasUsed;
     }
 
     

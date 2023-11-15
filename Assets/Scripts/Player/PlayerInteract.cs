@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,17 +21,25 @@ public class PlayerInteract : MonoBehaviour
    
     [SerializeField]
     Collider2D _interactHitbox;
-
+    IInteractable _interactable;
+    public IInteractable Interactable { set { _interactable = value; } }
+    
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-          
-            OnPressInteract();
+            Interact();
         }
     }
 
-    private void OnPressInteract()
+    private void Interact()
+    {
+        if (_interactable != null)
+            _interactable.OnInteract();
+        else
+            Debug.Log("wtf");
+    }
+    /*private void OnPressInteract()
     {
         if (this._canInteract)
         {
@@ -54,8 +63,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
-                    InteractableBaseScript interactable;
-                    interactable = hit.collider.gameObject.GetComponent<InteractableBaseScript>();
+                    IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
 
                     if (interactable != null)
                     {
@@ -115,8 +123,6 @@ public class PlayerInteract : MonoBehaviour
 
         InteractUpdate();
 
-   }
-
-    
+   }*/
 }
 

@@ -1,6 +1,4 @@
-public interface Iinteractable
+public interface IInteractable
 {
-   public void OnInteraction(){
-
-   }
+    public void OnInteract();
 }
