@@ -66,7 +66,6 @@ public class PlayerHUD : View {
             Image heart = new Image();
             heart.name = "EmptyHeart";
             _heartContainer.Add(heart);
-            Debug.Log("empty" + i);
         }
     }
 
