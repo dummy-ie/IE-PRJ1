@@ -9,6 +9,9 @@ TagManager:
   - Vacuum
   - XD1
   - Ground
+  - Dash Pickup
+  - EnvBreakable
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -48,6 +51,15 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2963050733
+    locked: 0
+  - name: Midground
+    uniqueID: 987081829
+    locked: 0
+  - name: Foreground
+    uniqueID: 2971171443
+    locked: 0
+  - name: Nearground
+    uniqueID: 2236533945
     locked: 0
   - name: Ground
     uniqueID: 470587901

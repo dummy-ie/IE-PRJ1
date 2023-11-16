@@ -4,49 +4,69 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerHUD : View {
-    CharacterController2D controller;
-    private VisualElement mask;
+    CharacterController2D _controller;
+    private VisualElement _mask;
+    private VisualElement _heartContainer;
 
-    private Sprite[] shtManiteCrystal;
-    private Image maniteCrystal;
-    private Sprite[] shtManiteBarBase;
-    private Image maniteBarBase;
-    private Sprite[] shtManiteBarHexIcon;
-    private Image maniteBarHexIcon;
-    private Sprite[] shtManiteBarGaugeCircuit;
-    private Image maniteBarGaugeCircuit;
+    private Image _heart;
+    private Image _emptyHeart;
 
-    [SerializeField] private float animateTicks = 0.1f;
-    private int currentCrystalFrame = 0;
-    private int maxCrystalFrame;
+    private Sprite[] _shtManiteCrystal;
+    private Image _maniteCrystal;
+    private Sprite[] _shtManiteBarBase;
+    private Image _maniteBarBase;
+    private Sprite[] _shtManiteBarHexIcon;
+    private Image _maniteBarHexIcon;
+    private Sprite[] _shtManiteBarGaugeCircuit;
+    private Image _maniteBarGaugeCircuit;
 
-    private int currentFrame = 0;
-    private int maxFrames;
+    [SerializeField] private float _animateTicks = 0.1f;
+    private int _currentCrystalFrame = 0;
+    private int _maxCrystalFrame;
+
+    private int _currentFrame = 0;
+    private int _maxFrames;
     public override void Initialize()
     {
-        this.controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
-        this.mask = this._root.Q<VisualElement>("ManiteBarGaugeMask");
-        maniteCrystal = _root.Q<Image>("ManiteCrystal");
-        maniteBarBase = _root.Q<Image>("ManiteBarBase");
-        maniteBarHexIcon = _root.Q<Image>("ManiteBarHexIcon");
-        maniteBarGaugeCircuit = _root.Q<Image>("ManiteBarGaugeCircuit");
+        this._controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        this._mask = this._root.Q<VisualElement>("ManiteBarGaugeMask");
+        _heartContainer = this._root.Q<VisualElement>("HeartContainer");
+        _heart = this._root.Q<Image>("Heart");
+        _emptyHeart = this._root.Q<Image>("EmptyHeart");
+        _maniteCrystal = _root.Q<Image>("ManiteCrystal");
+        _maniteBarBase = _root.Q<Image>("ManiteBarBase");
+        _maniteBarHexIcon = _root.Q<Image>("ManiteBarHexIcon");
+        _maniteBarGaugeCircuit = _root.Q<Image>("ManiteBarGaugeCircuit");
         //shtManiteCrystal = Resources.LoadAll<Sprite>("Sprites/shtManiteCrystal");
         //maniteCrystal.sprite = shtManiteCrystal[0];
         //maxCrystalFrame = shtManiteCrystal.Length;
-        shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/shtManiteBarBase");
-        shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/shtManiteBarHexIcon");
-        shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/shtManiteBarGaugeCircuit");
-        maxFrames = shtManiteBarBase.Length;
-        maniteBarBase.sprite = shtManiteBarBase[0];
-        maniteBarHexIcon.sprite = shtManiteBarHexIcon[0];
-        maniteBarGaugeCircuit.sprite = shtManiteBarGaugeCircuit[0];
+        _shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarBase");
+        _shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarHexIcon");
+        _shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarGaugeCircuit");
+        _maxFrames = _shtManiteBarBase.Length;
+        _maniteBarBase.sprite = _shtManiteBarBase[0];
+        _maniteBarHexIcon.sprite = _shtManiteBarHexIcon[0];
+        _maniteBarGaugeCircuit.sprite = _shtManiteBarGaugeCircuit[0];
         //StartCoroutine(AnimateCrystal());
         StartCoroutine(AnimateBar());
     }
     void Update()
     {
-        this.mask.style.width = Length.Percent((this.controller.CurrentManite / this.controller.MaxManite) * 100);
+        this._mask.style.width = Length.Percent((this._controller.CurrentManite / this._controller.MaxManite) * 100);
         //Debug.Log(this.mask.style.width);
+        int i = 0;
+        _heartContainer.Clear();
+        for (; i < _controller.CurrentHealth; i++) {
+            Image heart = new Image();
+            heart.name = "Heart";
+            _heartContainer.Add(heart);
+        }
+        i = _controller.CurrentHealth;
+        for (; i < _controller.MaxHealth; i++) {
+            Image heart = new Image();
+            heart.name = "EmptyHeart";
+            _heartContainer.Add(heart);
+        }
     }
 
     /*private IEnumerator AnimateCrystal()
@@ -60,13 +80,13 @@ public class PlayerHUD : View {
     }*/
 
     private IEnumerator AnimateBar() {
-        yield return new WaitForSeconds(animateTicks);
-        currentFrame %= maxFrames;
-        Debug.Log("Current Frame: " + currentFrame);
-        maniteBarBase.sprite = shtManiteBarBase[currentFrame];
-        maniteBarHexIcon.sprite = shtManiteBarHexIcon[currentFrame];
-        maniteBarGaugeCircuit.sprite = shtManiteBarGaugeCircuit[currentFrame];
-        currentFrame++;
+        yield return new WaitForSeconds(_animateTicks);
+        _currentFrame %= _maxFrames;
+        //Debug.Log("Current Frame: " + currentFrame);
+        _maniteBarBase.sprite = _shtManiteBarBase[_currentFrame];
+        _maniteBarHexIcon.sprite = _shtManiteBarHexIcon[_currentFrame];
+        _maniteBarGaugeCircuit.sprite = _shtManiteBarGaugeCircuit[_currentFrame];
+        _currentFrame++;
         yield return AnimateBar();
     }
 }

@@ -7,17 +7,31 @@ public class SceneLoader : Singleton<SceneLoader> {
     private string _sceneName;
     public void LoadSceneWithoutFade(string sceneName) { 
         _sceneName = sceneName;
-        LoadScene();
+        SceneManager.LoadScene(_sceneName);
     }
 
-    public IEnumerator FadeAndLoadScene(string sceneName) {
-        _sceneName = sceneName;
+    private IEnumerator FadeAndLoadScene() {
         yield return ScreenFader.Instance.FadeOut();
-        LoadScene();
+        SceneManager.LoadScene(_sceneName);
         yield return ScreenFader.Instance.FadeIn();
     }
 
-    private void LoadScene() {
-        SceneManager.LoadScene(_sceneName);
+    private IEnumerator FadeAndLoadAsyncScene() {
+        yield return ScreenFader.Instance.FadeOut();
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_sceneName);
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log("grr");
+            yield return null;
+        }
+        yield return ScreenFader.Instance.FadeIn();
+    }
+
+    public void LoadScene(string sceneName, bool async = false) {
+        _sceneName = sceneName;
+        if (async)
+            StartCoroutine(FadeAndLoadAsyncScene());
+        else
+            StartCoroutine(FadeAndLoadScene());
     }
 }

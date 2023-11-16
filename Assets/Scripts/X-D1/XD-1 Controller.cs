@@ -5,19 +5,19 @@ using UnityEngine.AI;
 
 public class XD1Controller : MonoBehaviour
 {
-    [SerializeField] private float acceleration;
+    [SerializeField] private float _acceleration;
     //*[SerializeField]*/ private float speed = 1;
     //[SerializeField] private float maxVelocity;
-    [SerializeField] private Vector3 offsetFromPlayer;
+    [SerializeField] private Vector3 _offsetFromPlayer;
     //[SerializeField] private float springConstant;
-    [SerializeField] private float catchUpTime = 0.4f;
+    [SerializeField] private float _catchUpTime = 0.4f;
     //private float velocity = 0;
-    private Vector3 velocity;
+    private Vector3 _velocity;
     //private SpringJoint springJoint;
-    private GameObject player;
+    private GameObject _player;
     //private NavMeshAgent companionMesh;
-    private Rigidbody rb;
-    private float ticks;
+    private Rigidbody _rb;
+    private float _ticks;
     
     private enum State {
         IDLE,
@@ -37,11 +37,11 @@ public class XD1Controller : MonoBehaviour
 
     private void FollowPlayer() {
         Vector3 target;
-        if (player.GetComponent<CharacterController2D>().IsFacingRight) {
-            target = new Vector3(-offsetFromPlayer.x, offsetFromPlayer.y, offsetFromPlayer.z) + player.transform.position;
+        if (_player.GetComponent<CharacterController2D>().IsFacingRight) {
+            target = new Vector3(-_offsetFromPlayer.x, _offsetFromPlayer.y, _offsetFromPlayer.z) + _player.transform.position;
         }
         else { 
-            target = offsetFromPlayer + player.transform.position; 
+            target = _offsetFromPlayer + _player.transform.position; 
         }
         //springJoint.anchor = target;
 
@@ -58,36 +58,36 @@ public class XD1Controller : MonoBehaviour
         //Vector2 D*/
         
         //transform.position = Vector2.LerpUnclamped(transform.position, target, EaseInOutBack(speed) * Time.deltaTime);
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, catchUpTime);
-        if (velocity.magnitude <= 1f) {
-            ticks += Time.deltaTime;
-            if (ticks > 2)
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref _velocity, _catchUpTime);
+        if (_velocity.magnitude <= 1f) {
+            _ticks += Time.deltaTime;
+            if (_ticks > 2)
                 state = State.IDLE;
         }
         else {
-            ticks = 0;
+            _ticks = 0;
         }
     }
 
     private void Idle() { 
-        if (Vector3.Distance(this.transform.position, player.transform.position) >= 2) {
+        if (Vector3.Distance(this.transform.position, _player.transform.position) >= 2) {
             state = State.FOLLOW;
         }
     }
 
     // Start is called before the first frame update
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody>();
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _rb = GetComponent<Rigidbody>();
         state = State.IDLE;
-        ticks = 0;
+        _ticks = 0;
         //springJoint = GetComponent<SpringJoint>();
         //companionMesh = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (player == null)
+        if (_player == null)
             return;
         if (state == State.FOLLOW)
             FollowPlayer();

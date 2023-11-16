@@ -20,5 +20,6 @@ public class AttackHitbox : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //attackScript.HitDetected(collision.gameObject.GetComponent<EnemyBaseScript>());
+       
     }
 }

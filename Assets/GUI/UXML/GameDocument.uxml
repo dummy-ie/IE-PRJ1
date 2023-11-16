@@ -1,21 +1,27 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/GameStyle.uss?fileID=7433441132597879392&amp;guid=7c618b3492475c4429cb8f9650f3fc25&amp;type=3#GameStyle" />
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
-        <ui:Image name="ManiteBarBase">
-            <ui:VisualElement name="ManiteBarGaugeContainer" style="margin-left: 34px; margin-right: 20px;">
-                <ui:VisualElement name="ManiteBarGaugeMask">
-                    <ui:Image name="ManiteBarGaugeFillStart" />
-                    <ui:Image name="ManiteBarGaugeFillMid" />
-                    <ui:Image name="ManiteBarGaugeFillMid" />
-                    <ui:Image name="ManiteBarGaugeFillMid" />
-                    <ui:Image name="ManiteBarGaugeFillEnd" />
+    <ui:VisualElement name="HUDContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="HeartContainer">
+            <ui:Image name="Heart" />
+            <ui:Image name="EmptyHeart" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ManiteBar">
+            <ui:Image name="ManiteBarBase">
+                <ui:VisualElement name="ManiteBarGaugeContainer">
+                    <ui:VisualElement name="ManiteBarGaugeMask">
+                        <ui:Image name="ManiteBarGaugeFillStart" />
+                        <ui:Image name="ManiteBarGaugeFillMid" />
+                        <ui:Image name="ManiteBarGaugeFillMid" />
+                        <ui:Image name="ManiteBarGaugeFillMid" />
+                        <ui:Image name="ManiteBarGaugeFillEnd" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:Image name="ManiteBarHexIcon">
-                <ui:Image name="ManiteBarGaugeCircuit">
-                    <ui:Image name="ManiteBarPartition" />
+                <ui:Image name="ManiteBarHexIcon">
+                    <ui:Image name="ManiteBarGaugeCircuit">
+                        <ui:Image name="ManiteBarPartition" />
+                    </ui:Image>
                 </ui:Image>
             </ui:Image>
-        </ui:Image>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
