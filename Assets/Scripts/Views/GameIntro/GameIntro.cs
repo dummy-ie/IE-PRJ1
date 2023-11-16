@@ -21,6 +21,8 @@ public class GameIntro : MonoBehaviour {
     private VisualElement _logoClass;
 
     private UnityEngine.UIElements.Image _logo;
+
+    [SerializeField] string _nextScene;
     
 
     IEnumerator ShowLogo(string className) {
@@ -32,7 +34,7 @@ public class GameIntro : MonoBehaviour {
             this._logo.AddToClassList("logo--hidden");
             yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
         }
-        SceneLoader.Instance.LoadScene("SampleScene");
+        SceneLoader.Instance.LoadScene(_nextScene);
     }
 
     void Start() {
