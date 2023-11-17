@@ -52,7 +52,7 @@ public class ManiteSlash : MonoBehaviour
                 // slash owner
                 var temp = projectile.GetComponent<HorizontalProjectile>();
                 temp.SourcePlayer = gameObject;
-
+                controller.AddManite(-20); // manite reduce
 
                 // flip projectile based on player face direction
                 Vector3 projectileScale = projectile.transform.localScale;
