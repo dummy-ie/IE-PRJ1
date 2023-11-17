@@ -53,7 +53,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private int _maxHealth = 3;
     public int MaxHealth { get { return _maxHealth; } }
     [SerializeField] private int _currentHealth = 3;
-    public int CurrentHealth { get { return _currentHealth; } }
+    public int CurrentHealth { get { return _currentHealth; } set { this._currentHealth = value; } }
     [SerializeField] private float _maxManite = 100;
     public float MaxManite { get { return _maxManite; } }
     [SerializeField] private float _currentManite = 100;
@@ -103,9 +103,11 @@ public class CharacterController2D : MonoBehaviour
 
         Hits();
 
-        if (this._currentHealth <= 0)
-        
-            this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
+        if(this._currentHealth == 0){
+            PlayerSpawner.Instance.Respawn();
+            this._currentHealth = this._maxHealth;
+
+        }
         
     }
 
