@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -57,7 +58,8 @@ public class PlayerAttack : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.CompareTag("Breakable"))
+                Debug.Log($"Hit : {hit.collider.gameObject.name}");
+                /*if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
                     EnemyBaseScript enemy;
                     enemy = hit.collider.gameObject.GetComponent<EnemyBaseScript>();
@@ -78,8 +80,25 @@ public class PlayerAttack : MonoBehaviour
                     }
 
 
+                }*/
+                if (hit.collider.gameObject.layer == 6)
+                    break;
+                IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
+                if (handler != null)
+                {
+                    handler.OnHit(transform, playerAttackDamage);
                 }
             }
+
+            /*RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 0.5f);
+            if (hit.collider != null) {
+                Debug.Log($"hit: {hit.collider.gameObject.name}");
+                IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
+                if (handler != null) {
+                    //if (hit.collider.gameObject.GetComponent<BreakableWall>())
+                        handler.OnHit(playerAttackDamage);
+                }
+            }*/
 
             StartCoroutine(Cooldown());
 
@@ -139,5 +158,10 @@ public class PlayerAttack : MonoBehaviour
         AttackUpdate();
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector2(.5f, .5f));
+    }
+
+
 }
