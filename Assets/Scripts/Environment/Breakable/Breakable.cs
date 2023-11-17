@@ -8,7 +8,7 @@ public class Breakable : MonoBehaviour, IHittable {
     public void OnHit(Transform source, int damage) {
         _health--;
         if (_health <= 0){
-            _breakData._wasInteracted = true;
+            _breakData.WasInteracted = true;
             Destroy(gameObject);    
         }
             
