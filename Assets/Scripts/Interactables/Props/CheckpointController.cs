@@ -16,16 +16,16 @@ public class CheckpointController : MonoBehaviour
         if(player != null){
             _playerData = player.GetComponent<CharacterController2D>();
             PlayerSpawner.Instance.RespawnPosition = gameObject.transform.position;
-            PlayerSpawner.Instance.CheckPointName = _interactableData.objectName;
+            PlayerSpawner.Instance.CheckPointName = _interactableData.ObjectName;
             _playerData.PlayerData.Health = _playerData.PlayerData.MaxHealth;
-            Debug.Log("Checkpoint successfully saved at position:" + _interactableData.objectName);
+            Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ObjectName);
         }
        
 
     }
     private void Awake(){
 
-        _wasUsed = _interactableData._wasInteracted;
+        _wasUsed = _interactableData.WasInteracted;
         
     }
 }

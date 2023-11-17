@@ -23,13 +23,14 @@ public class DoorController : MonoBehaviour
         }
 
         //"Save" the data if the object was interacted or not      
-        this._interactableData._wasInteracted = this._wasUsed;
+        this._interactableData.WasInteracted = this._wasUsed;
     }
 
     private void CheckDoorRender(){
         if(this._wasUsed == true){
             
-            this._renderer.sprite = this._interactableData._sprite;
+            this._renderer.sprite = this._interactableData.Sprite;
+            this._collider.enabled = false;
         }
         else{
             this._renderer.sprite = this._tempSprite;
@@ -42,8 +43,8 @@ public class DoorController : MonoBehaviour
         
         this._renderer = this.gameObject.GetComponent<SpriteRenderer>();
         
-         //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
-        this._wasUsed = this._interactableData._wasInteracted;
+        //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
+        this._wasUsed = this._interactableData.WasInteracted;
         this._collider = this.gameObject.GetComponent<Collider2D>();
         this._tempSprite = this._renderer.sprite;
     }

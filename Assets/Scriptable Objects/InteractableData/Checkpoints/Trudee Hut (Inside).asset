@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346a05fe32d03c04981ce680ce7a70b8, type: 3}
   m_Name: Trudee Hut (Inside)
   m_EditorClassIdentifier: 
-  objectName: Trudee Hut (Inside)
-  _sprite: {fileID: 0}
-  _wasInteracted: 0
+  baseName: Trudee Hut (Inside)
+  _baseSprite: {fileID: 0}
+  baseState: 0
