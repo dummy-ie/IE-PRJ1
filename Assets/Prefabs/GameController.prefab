@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9fb31a3d047be44b0e7d2ce8c1d2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0
-  offsetFromPlayer: {x: 1, y: 1, z: 0}
-  catchUpTime: 0.5
+  _acceleration: 0
+  _offsetFromPlayer: {x: 0, y: 0, z: 0}
+  _catchUpTime: 0.4
 --- !u!1 &5071637553152805355
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.58762014, g: 0.7076337, b: 0.8962264, a: 0}
+  m_BackGroundColor: {r: 0.44313726, g: 0.57074505, b: 0.62352943, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
