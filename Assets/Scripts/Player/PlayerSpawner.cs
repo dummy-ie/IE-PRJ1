@@ -32,6 +32,12 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
 
     }
     
+    public void ForceSpawn(string forcedAreaName, Vector3 forcedSpawnPosition){
+        Debug.Log("MissCandy");
+        _player = GameObject.FindGameObjectWithTag("Player");
+        SceneLoader.Instance.LoadScene(forcedAreaName, true);
+        _player.transform.position = forcedSpawnPosition;
+    }
 
 
 }

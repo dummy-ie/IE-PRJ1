@@ -2493,6 +2493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 3
+  _breakData: {fileID: 11400000, guid: bebf3ec83d3ce7a43a278ceb49f0cc97, type: 2}
 --- !u!1001 &1641077760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2547,7 +2548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.448923
+      value: 6.5471
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
