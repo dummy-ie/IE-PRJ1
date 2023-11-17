@@ -515,31 +515,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: c020450579968fe44984eebba3c22787, type: 2}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _maxHealth: 3
-  _currentHealth: 3
-  _maxManite: 100
-  _currentManite: 100
   _hasDash: 1
   _hasSlash: 0
-  _speed: 6
-  _allowDoubleJump: 0
-  _jumpForce: 14
-  _fallMultiplier: 4
-  _lowJumpMultiplier: 0.3
-  _coyoteTime: 0.1
-  _jumpBufferTime: 0.2
+  _health: 3
+  _manite: 100
   _boxCastDistance: 0.6
   _boxSize: {x: 0.3, y: 0.4}
-  _dashDistance: 4
-  _dashCooldown: 0.5
-  _dashCooldownTime: 0
-  _dashSpeed: 0
-  _dashOriginalSpeed: 20
 --- !u!114 &6500837453471319468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,7 +711,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000059604645, y: 0.40000027, z: -8}
+  m_LocalPosition: {x: 0, y: 0.4, z: -8}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

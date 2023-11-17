@@ -6,20 +6,16 @@ using UnityEngine.InputSystem.XR;
 
 public class CharacterController2D : MonoBehaviour
 {
+    [SerializeField] PlayerData _data;
 
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
     private Rigidbody2D _rb;
-    public Rigidbody2D RB { 
-        get { return _rb; } 
-        set { _rb = value; }
-    }
 
     private CinemachineVirtualCamera _cmVC;
     private Cinemachine3rdPersonFollow _cmTP;
 
-    
     private float _deltaX = 0f;
     private float _deltaY = 0f;
 
@@ -47,78 +43,55 @@ public class CharacterController2D : MonoBehaviour
 
     private float _iFrames = 0;
 
-    [SerializeField] LayerMask _groundLayer;
+    public PlayerData Data { get { return _data; } }
+    [SerializeField]
+    private bool _hasDash = false;
+    public bool HasDash
+    {
+        get { return _hasDash; }
+        set { _hasDash = value; }
+    }
+    [SerializeField]
+    private bool _hasSlash = false;
+    public bool HasSlash
+    {
+        get { return _hasSlash; }
+        set { _hasSlash = value; }
+    }
 
-    /*[Header("Stats")]
-    [SerializeField] private int _maxHealth = 3;
-    public int MaxHealth { get { return _maxHealth; } }
-    [SerializeField] private int _currentHealth = 3;
-    public int CurrentHealth { get { return _currentHealth; } set { this._currentHealth = value; } }
-    [SerializeField] private float _maxManite = 100;
-    public float MaxManite { get { return _maxManite; } }
-    [SerializeField] private float _currentManite = 100;
-    public float CurrentManite { get { return _currentManite; } }
-    [SerializeField] private bool _hasDash = false;
-    public bool HasDash { get { return _hasDash; } }
-    [SerializeField] private bool _hasSlash = false;
-    public bool HasSlash { get { return _hasSlash; } }*/
-    [SerializeField] Player _playerData;
-    public Player PlayerData { get { return _playerData; } }
-
-    // have default values for all fields to prevent null errors
-    [Header("Movement")]
-    [Range(0, 100)][SerializeField] private float _speed = 6f;
-
-    [Header("Jumping")]
-    [SerializeField] private bool _allowDoubleJump = false;
-    [Range(0, 100)][SerializeField] private float _jumpForce = 14f;
-    [Range(0, 10)][SerializeField] private float _fallMultiplier = 4f, _lowJumpMultiplier = 0.8f;
-    [Range(0, 5)][SerializeField] private float _coyoteTime = 0.2f, _jumpBufferTime = 0.2f;
+    [SerializeField]
+    private int _health = 3;
+    public int Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
+    [SerializeField]
+    private float _manite = 100;
+    public float Manite
+    {
+        get { return _manite; }
+        set { _manite = value; }
+    }
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
-    [Header("Dashing")]
-    [SerializeField] private float _dashDistance = 4f;
-    [SerializeField] private float _dashCooldown = .5f;
-    [SerializeField] private float _dashCooldownTime = 0f;
-    [SerializeField] private float _dashSpeed = 0f;
-    [SerializeField] private float _dashOriginalSpeed = 20f;
+    private float _dashCooldownTime = 0f;
+    private float _dashSpeed = 0f;
 
     public bool IsFacingRight {
         get { return _isFacingRight; }
     }
-
-    private void Awake()
-    {
-        _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
-        _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        _rb = GetComponent<Rigidbody2D>();
-
-        _dashSpeed = _dashOriginalSpeed;
-        updateDashDuration();
-    }
-
-    private void Update()
-    {
-
-        Hits();
-
-        if(this._playerData.Health == 0){
-            PlayerSpawner.Instance.Respawn();
-            this._playerData.Health = this._playerData.MaxHealth;
-
+    private void Flip() {
+        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
+        {
+            _isFacingRight = !_isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
-        
-    }
-
-    private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
-    {
-        Move();
-        Jump();
-        Dash();
-        if (!_isDashing) Flip();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -152,16 +125,33 @@ public class CharacterController2D : MonoBehaviour
         {
             _isJumpPress = true;
             // reset jump buffer counter
-            _jumpBufferCounter = _jumpBufferTime;
+            _jumpBufferCounter = _data.JumpBufferTime;
         }
         else if (context.canceled)
         {
             _isJumpPress = false;
         }
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && _canDash && _hasDash) //check if player can dash
+        {
+            _dashSpeed = _data.DashOriginalSpeed;
+            updateDashDuration();
+            _isDashing = true;
+            _aerialDash = false;
+
+            if (!_isFacingRight) //dash direction based on where playr is facing
+                _dashSpeed *= -1;
+        }
+    }
     private void Move()
     {
-        if (!(_isDashing || _isHit)) _rb.velocity = new Vector2(_deltaX * _speed, _rb.velocity.y);
+        if (!(_isDashing || _isHit))
+        {
+            _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
+        }
 
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
@@ -173,7 +163,7 @@ public class CharacterController2D : MonoBehaviour
         // while grounded, set coyote time and jump limit
         if (_isGrounded = IsGrounded())
         {
-            _coyoteTimeCounter = _coyoteTime;
+            _coyoteTimeCounter = _data.CoyoteTime;
             _extraJump = true; // refresh double jump
             _aerialDash = true; //refresh aerialDash
         }
@@ -186,18 +176,18 @@ public class CharacterController2D : MonoBehaviour
         if (!_isJumpPress && _rb.velocity.y > 0f)
         {
             // fall when releasing the jump button early (allows low jumping)
-            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _lowJumpMultiplier);
+            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
             _coyoteTimeCounter = 0f;
         }
         else if (_rb.velocity.y < 0f) // fast fall over time
         {
-            _rb.velocity += (_fallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            _rb.velocity += (_data.FallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
 
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
-        if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _allowDoubleJump)))
+        if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
             _jumpBufferCounter = 0f;
 
             if (!_isGrounded && _coyoteTimeCounter <= 0f)
@@ -205,22 +195,10 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        if (context.started && _canDash && _playerData.HasDash) //check if player can dash
-        { 
-            _dashSpeed = _dashOriginalSpeed;
-            updateDashDuration();
-            _isDashing = true;
-            _aerialDash = false;
-
-            if (!_isFacingRight) //dash direction based on where playr is facing
-                _dashSpeed *= -1;
-        }
-    }
+    
     private void Dash()
     {
-        if (_playerData.HasDash)
+        if (_hasDash)
         {
             if (_isDashing)
             {
@@ -228,7 +206,7 @@ public class CharacterController2D : MonoBehaviour
 
                 _rb.velocity = new Vector2(_dashSpeed, 0); // the actual dashing code 
 
-                _dashCooldownTime = _dashCooldown; //set dash cooldown to max dashCooldon
+                _dashCooldownTime = _data.DashCooldown; //set dash cooldown to max dashCooldon
 
                 ShiftTo3D();
             }
@@ -276,25 +254,16 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void Flip()
-    {
-        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
-        {
-            _isFacingRight = !_isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }
+    
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _groundLayer);
+        return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
     }
 
     private void updateDashDuration()
     {
-       _dashTime = _dashDuration = _dashDistance / _dashSpeed;
+        _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
 
     private void OnDrawGizmos()
@@ -327,7 +296,7 @@ public class CharacterController2D : MonoBehaviour
 
             Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
             vec.Normalize();
-            
+
             _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
 
             if (damageTaken > 0)
@@ -342,31 +311,66 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(int amount)
     {
 
-        if (this._playerData.Health - amount >= 0)
+        if (this._health - amount >= 0)
         {
-            this._playerData.Health -= amount;
+            this._health -= amount;
         }
 
         else
         {
-            this._playerData.Health = 0;
+            this._health = 0;
         }
 
     }
 
-    public void AddManite(float value) {
-        _playerData.Manite += value;
-        if (_playerData.Manite >= _playerData.MaxManite)
-            _playerData.Manite = _playerData.MaxManite;
+    public void AddManite(float value)
+    {
+        _manite += value;
+        if (_manite >= _data.MaxManite)
+            _manite = _data.MaxManite;
     }
 
-    public void ReduceManite(float value) {
-        _playerData.Manite -= value;
-        if (_playerData.Manite <= 0)
-            _playerData.Manite = 0;
+    public void ReduceManite(float value)
+    {
+        _manite -= value;
+        if (_manite <= 0)
+            _manite = 0;
     }
 
-    public void ObtainDash() {
-        _playerData.HasDash = true;
+    public void ObtainDash()
+    {
+        _hasDash = true;
     }
+    private void Awake()
+    {
+        _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
+        _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        _rb = GetComponent<Rigidbody2D>();
+
+        _dashSpeed = _data.DashOriginalSpeed;
+        updateDashDuration();
+    }
+
+    private void Update()
+    {
+
+        Hits();
+
+        if(this._health == 0){
+            PlayerSpawner.Instance.Respawn();
+            this._health = this._data.MaxHealth;
+
+        }
+        
+    }
+
+    private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
+    {
+        Move();
+        Jump();
+        Dash();
+        if (!_isDashing) Flip();
+    }
+
+    
 }

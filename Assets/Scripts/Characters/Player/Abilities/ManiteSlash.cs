@@ -32,7 +32,7 @@ public class ManiteSlash : MonoBehaviour
 
     private void OnPressManiteSlash()
     {
-        if (controller.PlayerData.HasSlash)
+        if (controller.HasSlash)
         {
 
 
@@ -86,11 +86,11 @@ public class ManiteSlash : MonoBehaviour
     IEnumerator VecShift() //temp
     {
         controller.ShiftTo3D();
-        controller.RB.drag = 100f;
+        controller.GetComponent<Rigidbody2D>().drag = 100f;
 
         yield return new WaitForSeconds(.4f);
 
-        controller.RB.drag = 0;
+        controller.GetComponent<Rigidbody2D>().drag = 0;
 
         yield return new WaitForSeconds(.2f);
 
