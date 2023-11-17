@@ -5,19 +5,52 @@ using UnityEngine;
 
 [Serializable]
 public class Player {
-
-    public int health;
-    public float manite;
-    public float[] position;
-
-
-    public Player(CharacterController2D player) {
-        health = player.CurrentHealth;
-        manite = player.CurrentManite;
-
-        position = new float[3];
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
-        position[2] = player.transform.position.z;
+    [SerializeField]
+    private int _maxHealth = 3;
+    public int MaxHealth {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
+    }
+    [SerializeField]
+    private int _health = 3;
+    public int Health {
+        get { return _health; }
+        set { _health = value; }
+    }
+    [SerializeField]
+    private float _maxManite = 100;
+    public float MaxManite {
+        get { return _maxManite; }
+        set { _maxManite = value; }
+    }
+    [SerializeField]
+    private float _manite = 100;
+    public float Manite {
+        get { return _manite; }
+        set { _manite = value; }
+    }
+    [SerializeField]
+    private Vector3 _position;
+    public Vector3 Position {
+        get { return _position; }
+        set { _position = value; }
+    }
+    [SerializeField]
+    private string _currentSceneName;
+    public string CurrentSceneName {
+        get { return _currentSceneName; }
+        set { _currentSceneName = value; }
+    }
+    [SerializeField]
+    private bool _hasDash = false;
+    public bool HasDash {
+        get { return _hasDash; }
+        set { _hasDash = value; }
+    }
+    [SerializeField]
+    private bool _hasSlash = false;
+    public bool HasSlash {
+        get { return _hasSlash; }
+        set { _hasSlash = value; }
     }
 }

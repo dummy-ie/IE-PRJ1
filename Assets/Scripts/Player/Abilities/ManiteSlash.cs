@@ -32,7 +32,7 @@ public class ManiteSlash : MonoBehaviour
 
     private void OnPressManiteSlash()
     {
-        if (controller.HasSlash)
+        if (controller.PlayerData.HasSlash)
         {
 
 

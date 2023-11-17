@@ -49,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField] LayerMask _groundLayer;
 
-    [Header("Stats")]
+    /*[Header("Stats")]
     [SerializeField] private int _maxHealth = 3;
     public int MaxHealth { get { return _maxHealth; } }
     [SerializeField] private int _currentHealth = 3;
@@ -61,7 +61,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private bool _hasDash = false;
     public bool HasDash { get { return _hasDash; } }
     [SerializeField] private bool _hasSlash = false;
-    public bool HasSlash { get { return _hasSlash; } }
+    public bool HasSlash { get { return _hasSlash; } }*/
+    [SerializeField] Player _playerData;
+    public Player PlayerData { get { return _playerData; } }
 
     // have default values for all fields to prevent null errors
     [Header("Movement")]
@@ -103,9 +105,9 @@ public class CharacterController2D : MonoBehaviour
 
         Hits();
 
-        if(this._currentHealth == 0){
+        if(this._playerData.Health == 0){
             PlayerSpawner.Instance.Respawn();
-            this._currentHealth = this._maxHealth;
+            this._playerData.Health = this._playerData.MaxHealth;
 
         }
         
@@ -205,7 +207,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && _canDash && _hasDash) //check if player can dash
+        if (context.started && _canDash && _playerData.HasDash) //check if player can dash
         { 
             _dashSpeed = _dashOriginalSpeed;
             updateDashDuration();
@@ -218,7 +220,7 @@ public class CharacterController2D : MonoBehaviour
     }
     private void Dash()
     {
-        if (_hasDash)
+        if (_playerData.HasDash)
         {
             if (_isDashing)
             {
@@ -340,31 +342,31 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(int amount)
     {
 
-        if (this._currentHealth - amount >= 0)
+        if (this._playerData.Health - amount >= 0)
         {
-            this._currentHealth -= amount;
+            this._playerData.Health -= amount;
         }
 
         else
         {
-            this._currentHealth = 0;
+            this._playerData.Health = 0;
         }
 
     }
 
     public void AddManite(float value) {
-        _currentManite += value;
-        if (_currentManite >= _maxManite)
-            _currentManite = _maxManite;
+        _playerData.Manite += value;
+        if (_playerData.Manite >= _playerData.MaxManite)
+            _playerData.Manite = _playerData.MaxManite;
     }
 
     public void ReduceManite(float value) {
-        _currentManite -= value;
-        if (_currentManite <= 0)
-            _currentManite = 0;
+        _playerData.Manite -= value;
+        if (_playerData.Manite <= 0)
+            _playerData.Manite = 0;
     }
 
     public void ObtainDash() {
-        _hasDash = true;
+        _playerData.HasDash = true;
     }
 }

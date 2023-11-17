@@ -52,17 +52,17 @@ public class PlayerHUD : View {
     }
     void Update()
     {
-        this._mask.style.width = Length.Percent((this._controller.CurrentManite / this._controller.MaxManite) * 100);
+        this._mask.style.width = Length.Percent((this._controller.PlayerData.Manite / this._controller.PlayerData.MaxManite) * 100);
         //Debug.Log(this.mask.style.width);
         int i = 0;
         _heartContainer.Clear();
-        for (; i < _controller.CurrentHealth; i++) {
+        for (; i < _controller.PlayerData.Health; i++) {
             Image heart = new Image();
             heart.name = "Heart";
             _heartContainer.Add(heart);
         }
-        i = _controller.CurrentHealth;
-        for (; i < _controller.MaxHealth; i++) {
+        i = _controller.PlayerData.Health;
+        for (; i < _controller.PlayerData.MaxHealth; i++) {
             Image heart = new Image();
             heart.name = "EmptyHeart";
             _heartContainer.Add(heart);
