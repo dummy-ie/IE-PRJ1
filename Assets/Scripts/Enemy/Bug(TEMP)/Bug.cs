@@ -10,6 +10,7 @@ public class BugMovement : EnemyBaseScript
 
     float _speed = 4;
 
+    
     bool _isAttackPhase = false;
 
     bool _isAttacking = false;
@@ -19,6 +20,28 @@ public class BugMovement : EnemyBaseScript
     bool _iFramed;
 
     Vector3 _velocity;
+
+    override public void OnHit(Transform source, int damage)
+    {
+
+        if (!_iFramed)
+        {
+            if (!_isAttackPhase)
+            {
+                _target = GameObject.FindGameObjectWithTag("Player");
+                _isAttackPhase = true;
+            }
+            Vector2 vec = new Vector2(_rb.transform.position.x - source.position.x, _rb.transform.position.y - source.position.y);
+            vec.Normalize();
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+
+
+            StartCoroutine(Stagger());
+
+            Debug.Log("BUG Hit");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -107,27 +130,6 @@ public class BugMovement : EnemyBaseScript
         _canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
-    {
-        
-        if (!_iFramed)
-        {
-            if (!_isAttackPhase)
-            {
-                _target = player;
-                _isAttackPhase = true;
-            }
-            Vector2 vec = new Vector2(_rb.transform.position.x - dmgSourcePos.x, _rb.transform.position.y - dmgSourcePos.y);
-            vec.Normalize();
-            _rb.velocity = Vector2.zero;
-            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
-
-
-            StartCoroutine(Stagger());
-
-            Debug.Log("BUG Hit");
-        }
-    }
 
     override protected void Flip()
     {

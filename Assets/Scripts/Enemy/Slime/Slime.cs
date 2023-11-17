@@ -26,6 +26,30 @@ public class SlimeMovement : EnemyBaseScript
 
     bool _iFramed;
 
+    public override void OnHit(Transform source, int damage)
+    {
+        if (!_iFramed)
+        {
+            if (this._slimeState != EStateEnemy.ATTACK)
+            {
+                _target = GameObject.FindGameObjectWithTag("Player");
+                this._slimeState = EStateEnemy.ATTACK;
+            }
+            Vector2 vec = new Vector2(transform.position.x - source.position.x, 0);
+            vec.Normalize();
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+
+            if (damage > 0)
+                Damage(damage);
+
+
+            StartCoroutine(Stagger());
+
+            Debug.Log("Slime Hit");
+        }
+    }
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -142,30 +166,6 @@ public class SlimeMovement : EnemyBaseScript
         _canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
-    {
-        
-        if (!_iFramed)
-        {
-            if (this._slimeState != EStateEnemy.ATTACK)
-            {
-                _target = player;
-                this._slimeState = EStateEnemy.ATTACK;
-            }
-            Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
-            vec.Normalize();
-            _rb.velocity = Vector2.zero;
-            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
-
-            if (damageTaken > 0)
-                Damage(damageTaken);
-            
-
-            StartCoroutine(Stagger());
-
-            Debug.Log("Slime Hit");
-        }
-    }
 
     override protected void Flip()
     {

@@ -40,9 +40,9 @@ public class PlayerHUD : View {
         //shtManiteCrystal = Resources.LoadAll<Sprite>("Sprites/shtManiteCrystal");
         //maniteCrystal.sprite = shtManiteCrystal[0];
         //maxCrystalFrame = shtManiteCrystal.Length;
-        _shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarBase");
-        _shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarHexIcon");
-        _shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/HUD/Manite Bar/shtManiteBarGaugeCircuit");
+        _shtManiteBarBase = Resources.LoadAll<Sprite>("Sprites/UI/HUD/Manite Bar/shtManiteBarBase");
+        _shtManiteBarHexIcon = Resources.LoadAll<Sprite>("Sprites/UI/HUD/Manite Bar/shtManiteBarHexIcon");
+        _shtManiteBarGaugeCircuit = Resources.LoadAll<Sprite>("Sprites/UI/HUD/Manite Bar/shtManiteBarGaugeCircuit");
         _maxFrames = _shtManiteBarBase.Length;
         _maniteBarBase.sprite = _shtManiteBarBase[0];
         _maniteBarHexIcon.sprite = _shtManiteBarHexIcon[0];

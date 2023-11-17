@@ -48,7 +48,10 @@ public class ChargedThrust : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Breakable")
                 {
-                    hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
+                    //hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
+                    IHittable handler = hit.collider.GetComponent<IHittable>();
+                    if (handler != null)
+                        handler.OnHit(transform, 0);
                 }
             }
 

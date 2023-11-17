@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EnemyBaseScript : MonoBehaviour
+public class EnemyBaseScript : MonoBehaviour, IHittable
 {
     protected Rigidbody2D _rb;
 
@@ -19,6 +19,13 @@ public class EnemyBaseScript : MonoBehaviour
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
     [SerializeField] LayerMask _groundLayer;
 
+    virtual public void OnHit(Transform source, int damage)
+    {
+        Vector2 vec = new Vector2(transform.position.x - source.position.x, transform.position.y - source.position.y);
+        vec.Normalize();
+        _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+        Debug.Log("Hit");
+    }
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,13 +54,13 @@ public class EnemyBaseScript : MonoBehaviour
         }
     }
 
-    virtual public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
+    /*virtual public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
     {
         Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, transform.position.y - dmgSourcePos.y);
         vec.Normalize();
         _rb.AddForce(vec * 5, ForceMode2D.Impulse);
         Debug.Log("Hit");
-    }
+    }*/
 
     virtual public void Damage(int amount)
     {

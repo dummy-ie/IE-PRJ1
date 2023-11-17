@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
             foreach (RaycastHit2D hit in hits)
             {
                 Debug.Log($"Hit : {hit.collider.gameObject.name}");
-                if (hit.collider.gameObject.CompareTag("Breakable"))
+                /*if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
                     EnemyBaseScript enemy;
                     enemy = hit.collider.gameObject.GetComponent<EnemyBaseScript>();
@@ -80,14 +80,13 @@ public class PlayerAttack : MonoBehaviour
                     }
 
 
-                }
+                }*/
                 if (hit.collider.gameObject.layer == 6)
                     break;
                 IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                 if (handler != null)
                 {
-                    if (hit.collider.gameObject.GetComponent<BreakableWall>())
-                        handler.OnHit(playerAttackDamage);
+                    handler.OnHit(transform, playerAttackDamage);
                 }
             }
 

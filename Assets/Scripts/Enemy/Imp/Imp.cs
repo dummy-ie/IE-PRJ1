@@ -170,23 +170,23 @@ public class ImpMovement : EnemyBaseScript
         _canAttack = true;
     }
 
-    override public void Hit(GameObject player, Vector2 dmgSourcePos, int damageTaken = 0)
+    override public void OnHit(Transform source, int damage)
     {
 
         if (!_iFramed)
         {
             if (this._impState != EStateEnemy.ATTACK)
             {
-                _target = player;
+                _target = GameObject.FindGameObjectWithTag("Player");
                 this._impState = EStateEnemy.ATTACK;
             }
-            Vector2 vec = new Vector2(transform.position.x - dmgSourcePos.x, 0);
+            Vector2 vec = new Vector2(transform.position.x - source.position.x, 0);
             vec.Normalize();
             _rb.velocity = Vector2.zero;
             _rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
-            if (damageTaken > 0)
-                Damage(damageTaken);
+            if (damage > 0)
+                Damage(damage);
 
             StartCoroutine(Stagger());
 

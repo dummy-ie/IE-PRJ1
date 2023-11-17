@@ -56,7 +56,10 @@ public class HorizontalProjectile : MonoBehaviour
     {
         if (_sourcePlayer.CompareTag("Player") && other.gameObject.CompareTag("Breakable"))
         {
-            other.gameObject.GetComponent<EnemyBaseScript>().Hit(_sourcePlayer, transform.position);
+            //other.gameObject.GetComponent<EnemyBaseScript>().Hit(_sourcePlayer, transform.position);
+            IHittable handler = other.gameObject.GetComponent<IHittable>();
+            if (handler != null)
+                handler.OnHit(transform, 0);
             if (_destroyOnImpactWithTarget)
                 Destroy(gameObject);
         }

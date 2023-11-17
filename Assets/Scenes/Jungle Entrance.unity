@@ -688,7 +688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &309731592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2594,6 +2594,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.448
       objectReference: {fileID: 0}
+    - target: {fileID: 985191087088580113, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _offsetFromPlayer.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 985191087088580113, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _offsetFromPlayer.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 985191087088580113, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: _offsetFromPlayer.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1203304482590787883, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2696,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000020980835
+      value: 0.000012397766
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2741,8 +2753,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1104052265}
   - component: {fileID: 1104052263}
-  - component: {fileID: 1104052266}
   - component: {fileID: 1104052267}
+  - component: {fileID: 1104052268}
   m_Layer: 0
   m_Name: Vine
   m_TagString: EnvBreakable
@@ -2814,24 +2826,6 @@ Transform:
   - {fileID: 583027605}
   m_Father: {fileID: 1176741961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1104052266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104052262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
-  _boxCastDistance: 0.4
-  _boxSize: {x: 0.3, y: 0.4}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!50 &1104052267
 Rigidbody2D:
   serializedVersion: 4
@@ -2859,6 +2853,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1104052268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104052262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
 --- !u!1 &1176741960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,8 +5365,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1511313297}
   - component: {fileID: 1511313300}
-  - component: {fileID: 1511313299}
   - component: {fileID: 1511313298}
+  - component: {fileID: 1511313301}
   m_Layer: 0
   m_Name: Vine2
   m_TagString: EnvBreakable
@@ -5414,24 +5421,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1511313299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511313296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
-  _boxCastDistance: 0.4
-  _boxSize: {x: 0.3, y: 0.4}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &1511313300
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5477,6 +5466,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49049667, y: 4.9426394}
   m_EdgeRadius: 0
+--- !u!114 &1511313301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511313296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
 --- !u!1 &1561884606
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,8 +6254,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1888115780}
   - component: {fileID: 1888115783}
-  - component: {fileID: 1888115782}
   - component: {fileID: 1888115781}
+  - component: {fileID: 1888115784}
   m_Layer: 0
   m_Name: Vine3
   m_TagString: EnvBreakable
@@ -6308,24 +6310,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1888115782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888115779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e996a421d782664fa8d33d0b8a9ca82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: fec88c0c435090f4f862e72cda9a78c2, type: 2}
-  _boxCastDistance: 0.4
-  _boxSize: {x: 0.3, y: 0.4}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &1888115783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6371,6 +6355,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49049667, y: 5.0031624}
   m_EdgeRadius: 0
+--- !u!114 &1888115784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888115779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
 --- !u!1 &1925009526
 GameObject:
   m_ObjectHideFlags: 0
