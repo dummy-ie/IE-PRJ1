@@ -17,7 +17,7 @@ public class CheckpointController : MonoBehaviour
             _playerData = player.GetComponent<CharacterController2D>();
             PlayerSpawner.Instance.RespawnPosition = gameObject.transform.position;
             PlayerSpawner.Instance.CheckPointName = _interactableData.ObjectName;
-            _playerData.Health = _playerData.Data.MaxHealth;
+            _playerData.Stats.CurrentHealth = _playerData.Data.MaxHealth;
             Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ObjectName);
         }
        

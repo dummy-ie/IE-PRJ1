@@ -3,15 +3,32 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] PlayerData _data;
+    [SerializeField]
+    PlayerData _data;
+    public PlayerData Data 
+    { 
+        get { return _data; } 
+    }
+    [SerializeField]
+    PlayerStatField _stats;
+    public PlayerStatField Stats
+    {
+        get { return _stats; }
+    }
 
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
     private Rigidbody2D _rb;
+    public Rigidbody2D Rigidbody
+    {
+        get { return _rb; }
+    }
 
     private CinemachineVirtualCamera _cmVC;
     private Cinemachine3rdPersonFollow _cmTP;
@@ -43,7 +60,6 @@ public class CharacterController2D : MonoBehaviour
 
     private float _iFrames = 0;
 
-    public PlayerData Data { get { return _data; } }
     [SerializeField]
     private bool _hasDash = false;
     public bool HasDash
@@ -59,21 +75,6 @@ public class CharacterController2D : MonoBehaviour
         set { _hasSlash = value; }
     }
 
-    [SerializeField]
-    private int _health = 3;
-    public int Health
-    {
-        get { return _health; }
-        set { _health = value; }
-    }
-    [SerializeField]
-    private float _manite = 100;
-    public float Manite
-    {
-        get { return _manite; }
-        set { _manite = value; }
-    }
-
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
@@ -83,6 +84,9 @@ public class CharacterController2D : MonoBehaviour
 
     public bool IsFacingRight {
         get { return _isFacingRight; }
+    }
+    public void FlipTo(bool isFacingRight) { 
+        _isFacingRight = isFacingRight;
     }
     private void Flip() {
         if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
@@ -311,36 +315,23 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(int amount)
     {
 
-        if (this._health - amount >= 0)
+        if (this._stats.CurrentHealth - amount >= 0)
         {
-            this._health -= amount;
+            this._stats.CurrentHealth -= amount;
         }
 
         else
         {
-            this._health = 0;
+            this._stats.CurrentHealth = 0;
         }
 
-    }
-
-    public void AddManite(float value)
-    {
-        _manite += value;
-        if (_manite >= _data.MaxManite)
-            _manite = _data.MaxManite;
-    }
-
-    public void ReduceManite(float value)
-    {
-        _manite -= value;
-        if (_manite <= 0)
-            _manite = 0;
     }
 
     public void ObtainDash()
     {
         _hasDash = true;
     }
+
     private void Awake()
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
@@ -349,6 +340,8 @@ public class CharacterController2D : MonoBehaviour
 
         _dashSpeed = _data.DashOriginalSpeed;
         updateDashDuration();
+        _stats.SetMaxHealth(_data.MaxHealth);
+        _stats.SetMaxManite(_data.MaxManite);
     }
 
     private void Update()
@@ -356,9 +349,9 @@ public class CharacterController2D : MonoBehaviour
 
         Hits();
 
-        if(this._health == 0){
+        if(this._stats.CurrentHealth == 0){
             PlayerSpawner.Instance.Respawn();
-            this._health = this._data.MaxHealth;
+            this._stats.CurrentHealth = this._data.MaxHealth;
 
         }
         
@@ -372,5 +365,4 @@ public class CharacterController2D : MonoBehaviour
         if (!_isDashing) Flip();
     }
 
-    
 }

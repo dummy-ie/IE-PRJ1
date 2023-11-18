@@ -14,8 +14,8 @@ public class PlayerData : ScriptableObject {
         set { _maxHealth = value; }
     }
     [SerializeField]
-    private float _maxManite = 100;
-    public float MaxManite {
+    private int _maxManite = 100;
+    public int MaxManite {
         get { return _maxManite; }
         set { _maxManite = value; }
     }
