@@ -1,0 +1,68 @@
+.unity-image {
+}
+
+.manite-bar {
+    --unity-image: scale-to-fit;
+    position: absolute;
+    height: 48px;
+    width: 256px;
+}
+
+.manite-gauge {
+    --unity-image: scale-and-crop;
+    flex-shrink: 0;
+}
+
+#ManiteBar {
+    align-items: auto;
+    height: 48px;
+    width: 256px;
+    flex-direction: row;
+}
+
+#ManiteBarBase {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarBase.png?fileID=-2122278582&guid=9b8a8b664bf220a4b8be6644b06c0c7a&type=3#shtManiteBarBase_0');
+}
+
+#ManiteBarHexIcon {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarHexIcon.png?fileID=-1240813884&guid=beb5638905c4e13409e1be88502d0783&type=3#shtManiteBarHexIcon_0');
+    margin-left: 7px;
+}
+
+#ManiteBarGaugeCircuit {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarGaugeCircuit.png?fileID=961867531&guid=c0c377ac99e38064f8c2e2ff1095a8ef&type=3#shtManiteBarGaugeCircuit_0');
+}
+
+#ManiteBarPartition {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/sprManiteBarPartition.png?fileID=21300000&guid=a32da61f1625c504ba25ffffa9210425&type=3#sprManiteBarPartition');
+}
+
+#ManiteBarGaugeContainer {
+    width: 165%;
+}
+
+#ManiteBarGaugeMask {
+    flex-direction: row;
+    align-items: flex-start;
+    position: absolute;
+    margin-left: 44px;
+    width: 100%;
+}
+
+#ManiteBarGaugeFillStart {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/sprManiteBarGaugeFillStartTemp.png?fileID=21300000&guid=4fc1f720a735b854eb4cb227bc55d360&type=3#sprManiteBarGaugeFillStartTemp');
+    height: 48px;
+    width: 41px;
+}
+
+#ManiteBarGaugeFillMid {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/sprManiteBarGaugeFillMid.png?fileID=21300000&guid=da68cadc805fc6c4692e29a365dfbb0c&type=3#sprManiteBarGaugeFillMid');
+    height: 48px;
+    width: 40px;
+}
+
+#ManiteBarGaugeFillEnd {
+    --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/sprManiteBarGaugeFillEndTemp.png?fileID=21300000&guid=7ecc383dc46d0854788520efefebd708&type=3#sprManiteBarGaugeFillEndTemp');
+    height: 48px;
+    width: 40px;
+}

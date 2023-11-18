@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Custom%20Elements/ManiteBar/ManiteBar.uss?fileID=7433441132597879392&amp;guid=2f42ef7d626c49143bdfd42b50ef4295&amp;type=3#ManiteBar" />
+    <ui:VisualElement name="ManiteBar">
+        <ui:Image name="ManiteBarBase" class="manite-bar" style="width: 256px;" />
+        <ui:VisualElement name="ManiteBarGaugeContainer" class="manite-bar">
+            <ui:VisualElement name="ManiteBarGaugeMask" style="overflow: hidden; width: 100%;">
+                <ui:Image name="ManiteBarGaugeFillStart" class="manite-gauge" style="transform-origin: left;" />
+                <ui:Image name="ManiteBarGaugeFillMid" class="manite-gauge" />
+                <ui:Image name="ManiteBarGaugeFillMid" class="manite-gauge" />
+                <ui:Image name="ManiteBarGaugeFillMid" class="manite-gauge" />
+                <ui:Image name="ManiteBarGaugeFillEnd" class="manite-gauge" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Image name="ManiteBarPartition" class="manite-bar" />
+        <ui:Image name="ManiteBarHexIcon" class="manite-bar">
+            <ui:Image name="ManiteBarGaugeCircuit" class="manite-bar" style="position: absolute;" />
+        </ui:Image>
+    </ui:VisualElement>
+</ui:UXML>

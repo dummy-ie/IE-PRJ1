@@ -1,5 +1,4 @@
 VisualElement {
-    flex-direction: row;
     align-items: flex-start;
 }
 
@@ -43,6 +42,7 @@ VisualElement {
 }
 
 #HeartContainer {
+    flex-direction: row;
 }
 
 #Heart {
@@ -54,20 +54,17 @@ VisualElement {
 }
 
 #ManiteBar {
-    align-self: flex-start;
-    margin-top: -2%;
+    margin-top: auto;
 }
 
 #ManiteBarBase {
     --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarBase.png?fileID=-2122278582&guid=9b8a8b664bf220a4b8be6644b06c0c7a&type=3#shtManiteBarBase_0');
-    flex-direction: column;
-    align-items: center;
+    top: 20%;
 }
 
 #ManiteBarHexIcon {
     --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarHexIcon.png?fileID=-1240813884&guid=beb5638905c4e13409e1be88502d0783&type=3#shtManiteBarHexIcon_0');
     flex-direction: row;
-    top: -25%;
 }
 
 #ManiteBarGaugeCircuit {
@@ -81,12 +78,12 @@ VisualElement {
 }
 
 #ManiteBarGaugeContainer {
-    top: 25%;
-    margin-left: 6%;
 }
 
 #ManiteBarGaugeMask {
     overflow: hidden;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
 }
 

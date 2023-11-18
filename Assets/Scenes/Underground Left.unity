@@ -1223,7 +1223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   _player: {fileID: 0}
-  _checkPointName: 
 --- !u!1001 &726501667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7601,7 +7600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.3421135
+      value: -5.652401
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
