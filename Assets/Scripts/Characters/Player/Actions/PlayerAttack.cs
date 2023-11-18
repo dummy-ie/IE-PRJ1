@@ -10,15 +10,21 @@ public class PlayerAttack : MonoBehaviour
     CharacterController2D controller;
 
     [SerializeField]
-    int playerAttackDamage = 2;
+    private PlayerAttackData _attackData;
+    public PlayerAttackData AttackData
+    {
+        get { return _attackData; }
+        set { _attackData = value; }
+    }
+
+    
 
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
     private float attackTime;
-    private float attackCooldown = .3f;
 
-    [SerializeField]
-    private bool canAttack = true;
+    //[SerializeField]
+    //private bool canAttack = true;
 
     [SerializeField]
     SpriteRenderer attackHitboxDebug;
@@ -37,10 +43,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnPressAttack()
     {
-        if (canAttack)
+        if (controller.Data.CanAttack)
         {
             isAttacking = true;
-            canAttack = false;
+            controller.Data.CanAttack = false;
 
             int flip = 1;
             if(controller.IsFacingRight) flip = -1;
@@ -86,7 +92,7 @@ public class PlayerAttack : MonoBehaviour
                 IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                 if (handler != null)
                 {
-                    handler.OnHit(transform, playerAttackDamage);
+                    handler.OnHit(transform, _attackData.NormalAttackDamage);
                 }
             }
 
@@ -100,9 +106,9 @@ public class PlayerAttack : MonoBehaviour
                 }
             }*/
 
-            StartCoroutine(Cooldown());
+            TriggerCooldown();
 
-            attackTime = attackCooldown;
+            attackTime = _attackData.NormalAttackCooldown;
         }
     }
 
@@ -123,10 +129,10 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    IEnumerator Cooldown()
+    void TriggerCooldown()
     {
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        controller.Data.AttackCooldown = _attackData.NormalAttackCooldown;
+        StartCoroutine(controller.Cooldown());
     }
 
     /*public void HitDetected(EnemyBaseScript enemy)

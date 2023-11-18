@@ -4,7 +4,18 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Characters/Stat Field")]
 public class PlayerStatField : ScriptableObject
-{
+{   
+    [SerializeField]
+    private CheckpointData _baseCheckpointData;
+
+    private CheckpointData _checkPointData;
+
+    public CheckpointData CheckPointData {
+        get { return this._checkPointData; }
+        set { this._checkPointData = value; }
+
+    }
+
     private int _maxHealth;
     [System.NonSerialized] private int _currentHealth;
     public int CurrentHealth { 
@@ -17,12 +28,6 @@ public class PlayerStatField : ScriptableObject
     {
         get { return _currentManite; }
         set { SetManite(value); }
-    }
-
-    private void OnEnable()
-    {
-        _currentHealth = _maxHealth;
-        _currentManite = _maxManite;
     }
 
     public void SetHealth(int health) {
@@ -39,5 +44,18 @@ public class PlayerStatField : ScriptableObject
 
     public void SetMaxManite(int max) { 
         _maxManite = max;
+    }
+    private void OnEnable()
+    {
+        _checkPointData = _baseCheckpointData;
+        _currentHealth = _maxHealth;
+        _currentManite = _maxManite;
+    }
+
+    private void AfterDeserializeField(){
+        _checkPointData = _baseCheckpointData;
+        _currentHealth = _maxHealth;
+        _currentManite = _maxManite;
+        
     }
 }

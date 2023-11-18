@@ -2269,6 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactableData: {fileID: 11400000, guid: c7d210d86415a7a4bb9b592ae61d1595, type: 2}
+  _tempSprite: {fileID: 21300000, guid: d729855ecbbd26f4597020ceebdffba7, type: 3}
 --- !u!70 &1070433335
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8097,7 +8098,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   _player: {fileID: 1235777058}
-  _checkPointName: 
 --- !u!4 &1900982009
 Transform:
   m_ObjectHideFlags: 0
