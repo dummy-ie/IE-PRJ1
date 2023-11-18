@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _acceleration: 0
-  _offsetFromPlayer: {x: 0, y: 0, z: 0}
+  _offsetFromPlayer: {x: 1, y: 1, z: 0}
   _catchUpTime: 0.4
 --- !u!1001 &7121745990928335349
 PrefabInstance:
