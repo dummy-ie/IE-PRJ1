@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : MonoBehaviour, IHittable {
+public class Breakable : MonoBehaviour, IHittable
+{
     [SerializeField] int _health = 3;
     [SerializeField] InteractableData _breakData;
-    public void OnHit(Transform source, int damage) {
+    public void OnHit(Transform source, int damage)
+    {
         _health--;
-        if (_health <= 0){
+        if (_health <= 0)
+        {
             _breakData.WasInteracted = true;
-            Destroy(gameObject);    
+            HitBehavior();
         }
-            
+
+    }
+
+    protected virtual void HitBehavior()
+    {
+        Destroy(gameObject);
     }
 
 }
