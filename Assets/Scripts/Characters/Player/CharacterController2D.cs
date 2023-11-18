@@ -357,7 +357,7 @@ public class CharacterController2D : MonoBehaviour
         Hits();
 
         if(this._stats.CurrentHealth == 0){
-            PlayerSpawner.Instance.Respawn();
+            PlayerSpawner.Instance.Respawn(Stats.CheckPointData.CheckPointName, Stats.CheckPointData.RespawnPosition);
             this._stats.CurrentHealth = this._data.MaxHealth;
 
         }

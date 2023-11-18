@@ -8,32 +8,18 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
     [SerializeField]
     private GameObject _player;
 
-    [SerializeField]
-    private string _checkPointName;
-
-    public string CheckPointName {
-        get { return this._checkPointName; }
-        set { this._checkPointName = value; }
-    }
-
-    private Vector3 _respawnPosition;
-
-    public Vector3 RespawnPosition{
-        get { return this._respawnPosition; }
-        set { this._respawnPosition = value; }
-    }
 
 
-    public void Respawn(){
+    public void Respawn(string checkpointName, Vector3 position){
         Debug.Log("MissCandy");
         _player = GameObject.FindGameObjectWithTag("Player");
-        SceneLoader.Instance.LoadScene(_checkPointName, true);
-        _player.transform.position = _respawnPosition;
+        SceneLoader.Instance.LoadScene(checkpointName, true);
+        _player.transform.position = position;
 
     }
     
     public void ForceSpawn(string forcedAreaName, Vector3 forcedSpawnPosition){
-        Debug.Log("MissCandy");
+        Debug.Log("MissCandyButForced");
         _player = GameObject.FindGameObjectWithTag("Player");
         SceneLoader.Instance.LoadScene(forcedAreaName, true);
         _player.transform.position = forcedSpawnPosition;

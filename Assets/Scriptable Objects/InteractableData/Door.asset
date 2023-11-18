@@ -16,4 +16,4 @@ MonoBehaviour:
   _baseSprite: {fileID: 21300000, guid: dff626296f323e240a1f74025ce3aac9, type: 3}
   _baseState: 0
   _sprite: {fileID: 21300000, guid: dff626296f323e240a1f74025ce3aac9, type: 3}
-  _wasInteracted: 1
+  _wasInteracted: 0
