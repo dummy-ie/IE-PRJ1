@@ -57,8 +57,7 @@ public class HorizontalProjectile : MonoBehaviour
         if (_sourcePlayer.CompareTag("Player") && other.gameObject.CompareTag("Breakable"))
         {
             //other.gameObject.GetComponent<EnemyBaseScript>().Hit(_sourcePlayer, transform.position);
-            IHittable handler = other.gameObject.GetComponent<IHittable>();
-            if (handler != null)
+            if (other.gameObject.TryGetComponent<IHittable>(out var handler))
                 handler.OnHit(transform, 0);
             if (_destroyOnImpactWithTarget)
                 Destroy(gameObject);
@@ -75,4 +74,11 @@ public class HorizontalProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Breakable"))
+            OnTriggerEnter2D(other);
+    }
+
 }

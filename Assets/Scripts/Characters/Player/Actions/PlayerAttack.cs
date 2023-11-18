@@ -58,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                Debug.Log($"Hit : {hit.collider.gameObject.name}");
+                // Debug.Log($"Hit : {hit.collider.gameObject.name}");
                 /*if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
                     EnemyBaseScript enemy;
@@ -86,6 +86,7 @@ public class PlayerAttack : MonoBehaviour
                 IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                 if (handler != null)
                 {
+                    Debug.Log("Player attacks " + hit.collider.gameObject.name + " " + hit.collider.tag + " " + hit.collider.gameObject.tag);
                     handler.OnHit(transform, playerAttackDamage);
                 }
             }

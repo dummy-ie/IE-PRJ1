@@ -142,7 +142,7 @@ public class CharacterController2D : MonoBehaviour
         if (context.started && _canDash && _hasDash) //check if player can dash
         {
             _dashSpeed = _data.DashOriginalSpeed;
-            updateDashDuration();
+            UpdateDashDuration();
             _isDashing = true;
             _aerialDash = false;
 
@@ -265,7 +265,7 @@ public class CharacterController2D : MonoBehaviour
         return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
     }
 
-    private void updateDashDuration()
+    private void UpdateDashDuration()
     {
         _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
@@ -339,7 +339,7 @@ public class CharacterController2D : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         _dashSpeed = _data.DashOriginalSpeed;
-        updateDashDuration();
+        UpdateDashDuration();
         _stats.SetMaxHealth(_data.MaxHealth);
         _stats.SetMaxManite(_data.MaxManite);
     }

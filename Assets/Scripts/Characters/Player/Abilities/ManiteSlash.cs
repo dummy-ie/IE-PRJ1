@@ -16,7 +16,7 @@ public class ManiteSlash : MonoBehaviour
 
     [SerializeField]
     private GameObject slashProjectile = null;
-    
+
     [SerializeField]
     [Range(0, 5)]
     private int slashSpawnDistance = 1;
@@ -25,7 +25,7 @@ public class ManiteSlash : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("manite slash");
+            // Debug.Log("manite slash");
             OnPressManiteSlash();
         }
     }
@@ -34,11 +34,8 @@ public class ManiteSlash : MonoBehaviour
     {
         if (controller.HasSlash)
         {
-
-
             if (canAttack)
             {
-
                 canAttack = false;
 
                 int flip = 1;
