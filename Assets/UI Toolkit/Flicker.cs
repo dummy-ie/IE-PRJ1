@@ -25,7 +25,7 @@ public class Flicker : MonoBehaviour
     void Start() {
         _light2D = GetComponent<Light2D>();
         _time = Random.Range(_minStartTime, _maxStartTime);
-        Debug.Log($"Time : {_time}");
+        //Debug.Log($"Time : {_time}");
         StartCoroutine(WaitForFlicker(_time));
     }
 
@@ -35,13 +35,13 @@ public class Flicker : MonoBehaviour
     }
     private IEnumerator StartFlicker() {
         for (int i = 0; i < _flickerAmount; i++) {
-            Debug.Log(i);
+            //Debug.Log(i);
             _light2D.intensity = Random.Range(_minIntensity, _maxIntensity);
             yield return new WaitForSeconds(0.1f);
         }
         _light2D.intensity = 1;
         _time = Random.Range(_minStartTime, _maxStartTime);
-        Debug.Log($"Time : {_time}");
+        //Debug.Log($"Time : {_time}");
         yield return WaitForFlicker(_time);
     }
 }

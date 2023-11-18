@@ -28,7 +28,7 @@ public class PlayerHUD : View {
     private int _maxFrames;
     public override void Initialize()
     {
-        this._controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        /*this._controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
         this._mask = this._root.Q<VisualElement>("ManiteBarGaugeMask");
         _heartContainer = this._root.Q<VisualElement>("HeartContainer");
         _heart = this._root.Q<Image>("Heart");
@@ -48,9 +48,9 @@ public class PlayerHUD : View {
         _maniteBarHexIcon.sprite = _shtManiteBarHexIcon[0];
         _maniteBarGaugeCircuit.sprite = _shtManiteBarGaugeCircuit[0];
         //StartCoroutine(AnimateCrystal());
-        StartCoroutine(AnimateBar());
+        StartCoroutine(AnimateBar());*/
     }
-    void Update()
+    /*void Update()
     {
         float currentManite = this._controller.Stats.CurrentManite;
         float maxManite = this._controller.Data.MaxManite;
@@ -71,7 +71,7 @@ public class PlayerHUD : View {
         }
     }
 
-    /*private IEnumerator AnimateCrystal()
+    private IEnumerator AnimateCrystal()
     {
         yield return new WaitForSeconds(animateTicks);
         currentCrystalFrame %= maxCrystalFrame;
@@ -79,7 +79,7 @@ public class PlayerHUD : View {
         maniteCrystal.sprite = shtManiteCrystal[currentCrystalFrame];
         currentCrystalFrame++;
         yield return AnimateCrystal();
-    }*/
+    }
 
     private IEnumerator AnimateBar() {
         yield return new WaitForSeconds(_animateTicks);
@@ -90,5 +90,5 @@ public class PlayerHUD : View {
         _maniteBarGaugeCircuit.sprite = _shtManiteBarGaugeCircuit[_currentFrame];
         _currentFrame++;
         yield return AnimateBar();
-    }
+    }*/
 }

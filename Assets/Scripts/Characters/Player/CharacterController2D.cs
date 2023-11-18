@@ -322,14 +322,14 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(int amount)
     {
 
-        if (this._stats.CurrentHealth - amount >= 0)
+        if (this._stats.Health.Current - amount >= 0)
         {
-            this._stats.CurrentHealth -= amount;
+            this._stats.Health.Current -= amount;
         }
 
         else
         {
-            this._stats.CurrentHealth = 0;
+            this._stats.Health.Current = 0;
         }
 
     }
@@ -347,8 +347,8 @@ public class CharacterController2D : MonoBehaviour
 
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
-        _stats.SetMaxHealth(_data.MaxHealth);
-        _stats.SetMaxManite(_data.MaxManite);
+        _stats.Health.SetMax(_data.MaxHealth);
+        _stats.Manite.SetMax(_data.MaxManite);
     }
 
     private void Update()
@@ -356,9 +356,9 @@ public class CharacterController2D : MonoBehaviour
 
         Hits();
 
-        if(this._stats.CurrentHealth == 0){
+        if(this._stats.Health.Current == 0){
             PlayerSpawner.Instance.Respawn(Stats.CheckPointData.CheckPointName, Stats.CheckPointData.RespawnPosition);
-            this._stats.CurrentHealth = this._data.MaxHealth;
+            this._stats.Health.Current = this._data.MaxHealth;
 
         }
         

@@ -35,11 +35,9 @@ public class ManiteSlash : MonoBehaviour
     {
         if (controller.HasSlash)
         {
-
-
-            if (controller.Data.CanAttack && controller.Stats.CurrentManite >= _slashData.ManiteSlashCost)
+            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= _slashData.ManiteSlashCost)
             {
-                Debug.Log("manite slash");
+                Debug.Log("manite slash2");
                 controller.Data.CanAttack = false;
 
                 int flip = 1;
@@ -53,7 +51,7 @@ public class ManiteSlash : MonoBehaviour
                 // slash owner
                 var temp = projectile.GetComponent<HorizontalProjectile>();
                 temp.SourcePlayer = gameObject;
-                controller.Stats.CurrentManite -= _slashData.ManiteSlashCost; // manite reduce
+                controller.Stats.Manite.Current -= _slashData.ManiteSlashCost; // manite reduce
 
                 // flip projectile based on player face direction
                 Vector3 projectileScale = projectile.transform.localScale;
