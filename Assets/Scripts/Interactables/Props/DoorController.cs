@@ -22,17 +22,19 @@ public class DoorController : MonoBehaviour
             this._wasUsed = true;
         }
 
+        CheckDoorRender();
         //"Save" the data if the object was interacted or not      
         this._interactableData.WasInteracted = this._wasUsed;
     }
 
     private void CheckDoorRender(){
+
         if(this._wasUsed == true){
-            
             this._renderer.sprite = this._interactableData.Sprite;
             this._collider.enabled = false;
         }
-        else{
+
+        else if(this._wasUsed == false){
             this._renderer.sprite = this._tempSprite;
         }
     }
@@ -47,9 +49,11 @@ public class DoorController : MonoBehaviour
         this._wasUsed = this._interactableData.WasInteracted;
         this._collider = this.gameObject.GetComponent<Collider2D>();
         this._tempSprite = this._renderer.sprite;
+
     }
 
-    private void Update(){
+
+    private void OnEnable(){
         CheckDoorRender();
     }
 }
