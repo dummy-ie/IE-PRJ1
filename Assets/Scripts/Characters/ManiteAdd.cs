@@ -20,7 +20,7 @@ public class ManiteAdd : MonoBehaviour
     void Update()
     {
         if (pickUp) {
-            _controller.AddManite(_maniteIncrease);
+            _controller.Stats.CurrentManite += _maniteIncrease;
             pickUp = false;
         }
     }
