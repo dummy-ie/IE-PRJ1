@@ -39,6 +39,7 @@ VisualElement {
 
 #HUDContainer {
     flex-direction: column;
+    align-items: flex-start;
 }
 
 #HeartContainer {
@@ -54,21 +55,18 @@ VisualElement {
 
 #ManiteBar {
     align-self: flex-start;
-    top: -6%;
+    margin-top: -2%;
 }
 
 #ManiteBarBase {
     --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarBase.png?fileID=-2122278582&guid=9b8a8b664bf220a4b8be6644b06c0c7a&type=3#shtManiteBarBase_0');
     flex-direction: column;
-    flex-shrink: 0;
     align-items: center;
-    justify-content: flex-start;
 }
 
 #ManiteBarHexIcon {
     --unity-image: url('project://database/Assets/Resources/Sprites/UI/HUD/Manite%20Bar/shtManiteBarHexIcon.png?fileID=-1240813884&guid=beb5638905c4e13409e1be88502d0783&type=3#shtManiteBarHexIcon_0');
     flex-direction: row;
-    flex-shrink: 0;
     top: -25%;
 }
 
@@ -83,7 +81,6 @@ VisualElement {
 }
 
 #ManiteBarGaugeContainer {
-    flex-shrink: 0;
     top: 25%;
     margin-left: 6%;
 }
