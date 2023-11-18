@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,7 +138,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -515,12 +515,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: c020450579968fe44984eebba3c22787, type: 2}
+  _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
   _hasDash: 1
-  _hasSlash: 0
+  _hasSlash: 1
   _boxCastDistance: 0.6
   _boxSize: {x: 0.3, y: 0.4}
 --- !u!114 &6500837453471319468
@@ -535,8 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dee4ea6e6df7b45b320a7f83367460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttackDamage: 2
-  canAttack: 1
+  _attackData: {fileID: 11400000, guid: 15741659414e9e345b32a93b9f66a511, type: 2}
   attackHitboxDebug: {fileID: 496892192983152945}
   attackHitboxVDebug: {fileID: 496892192983152945}
   attackHitbox: {fileID: 2653795914489541926}
@@ -552,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7200517ff3a5f949a9bf72a45f98ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slashData: {fileID: 11400000, guid: 20967b8a8b376364c9d76a5fb45c48b4, type: 2}
   slashProjectile: {fileID: 5631643489139863568, guid: 1e73d14f702558041b18a9251440ce40, type: 3}
   slashSpawnDistance: 1
 --- !u!114 &8860734082083504054

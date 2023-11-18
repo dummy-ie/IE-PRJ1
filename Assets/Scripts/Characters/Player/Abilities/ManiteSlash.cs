@@ -7,12 +7,13 @@ public class ManiteSlash : MonoBehaviour
 
     CharacterController2D controller;
 
-    private bool isAttacking = false;
-    // private bool isAttacking = false;
-    private float attackTime;
-    private float attackCooldown = 1.5f;
-
-    private bool canAttack = true;
+    [SerializeField]
+    private ManiteSlashData _slashData;
+    public ManiteSlashData SlashData
+    {
+        get { return _slashData; }
+        set { _slashData = value; }
+    }
 
     [SerializeField]
     private GameObject slashProjectile = null;
@@ -25,7 +26,7 @@ public class ManiteSlash : MonoBehaviour
     {
         if (context.started)
         {
-            // Debug.Log("manite slash");
+            
             OnPressManiteSlash();
         }
     }
@@ -34,9 +35,12 @@ public class ManiteSlash : MonoBehaviour
     {
         if (controller.HasSlash)
         {
-            if (canAttack)
+
+
+            if (controller.Data.CanAttack && controller.Stats.CurrentManite >= _slashData.ManiteSlashCost)
             {
-                canAttack = false;
+                Debug.Log("manite slash");
+                controller.Data.CanAttack = false;
 
                 int flip = 1;
                 if (controller.IsFacingRight) flip = -1;
@@ -49,7 +53,7 @@ public class ManiteSlash : MonoBehaviour
                 // slash owner
                 var temp = projectile.GetComponent<HorizontalProjectile>();
                 temp.SourcePlayer = gameObject;
-                controller.Stats.CurrentManite -= 20; // manite reduce
+                controller.Stats.CurrentManite -= _slashData.ManiteSlashCost; // manite reduce
 
                 // flip projectile based on player face direction
                 Vector3 projectileScale = projectile.transform.localScale;
@@ -60,24 +64,10 @@ public class ManiteSlash : MonoBehaviour
                 projectile.transform.Rotate(new Vector3(0f, 0f, -90f));
 
                 StartCoroutine(VecShift());
-                StartCoroutine(Cooldown());
+                TriggerCooldown();
 
-                attackTime = attackCooldown;
             }
         }
-    }
-
-    private void ManiteSlashUpdate()
-    {
-        /*if (isAttacking)
-        {
-            attackTime -= Time.deltaTime;
-        }
-
-        if (attackTime <= 0)
-        {
-            isAttacking = false;
-        }*/
     }
 
     IEnumerator VecShift() //temp
@@ -94,11 +84,12 @@ public class ManiteSlash : MonoBehaviour
         controller.ShiftTo2D();
     }
 
-    IEnumerator Cooldown()
+    void TriggerCooldown()
     {
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        controller.Data.AttackCooldown = _slashData.ManiteSlashCooldown;
+        StartCoroutine(controller.Cooldown());
     }
+
 
     // Start is called before the first frame update
     private void Start()
@@ -106,11 +97,6 @@ public class ManiteSlash : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
         if (slashProjectile == null)
             Debug.LogError("ManiteSlash.cs: Assign a slash projectile!");
-    }
-
-    private void Update()
-    {
-        ManiteSlashUpdate();
     }
 }
 

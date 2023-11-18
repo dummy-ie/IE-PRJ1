@@ -24,7 +24,6 @@ public class InteractableData : ScriptableObject
         set { this._objectName = value; }
     }
     
-    [SerializeField]
     private Sprite _sprite;
 
     public Sprite Sprite{
@@ -34,7 +33,6 @@ public class InteractableData : ScriptableObject
         set { this._sprite = value; }
     }
     
-    [SerializeField]
     private bool _wasInteracted;
 
     public bool WasInteracted{
@@ -54,6 +52,7 @@ public class InteractableData : ScriptableObject
     }
 
     private void AfterDeserializeField(){
+        Debug.Log("Values succesfully reset.");
         this._objectName  = this.baseName;
         this._sprite = this._baseSprite;
         this._wasInteracted = this._baseState;
