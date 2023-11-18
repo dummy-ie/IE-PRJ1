@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Characters/Player Data")]
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Characters/Player/Data")]
 public class PlayerData : ScriptableObject {
     // have default values for all fields to prevent null errors
     [Header("Properties")]
@@ -96,6 +96,33 @@ public class PlayerData : ScriptableObject {
     public float DashDistance {
         get { return _dashDistance; }
     }
+
+    [Header("Attacking")]
+
+    [SerializeField]
+    private bool _canAttack = true;
+    public bool CanAttack
+    {
+        get { return _canAttack; }
+        set { _canAttack = value; }
+    }
+
+    [SerializeField]
+    private float _attackCooldown;
+    public float AttackCooldown
+    {
+        get { return _attackCooldown; }
+        set { _attackCooldown = value; }
+    }
+
+    /*[SerializeField]
+    private bool _isAttacking = false;
+    public bool IsAttacking
+    {
+        get { return _isAttacking; }
+        set { _isAttacking = value; }
+    }*/
+
 
     /*[SerializeField]
     private Vector3 _position;
