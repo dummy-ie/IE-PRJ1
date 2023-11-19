@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Flicker : MonoBehaviour
+public class LightFlicker : MonoBehaviour
 {
-    [Range(0.8f, 1.0f)]
+    /*Range(0.8f, 1.0f)]
     [SerializeField]
     private float _minIntensity = 0.8f;
 
@@ -21,6 +21,7 @@ public class Flicker : MonoBehaviour
     
     Light2D _light2D;
     private float _time;
+
 
     void Start() {
         _light2D = GetComponent<Light2D>();
@@ -43,5 +44,31 @@ public class Flicker : MonoBehaviour
         _time = Random.Range(_minStartTime, _maxStartTime);
         //Debug.Log($"Time : {_time}");
         yield return WaitForFlicker(_time);
+    }*/
+    [SerializeField]
+    private float _flickerIntensity = 0.2f;
+    [SerializeField]
+    private float _flickersPerSecond = 3.0f;
+    [SerializeField]
+    private float _speedRandomness = 1.0f;
+
+    private float _time;
+    private float _startingIntensity;
+    private Light2D _light2D;
+
+    private void Start()
+    {
+        _light2D = GetComponent<Light2D>();
+        _startingIntensity = _light2D.intensity;
     }
+
+    private void Update()
+    {
+        _time += Time.deltaTime * (1 - Random.Range(-_speedRandomness, _speedRandomness)) * Mathf.PI;
+        _light2D.intensity = _startingIntensity + Mathf.Sin(_time * _flickersPerSecond) * _flickerIntensity;
+    }
+    /*private IEnumerator Flicker()
+    {
+
+    }*/
 }

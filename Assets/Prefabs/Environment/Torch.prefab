@@ -171,12 +171,12 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 1
-  m_ShadowVolumeIntensityEnabled: 1
-  m_ShadowVolumeIntensity: 1
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.5
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
+  m_PointLightInnerAngle: 288.3237
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1
   m_PointLightOuterRadius: 3
@@ -202,8 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b00c0c0f9211714fbb5a3f153cad840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minIntensity: 1
-  _maxIntensity: 1.2
-  _minStartTime: 5
-  _maxStartTime: 20
-  _flickerAmount: 3
+  _flickerIntensity: 0.1
+  _flickersPerSecond: 8
+  _speedRandomness: 2

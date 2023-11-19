@@ -31,7 +31,6 @@ public class HUDManager : Singleton<HUDManager>
         Vector4 padding = _mask.padding;
         padding.z = newRightMask;
         DOTween.To(()=> _mask.padding, x=> _mask.padding = x, padding, 0.5f);
-        //_mask.padding = padding;
     }
 
     public void SetHearts(int value) {
