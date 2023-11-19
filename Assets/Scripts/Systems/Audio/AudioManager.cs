@@ -9,6 +9,7 @@ public class AudioManager : Singleton<AudioManager> {
 
     [SerializeField]
     private AudioClip _bgmTheme;
+
     [SerializeField]
     private List<AudioClip> _sfxClips = new List<AudioClip>();
 
@@ -25,11 +26,21 @@ public class AudioManager : Singleton<AudioManager> {
     }
 
     public void ChangeBGM(AudioClip bgm) {
-        if (_bgmSource.clip.name == bgm.name)
+        if(bgm != null){
+            
+            Debug.Log("Audio clip found of name" + bgm.name);
+            if (_bgmSource.clip.name == bgm.name)
             return;
-        _bgmSource.Stop();
-        _bgmSource.clip = bgm;
-        _bgmSource.Play();
+
+            _bgmSource.Stop();
+            _bgmSource.clip = bgm;
+            _bgmSource.Play();
+
+        }
+
+        else
+            Debug.Log("No audio clip found");
+        
     }
 
     public void StopBGM()

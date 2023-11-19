@@ -12,6 +12,7 @@ TagManager:
   - Dash Pickup
   - EnvBreakable
   - Interactable
+  - Sound
   layers:
   - Default
   - TransparentFX

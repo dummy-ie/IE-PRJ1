@@ -29,9 +29,24 @@ public class SceneLoader : Singleton<SceneLoader> {
 
     public void LoadScene(string sceneName, bool async = false) {
         _sceneName = sceneName;
-        if (async)
+        if (async){
+
             StartCoroutine(FadeAndLoadAsyncScene());
-        else
+
+            AudioClip newBGM = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().clip;
+            AudioManager.Instance.ChangeBGM(newBGM);
+                
+
+        }
+        
+        else{
+
             StartCoroutine(FadeAndLoadScene());
+
+            AudioClip newBGM = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().clip;
+            AudioManager.Instance.ChangeBGM(newBGM);
+            
+
+        }
     }
 }
