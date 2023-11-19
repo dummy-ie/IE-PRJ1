@@ -29,9 +29,18 @@ public class SceneLoader : Singleton<SceneLoader> {
 
     public void LoadScene(string sceneName, bool async = false) {
         _sceneName = sceneName;
-        if (async)
+        if (async){
+
             StartCoroutine(FadeAndLoadAsyncScene());
-        else
+                
+
+        }
+        
+        else{
+
             StartCoroutine(FadeAndLoadScene());
+            
+
+        }
     }
 }
