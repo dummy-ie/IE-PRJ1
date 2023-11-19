@@ -32,9 +32,6 @@ public class SceneLoader : Singleton<SceneLoader> {
         if (async){
 
             StartCoroutine(FadeAndLoadAsyncScene());
-
-            AudioClip newBGM = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().clip;
-            AudioManager.Instance.ChangeBGM(newBGM);
                 
 
         }
@@ -42,9 +39,6 @@ public class SceneLoader : Singleton<SceneLoader> {
         else{
 
             StartCoroutine(FadeAndLoadScene());
-
-            AudioClip newBGM = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().clip;
-            AudioManager.Instance.ChangeBGM(newBGM);
             
 
         }
