@@ -208,10 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad428691095b4eb488448ce85c035d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifespanTime: 1
-  _speed: 10
-  _destroyOnImpactWithTarget: 0
-  _destroyOnCollisionWithGround: 0
+  _data: {fileID: 11400000, guid: f3795fa22fcd7b04db75ecda0a9a435f, type: 2}
 --- !u!68 &1462932214807088662
 EdgeCollider2D:
   m_ObjectHideFlags: 0
