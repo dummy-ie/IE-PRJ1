@@ -104,7 +104,6 @@ public class SlimeMovement : EnemyBaseScript
 
     IEnumerator FlipInterval(){
 
-        Debug.Log("Direction is flipped.");
         
         if(this._slimeState == EStateEnemy.PATROL){
 

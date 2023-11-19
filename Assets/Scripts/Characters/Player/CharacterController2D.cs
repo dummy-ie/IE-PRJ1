@@ -260,7 +260,6 @@ public class CharacterController2D : MonoBehaviour
 
     public IEnumerator Cooldown()
     {
-        Debug.Log("On Cooldown");
         yield return new WaitForSeconds(Data.AttackCooldown);
         Data.CanAttack = true;
     }
