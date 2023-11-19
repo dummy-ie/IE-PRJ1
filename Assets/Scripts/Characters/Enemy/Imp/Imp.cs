@@ -122,25 +122,29 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator AttackShoot()
     {
+        // Debug.Log("Imp AttackShoot");
         _isAttacking = true;
 
         yield return new WaitForSeconds(.2f);
 
         if (_isAttacking)
         {
+            // Debug.Log("Imp shooting");
             GameObject projectile = Instantiate(
                 _impProjectile,
                 new Vector3(transform.position.x + 1f * GetPlayerDirection(), transform.position.y, transform.position.z),
                 Quaternion.identity);
 
-            // slash owner
-            var temp = projectile.GetComponent<HorizontalProjectile>();
+            // set source and target
+            var temp = projectile.GetComponent<DirectionalProjectile>();
             temp.SourcePlayer = gameObject;
 
-            // flip projectile based on player face direction
-            Vector3 projectileScale = projectile.transform.localScale;
-            projectileScale.y *= -GetPlayerDirection();
-            projectile.transform.localScale = projectileScale;
+            temp.SetTarget(_target.transform);
+
+            // // flip projectile based on player face direction
+            // Vector3 projectileScale = projectile.transform.localScale;
+            // projectileScale.y *= -GetPlayerDirection();
+            // projectile.transform.localScale = projectileScale;
 
         }
 
