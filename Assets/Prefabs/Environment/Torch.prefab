@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 0.3
   m_LightVolumeIntensityEnabled: 1
-  m_ApplyToSortingLayers: 00000000ed909cb065acd53a737a18b1b9cc4e85fd990c1c83083d57
+  m_ApplyToSortingLayers: 00000000ed909cb065acd53a737a18b1b9cc4e8583083d57
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 1
-  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.5
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
