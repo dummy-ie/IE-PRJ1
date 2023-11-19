@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8916621770837272287}
   - component: {fileID: 5850779316045210690}
   m_Layer: 0
-  m_Name: Scene BGM
+  m_Name: Audio Object
   m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
