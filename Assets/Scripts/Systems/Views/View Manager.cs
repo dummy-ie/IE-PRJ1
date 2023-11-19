@@ -43,8 +43,8 @@ public class ViewManager : Singleton<ViewManager> {
     public void PopUp<T>() where T : View {
         for (int i = 0; i < this._views.Length; i++) {
             if (this._views[i] is T view) {
-                if (this._currentViews.Count != 0)
-                    view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
+                //if (this._currentViews.Count != 0)
+                //    view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
                 view.Show();
                 this._currentViews.Push(view);
             }
@@ -52,8 +52,8 @@ public class ViewManager : Singleton<ViewManager> {
     }
 
     public void PopUp(View view) {
-        if (this._currentViews.Count != 0)
-            view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
+        //if (this._currentViews.Count != 0)
+        //    view.Document.sortingOrder = _currentViews.Peek().Document.sortingOrder + 1;
         view.Show();
         this._currentViews.Push(view);
     }

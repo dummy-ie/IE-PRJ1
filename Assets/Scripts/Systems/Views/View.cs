@@ -7,30 +7,22 @@ using UnityEngine.UIElements;
 public abstract class View : MonoBehaviour {
     [SerializeField]
     bool _onStart = false;
+
+    private int _sortingOrder = 0;
     public bool OnStart { 
         get { return _onStart; } 
     }
-    //[SerializeField]
-    protected UIDocument _document;
-    public UIDocument Document { 
-        get { return _document; }
-    }
-    protected VisualElement _root;
     public abstract void Initialize();
 
     public virtual void Hide() {
-        //this.gameObject.SetActive(false);
-        this._root.style.display = DisplayStyle.None;
+        this.gameObject.SetActive(false);
     }
 
     public virtual void Show() {
-        // this.gameObject.SetActive(true);
-        this._root.style.display = DisplayStyle.Flex;
+        this.gameObject.SetActive(true);
     }
 
     protected void OnEnable() {
-        this._document = GetComponent<UIDocument>();
-        this._root = this._document.rootVisualElement;
         this.Initialize();
     }
 }
