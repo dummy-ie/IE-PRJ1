@@ -277,10 +277,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transitionDuration: 3
-  _logoUpTime: 4
+  _logoUpTime: 2
   _logos:
   - {fileID: 21300000, guid: 80d61c919cf21594e8a6b857ab3e87dc, type: 3}
-  _nextScene: Trudee Hut (Inside)
+  _nextScene: Menu
 --- !u!1001 &3390223321984330765
 PrefabInstance:
   m_ObjectHideFlags: 0
