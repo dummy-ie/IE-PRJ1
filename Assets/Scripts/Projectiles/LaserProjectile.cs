@@ -8,7 +8,7 @@ public class LaserProjectile : Projectile
 {
     [SerializeField]
     [Range(0.1f, 3.0f)]
-    private float _shootDelay = 0.5f;
+    private float _shootDelay = 1f;
 
     [SerializeField]
     private GameObject _telegraphVisual;
@@ -61,7 +61,7 @@ public class LaserProjectile : Projectile
         }
         else if (_shootDirection.x == 0) // North/South Laser stay with source until shot
         {
-            transform.parent.parent.position = new(_sourcePlayer.transform.position.x, transform.position.y, transform.position.z);
+            transform.parent.parent.position = new(_sourcePlayer.transform.position.x, _sourcePlayer.transform.position.y, transform.position.z);
         }
         else if (_shootDirection.y == 0) // East/West Laser stay with source until shot
         {

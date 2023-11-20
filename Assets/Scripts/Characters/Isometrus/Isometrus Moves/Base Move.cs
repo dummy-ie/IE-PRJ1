@@ -23,9 +23,9 @@ public class BaseMove : MonoBehaviour
 
     }
 
-    public IEnumerator Cooldown() // testing
+    public IEnumerator Cooldown(float time) // testing
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(time);
         _moveOngoing = false;
     }
 

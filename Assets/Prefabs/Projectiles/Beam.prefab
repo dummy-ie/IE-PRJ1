@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: c95ca2f82623b3d499cbf7d1fe5a6f2c, type: 2}
-  _shootDelay: 0.5
+  _shootDelay: 0.55
   _telegraphVisual: {fileID: 7052382112214498528}
 --- !u!61 &1753336779384757868
 BoxCollider2D:

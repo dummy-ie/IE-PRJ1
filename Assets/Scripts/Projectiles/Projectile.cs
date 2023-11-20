@@ -8,6 +8,11 @@ public abstract class Projectile : MonoBehaviour
     protected ProjectileData _data;
 
     protected float _lifespanCounter = 0;
+    public float LifespanCounter
+    {
+        get { return _lifespanCounter; }
+        //set { _lifespanCounter = value; }
+    }
 
     protected GameObject _sourcePlayer;
     public GameObject SourcePlayer

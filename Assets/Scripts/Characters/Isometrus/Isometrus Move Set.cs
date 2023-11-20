@@ -42,10 +42,13 @@ public class IsometrusMoveSet : MonoBehaviour
         _moveOngoing = _currentMove.MoveOngoing;
     }
 
-    public void startTime()//Degub
+    public void startTime(float time)//Degub
     {
-        StartCoroutine(_currentMove.Cooldown());
+        StartCoroutine(_currentMove.Cooldown(time));
     }
+
+
+
 
     private void Awake()
     {
