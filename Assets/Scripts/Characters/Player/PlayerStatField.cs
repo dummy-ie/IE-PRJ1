@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Characters/Stat Field")]
-public class PlayerStatField : ScriptableObject
+public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField]
     private CheckpointData _baseCheckpointData;
@@ -41,6 +41,7 @@ public class PlayerStatField : ScriptableObject
         }
         public void SetCurrent(int current) {
             _current = current;
+            Debug.Log($"Current : {_current}");
             CurrentChanged?.Invoke(_current);
         }
     }
@@ -94,8 +95,15 @@ public class PlayerStatField : ScriptableObject
         Manite.Current = Manite.Max;
     }
 
-    private void AfterDeserializeField(){
+    public void OnBeforeSerialize(){
         _checkPointData = _baseCheckpointData;
+        Health.Current = Health.Max;
+        Manite.Current = Manite.Max;
+    }
+    public void OnAfterDeserialize(){
+        _checkPointData = _baseCheckpointData;
+        Health.SetMax(0);
+        Manite.SetMax(0);
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;
     }
