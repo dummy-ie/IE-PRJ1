@@ -21,7 +21,7 @@ public class IsoVerticalBeam : BaseMove
         Debug.Log("Vertical Beam");
         _moveOngoing = true;
         FireBeam();
-        _isometrus.startTime(2);
+        _isometrus.startTime(3);
     }
 
     void IsoVerticalBeamMove()

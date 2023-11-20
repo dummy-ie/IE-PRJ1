@@ -25,8 +25,8 @@ public class IsoRangedAttack : BaseMove
         Debug.Log("Ranged Attack");
         _moveOngoing = true;
         IsoRangedAttackMove();
-        StartCoroutine(FireProjectile(_initialProjectileAmt));
-        _isometrus.startTime(2);
+        StartCoroutine(FireProjectile());
+        _isometrus.startTime(3);
         
     }
 
@@ -44,7 +44,7 @@ public class IsoRangedAttack : BaseMove
         }      
     }
 
-    IEnumerator FireProjectile(int projectileAmount)
+    IEnumerator FireProjectile()
     {
         GameObject projectile = Instantiate(
                 _isoProjectile, // projectile prefab
@@ -56,13 +56,12 @@ public class IsoRangedAttack : BaseMove
         temp.SourcePlayer = gameObject;
 
         temp.SetTarget(_isometrus.controller.transform);
-        projectileAmount--;
 
         yield return new WaitForSeconds(.3f);
 
-        if (projectileAmount != 0)
+        if (_moveOngoing)
         {
-            StartCoroutine(FireProjectile(projectileAmount));
+            StartCoroutine(FireProjectile());
         }
     }
 
