@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60cf27e304bbf6a46b5a0ee445defc57, type: 3}
-  m_Name: Imp Projectile
+  m_Script: {fileID: 11500000, guid: 26b28754a50fbbf4e9cf4d2afeece73b, type: 3}
+  m_Name: Venus Guytrap
   m_EditorClassIdentifier: 
-  LifespanTime: 5
-  Speed: 4
-  DestroyOnImpactWithTarget: 1
-  DestroyOnCollisionWithGround: 1
+  enemyName: Imp
+  description: Shoots projectiles at the player.
+  spritesheet: {fileID: 0}
+  health: 5
+  damage: 2
