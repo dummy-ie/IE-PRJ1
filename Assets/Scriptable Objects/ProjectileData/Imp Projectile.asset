@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Imp Projectile
   m_EditorClassIdentifier: 
   LifespanTime: 5
-  Speed: 16.3
-  DestroyOnImpactWithTarget: 0
-  DestroyOnCollisionWithGround: 0
+  Speed: 4
+  DestroyOnImpactWithTarget: 1
+  DestroyOnCollisionWithGround: 1

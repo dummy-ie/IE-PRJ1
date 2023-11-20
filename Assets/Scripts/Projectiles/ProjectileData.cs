@@ -13,6 +13,8 @@ public class ProjectileData : ScriptableObject
     [Range(0.1f, 100f)]
     public float Speed = 1f;
 
+    public int Damage = 1;
+
     public bool DestroyOnImpactWithTarget = true;
 
     public bool DestroyOnCollisionWithGround = true;
