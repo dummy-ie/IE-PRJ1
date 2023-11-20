@@ -19,6 +19,9 @@ public class ImpMovement : EnemyBaseScript
     private float _distanceFromTarget = 5f;
 
     [SerializeField]
+    private Vector2 _detectionBox = new Vector2(10f, 1f);
+
+    [SerializeField]
     private GameObject _impProjectile;
 
     public EStateEnemy ImpState
@@ -122,24 +125,26 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator AttackShoot()
     {
-        // Debug.Log("Imp AttackShoot");
         _isAttacking = true;
 
         yield return new WaitForSeconds(.2f);
 
         if (_isAttacking)
         {
-            // Debug.Log("Imp shooting");
             GameObject projectile = Instantiate(
                 _impProjectile,
                 new Vector3(transform.position.x + 1f * GetPlayerDirection(), transform.position.y, transform.position.z),
                 Quaternion.identity);
 
             // set source and target
-            var temp = projectile.GetComponent<DirectionalProjectile>();
+            // var temp = projectile.GetComponent<DirectionalProjectile>();
+            // temp.SourcePlayer = gameObject;
+
+            // temp.SetTarget(_target.transform);
+            var temp = projectile.GetComponentInChildren<LaserProjectile>();
             temp.SourcePlayer = gameObject;
 
-            temp.SetTarget(_target.transform);
+            temp.SetDirection(Vector3.right * GetPlayerDirection());
 
             // // flip projectile based on player face direction
             // Vector3 projectileScale = projectile.transform.localScale;
@@ -240,7 +245,7 @@ public class ImpMovement : EnemyBaseScript
         RaycastHit2D[] hits;
 
 
-        hits = Physics2D.BoxCastAll(transform.position, new Vector2(10f, 1f), 0, -transform.right * flip, 2.5f);
+        hits = Physics2D.BoxCastAll(transform.position, _detectionBox, 0, -transform.right * flip, 2.5f);
 
 
         return hits;
@@ -285,6 +290,6 @@ public class ImpMovement : EnemyBaseScript
         int flip = 1;
         if (_isFacingRight) flip = -1;
 
-        Gizmos.DrawWireCube(transform.position + (2.5f * flip * -transform.right), new Vector2(10f, 1f));
+        Gizmos.DrawWireCube(transform.position + (2.5f * flip * -transform.right), _detectionBox);
     }
 }

@@ -9,7 +9,7 @@ public abstract class Projectile : MonoBehaviour
 
     protected float _lifespanCounter = 0;
 
-    GameObject _sourcePlayer;
+    protected GameObject _sourcePlayer;
     public GameObject SourcePlayer
     {
         get { return _sourcePlayer; }
@@ -33,8 +33,8 @@ public abstract class Projectile : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if (_lifespanCounter <= _data.LifespanTime)
-            Move();
+        // if (_lifespanCounter <= _data.LifespanTime)
+        Move();
     }
 
     protected void Update()
@@ -56,10 +56,10 @@ public abstract class Projectile : MonoBehaviour
         }
         else if (_sourcePlayer.CompareTag("Breakable") && other.gameObject.CompareTag("Player"))
         {
+            Debug.Log(name + " collided with target " + other.name);
             StartCoroutine(other.gameObject.GetComponent<CharacterController2D>().Hit(_sourcePlayer, _data.Damage));
             if (_data.DestroyOnImpactWithTarget)
             {
-                Debug.Log(name + " collided with target " + other.name);
                 Destroy(gameObject);   
             }
         }
