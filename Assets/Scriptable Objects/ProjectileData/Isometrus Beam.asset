@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cf27e304bbf6a46b5a0ee445defc57, type: 3}
   m_Name: Isometrus Beam
   m_EditorClassIdentifier: 
-  LifespanTime: 2.5
+  LifespanTime: 2
   Speed: 100
   Damage: 1
   DestroyOnImpactWithTarget: 0

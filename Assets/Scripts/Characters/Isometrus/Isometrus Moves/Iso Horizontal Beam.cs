@@ -23,7 +23,7 @@ public class IsoHorizontalBeam : BaseMove
         _moveOngoing = true;
         IsoHorizontalBeamMove();
         SelectSequence();
-        _isometrus.startTime(4);
+        _isometrus.startTime(6);
     }
 
     void IsoHorizontalBeamMove()

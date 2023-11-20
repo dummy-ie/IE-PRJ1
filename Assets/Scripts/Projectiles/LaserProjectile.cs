@@ -65,7 +65,7 @@ public class LaserProjectile : Projectile
         }
         else if (_shootDirection.y == 0) // East/West Laser stay with source until shot
         {
-            transform.parent.parent.position = new(transform.position.x, _sourcePlayer.transform.position.x, transform.position.z);
+            //transform.parent.parent.position = new(transform.position.x, _sourcePlayer.transform.position.x, transform.position.z);
         }
         else if (_lifespanCounter <= _shootDelay)
         {
