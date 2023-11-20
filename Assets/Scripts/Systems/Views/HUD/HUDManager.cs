@@ -52,6 +52,7 @@ public class HUDManager : Singleton<HUDManager>
 
     private void OnEnable()
     {
+        Debug.Log("HUDManager");
         _playerStats.Health.CurrentChanged += SetHearts;
         _playerStats.Manite.CurrentChanged += SetManiteValue;
     }
@@ -66,6 +67,8 @@ public class HUDManager : Singleton<HUDManager>
     {
         _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
         _initialRightMask = _mask.padding.z;
+        Debug.Log("HUDManagerStart");
+        Debug.Log($"Player Hearts : {_playerStats.Health.Current}");
         SetManiteValue(_playerStats.Manite.Current);
         SetHearts(_playerStats.Health.Current);
     }

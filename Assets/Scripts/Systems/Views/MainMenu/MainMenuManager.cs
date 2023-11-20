@@ -30,6 +30,10 @@ public class MainMenuManager : MonoBehaviour
     void OnSettingsButtonPressed() { }
     void OnQuitButtonPressed()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

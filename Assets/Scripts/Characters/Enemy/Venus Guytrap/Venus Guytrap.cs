@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class ImpMovement : EnemyBaseScript
+public class VenusGuytrapMovement : EnemyBaseScript
 {
     private GameObject _target;
 
@@ -13,7 +13,7 @@ public class ImpMovement : EnemyBaseScript
     private float _flipDirection = 1;
 
     [SerializeField]
-    private EStateEnemy _impState;
+    private EStateEnemy _venusGuytrapState;
 
     [SerializeField]
     private float _distanceFromTarget = 5f;
@@ -22,12 +22,12 @@ public class ImpMovement : EnemyBaseScript
     private Vector2 _detectionBox = new Vector2(10f, 1f);
 
     [SerializeField]
-    private GameObject _impProjectile;
+    private GameObject _venusGuytrapProjectile;
 
-    public EStateEnemy ImpState
+    public EStateEnemy VenusGuytrapState
     {
-        get { return this._impState; }
-        set { this._impState = value; }
+        get { return this._venusGuytrapState; }
+        set { this._venusGuytrapState = value; }
     }
 
     bool _isAttacking = false;
@@ -39,7 +39,7 @@ public class ImpMovement : EnemyBaseScript
     // Start is called before the first frame update
     void OnEnable()
     {
-        this._impState = EStateEnemy.PATROL;
+        this._venusGuytrapState = EStateEnemy.PATROL;
         this.StartCoroutine(FlipInterval());
 
     }
@@ -53,7 +53,7 @@ public class ImpMovement : EnemyBaseScript
     void FixedUpdate()
     {
         Flip();
-        if (this._impState == EStateEnemy.ATTACK)
+        if (this._venusGuytrapState == EStateEnemy.ATTACK)
         {
             CheckAttack(Detect());
 
@@ -62,7 +62,7 @@ public class ImpMovement : EnemyBaseScript
                 Move();
             }
         }
-        else if (this._impState == EStateEnemy.PATROL)
+        else if (this._venusGuytrapState == EStateEnemy.PATROL)
         {
             CheckForPlayer(Detect());
             Move();
@@ -71,15 +71,15 @@ public class ImpMovement : EnemyBaseScript
 
     void Move()
     {
-        if (_canMove && this._impState == EStateEnemy.ATTACK)
+        if (_canMove && this._venusGuytrapState == EStateEnemy.ATTACK)
         {
-            MaintainDistanceFromTarget();
+            // MaintainDistanceFromTarget();
         }
-        else if (_canMove && this._impState == EStateEnemy.PATROL)
+        else if (_canMove && this._venusGuytrapState == EStateEnemy.PATROL)
         {
             // Vector2 pos = new(transform.position.x + (this.flipDirection * speed), 0);
             // transform.position = Vector2.MoveTowards(rb.transform.position, pos, Time.deltaTime * speed);
-            _rb.velocity = new(Mathf.Lerp(0, _flipDirection * _speed, 0.5f), _rb.velocity.y);
+            // _rb.velocity = new(Mathf.Lerp(0, _flipDirection * _speed, 0.5f), _rb.velocity.y);
         }
     }
 
@@ -103,7 +103,7 @@ public class ImpMovement : EnemyBaseScript
 
     IEnumerator FlipInterval()
     {
-        if (this._impState == EStateEnemy.PATROL)
+        if (this._venusGuytrapState == EStateEnemy.PATROL)
         {
 
             this._flipDirection = UnityEngine.Random.Range(0, 2);
@@ -132,25 +132,15 @@ public class ImpMovement : EnemyBaseScript
         if (_isAttacking)
         {
             GameObject projectile = Instantiate(
-                _impProjectile,
-                new Vector3(transform.position.x + 1f * GetPlayerDirection(), transform.position.y, transform.position.z),
+                _venusGuytrapProjectile,
+                new Vector3(transform.position.x + 0.2f * GetPlayerDirection(), transform.position.y + 0.1f, transform.position.z),
                 Quaternion.identity);
 
             // set source and target
-            // var temp = projectile.GetComponent<DirectionalProjectile>();
-            // temp.SourcePlayer = gameObject;
-
-            // temp.SetTarget(_target.transform);
-            var temp = projectile.GetComponentInChildren<LaserProjectile>();
+            var temp = projectile.GetComponent<DirectionalProjectile>();
             temp.SourcePlayer = gameObject;
 
-            temp.SetDirection(Vector3.right * GetPlayerDirection());
-
-            // // flip projectile based on player face direction
-            // Vector3 projectileScale = projectile.transform.localScale;
-            // projectileScale.y *= -GetPlayerDirection();
-            // projectile.transform.localScale = projectileScale;
-
+            temp.SetTarget(_target.transform);
         }
 
         yield return new WaitForSeconds(1);
@@ -181,37 +171,36 @@ public class ImpMovement : EnemyBaseScript
 
     override public void OnHit(Transform source, int damage)
     {
-
         if (!_iFramed)
         {
-            if (this._impState != EStateEnemy.ATTACK)
+            if (this._venusGuytrapState != EStateEnemy.ATTACK)
             {
                 _target = GameObject.FindGameObjectWithTag("Player");
-                this._impState = EStateEnemy.ATTACK;
+                this._venusGuytrapState = EStateEnemy.ATTACK;
             }
-            Vector2 vec = new Vector2(transform.position.x - source.position.x, 0);
-            vec.Normalize();
-            _rb.velocity = Vector2.zero;
-            _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+            // Vector2 vec = new Vector2(transform.position.x - source.position.x, 0);
+            // vec.Normalize();
+            // _rb.velocity = Vector2.zero;
+            // _rb.AddForce(vec * 5, ForceMode2D.venusGuytrapulse);
 
             if (damage > 0)
                 Damage(damage);
 
             StartCoroutine(Stagger());
 
-            // Debug.Log("Imp Hit");
+            // Debug.Log("venusGuytrap Hit");
         }
     }
 
     override protected void Flip()
     {
         float flip;
-        if (this._impState == EStateEnemy.ATTACK && _target != null)
+        if (this._venusGuytrapState == EStateEnemy.ATTACK && _target != null)
         {
             flip = GetPlayerDirection();
         }
 
-        else if (this._impState == EStateEnemy.PATROL)
+        else if (this._venusGuytrapState == EStateEnemy.PATROL)
         {
             flip = this._flipDirection;
         }
@@ -260,7 +249,7 @@ public class ImpMovement : EnemyBaseScript
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 _target = hit.collider.gameObject;
-                this._impState = EStateEnemy.ATTACK;
+                this._venusGuytrapState = EStateEnemy.ATTACK;
                 StopCoroutine(this.FlipInterval());
             }
         }
@@ -272,9 +261,9 @@ public class ImpMovement : EnemyBaseScript
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                // Debug.Log("Imp detects player");
-                // Debug.Log("Imp can attack: " + canAttack);
-                // Debug.Log("Imp is grounded: " + IsGrounded());
+                // Debug.Log("venusGuytrap detects player");
+                // Debug.Log("venusGuytrap can attack: " + canAttack);
+                // Debug.Log("venusGuytrap is grounded: " + IsGrounded());
                 if (_canAttack && IsGrounded())
 
                 {

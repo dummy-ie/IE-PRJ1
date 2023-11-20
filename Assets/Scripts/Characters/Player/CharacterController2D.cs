@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : MonoBehaviour//, IHittable
 {
     [SerializeField]
     PlayerData _data;
@@ -346,6 +346,11 @@ public class CharacterController2D : MonoBehaviour
 
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
+    }
+
+    private void Start()
+    {
+        Debug.Log("Player");
         _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
     }
