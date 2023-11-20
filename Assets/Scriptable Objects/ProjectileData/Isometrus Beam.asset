@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60cf27e304bbf6a46b5a0ee445defc57, type: 3}
-  m_Name: Manite Slash Projectile
+  m_Name: Isometrus Beam
   m_EditorClassIdentifier: 
-  LifespanTime: 1
-  Speed: 10
-  Damage: 3
-  DestroyOnImpactWithTarget: 0
+  LifespanTime: 3
+  Speed: 50
+  Damage: 1
+  DestroyOnImpactWithTarget: 1
   DestroyOnCollisionWithGround: 0
