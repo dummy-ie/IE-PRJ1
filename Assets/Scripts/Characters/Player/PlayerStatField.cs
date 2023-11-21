@@ -96,15 +96,13 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
     }
 
     public void OnBeforeSerialize(){
-        _checkPointData = _baseCheckpointData;
+        /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
-        Manite.Current = Manite.Max;
+        Manite.Current = Manite.Max;*/
     }
     public void OnAfterDeserialize(){
-        _checkPointData = _baseCheckpointData;
-        Health.SetMax(0);
-        Manite.SetMax(0);
+        /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
-        Manite.Current = Manite.Max;
+        Manite.Current = Manite.Max;*/
     }
 }

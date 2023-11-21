@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec3f31f42419194794731f7a890ceeb, type: 3}
   m_Name: Player Checkpoint Data
   m_EditorClassIdentifier: 
-  baseName: 
+  baseName: Trudee Hut (Inside)
   basePosition: {x: 0, y: 0, z: 0}
