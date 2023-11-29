@@ -29,7 +29,7 @@ public class LogSwing : MonoBehaviour
         _ticks += Time.deltaTime;
         if (_ticks >= _logDelay)
         {
-            while (transform.rotation.z >= 0.0f)
+            while (transform.rotation.z <= 0.7f)
             {
                 transform.RotateAround(_pivot.transform.position, Vector3.forward, -_speed * Time.deltaTime);
                 yield return new WaitForSeconds(Time.deltaTime);
@@ -41,7 +41,7 @@ public class LogSwing : MonoBehaviour
 
     private IEnumerator ResetLog() {
 
-        while (transform.rotation.z <= 0.7f && !_triggered)
+        while (transform.rotation.z <= 0.0f && !_triggered)
         {
             transform.RotateAround(_pivot.transform.position, Vector3.forward, _speed * Time.deltaTime);
             yield return new WaitForSeconds(Time.deltaTime);
