@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10e07bdafd1288b40b2ad4a611a95221
+guid: 20e3012fe657fbc48b5980b2f7a79b33
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -37,15 +37,15 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -136,127 +136,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_0
+      name: sprLazer_Beam_Horizontal_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 81
-        width: 52
-        height: 30
+        x: 5
+        y: 47
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c276f432c2bafa3499cca2b740e723de
-      internalID: 341753649
+      spriteID: a7f469d7ee63a104eb938eac83563391
+      internalID: -196927150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_1
+      name: sprLazer_Beam_Horizontal_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 70
-        y: 81
-        width: 52
-        height: 30
+        x: 47
+        y: 47
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 459c01256803ad848b429cd5b532a54b
-      internalID: -445383263
+      spriteID: 9420796a4482fb2469ed1a1b0415e00b
+      internalID: -372588433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_2
+      name: sprLazer_Beam_Horizontal_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 81
-        width: 52
-        height: 30
+        x: 89
+        y: 47
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6beff852ae20bf64b87f1a2bf2f0a5b0
-      internalID: -391019348
+      spriteID: f56d36d84b232764a9587536e1d07052
+      internalID: 2063805619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_3
+      name: sprLazer_Beam_Horizontal_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 6
-        y: 17
-        width: 52
-        height: 30
+        x: 5
+        y: 5
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90cc90374b0590a449b1f4d2600cff90
-      internalID: 1707537411
+      spriteID: 9f283e397f0a0fa4dbbd75e135be669e
+      internalID: -1377677576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_4
+      name: sprLazer_Beam_Horizontal_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 70
-        y: 17
-        width: 52
-        height: 30
+        x: 47
+        y: 5
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e439c3471ffd9e42b848f8354654837
-      internalID: -1081810061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 17
-        width: 52
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d09e7e3eca08fe6438e7206e9f1413f4
-      internalID: -828300253
+      spriteID: e14d10b15a756ad45b5db019062dc147
+      internalID: 29786922
       vertices: []
       indices: 
       edges: []
@@ -272,12 +251,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      trudee_enemy01_slime_spritesheet_0: 341753649
-      trudee_enemy01_slime_spritesheet_1: -445383263
-      trudee_enemy01_slime_spritesheet_2: -391019348
-      trudee_enemy01_slime_spritesheet_3: 1707537411
-      trudee_enemy01_slime_spritesheet_4: -1081810061
-      trudee_enemy01_slime_spritesheet_5: -828300253
+      sprLazer_Beam_Horizontal_SpriteSheet_0: -196927150
+      sprLazer_Beam_Horizontal_SpriteSheet_1: -372588433
+      sprLazer_Beam_Horizontal_SpriteSheet_2: 2063805619
+      sprLazer_Beam_Horizontal_SpriteSheet_3: -1377677576
+      sprLazer_Beam_Horizontal_SpriteSheet_4: 29786922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

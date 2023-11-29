@@ -63,7 +63,6 @@ public class ViewManager : Singleton<ViewManager> {
     }
 
     protected override void OnAwake() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
         _views = FindObjectsOfType<View>();
         for (int i = 0; i < this._views.Length;i++) {
             _views[i].Initialize();
@@ -72,6 +71,10 @@ public class ViewManager : Singleton<ViewManager> {
                 _views[i].Show();
             }
         }
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;

@@ -375,7 +375,7 @@
                 {
                     "name": "modifier",
                     "id": "39e7327c-2193-4326-9a93-818d509d1d0a",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -441,7 +441,7 @@
                 {
                     "name": "modifier",
                     "id": "20f1496f-34e5-4a88-94c2-515b730558e5",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -518,7 +518,7 @@
                 {
                     "name": "",
                     "id": "7113b349-3a2e-4f57-9b8c-6901bf0cf9b1",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

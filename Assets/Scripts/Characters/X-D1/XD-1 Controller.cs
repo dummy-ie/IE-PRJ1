@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class XD1Controller : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class XD1Controller : MonoBehaviour
     //private NavMeshAgent companionMesh;
     private Rigidbody _rb;
     private float _ticks;
-    
+    private Material _material;
     private enum State {
         IDLE,
         FOLLOW,
@@ -81,6 +82,8 @@ public class XD1Controller : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         state = State.IDLE;
         _ticks = 0;
+        //_material = GetComponent<Material>();
+        //_material.renderQueue = 1;
         //springJoint = GetComponent<SpringJoint>();
         //companionMesh = GetComponent<NavMeshAgent>();
     }
@@ -93,7 +96,7 @@ public class XD1Controller : MonoBehaviour
             FollowPlayer();
         if (state == State.IDLE)
             Idle();
-
+        transform.LookAt(_player.gameObject.transform, Vector3.up);
     }
 
 }

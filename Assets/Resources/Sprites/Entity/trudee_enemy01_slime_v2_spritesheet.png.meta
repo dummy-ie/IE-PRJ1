@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10e07bdafd1288b40b2ad4a611a95221
+guid: ab015f66f3014f84dbd0a62f92116287
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,127 +136,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_0
+      name: trudee_enemy01_slime_v2_spritesheet_0
       rect:
         serializedVersion: 2
         x: 6
-        y: 81
+        y: 80
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c276f432c2bafa3499cca2b740e723de
-      internalID: 341753649
+      spriteID: 684b39d6ef299ea4096dc1d2140bfd58
+      internalID: -329287647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_1
+      name: trudee_enemy01_slime_v2_spritesheet_1
       rect:
         serializedVersion: 2
         x: 70
-        y: 81
+        y: 80
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 459c01256803ad848b429cd5b532a54b
-      internalID: -445383263
+      spriteID: aa2450730bc45ce4eb971c9cb8e24d40
+      internalID: -1042098737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_2
+      name: trudee_enemy01_slime_v2_spritesheet_2
       rect:
         serializedVersion: 2
         x: 134
-        y: 81
+        y: 80
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6beff852ae20bf64b87f1a2bf2f0a5b0
-      internalID: -391019348
+      spriteID: 8f844d0decd36b849bd4ac082d75b076
+      internalID: -1255943447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_3
+      name: trudee_enemy01_slime_v2_spritesheet_3
       rect:
         serializedVersion: 2
         x: 6
-        y: 17
+        y: 16
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90cc90374b0590a449b1f4d2600cff90
-      internalID: 1707537411
+      spriteID: 11dfb5a1e15e2094194828e88b231558
+      internalID: 1243738438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_4
+      name: trudee_enemy01_slime_v2_spritesheet_4
       rect:
         serializedVersion: 2
         x: 70
-        y: 17
+        y: 16
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e439c3471ffd9e42b848f8354654837
-      internalID: -1081810061
+      spriteID: 02c248df516f47349947fb4704b238c5
+      internalID: 1015926344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trudee_enemy01_slime_spritesheet_5
+      name: trudee_enemy01_slime_v2_spritesheet_5
       rect:
         serializedVersion: 2
         x: 134
-        y: 17
+        y: 16
         width: 52
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d09e7e3eca08fe6438e7206e9f1413f4
-      internalID: -828300253
+      spriteID: f1cf0de91d517244e95f9744647baaad
+      internalID: -1869546958
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      trudee_enemy01_slime_spritesheet_0: 341753649
-      trudee_enemy01_slime_spritesheet_1: -445383263
-      trudee_enemy01_slime_spritesheet_2: -391019348
-      trudee_enemy01_slime_spritesheet_3: 1707537411
-      trudee_enemy01_slime_spritesheet_4: -1081810061
-      trudee_enemy01_slime_spritesheet_5: -828300253
+      trudee_enemy01_slime_v2_spritesheet_0: -329287647
+      trudee_enemy01_slime_v2_spritesheet_1: -1042098737
+      trudee_enemy01_slime_v2_spritesheet_2: -1255943447
+      trudee_enemy01_slime_v2_spritesheet_3: 1243738438
+      trudee_enemy01_slime_v2_spritesheet_4: 1015926344
+      trudee_enemy01_slime_v2_spritesheet_5: -1869546958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

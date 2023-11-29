@@ -58,6 +58,7 @@ public class LaserProjectile : Projectile
             _telegraphVisual.SetActive(false);
             // transform.parent.Translate(_shootDirection * Time.deltaTime, Space.World);
             transform.parent.localScale += new Vector3(CalculateSpeed(), 0, 0) * Time.deltaTime;
+            //GetComponent<SpriteRenderer>().size += new Vector2(CalculateSpeed(), 0) * Time.deltaTime;
         }
         else if (_shootDirection.x == 0) // North/South Laser stay with source until shot
         {
