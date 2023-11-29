@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3921615099613653288}
-  - component: {fileID: 1844382684988204374}
+  - component: {fileID: 4241461895343645440}
   m_Layer: 0
   m_Name: Vacuum
   m_TagString: Vacuum
@@ -33,15 +33,13 @@ Transform:
   - {fileID: 982433418929898960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1844382684988204374
-CapsuleCollider2D:
+--- !u!136 &4241461895343645440
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242402999953186194}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -50,24 +48,14 @@ CapsuleCollider2D:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.008391738, y: 0}
-  m_Size: {x: 5.7487507, y: 5.7487507}
-  m_Direction: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.748751
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8395384277542114061
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,5 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0d5795e0969ef429210f1eefaed59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  document: {fileID: 0}
-  maniteIncrease: 10
+  _maniteIncrease: 10

@@ -45,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (controller.Data.CanAttack)
         {
+            AudioManager.Instance.PlaySFX(EClipIndex.NORMAL_ATTACK);
             isAttacking = true;
             controller.Data.CanAttack = false;
 

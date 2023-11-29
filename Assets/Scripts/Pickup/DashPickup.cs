@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class DashPickup : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent OnPickup;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().ObtainDash();
+        {
+            OnPickup?.Invoke();
+            //GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().ObtainDash();
+            Destroy(gameObject);
+        }
     }
 }

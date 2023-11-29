@@ -25,7 +25,7 @@ public class Breakable : MonoBehaviour, IHittable
 
     protected virtual void HitBehavior()
     {
-        // Debug.Log(name + " killing itself");
+         Debug.Log(name + " killing itself");
         // gameObject.SetActive(false);
         Destroy(gameObject);
     }

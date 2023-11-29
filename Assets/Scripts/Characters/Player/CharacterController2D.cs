@@ -65,7 +65,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private float _iFrames = 0;
 
-    [SerializeField]
+    /*[SerializeField]
     private bool _hasDash = false;
     public bool HasDash
     {
@@ -78,7 +78,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     {
         get { return _hasSlash; }
         set { _hasSlash = value; }
-    }
+    }*/
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -144,10 +144,12 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && _canDash && _hasDash) //check if player can dash
+        if (context.started && _canDash && _stats.HasDash) //check if player can dash
         {
             _dashSpeed = _data.DashOriginalSpeed;
             UpdateDashDuration();
+            if (!_isDashing)
+                AudioManager.Instance.PlaySFX(EClipIndex.MANITE_DASH);
             _isDashing = true;
             _aerialDash = false;
 
@@ -172,6 +174,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         // while grounded, set coyote time and jump limit
         if (_isGrounded = IsGrounded())
         {
+            if(!_extraJump)
+                AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
             _coyoteTimeCounter = _data.CoyoteTime;
             _extraJump = true; // refresh double jump
             _aerialDash = true; //refresh aerialDash
@@ -196,6 +200,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
         if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
         {
+            AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
             _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
             _jumpBufferCounter = 0f;
 
@@ -207,7 +212,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     
     private void Dash()
     {
-        if (_hasDash)
+        if (_stats.HasDash)
         {
             if (_isDashing)
             {
@@ -340,7 +345,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public void ObtainDash()
     {
-        _hasDash = true;
+        _stats.HasDash = true;
+    }
+    public void ObtainSlash()
+    {
+        _stats.HasSlash = true;
     }
 
     private void Awake()
