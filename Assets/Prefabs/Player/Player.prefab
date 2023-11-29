@@ -541,8 +541,8 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
-  _hasDash: 1
-  _hasSlash: 1
+  _hasDash: 0
+  _hasSlash: 0
   _boxCastDistance: 0.6
   _boxSize: {x: 0.3, y: 0.4}
 --- !u!114 &6500837453471319468
@@ -733,7 +733,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4000001, z: -8}
+  m_LocalPosition: {x: 0, y: 0.4, z: -8}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

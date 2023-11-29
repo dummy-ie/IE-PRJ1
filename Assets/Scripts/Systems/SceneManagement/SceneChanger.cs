@@ -20,6 +20,7 @@ public class SceneChanger : MonoBehaviour
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
             FindObjectOfType<CharacterController2D>().transform.position = _spawnPoint.position; // maybe store a player reference in the scriptableObject?
+            FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;

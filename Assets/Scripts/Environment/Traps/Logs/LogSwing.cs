@@ -49,12 +49,12 @@ public class LogSwing : MonoBehaviour
         _ticks = 0.0f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("hi");
             StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject,1));
         }
-    }
+    }*/
 }

@@ -8,6 +8,11 @@ using UnityEngine.TestTools;
 
 public class CharacterController2D : MonoBehaviour//, IHittable
 {
+    Transform _lastSpawnPosition;
+    public Transform LastSpawnPosition {
+        get { return _lastSpawnPosition; }
+        set { _lastSpawnPosition = value; }
+    }
     [SerializeField]
     PlayerData _data;
     public PlayerData Data 
