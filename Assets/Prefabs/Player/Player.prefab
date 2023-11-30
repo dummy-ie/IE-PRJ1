@@ -541,6 +541,7 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
+  _animator: {fileID: 6579978522478589416}
   _hasDash: 0
   _hasSlash: 0
   _boxCastDistance: 0.6

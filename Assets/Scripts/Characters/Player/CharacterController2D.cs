@@ -29,6 +29,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
+    [SerializeField] Animator _animator;
+
     private Rigidbody2D _rb;
     public Rigidbody2D Rigidbody
     {
@@ -239,6 +241,15 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         }
     }
 
+    private void Animate()
+    {
+        _animator.SetBool("IsGrounded", IsGrounded());
+        if (!IsGrounded())
+        {
+            _animator.SetFloat("Y-axis Speed", _rb.velocity.y);
+        }
+    }
+
     void Hits()
     {
         if (_isHit)
@@ -370,7 +381,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
             this._stats.Health.Current = this._data.MaxHealth;
 
         }
-        
+        Animate();
+
     }
 
     private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
@@ -378,6 +390,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         Move();
         Jump();
         Dash();
+        
         if (!_isDashing) Flip();
     }
 

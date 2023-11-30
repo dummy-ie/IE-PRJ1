@@ -7,14 +7,14 @@ public class IsoRangedAttack : BaseMove
     [SerializeField]
     GameObject _isoProjectile;
 
-    [SerializeField]
-    GameObject IsoNodeR1;
-    [SerializeField]
-    GameObject IsoNodeR2;
-    [SerializeField]
-    GameObject IsoNodeR3;
-    [SerializeField]
-    GameObject IsoNodeR4;
+    [SerializeField]GameObject IsoNodeR1;
+    [SerializeField]GameObject IsoNodeR2;
+    [SerializeField]GameObject IsoNodeR3;
+    [SerializeField]GameObject IsoNodeR4;
+    [SerializeField]GameObject IsoNodeR5;
+    [SerializeField]GameObject IsoNodeR6;
+
+
 
     [SerializeField]
     int _initialProjectileAmt = 5;
@@ -34,12 +34,14 @@ public class IsoRangedAttack : BaseMove
     {
         if (_moveOngoing)
         {
-            switch (Random.Range(0, 4))
+            switch (Random.Range(0, 6))
             {
                 case 0: _isometrus.transform.position = IsoNodeR1.transform.position; break;
                 case 1: _isometrus.transform.position = IsoNodeR2.transform.position; break;
                 case 2: _isometrus.transform.position = IsoNodeR3.transform.position; break;
                 case 3: _isometrus.transform.position = IsoNodeR4.transform.position; break;
+                case 4: _isometrus.transform.position = IsoNodeR5.transform.position; break;
+                case 5: _isometrus.transform.position = IsoNodeR6.transform.position; break;
             }
         }      
     }
