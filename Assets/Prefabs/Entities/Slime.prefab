@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: adc0af77e14f9154992a862fd7b61c48, type: 2}
+  _manitePrefab: {fileID: 5094170798370719920, guid: efeada2fa11c29142826cf502d7210df, type: 3}
   _boxCastDistance: 0.4
   _boxSize: {x: 0.3, y: 0.4}
   _groundLayer:

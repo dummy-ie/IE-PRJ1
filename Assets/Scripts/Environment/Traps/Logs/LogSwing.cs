@@ -9,7 +9,7 @@ public class LogSwing : MonoBehaviour
 
     [SerializeField] float _logDelay = 2.0f;
     [SerializeField] Transform _pivot;
-    [SerializeField] float _speed = 100.0f;
+    [SerializeField] float _speed = 10.0f;
     [SerializeField] float _timeCount = 0.0f;
 
     public void Swing()
@@ -29,9 +29,10 @@ public class LogSwing : MonoBehaviour
         _ticks += Time.deltaTime;
         if (_ticks >= _logDelay)
         {
-            while (transform.rotation.z <= 0.7f)
+            while (transform.rotation.z >= -0.7f)
             {
                 transform.RotateAround(_pivot.transform.position, Vector3.forward, -_speed * Time.deltaTime);
+                Debug.Log(transform.rotation.z);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }

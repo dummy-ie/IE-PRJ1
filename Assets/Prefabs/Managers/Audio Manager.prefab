@@ -176,7 +176,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   _bgmTheme: {fileID: 8300000, guid: 4195f72804736e84286fb81122d59a1b, type: 3}
-  _sfxClips: []
+  _sfxClips:
+  - {fileID: 8300000, guid: d9096a3a616dd5f4f8ceef3f07d8fb52, type: 3}
+  - {fileID: 8300000, guid: 155201324ca3cf54fb072b53ff8ebb25, type: 3}
+  - {fileID: 8300000, guid: 6febba9edc30d9748b1f4d05ea2daac7, type: 3}
+  - {fileID: 8300000, guid: ce1f22dd20d94bb40bd4b271e0e4bdc0, type: 3}
+  - {fileID: 8300000, guid: 5476ad91cc9007e40846fd6fd2e5a859, type: 3}
 --- !u!1 &6319693562591564245
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +226,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

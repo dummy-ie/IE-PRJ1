@@ -12,6 +12,9 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     [SerializeField]
     EnemyData _enemyData;
 
+    [SerializeField]
+    GameObject _manitePrefab;
+
     int _currentHealth;
 
     [Header("Ground Check Box Cast")]
@@ -93,5 +96,14 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(transform.position + (_boxCastDistance * -transform.up), _boxSize);
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            Instantiate(_manitePrefab,transform.position, transform.rotation);
+
+        }
     }
 }

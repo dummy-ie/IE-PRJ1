@@ -8,6 +8,7 @@ public class CheckpointController : MonoBehaviour
     [SerializeField]
     private InteractableData _interactableData;
     private CharacterController2D _playerData;
+    private Animator _animator;
     private bool _wasUsed;
 
     public void OnInteract(){
@@ -18,6 +19,8 @@ public class CheckpointController : MonoBehaviour
             _playerData.Stats.CheckPointData.RespawnPosition = gameObject.transform.position;
             _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ObjectName;
             _playerData.Stats.Health.Current = _playerData.Data.MaxHealth;
+            if (_animator != null)
+                _animator.Play("CheckpointActivate");
             Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ObjectName);
         }
        
@@ -26,6 +29,11 @@ public class CheckpointController : MonoBehaviour
     private void Awake(){
 
         _wasUsed = _interactableData.WasInteracted;
-        
+        _animator = GetComponent<Animator>();
+        if (_animator != null)
+        {
+
+        _animator.StopPlayback();
+        }
     }
 }

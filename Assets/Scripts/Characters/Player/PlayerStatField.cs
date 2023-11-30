@@ -88,6 +88,20 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
         get { return _manite; } 
     }
 
+    [SerializeField]
+    private bool _hasDash = false;
+    public bool HasDash {
+        get { return _hasDash; }
+        set { _hasDash = value; }
+    }
+
+    [SerializeField]
+    private bool _hasSlash = false;
+    public bool HasSlash {
+        get { return _hasSlash; }
+        set { _hasSlash = value; }
+    }
+
     private void OnEnable()
     {
         _checkPointData = _baseCheckpointData;
@@ -104,5 +118,7 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
         /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;*/
+        _hasDash = false;
+        _hasSlash = false;
     }
 }

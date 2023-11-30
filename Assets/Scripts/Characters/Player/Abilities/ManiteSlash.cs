@@ -33,7 +33,7 @@ public class ManiteSlash : MonoBehaviour
 
     private void OnPressManiteSlash()
     {
-        if (controller.HasSlash)
+        if (controller.Stats.HasSlash)
         {
             if (controller.Data.CanAttack && controller.Stats.Manite.Current >= _slashData.ManiteSlashCost)
             {
