@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7822113171339248791}
   - component: {fileID: 4541983580123045323}
   - component: {fileID: 8880056767993411610}
+  - component: {fileID: 1145738783151552279}
   m_Layer: 0
   m_Name: X-D1
   m_TagString: Untagged
@@ -151,6 +152,18 @@ MonoBehaviour:
   _acceleration: 0
   _offsetFromPlayer: {x: 1, y: 1, z: 0}
   _catchUpTime: 0.4
+--- !u!210 &1145738783151552279
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924209321301090429}
+  m_Enabled: 1
+  m_SortingLayerID: 1463617667
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &7121745990928335349
 PrefabInstance:
   m_ObjectHideFlags: 0

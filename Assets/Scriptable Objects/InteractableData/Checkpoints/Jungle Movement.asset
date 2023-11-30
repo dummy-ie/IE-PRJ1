@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 346a05fe32d03c04981ce680ce7a70b8, type: 3}
-  m_Name: Jungle Combat
+  m_Name: Jungle Movement
   m_EditorClassIdentifier: 
-  baseName: Jungle Combat
+  baseName: Jungle Movement
   _baseSprite: {fileID: 0}
   _baseState: 0
