@@ -14,12 +14,12 @@ public class CollisionScript : MonoBehaviour
         _maniteAdd = GameObject.Find("Pickup").GetComponent<ManiteAdd>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider){
+    private void OnCollisionEnter(Collision other){
 
        
-        if(collider.gameObject.CompareTag("XD1")){
+        if(other.gameObject.CompareTag("XD1")){
             
-            if(collider.gameObject != null){
+            if(other.gameObject != null){
 
                 Debug.Log("Object destroyed");
                 _maniteAdd.PickUp = true;

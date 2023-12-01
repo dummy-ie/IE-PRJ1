@@ -36,10 +36,14 @@ public class BugMovement : EnemyBaseScript
             _rb.velocity = Vector2.zero;
             _rb.AddForce(vec * 5, ForceMode2D.Impulse);
 
+            if (damage > 0)
+                Damage(damage);
+            
 
             StartCoroutine(Stagger());
+            StartCoroutine(Blink());
 
-            Debug.Log("BUG Hit");
+            Debug.Log("BUG Hit Health : " + _currentHealth);
         }
     }
 
@@ -50,7 +54,7 @@ public class BugMovement : EnemyBaseScript
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     { 
 
         Flip();

@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Slime
   description: Blue thing
   spritesheet: {fileID: 0}
-  health: 10
-  damage: 2
+  health: 3
+  damage: 1

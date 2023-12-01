@@ -388,7 +388,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         if(this._stats.Health.Current == 0){
             PlayerSpawner.Instance.Respawn(Stats.CheckPointData.CheckPointName, Stats.CheckPointData.RespawnPosition);
             this._stats.Health.Current = this._data.MaxHealth;
-
+            this._data.CanAttack = true;
         }
         Animate();
 

@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 4541983580123045323}
   - component: {fileID: 8880056767993411610}
   - component: {fileID: 1145738783151552279}
+  - component: {fileID: 8493150122893646738}
   m_Layer: 0
   m_Name: X-D1
-  m_TagString: Untagged
+  m_TagString: XD1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +165,27 @@ SortingGroup:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!65 &8493150122893646738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924209321301090429}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3831835, y: 1.2934703, z: 4.62259}
+  m_Center: {x: 0.045731068, y: 2.7547524, z: -0.31129503}
 --- !u!1001 &7121745990928335349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231,6 +253,10 @@ PrefabInstance:
     - target: {fileID: 3921615099613653288, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4241461895343645440, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6401891987448467028, guid: 25ea1bdba547df540bf0ca4ca4756eb7, type: 3}
       propertyPath: _maniteIncrease

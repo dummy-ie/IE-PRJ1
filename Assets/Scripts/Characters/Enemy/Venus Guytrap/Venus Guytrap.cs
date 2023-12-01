@@ -187,6 +187,7 @@ public class VenusGuytrapMovement : EnemyBaseScript
                 Damage(damage);
 
             StartCoroutine(Stagger());
+            StartCoroutine(Blink());
 
             // Debug.Log("venusGuytrap Hit");
         }

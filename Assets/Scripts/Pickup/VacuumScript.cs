@@ -38,7 +38,7 @@ public class VacuumScript : MonoBehaviour
             //target = new Vector3(-offsetFromPlayer.x, offsetFromPlayer.y, offsetFromPlayer.z) + player.transform.position;
         //}
         //else { 
-            target = _player.transform.position; 
+            target = _player.transform.position;
         //}
         //springJoint.anchor = target;
 
@@ -53,7 +53,7 @@ public class VacuumScript : MonoBehaviour
                 velocity = 0;
         }
         //Vector2 D*/
-        
+
         //transform.position = Vector2.LerpUnclamped(transform.position, target, EaseInOutBack(speed) * Time.deltaTime);
         _pickup.transform.position = Vector3.SmoothDamp(_pickup.transform.position, target, ref _velocity, _catchUpTime);
         if (_velocity.magnitude <= 1f) {
@@ -82,13 +82,20 @@ public class VacuumScript : MonoBehaviour
     void Update() {
 
         if (_player == null)
+        {
+            Debug.Log("xd-1 is null");
             return;
+        }
         if (this._isMoving == true)
+        {
             FollowPlayer();
+        }
+        else
+            _rb.useGravity = true;
             // Debug.Log("Moving.");
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter(Collider col)
     {   
         
 

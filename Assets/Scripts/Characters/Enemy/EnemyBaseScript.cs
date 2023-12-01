@@ -15,7 +15,9 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     [SerializeField]
     GameObject _manitePrefab;
 
-    int _currentHealth;
+    protected int _currentHealth;
+
+    private Material _mat;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -27,6 +29,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
         Vector2 vec = new Vector2(transform.position.x - source.position.x, transform.position.y - source.position.y);
         vec.Normalize();
         _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+        StartCoroutine(Blink());
         Debug.Log("Hit");
     }
     // Start is called before the first frame update
@@ -35,6 +38,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
         _rb = GetComponent<Rigidbody2D>();
 
         _currentHealth = _enemyData.health;
+        _mat = GetComponent<SpriteRenderer>().material;
     }
 
     // Update is called once per frame
@@ -42,6 +46,8 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     {
         if (this._currentHealth <= 0)
         {
+            Debug.Log("Enemy Killed");
+            Instantiate(_manitePrefab, transform.position, transform.rotation);
             this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
         }
     }
@@ -93,17 +99,20 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
         }
     }
 
+    protected IEnumerator Blink()
+    {
+        SetColor(new Color(0.5f, 0.5f, 0.5f, 1));
+        yield return new WaitForSeconds(0.5f);
+        SetColor(Color.white);
+    }
+
+    private void SetColor(Color color)
+    {
+        _mat.SetColor("_Color", color);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(transform.position + (_boxCastDistance * -transform.up), _boxSize);
-    }
-
-    private void OnDisable()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            Instantiate(_manitePrefab,transform.position, transform.rotation);
-
-        }
     }
 }

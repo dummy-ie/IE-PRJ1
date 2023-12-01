@@ -10,6 +10,6 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     public string description;
     public Sprite spritesheet;
-    public int health = 5;
-    public int damage = 2;
+    public int health = 3;
+    public int damage = 1;
 }

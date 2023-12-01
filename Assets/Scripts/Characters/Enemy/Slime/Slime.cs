@@ -45,7 +45,7 @@ public class SlimeMovement : EnemyBaseScript
 
 
             StartCoroutine(Stagger());
-
+            StartCoroutine(Blink());
             Debug.Log("Slime Hit");
         }
     }

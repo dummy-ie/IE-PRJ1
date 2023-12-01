@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8487bf251dba1da49b85c9ff8d24baee, type: 3}
   m_Name: PlayerAttackData
   m_EditorClassIdentifier: 
-  _normalAttackDamage: 2
+  _normalAttackDamage: 1
   _normalAttackCooldown: 0.3
