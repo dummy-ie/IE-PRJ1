@@ -1,0 +1,857 @@
+fileFormatVersion: 2
+guid: c0c377ac99e38064f8c2e2ff1095a8ef
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be22ccc28c2b9d846ae088f823798beb
+      internalID: 961867531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab6ffcffbb90164d83013b9993165c1
+      internalID: 1981146144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3383e8c5553656244a97db9527af4c8f
+      internalID: 1239329428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 976fd4d85f7394f4f9ace7f93aa2a0b6
+      internalID: -2065604768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32b7b8fb7d5a65a48b6a903db5dd829a
+      internalID: -88850029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 240
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4faf63ddf5f9c24693fd738b3871727
+      internalID: 1146358142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b49c9b258787c4f469bb5883f44eacf5
+      internalID: -1915785226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1119031435aaf4b8a8f32d47158198
+      internalID: 1057707269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97cee7ddb5312694a83838f86bfb1322
+      internalID: -1257647414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d17278d4307be6e43bb6818eb085013a
+      internalID: -775847546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264016376785d0c4bbbe71c81b5008ae
+      internalID: 51741770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_11
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 192
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4540776d4fcb2524ca9a94f5e8906f7a
+      internalID: 242484258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbccaef856426924e83e8ec2fee6e1fe
+      internalID: -755046347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf0e7452da5b0114da0c55a5609170a9
+      internalID: -2068329530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b57fa183b6ee1741b6501ad35525d6c
+      internalID: 58665968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 123c33c1785d5014cb211a8cb823681a
+      internalID: -1396976627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a71c7b6437753346856bf8a56f3abd0
+      internalID: -1235008498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_17
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 144
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97a90343fce4fb4faecc1cdb01d9474
+      internalID: 441317325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c187a801cd7f6742823d394e714c91e
+      internalID: 1323350190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1fed9c877b858a4bad4b39708c3da5f
+      internalID: -611917374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 213ca064b669331469cde62525eb4af7
+      internalID: -444236275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_21
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222a877938fe9f6429382828ac2ea28b
+      internalID: -1941647423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4fbd5dbd13041f40b1deb1e193e2459
+      internalID: 1696134344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_23
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 96
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6729a9ab6f96fb4296f83a05ba428f8
+      internalID: -1123869625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf9d58adb9f5814695ec489a9e30d3c
+      internalID: 1401315526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1498425a3cbec4483a69e7e2c17fd3
+      internalID: -984047029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 695b46d0bb5ba2b479d826ee8544e2b7
+      internalID: 1567969574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8d661418166a64f97a28b767cf7f1f
+      internalID: -217556195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_28
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6546453c985b2e9498595c282a93f266
+      internalID: -1876626472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_29
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 48
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06cbceaecf2bb564eb9c462b572c3e31
+      internalID: 972239839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1abf2954de9f8749869903bc3eee954
+      internalID: -837636622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shtManiteBarGaugeCircuit_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600051a94586c774dabc7a7e2cd8be89
+      internalID: -1291789135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shtManiteBarGaugeCircuit_0: 961867531
+      shtManiteBarGaugeCircuit_1: 1981146144
+      shtManiteBarGaugeCircuit_10: 51741770
+      shtManiteBarGaugeCircuit_11: 242484258
+      shtManiteBarGaugeCircuit_12: -755046347
+      shtManiteBarGaugeCircuit_13: -2068329530
+      shtManiteBarGaugeCircuit_14: 58665968
+      shtManiteBarGaugeCircuit_15: -1396976627
+      shtManiteBarGaugeCircuit_16: -1235008498
+      shtManiteBarGaugeCircuit_17: 441317325
+      shtManiteBarGaugeCircuit_18: 1323350190
+      shtManiteBarGaugeCircuit_19: -611917374
+      shtManiteBarGaugeCircuit_2: 1239329428
+      shtManiteBarGaugeCircuit_20: -444236275
+      shtManiteBarGaugeCircuit_21: -1941647423
+      shtManiteBarGaugeCircuit_22: 1696134344
+      shtManiteBarGaugeCircuit_23: -1123869625
+      shtManiteBarGaugeCircuit_24: 1401315526
+      shtManiteBarGaugeCircuit_25: -984047029
+      shtManiteBarGaugeCircuit_26: 1567969574
+      shtManiteBarGaugeCircuit_27: -217556195
+      shtManiteBarGaugeCircuit_28: -1876626472
+      shtManiteBarGaugeCircuit_29: 972239839
+      shtManiteBarGaugeCircuit_3: -2065604768
+      shtManiteBarGaugeCircuit_30: -837636622
+      shtManiteBarGaugeCircuit_31: -1291789135
+      shtManiteBarGaugeCircuit_4: -88850029
+      shtManiteBarGaugeCircuit_5: 1146358142
+      shtManiteBarGaugeCircuit_6: -1915785226
+      shtManiteBarGaugeCircuit_7: 1057707269
+      shtManiteBarGaugeCircuit_8: -1257647414
+      shtManiteBarGaugeCircuit_9: -775847546
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

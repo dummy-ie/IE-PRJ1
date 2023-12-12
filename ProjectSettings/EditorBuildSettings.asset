@@ -5,7 +5,58 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: eed48a57febc1d44aab6a71ca3a57de0
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 0c3c90a2dfc9abb4d8cd41e716a58c94
+  - enabled: 1
+    path: Assets/Scenes/Underground Left.unity
+    guid: 980bab57ab862c54ea652236b34333f4
+  - enabled: 1
+    path: Assets/Scenes/Manite Slash.unity
+    guid: 83bed9f85617ead4ab604f2a985439a9
+  - enabled: 1
+    path: Assets/Scenes/Jungle Log Trap.unity
+    guid: 9cfa6c4a7c54fc54298047cee9bade99
+  - enabled: 1
+    path: Assets/Scenes/Jungle Dash.unity
+    guid: cf25f3182d499914db973d8210a873c3
+  - enabled: 1
+    path: Assets/Scenes/Underground Exit.unity
+    guid: 2de6b0bbf3daff1449761660a5407338
+  - enabled: 1
+    path: Assets/Scenes/Underground Middle.unity
+    guid: 5771f2c2b9a571840b8b141c33f83f98
+  - enabled: 1
+    path: Assets/Scenes/Jungle Exit.unity
+    guid: bf6d308a218fe7b4394deb0a685b420b
+  - enabled: 1
+    path: Assets/Scenes/Drawbridge.unity
+    guid: 2f90b8ea8b51d804c9906a71d424ef92
+  - enabled: 1
+    path: Assets/Scenes/Drawbridge Hole.unity
+    guid: 3746885644a76284990787b9a77da463
+  - enabled: 1
+    path: Assets/Scenes/Trudee Hut (Inside).unity
+    guid: 3e9620ce146136e49a0394f70f7266bd
+  - enabled: 1
+    path: Assets/Scenes/Trudee Hut (Outside).unity
+    guid: 02773fa3bb8edae4593a9dad9dc88efd
+  - enabled: 1
+    path: Assets/Scenes/Jungle Entrance.unity
+    guid: 9173a4efee39ce345872ad6d5620c00e
+  - enabled: 1
+    path: Assets/Scenes/Jungle Movement.unity
+    guid: 0832cbd0e4356fe4d8dbbbf7218c7745
+  - enabled: 1
+    path: Assets/Scenes/Jungle Combat.unity
+    guid: 51d3b747028affb488b2508d35731854
+  - enabled: 1
+    path: Assets/Scenes/Ruined Temple.unity
+    guid: 5da4a60c349077d44913c0a87d6c32e4
   m_configObjects: {}
