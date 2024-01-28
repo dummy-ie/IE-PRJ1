@@ -410,7 +410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f7e6b3a885be9498fa1a800ed74527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextScene: Trudee Hut (Inside)
+  _nextSceneReference:
+    m_AssetGUID: 31a4c3d29518a80499d5d2c46c7e3f49
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!1 &1634396354
 GameObject:
   m_ObjectHideFlags: 0

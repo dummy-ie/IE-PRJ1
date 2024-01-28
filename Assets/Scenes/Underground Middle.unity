@@ -598,6 +598,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 505ca12a742f0e2429f4c72b9aa4e128, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: b841ea80af8f4a340809ed4747df4563
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Manite Slash
   _spawnPoint: {fileID: 45271851}
 --- !u!61 &276525204
@@ -5987,6 +5992,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: ea2a758aaf6de1d4886ef3bf75d5daaf, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 1c8669688fc490e4bb6cda86220abb43
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   _targetSceneName: Drawbridge Hole
   _spawnPoint: {fileID: 76345791}
 --- !u!1001 &1772943705
@@ -6561,6 +6571,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: bc53adddcb50e7e40a92c4adf8fd7a3e, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 63036993463d5234cbdf3daefaf0de8c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Left
   _spawnPoint: {fileID: 4051866202152235056}
 --- !u!1660057539 &9223372036854775807

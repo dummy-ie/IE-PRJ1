@@ -1063,6 +1063,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 239d69b5e963b2247a8b70de60daecf0, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 8e0a4a9535666d74d91fd08a2dee596e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Movement
   _spawnPoint: {fileID: 624691939}
 --- !u!4 &779854709
@@ -2005,6 +2010,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 39471e266b2ac7a4e9cb1c5395696a1e, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 61dea0f5a7699e74e9dab0774735e6f3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Log Trap
   _spawnPoint: {fileID: 1281681807}
 --- !u!4 &1439010080
@@ -2177,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.205619
+      value: 6.292589
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y

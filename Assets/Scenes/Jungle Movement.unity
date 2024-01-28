@@ -1518,6 +1518,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 239d69b5e963b2247a8b70de60daecf0, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 59d152715172c3345a5f851a23bbe0c3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Combat
   _spawnPoint: {fileID: 479416757}
 --- !u!4 &720204552
@@ -2267,6 +2272,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: b9db708b3aa5cd646a990c29a75736cd, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: cb5de9cea8392af43a33496d345234ef
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Entrance
   _spawnPoint: {fileID: 1193749865}
 --- !u!4 &1359421147

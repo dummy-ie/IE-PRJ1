@@ -645,6 +645,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 39471e266b2ac7a4e9cb1c5395696a1e, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 59d152715172c3345a5f851a23bbe0c3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Combat
   _spawnPoint: {fileID: 1130677600}
 --- !u!1 &196986391
@@ -2007,6 +2012,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: bfbee878e22f82a4fb828b270bb747f4, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 4e0fc9929a2ce104cbb1adf7e4f874c6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Exit
   _spawnPoint: {fileID: 1570111981}
 --- !u!1 &1124281205
@@ -6792,6 +6802,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: b0c89c975ad353d43844a9f13cafb4ce, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 3b8382c1948252e42b8dd59c0a8b4d03
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Dash
   _spawnPoint: {fileID: 288236785}
 --- !u!1001 &2031088570

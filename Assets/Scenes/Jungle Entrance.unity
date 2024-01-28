@@ -4119,6 +4119,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: b9db708b3aa5cd646a990c29a75736cd, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 8e0a4a9535666d74d91fd08a2dee596e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Movement
   _spawnPoint: {fileID: 1193749865}
 --- !u!4 &1359421147
@@ -7720,6 +7725,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 5a717020d737de3469fbf77b20f98715, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 98b78664199234748b6bedc649f574e9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   _targetSceneName: Trudee Hut (Outside)
   _spawnPoint: {fileID: 1496992924}
 --- !u!4 &2053579980

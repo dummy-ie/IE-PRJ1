@@ -1151,6 +1151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: bfbee878e22f82a4fb828b270bb747f4, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 61dea0f5a7699e74e9dab0774735e6f3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Log Trap
   _spawnPoint: {fileID: 1192892230}
 --- !u!1 &283439808
@@ -2845,7 +2850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.3954782
+      value: 5.482445
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3077,6 +3082,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: f4fde225945250f43abee25a63a07ca9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 701bfda68341ae14b81df8fd18ac59ea
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Drawbridge
   _spawnPoint: {fileID: 448409296}
 --- !u!1 &1852533040
@@ -4884,6 +4894,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: aed1df16c029ce84eb63ca5c6e4a3a58, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: f96f5be470bc290419610018ad04dee0
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Exit
   _spawnPoint: {fileID: 288236785}
 --- !u!1001 &2012989244

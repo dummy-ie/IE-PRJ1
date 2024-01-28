@@ -15,7 +15,11 @@ public class SceneLoader : Singleton<SceneLoader> {
     {
         get { return _activeScene; }
     }
-
+    private AssetReference _activeSceneReference;
+    public AssetReference ActiveSceneReference
+    {
+        get { return _activeSceneReference; }
+    }
     public void LoadMainMenu()
     {
         LoadSceneWithoutFade(_mainMenuReference);
@@ -27,6 +31,7 @@ public class SceneLoader : Singleton<SceneLoader> {
 
     public void LoadSceneWithoutFade(AssetReference sceneData)
     {
+        _activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
@@ -38,6 +43,7 @@ public class SceneLoader : Singleton<SceneLoader> {
     }
     public void LoadSceneWithFade(AssetReference sceneData)
     {
+        _activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {

@@ -5429,7 +5429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.581751
+      value: 13.744799
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20666,6 +20666,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 95f25f0f25955a44596de2c8c31350b5, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 701bfda68341ae14b81df8fd18ac59ea
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Drawbridge
   _spawnPoint: {fileID: 6658741647580955439}
 --- !u!61 &3357158382340647231

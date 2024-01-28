@@ -1472,6 +1472,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 505ca12a742f0e2429f4c72b9aa4e128, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: bca90a4e7338a73459de0dbb394c617e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Middle
   _spawnPoint: {fileID: 1078529836}
 --- !u!61 &780927204

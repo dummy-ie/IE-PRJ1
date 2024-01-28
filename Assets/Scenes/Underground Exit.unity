@@ -575,6 +575,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 813fa0cf92fe9394a882aa28a8c565c9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 63036993463d5234cbdf3daefaf0de8c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Left
   _spawnPoint: {fileID: 45271851}
 --- !u!61 &276525204
@@ -1715,6 +1720,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: aed1df16c029ce84eb63ca5c6e4a3a58, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 4e0fc9929a2ce104cbb1adf7e4f874c6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Exit
   _spawnPoint: {fileID: 1888625045}
 --- !u!1 &1714382327

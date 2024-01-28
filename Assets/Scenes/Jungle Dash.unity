@@ -2071,6 +2071,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: b0c89c975ad353d43844a9f13cafb4ce, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 61dea0f5a7699e74e9dab0774735e6f3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Log Trap
   _spawnPoint: {fileID: 468175841}
 --- !u!1001 &1817743631

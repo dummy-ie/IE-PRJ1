@@ -912,6 +912,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: bc53adddcb50e7e40a92c4adf8fd7a3e, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: bca90a4e7338a73459de0dbb394c617e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Middle
   _spawnPoint: {fileID: 45271851}
 --- !u!61 &276525204
@@ -8502,6 +8507,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 813fa0cf92fe9394a882aa28a8c565c9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: f96f5be470bc290419610018ad04dee0
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   _targetSceneName: Underground Exit
   _spawnPoint: {fileID: 9135367264783763487}
 --- !u!4 &8095485576871286585

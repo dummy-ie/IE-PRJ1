@@ -405,6 +405,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: f4fde225945250f43abee25a63a07ca9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 4e0fc9929a2ce104cbb1adf7e4f874c6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Jungle Exit
   _spawnPoint: {fileID: 1192892230}
 --- !u!1 &167189060
@@ -7411,6 +7416,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 2b9910c5c9ccb37499538faa3c4818a9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 1c8669688fc490e4bb6cda86220abb43
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Drawbridge Hole
   _spawnPoint: {fileID: 288236785}
 --- !u!1001 &2031088570
@@ -7645,6 +7655,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 95f25f0f25955a44596de2c8c31350b5, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 40a9b85ef68e19f468120cc7767c077d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Ruined Temple
   _spawnPoint: {fileID: 6658741647580955439}
 --- !u!61 &3357158382340647231
