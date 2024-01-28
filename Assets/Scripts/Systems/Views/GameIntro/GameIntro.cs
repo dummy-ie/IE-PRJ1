@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using Unity.Profiling;
+using UnityEngine.AddressableAssets;
 
 public class GameIntro : MonoBehaviour {
     [SerializeField]
@@ -22,8 +23,9 @@ public class GameIntro : MonoBehaviour {
 
     private UnityEngine.UIElements.Image _logo;
 
-    [SerializeField] string _nextScene;
-    
+    [SerializeField]
+    AssetReference _nextSceneReference;
+
 
     IEnumerator ShowLogo(string className) {
         yield return new WaitForSeconds(1.0f);
@@ -34,7 +36,7 @@ public class GameIntro : MonoBehaviour {
             this._logo.AddToClassList("logo--hidden");
             yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
         }
-        SceneLoader.Instance.LoadScene(_nextScene);
+        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference);
     }
 
     void Start() {

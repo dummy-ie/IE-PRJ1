@@ -8,6 +8,9 @@ using UnityEngine.TestTools;
 
 public class CharacterController2D : MonoBehaviour//, IHittable
 {
+#if UNITY_EDITOR
+    [SerializeField] private bool _drawGizmos;
+#endif
     Transform _lastSpawnPosition;
     public Transform LastSpawnPosition {
         get { return _lastSpawnPosition; }
@@ -26,10 +29,10 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _stats; }
     }
 
+    [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
-    [SerializeField] Animator _animator;
 
     private Rigidbody2D _rb;
     public Rigidbody2D Rigidbody

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Graphics
+  m_EditorClassIdentifier: 
+  m_GroupName: Graphics
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a5124c8b0184c6d409b58b0a805660e3
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: eda11a676ce7f04409acabb833b11331, type: 2}
+    - {fileID: 11400000, guid: bc748348878e0764e876f825d6041873, type: 2}

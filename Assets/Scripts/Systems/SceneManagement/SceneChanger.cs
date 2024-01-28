@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
     private SceneConnection _sceneConnection;
-
+    [SerializeField]
+    private AssetReference _targetSceneReference;
     [SerializeField]
     private string _targetSceneName;
-
     [SerializeField]
     private Transform _spawnPoint;
 
@@ -39,7 +40,7 @@ public class SceneChanger : MonoBehaviour
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 
@@ -50,7 +51,8 @@ public class SceneChanger : MonoBehaviour
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            if (_targetSceneReference != null)
+                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 }
