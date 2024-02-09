@@ -91,6 +91,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private float _dashCooldownTime = 0f;
     private float _dashSpeed = 0f;
+    //private bool submitPressed = false;
 
     public bool IsFacingRight {
         get { return _isFacingRight; }
@@ -108,6 +109,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         }
     }
 
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         float moveX = context.ReadValue<Vector2>().x;
@@ -164,7 +166,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit))
+        if (!(_isDashing || _isHit || DialogueManager.GetInstance().IsPlaying))
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }
@@ -405,5 +407,35 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         
         if (!_isDashing) Flip();
     }
+
+
+
+
+
+    /*Experimental SHit
+     * 
+     * public void SubmitPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            submitPressed = true;
+        }
+        else if (context.canceled)
+        {
+            submitPressed = false;
+        }
+    }
+
+    public bool GetSubmitPressed()
+    {
+        bool result = submitPressed;
+        submitPressed = false;
+        return result;
+    }
+
+    public void RegisterSubmitPressed()
+    {
+        submitPressed = false;
+    }*/
 
 }
