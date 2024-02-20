@@ -34,8 +34,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     [SerializeField] MeshRenderer _model3D;
 
 
-    private Rigidbody2D _rb;
-    public Rigidbody2D Rigidbody
+    private Rigidbody _rb;
+    public Rigidbody Rigidbody
     {
         get { return _rb; }
     }
@@ -199,7 +199,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         }
         else if (_rb.velocity.y < 0f) // fast fall over time
         {
-            _rb.velocity += (_data.FallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            _rb.velocity += (_data.FallMultiplier - 1f) * Time.deltaTime * Vector3.up;/*Physics.gravity*/
         }
 
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
@@ -331,7 +331,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
             Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
             vec.Normalize();
 
-            _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode.Impulse);
 
             if (damageTaken > 0)
                 Damage(damageTaken);
@@ -370,7 +370,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
 
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
