@@ -372,11 +372,7 @@ MonoBehaviour:
   _logos:
   - {fileID: 21300000, guid: 80d61c919cf21594e8a6b857ab3e87dc, type: 3}
   _nextSceneReference:
-<<<<<<< Updated upstream
     m_AssetGUID: 64b51e0933e59d546aad8915d10f9711
-=======
-    m_AssetGUID: 62f52a09565fff24fa6064eac90ac223
->>>>>>> Stashed changes
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
