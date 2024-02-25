@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 599603367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.835668, y: -3.703892, z: 85.825096}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,10 +372,10 @@ MonoBehaviour:
   _logos:
   - {fileID: 21300000, guid: 80d61c919cf21594e8a6b857ab3e87dc, type: 3}
   _nextSceneReference:
-    m_AssetGUID: 64b51e0933e59d546aad8915d10f9711
+    m_AssetGUID: f995bd86a14ec32468922ffbf8cda1e8
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

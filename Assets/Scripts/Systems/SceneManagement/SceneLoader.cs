@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,6 +12,7 @@ public class SceneLoader : Singleton<SceneLoader> {
     private AssetReference _mainMenuReference;
     private string _sceneName;
     private SceneData _activeScene;
+    private GameObject[] sceneConnections;
     public SceneData ActiveScene
     {
         get { return _activeScene; }
@@ -101,5 +103,15 @@ public class SceneLoader : Singleton<SceneLoader> {
             yield return null;
         }
         yield return ScreenFader.Instance.FadeIn();
+    }
+
+    private void FindAllSceneConnections()
+    {
+        sceneConnections = GameObject.FindGameObjectsWithTag("SceneConnection");
+    }
+
+    private void SpawnPlayer()
+    {
+
     }
 }
