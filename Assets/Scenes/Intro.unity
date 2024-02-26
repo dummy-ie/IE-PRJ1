@@ -372,10 +372,10 @@ MonoBehaviour:
   _logos:
   - {fileID: 21300000, guid: 80d61c919cf21594e8a6b857ab3e87dc, type: 3}
   _nextSceneReference:
-    m_AssetGUID: f995bd86a14ec32468922ffbf8cda1e8
+    m_AssetGUID: ca76058f36f51b945a65fdc5a3040f1a
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 1
+    m_EditorAssetChanged: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

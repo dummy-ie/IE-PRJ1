@@ -89,6 +89,15 @@ public class SceneLoader : Singleton<SceneLoader> {
         {
             yield return null;
         }
+
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Rigidbody2D rb = player.GetComponent<CharacterController2D>().Rigidbody;
+            rb.gravityScale = 0.0f;
+            //yield return new WaitForSeconds(0.1f);
+            //rb.isKinematic = false;
+        }
     }
 
     private IEnumerator SceneLoadWithFade(SceneData sceneData)
