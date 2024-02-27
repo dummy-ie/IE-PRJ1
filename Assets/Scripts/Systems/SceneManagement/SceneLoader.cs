@@ -92,9 +92,9 @@ public class SceneLoader : Singleton<SceneLoader> {
 
         if (GameObject.FindGameObjectWithTag("Player"))
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Rigidbody2D rb = player.GetComponent<CharacterController2D>().Rigidbody;
-            rb.gravityScale = 0.0f;
+            //GameObject player = GameObject.FindGameObjectWithTag("Player");
+            //Rigidbody2D rb = player.GetComponent<CharacterController2D>().Rigidbody;
+            //rb.gravityScale = 0.0f;
             //yield return new WaitForSeconds(0.1f);
             //rb.isKinematic = false;
         }
@@ -104,14 +104,14 @@ public class SceneLoader : Singleton<SceneLoader> {
     {
         Debug.Log("Loading Scene...");
         _activeScene = sceneData;
-        yield return ScreenFader.Instance.FadeOut();
+        //yield return ScreenFader.Instance.FadeOut();
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
         while (!handle.IsDone)
         {
             yield return null;
         }
-        yield return ScreenFader.Instance.FadeIn();
+        //yield return ScreenFader.Instance.FadeIn();
     }
 
     private void FindAllSceneConnections()

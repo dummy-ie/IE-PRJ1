@@ -3,44 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PlayerSpawner : Singleton<PlayerSpawner>
 {   
     [SerializeField]
     private GameObject _player;
 
+    void Start()
+    {
+        SpawnPlayerFromSpawnPoint();
+    }
+    private void InitializePlayer(Vector3 position)
+    {
+        GameObject player = Instantiate(_player);
+        player.transform.position = position;
+        player.GetComponent<CharacterController2D>().SetVirtualCameraBoundingBox(GameObject.FindGameObjectWithTag("SceneBounds").GetComponent<CompositeCollider2D>());
+    }
+    public void SpawnPlayerFromSpawnPoint()
+    {
+        GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        if (spawnPoint.Length == 0)
+            return;
+        InitializePlayer(spawnPoint[0].transform.position);
+    }
 
-
+    public void SpawnPlayerAtLocation(Vector3 position)
+    {
+        InitializePlayer(position);
+    }
     public void Respawn(string checkpointName, Vector3 position){
-        Debug.Log("MissCandy");
-        _player = GameObject.FindGameObjectWithTag("Player");
         SceneLoader.Instance.LoadScene(checkpointName, true);
-        _player.transform.position = position;
-
+        InitializePlayer(position);
     }
     
     public void ForceSpawn(string forcedAreaName, Vector3 forcedSpawnPosition){
-        Debug.Log("MissCandyButForced");
-        _player = GameObject.FindGameObjectWithTag("Player");
         SceneLoader.Instance.LoadScene(forcedAreaName, true);
-        _player.transform.position = forcedSpawnPosition;
+        InitializePlayer(forcedSpawnPosition);
     }
 
     public void Respawn(AssetReference sceneReference, Vector3 position)
     {
-        Debug.Log("MissCandy");
-        _player = GameObject.FindGameObjectWithTag("Player");
         SceneLoader.Instance.LoadSceneWithFade(sceneReference);
-        _player.transform.position = position;
-
+        InitializePlayer(position);
     }
 
     public void ForceSpawn(AssetReference sceneReference, Vector3 forcedSpawnPosition)
     {
-        Debug.Log("MissCandyButForced");
-        _player = GameObject.FindGameObjectWithTag("Player");
         SceneLoader.Instance.LoadSceneWithFade(sceneReference);
-        _player.transform.position = forcedSpawnPosition;
+        InitializePlayer(forcedSpawnPosition);
     }
 
 

@@ -42,13 +42,10 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private Rigidbody2D _rb;
-    public Rigidbody2D Rigidbody
-    {
-        get { return _rb; }
-    }
 
     private CinemachineVirtualCamera _cmVC;
     private Cinemachine3rdPersonFollow _cmTP;
+    private CinemachineConfiner2D _cmC2D;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
@@ -91,8 +88,6 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _hasSlash; }
         set { _hasSlash = value; }
     }*/
-
-    
 
     private float _dashCooldownTime = 0f;
     private float _dashSpeed = 0f;
@@ -359,6 +354,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     }
 
+    public void SetVirtualCameraBoundingBox(Collider2D collider)
+    {
+        _cmC2D.m_BoundingShape2D = collider;
+    }
+
     public void ObtainDash()
     {
         _stats.HasDash = true;
@@ -372,6 +372,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
 
         _dashSpeed = _data.DashOriginalSpeed;
