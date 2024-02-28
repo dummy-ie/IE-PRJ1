@@ -62,7 +62,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private bool _isJumpPress = false;
     private bool _extraJump = false;
-    private bool _isGrounded = false;
+    [SerializeField]private bool _isGrounded = false;
 
     private bool _isHit = false;
     private float _setHitTime = .5f;
@@ -137,6 +137,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        Debug.Log("Jummp");
         if (context.started)
         {
             _isJumpPress = true;
@@ -166,7 +167,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit || DialogueManager.GetInstance().IsPlaying))
+        if (!(_isDashing || _isHit || (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().IsPlaying)))
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }

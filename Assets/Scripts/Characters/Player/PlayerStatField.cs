@@ -89,7 +89,7 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
     }
 
     [SerializeField]
-    private bool _hasDash = false;
+    private bool _hasDash = true;
     public bool HasDash {
         get { return _hasDash; }
         set { _hasDash = value; }

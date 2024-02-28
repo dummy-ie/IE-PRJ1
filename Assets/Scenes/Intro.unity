@@ -372,7 +372,7 @@ MonoBehaviour:
   _logos:
   - {fileID: 21300000, guid: 80d61c919cf21594e8a6b857ab3e87dc, type: 3}
   _nextSceneReference:
-    m_AssetGUID: 93455850fabec934bb4569417680366f
+    m_AssetGUID: 61dea0f5a7699e74e9dab0774735e6f3
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

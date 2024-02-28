@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca6d522fe2be1f47b90e75e365a11b4, type: 3}
-  m_Name: Player Stat Field
+  m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
+  m_Name: Level 4 Boss
   m_EditorClassIdentifier: 
-  _baseCheckpointData: {fileID: 11400000, guid: b968182c5c23b634a8bf017f6c4acc0b, type: 2}
-  _hasDash: 0
-  _hasSlash: 0
+  SceneReference:
+    m_AssetGUID: 81c1a87ac8fb4f7488e3d44af969a2d6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
