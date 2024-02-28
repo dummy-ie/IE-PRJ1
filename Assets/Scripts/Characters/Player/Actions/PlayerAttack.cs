@@ -49,9 +49,6 @@ public class PlayerAttack : MonoBehaviour
             isAttacking = true;
             controller.Data.CanAttack = false;
 
-            int flip = 1;
-            if(controller.IsFacingRight) flip = -1;
-
             RaycastHit2D[] hits;
 
             if (controller.Vertical >= .9f)
@@ -60,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * controller.IsFacingRight, 2);
             }
 
             foreach (RaycastHit2D hit in hits)

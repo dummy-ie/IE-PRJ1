@@ -33,6 +33,11 @@ public class SceneChanger : MonoBehaviour
 
     }
 
+    public bool IsActiveConnection()
+    {
+        return _sceneConnection == SceneConnection.ActiveConnection;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))

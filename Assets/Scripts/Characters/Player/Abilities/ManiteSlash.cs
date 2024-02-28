@@ -40,8 +40,7 @@ public class ManiteSlash : MonoBehaviour
                 Debug.Log("manite slash2");
                 controller.Data.CanAttack = false;
 
-                int flip = 1;
-                if (controller.IsFacingRight) flip = -1;
+                int flip = controller.IsFacingRight;
 
                 GameObject projectile = Instantiate(
                     slashProjectile,

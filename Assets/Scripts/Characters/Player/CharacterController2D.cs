@@ -33,6 +33,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _stats; }
     }
 
+    [Header("Player Render")]
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
@@ -56,7 +57,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     
     private float _vectorShift = 100f;
 
-    private bool _isFacingRight = false;
+    private int _isFacingRight = -1;
 
     private bool _isDashing = false;
     private float _dashTime = 0f;
@@ -93,16 +94,16 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     private float _dashSpeed = 0f;
     //private bool submitPressed = false;
 
-    public bool IsFacingRight {
+    public int IsFacingRight {
         get { return _isFacingRight; }
     }
-    public void FlipTo(bool isFacingRight) { 
+    public void FlipTo(int isFacingRight) { 
         _isFacingRight = isFacingRight;
     }
     private void Flip() {
-        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
+        if (_isFacingRight == 1 && _deltaX < 0f || _isFacingRight == -1 && _deltaX > 0f)
         {
-            _isFacingRight = !_isFacingRight;
+            _isFacingRight *= -1;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -160,13 +161,13 @@ public class CharacterController2D : MonoBehaviour//, IHittable
             _isDashing = true;
             _aerialDash = false;
 
-            if (!_isFacingRight) //dash direction based on where playr is facing
-                _dashSpeed *= -1;
+             //dash direction based on where playr is facing
+             _dashSpeed *= _isFacingRight;
         }
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit || DialogueManager.GetInstance().IsPlaying))
+        if (!(_isDashing || _isHit /*|| DialogueManager.GetInstance().IsPlaying*/))
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }

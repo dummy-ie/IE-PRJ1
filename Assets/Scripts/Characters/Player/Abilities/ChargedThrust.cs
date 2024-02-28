@@ -35,8 +35,7 @@ public class ChargedThrust : MonoBehaviour
         {
             canAttack = false;
 
-            int flip = 1;
-            if(controller.IsFacingRight) flip = -1;
+            int flip = controller.IsFacingRight;
 
             RaycastHit2D[] hits;
 

@@ -22,6 +22,12 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
     }
     public void SpawnPlayerFromSpawnPoint()
     {
+        foreach (GameObject sceneConnectionObject in GameObject.FindGameObjectsWithTag("SceneConnection"))
+        {
+            SceneChanger sceneChanger = sceneConnectionObject.GetComponent<SceneChanger>();
+            if (sceneChanger.IsActiveConnection())
+                return;
+        }
         GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
         if (spawnPoint.Length == 0)
             return;
