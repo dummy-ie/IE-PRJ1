@@ -16,9 +16,7 @@ public class PlayerAttack : MonoBehaviour
         get { return _attackData; }
         set { _attackData = value; }
     }
-
     
-
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
     private float attackTime;

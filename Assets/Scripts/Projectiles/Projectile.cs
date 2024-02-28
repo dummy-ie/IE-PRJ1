@@ -6,6 +6,11 @@ public abstract class Projectile : MonoBehaviour
 {
     [SerializeField]
     protected ProjectileData _data;
+    public int Damage
+    {
+        get { return _data.Damage; }
+        set { _data.Damage = value; }
+    }
 
     protected float _lifespanCounter = 0;
     public float LifespanCounter
@@ -65,7 +70,7 @@ public abstract class Projectile : MonoBehaviour
             StartCoroutine(other.gameObject.GetComponent<CharacterController2D>().Hit(_sourcePlayer, _data.Damage));
             if (_data.DestroyOnImpactWithTarget)
             {
-                Destroy(gameObject);   
+                Destroy(gameObject);
             }
         }
 

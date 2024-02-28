@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class ManiteSlash : MonoBehaviour
+public class ManiteSlash : AAbility
 {
 
-    CharacterController2D controller;
+    // CharacterController2D controller;
 
-    [SerializeField]
-    private ManiteSlashData _slashData;
-    public ManiteSlashData SlashData
-    {
-        get { return _slashData; }
-        set { _slashData = value; }
-    }
+    // [SerializeField]
+    // private ManiteSlashData _slashData;
+    // public ManiteSlashData SlashData
+    // {
+    //     get { return _slashData; }
+    //     set { _slashData = value; }
+    // }
 
     [SerializeField]
     private GameObject slashProjectile = null;
@@ -26,7 +26,6 @@ public class ManiteSlash : MonoBehaviour
     {
         if (context.started)
         {
-            
             OnPressManiteSlash();
         }
     }
@@ -35,7 +34,7 @@ public class ManiteSlash : MonoBehaviour
     {
         if (controller.Stats.HasSlash)
         {
-            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= _slashData.ManiteSlashCost)
+            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
                 Debug.Log("manite slash2");
                 controller.Data.CanAttack = false;
@@ -50,7 +49,8 @@ public class ManiteSlash : MonoBehaviour
                 // slash owner
                 var temp = projectile.GetComponent<HorizontalProjectile>();
                 temp.SourcePlayer = gameObject;
-                controller.Stats.Manite.Current -= _slashData.ManiteSlashCost; // manite reduce
+                temp.Damage = damage;
+                controller.Stats.Manite.Current -= maniteCost; // manite reduce
 
                 // flip projectile based on player face direction
                 Vector3 projectileScale = projectile.transform.localScale;
@@ -67,7 +67,7 @@ public class ManiteSlash : MonoBehaviour
         }
     }
 
-    IEnumerator VecShift() //temp
+    protected override IEnumerator VecShift() //temp
     {
         controller.ShiftTo3D();
         controller.GetComponent<Rigidbody2D>().drag = 100f;
@@ -81,15 +81,15 @@ public class ManiteSlash : MonoBehaviour
         controller.ShiftTo2D();
     }
 
-    void TriggerCooldown()
-    {
-        controller.Data.AttackCooldown = _slashData.ManiteSlashCooldown;
-        StartCoroutine(controller.Cooldown());
-    }
+    // void TriggerCooldown()
+    // {
+    //     controller.Data.AttackCooldown = _slashData.ManiteSlashCooldown;
+    //     StartCoroutine(controller.Cooldown());
+    // }
 
 
     // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
         controller = GetComponent<CharacterController2D>();
         if (slashProjectile == null)
