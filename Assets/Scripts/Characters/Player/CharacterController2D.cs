@@ -255,9 +255,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     private void Animate()
     {
         _animator.SetBool("IsGrounded", IsGrounded());
+        bool isRunning = _rb.velocity.x > 0 || _rb.velocity.x < 0;
+        _animator.SetBool("IsRunning", isRunning);
+        _animator.SetFloat("Y-axis Speed", _rb.velocity.y);
         if (!IsGrounded())
         {
-            _animator.SetFloat("Y-axis Speed", _rb.velocity.y);
         }
     }
 
