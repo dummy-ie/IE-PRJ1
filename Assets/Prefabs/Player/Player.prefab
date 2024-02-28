@@ -313,8 +313,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03875029, y: -0.0018160343}
-  m_Size: {x: 0.57628703, y: 1.0177331}
+  m_Offset: {x: 0.0447731, y: 0.0017235875}
+  m_Size: {x: 0.7657547, y: 1.3293899}
   m_Direction: 0
 --- !u!50 &207511811344072622
 Rigidbody2D:
@@ -537,15 +537,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _drawGizmos: 1
   _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
+  _animator: {fileID: 6579978522478589416}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
-  _animator: {fileID: 6579978522478589416}
-  _hasDash: 0
-  _hasSlash: 0
-  _boxCastDistance: 0.6
+  _boxCastDistance: 0.47
   _boxSize: {x: 0.3, y: 0.4}
+  _virtualCamera: {fileID: 7742219906878768100}
 --- !u!114 &6500837453471319468
 MonoBehaviour:
   m_ObjectHideFlags: 0

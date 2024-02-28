@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour//, IHittable
 {
 #if UNITY_EDITOR
@@ -16,6 +18,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
     }
+
+    [Header("Player Data")]
     [SerializeField]
     PlayerData _data;
     public PlayerData Data 
@@ -33,15 +37,15 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
+    [Header("Ground Check Box Cast")]
+    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
+    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private Rigidbody2D _rb;
-    public Rigidbody2D Rigidbody
-    {
-        get { return _rb; }
-    }
 
     private CinemachineVirtualCamera _cmVC;
     private Cinemachine3rdPersonFollow _cmTP;
+    private CinemachineConfiner2D _cmC2D;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
@@ -84,10 +88,6 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _hasSlash; }
         set { _hasSlash = value; }
     }*/
-
-    [Header("Ground Check Box Cast")]
-    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
-    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private float _dashCooldownTime = 0f;
     private float _dashSpeed = 0f;
@@ -302,10 +302,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * _boxCastDistance, _boxSize);
-    }
+    
 
     public void ShiftTo2D()
     {
@@ -359,6 +356,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     }
 
+    public void SetVirtualCameraBoundingBox(Collider2D collider)
+    {
+        _cmC2D.m_BoundingShape2D = collider;
+    }
+
     public void ObtainDash()
     {
         _stats.HasDash = true;
@@ -372,6 +374,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
 
         _dashSpeed = _data.DashOriginalSpeed;
@@ -438,4 +441,12 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         submitPressed = false;
     }*/
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (!_drawGizmos)
+            return;
+        Gizmos.DrawWireCube(transform.position - Vector3.up * _boxCastDistance, _boxSize);
+    }
+#endif
 }

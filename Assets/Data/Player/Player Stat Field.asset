@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Stat Field
   m_EditorClassIdentifier: 
   _baseCheckpointData: {fileID: 11400000, guid: b968182c5c23b634a8bf017f6c4acc0b, type: 2}
-  _hasDash: 0
-  _hasSlash: 1
+  _hasDash: 1
+  _hasSlash: 0

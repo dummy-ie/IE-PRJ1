@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Bits: 64
   _speed: 6
   _allowDoubleJump: 0
-  _jumpForce: 14
+  _jumpForce: 17
   _fallMultiplier: 4
   _lowJumpMultiplier: 0.3
   _coyoteTime: 0.1
@@ -28,4 +28,4 @@ MonoBehaviour:
   _dashCooldown: 0.5
   _dashDistance: 4
   _canAttack: 1
-  _attackCooldown: 1.5
+  _attackCooldown: 0.3

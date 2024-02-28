@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,6 +12,7 @@ public class SceneLoader : Singleton<SceneLoader> {
     private AssetReference _mainMenuReference;
     private string _sceneName;
     private SceneData _activeScene;
+    private GameObject[] sceneConnections;
     public SceneData ActiveScene
     {
         get { return _activeScene; }
@@ -87,19 +89,38 @@ public class SceneLoader : Singleton<SceneLoader> {
         {
             yield return null;
         }
+
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            //GameObject player = GameObject.FindGameObjectWithTag("Player");
+            //Rigidbody2D rb = player.GetComponent<CharacterController2D>().Rigidbody;
+            //rb.gravityScale = 0.0f;
+            //yield return new WaitForSeconds(0.1f);
+            //rb.isKinematic = false;
+        }
     }
 
     private IEnumerator SceneLoadWithFade(SceneData sceneData)
     {
         Debug.Log("Loading Scene...");
         _activeScene = sceneData;
-        yield return ScreenFader.Instance.FadeOut();
+        //yield return ScreenFader.Instance.FadeOut();
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
         while (!handle.IsDone)
         {
             yield return null;
         }
-        yield return ScreenFader.Instance.FadeIn();
+        //yield return ScreenFader.Instance.FadeIn();
+    }
+
+    private void FindAllSceneConnections()
+    {
+        sceneConnections = GameObject.FindGameObjectsWithTag("SceneConnection");
+    }
+
+    private void SpawnPlayer()
+    {
+
     }
 }
