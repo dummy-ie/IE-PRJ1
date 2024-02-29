@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public class PlayerAttack : MonoBehaviour
 {
     CharacterController2D controller;
+    private Animator _animator;
 
     [SerializeField]
     private PlayerAttackData _attackData;
@@ -51,7 +52,13 @@ public class PlayerAttack : MonoBehaviour
 
             if (controller.Vertical >= .9f)
             {
+                _animator.Play("animTrudeeUprightAttack");
                 hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, transform.up, 2);
+            }
+            else if (controller.Vertical <= -.9f && !controller.IsGrounded())
+            {
+                _animator.Play("animTrudeeDownrightAttack");
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.up, 2);
             }
             else
             {
@@ -152,6 +159,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

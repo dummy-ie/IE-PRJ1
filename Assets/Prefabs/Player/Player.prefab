@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5544334937666863726}
   - component: {fileID: 7954051531114291530}
-  - component: {fileID: 6579978522478589416}
   m_Layer: 3
   m_Name: 2DSprite
   m_TagString: Untagged
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1463617667
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3284f52b05f783a45842501aaad4f0f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 038561d1abdd6d84db4134163f764588, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -85,27 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6579978522478589416
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705259823685333605}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a86421b1706d9b45825df5abb997267, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5433422045894740116
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +233,7 @@ GameObject:
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
   - component: {fileID: 8860734082083504054}
+  - component: {fileID: 5296035857875587231}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -544,7 +523,7 @@ MonoBehaviour:
   _drawGizmos: 1
   _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
-  _animator: {fileID: 6579978522478589416}
+  _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
   _boxCastDistance: 0.47
@@ -596,6 +575,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canInteract: 1
   _interactHitbox: {fileID: 2184766912117530324}
+--- !u!95 &5296035857875587231
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a86421b1706d9b45825df5abb997267, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7094525944563046224
 GameObject:
   m_ObjectHideFlags: 0

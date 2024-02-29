@@ -295,7 +295,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
 
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
     }
@@ -379,6 +379,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
 
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
