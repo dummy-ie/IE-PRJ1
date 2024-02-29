@@ -118,7 +118,7 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
         /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;*/
-        _hasDash = false;
-        _hasSlash = false;
+        //_hasDash = false;
+        //_hasSlash = false;
     }
 }

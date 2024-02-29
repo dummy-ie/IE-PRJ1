@@ -43,7 +43,7 @@ public class ManiteSlash : AAbility
 
                 GameObject projectile = Instantiate(
                     slashProjectile,
-                    new Vector3(controller.transform.position.x + slashSpawnDistance * -flip, controller.transform.position.y, controller.transform.position.z),
+                    new Vector3(controller.transform.position.x + slashSpawnDistance * flip, controller.transform.position.y, controller.transform.position.z),
                     Quaternion.identity);
 
                 // slash owner
@@ -54,7 +54,7 @@ public class ManiteSlash : AAbility
 
                 // flip projectile based on player face direction
                 Vector3 projectileScale = projectile.transform.localScale;
-                projectileScale.y *= flip;
+                projectileScale.y *= -flip;
                 projectile.transform.localScale = projectileScale;
 
                 // rotate dat bitch
