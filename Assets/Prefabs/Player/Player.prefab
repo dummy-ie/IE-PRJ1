@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 3489200118419860923}
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
+  - component: {fileID: 2499320351120869182}
   - component: {fileID: 8860734082083504054}
   - component: {fileID: 5296035857875587231}
   m_Layer: 3
@@ -503,6 +504,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d3610e9b-f03d-4b89-8071-add1da2b54a6
     m_ActionName: Player/Submit[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2499320351120869182}
+        m_TargetAssemblyTypeName: GroundPound, Assembly-CSharp
+        m_MethodName: OnGroundPound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5340e116-9bba-4ada-bcfe-86c565492798
+    m_ActionName: Player/GroundPound[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -561,6 +578,22 @@ MonoBehaviour:
   damage: 5
   slashProjectile: {fileID: 5631643489139863568, guid: 1e73d14f702558041b18a9251440ce40, type: 3}
   slashSpawnDistance: 1
+--- !u!114 &2499320351120869182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478a864b99938594898f31ebbbcff3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  maniteCost: 0
+  damage: 5
+  groundPoundFallMultiplier: 8
 --- !u!114 &8860734082083504054
 MonoBehaviour:
   m_ObjectHideFlags: 0

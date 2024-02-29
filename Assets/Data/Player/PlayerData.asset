@@ -28,4 +28,4 @@ MonoBehaviour:
   _dashCooldown: 0.5
   _dashDistance: 4
   _canAttack: 1
-  _attackCooldown: 0.3
+  _attackCooldown: 1.5

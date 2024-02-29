@@ -53,6 +53,13 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public float Vertical{ get { return _deltaY; } }
 
+    private float _currentFallMultiplier;
+    public float CurrentFallMultiplier
+    {
+        get { return _currentFallMultiplier; }
+        set { _currentFallMultiplier = value; }
+    }
+
     private float _coyoteTimeCounter = 0f, _jumpBufferCounter = 0f;
     
     private float _vectorShift = 100f;
@@ -202,7 +209,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         }
         else if (_rb.velocity.y < 0f) // fast fall over time
         {
-            _rb.velocity += (_data.FallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
 
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
@@ -362,6 +369,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     public void SetVirtualCameraBoundingBox(Collider2D collider)
     {
         _cmC2D.m_BoundingShape2D = collider;
+    }
+
+    public void ResetFallMultiplier()
+    {
+        _currentFallMultiplier = Data.FallMultiplier;
     }
 
     public void ObtainDash()

@@ -102,6 +102,14 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
         set { _hasSlash = value; }
     }
 
+    [SerializeField]
+    private bool _hasPound = false;
+    public bool HasPound
+    {
+        get { return _hasPound; }
+        set { _hasPound = value; }
+    }
+
     private void OnEnable()
     {
         _checkPointData = _baseCheckpointData;
