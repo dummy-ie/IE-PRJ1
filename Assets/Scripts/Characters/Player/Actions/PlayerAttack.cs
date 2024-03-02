@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public class PlayerAttack : MonoBehaviour
 {
     CharacterController2D controller;
+    private Animator _animator;
 
     [SerializeField]
     private PlayerAttackData _attackData;
@@ -16,9 +17,7 @@ public class PlayerAttack : MonoBehaviour
         get { return _attackData; }
         set { _attackData = value; }
     }
-
     
-
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
     private float attackTime;
@@ -49,18 +48,21 @@ public class PlayerAttack : MonoBehaviour
             isAttacking = true;
             controller.Data.CanAttack = false;
 
-            int flip = 1;
-            if(controller.IsFacingRight) flip = -1;
-
             RaycastHit2D[] hits;
 
             if (controller.Vertical >= .9f)
             {
+                _animator.Play("animTrudeeUprightAttack");
                 hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, transform.up, 2);
+            }
+            else if (controller.Vertical <= -.9f && !controller.IsGrounded())
+            {
+                _animator.Play("animTrudeeDownrightAttack");
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.up, 2);
             }
             else
             {
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * controller.IsFacingRight, 2);
             }
 
             foreach (RaycastHit2D hit in hits)
@@ -157,6 +159,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

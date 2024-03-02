@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5544334937666863726}
   - component: {fileID: 7954051531114291530}
-  - component: {fileID: 6579978522478589416}
   m_Layer: 3
   m_Name: 2DSprite
   m_TagString: Untagged
@@ -74,38 +73,17 @@ SpriteRenderer:
   m_SortingLayerID: 1463617667
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c9a77ed6ef8a95a4d9d9835b76fde4ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 038561d1abdd6d84db4134163f764588, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8333333, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6579978522478589416
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705259823685333605}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a86421b1706d9b45825df5abb997267, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5433422045894740116
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +232,9 @@ GameObject:
   - component: {fileID: 3489200118419860923}
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
+  - component: {fileID: 2499320351120869182}
   - component: {fileID: 8860734082083504054}
+  - component: {fileID: 5296035857875587231}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -313,8 +293,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03875029, y: -0.0018160343}
-  m_Size: {x: 0.57628703, y: 1.0177331}
+  m_Offset: {x: 0.0447731, y: 0.0017235875}
+  m_Size: {x: 0.7657547, y: 1.3293899}
   m_Direction: 0
 --- !u!50 &207511811344072622
 Rigidbody2D:
@@ -520,6 +500,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 58b5d2c8-4966-4a81-9200-e900d535d53b
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d3610e9b-f03d-4b89-8071-add1da2b54a6
+    m_ActionName: Player/Submit[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2499320351120869182}
+        m_TargetAssemblyTypeName: GroundPound, Assembly-CSharp
+        m_MethodName: OnGroundPound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5340e116-9bba-4ada-bcfe-86c565492798
+    m_ActionName: Player/GroundPound[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -537,14 +537,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _drawGizmos: 1
   _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
   _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
+  _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
-  _animator: {fileID: 6579978522478589416}
-  _hasDash: 0
-  _hasSlash: 0
-  _boxCastDistance: 0.6
+  _boxCastDistance: 0.47
   _boxSize: {x: 0.3, y: 0.4}
 --- !u!114 &6500837453471319468
 MonoBehaviour:
@@ -574,9 +573,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7200517ff3a5f949a9bf72a45f98ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slashData: {fileID: 11400000, guid: 20967b8a8b376364c9d76a5fb45c48b4, type: 2}
+  cooldown: 1.5
+  maniteCost: 20
+  damage: 5
   slashProjectile: {fileID: 5631643489139863568, guid: 1e73d14f702558041b18a9251440ce40, type: 3}
   slashSpawnDistance: 1
+--- !u!114 &2499320351120869182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478a864b99938594898f31ebbbcff3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  maniteCost: 0
+  damage: 5
+  groundPoundFallMultiplier: 8
 --- !u!114 &8860734082083504054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +608,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canInteract: 1
   _interactHitbox: {fileID: 2184766912117530324}
+--- !u!95 &5296035857875587231
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a86421b1706d9b45825df5abb997267, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7094525944563046224
 GameObject:
   m_ObjectHideFlags: 0

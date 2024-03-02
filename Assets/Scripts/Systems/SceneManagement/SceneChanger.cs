@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            FindObjectOfType<CharacterController2D>().transform.position = _spawnPoint.position; // maybe store a player reference in the scriptableObject?
+            PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
             FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }
 
@@ -31,6 +31,11 @@ public class SceneChanger : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public bool IsActiveConnection()
+    {
+        return _sceneConnection == SceneConnection.ActiveConnection;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

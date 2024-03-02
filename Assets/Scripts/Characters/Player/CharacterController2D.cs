@@ -1,4 +1,4 @@
-using Cinemachine;
+ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour//, IHittable
 {
 #if UNITY_EDITOR
@@ -16,6 +18,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
     }
+
+    [Header("Player Data")]
     [SerializeField]
     PlayerData _data;
     public PlayerData Data 
@@ -29,30 +33,38 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         get { return _stats; }
     }
 
+    [Header("Player Render")]
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
 
+    [Header("Ground Check Box Cast")]
+    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
+    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private Rigidbody2D _rb;
-    public Rigidbody2D Rigidbody
-    {
-        get { return _rb; }
-    }
 
     private CinemachineVirtualCamera _cmVC;
     private Cinemachine3rdPersonFollow _cmTP;
+    private CinemachineConfiner2D _cmC2D;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
 
     public float Vertical{ get { return _deltaY; } }
 
+    private float _currentFallMultiplier;
+    public float CurrentFallMultiplier
+    {
+        get { return _currentFallMultiplier; }
+        set { _currentFallMultiplier = value; }
+    }
+
     private float _coyoteTimeCounter = 0f, _jumpBufferCounter = 0f;
     
     private float _vectorShift = 100f;
 
-    private bool _isFacingRight = false;
+    private int _isFacingRight = -1;
 
     private bool _isDashing = false;
     private float _dashTime = 0f;
@@ -85,24 +97,20 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         set { _hasSlash = value; }
     }*/
 
-    [Header("Ground Check Box Cast")]
-    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
-    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
-
     private float _dashCooldownTime = 0f;
     private float _dashSpeed = 0f;
     //private bool submitPressed = false;
 
-    public bool IsFacingRight {
+    public int IsFacingRight {
         get { return _isFacingRight; }
     }
-    public void FlipTo(bool isFacingRight) { 
+    public void FlipTo(int isFacingRight) { 
         _isFacingRight = isFacingRight;
     }
     private void Flip() {
-        if (_isFacingRight && _deltaX < 0f || !_isFacingRight && _deltaX > 0f)
+        if (_isFacingRight == 1 && _deltaX < 0f || _isFacingRight == -1 && _deltaX > 0f)
         {
-            _isFacingRight = !_isFacingRight;
+            _isFacingRight *= -1;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -161,8 +169,8 @@ public class CharacterController2D : MonoBehaviour//, IHittable
             _isDashing = true;
             _aerialDash = false;
 
-            if (!_isFacingRight) //dash direction based on where playr is facing
-                _dashSpeed *= -1;
+             //dash direction based on where playr is facing
+             _dashSpeed *= _isFacingRight;
         }
     }
     private void Move()
@@ -202,7 +210,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         }
         else if (_rb.velocity.y < 0f) // fast fall over time
         {
-            _rb.velocity += (_data.FallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
         }
 
         // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
@@ -255,9 +263,11 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     private void Animate()
     {
         _animator.SetBool("IsGrounded", IsGrounded());
+        bool isRunning = _rb.velocity.x > 0 || _rb.velocity.x < 0;
+        _animator.SetBool("IsRunning", isRunning);
+        _animator.SetFloat("Y-axis Speed", _rb.velocity.y);
         if (!IsGrounded())
         {
-            _animator.SetFloat("Y-axis Speed", _rb.velocity.y);
         }
     }
 
@@ -293,7 +303,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
 
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
     }
@@ -303,10 +313,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * _boxCastDistance, _boxSize);
-    }
+    
 
     public void ShiftTo2D()
     {
@@ -360,6 +367,16 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     }
 
+    public void SetVirtualCameraBoundingBox(Collider2D collider)
+    {
+        _cmC2D.m_BoundingShape2D = collider;
+    }
+
+    public void ResetFallMultiplier()
+    {
+        _currentFallMultiplier = Data.FallMultiplier;
+    }
+
     public void ObtainDash()
     {
         _stats.HasDash = true;
@@ -373,7 +390,9 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
 
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
@@ -439,4 +458,12 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         submitPressed = false;
     }*/
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (!_drawGizmos)
+            return;
+        Gizmos.DrawWireCube(transform.position - Vector3.up * _boxCastDistance, _boxSize);
+    }
+#endif
 }

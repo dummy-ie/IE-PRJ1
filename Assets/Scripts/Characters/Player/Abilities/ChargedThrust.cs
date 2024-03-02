@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class ChargedThrust : MonoBehaviour
+public class ChargedThrust : AAbility
 {
 
-    CharacterController2D controller;
     // Start is called before the first frame update
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
-    private float attackTime;
-    private float attackCooldown = .2f;
+    // private float cooldownClock;
+    // private float cooldown = .2f;
 
     private bool canAttack = true;
 
@@ -35,8 +34,7 @@ public class ChargedThrust : MonoBehaviour
         {
             canAttack = false;
 
-            int flip = 1;
-            if(controller.IsFacingRight) flip = -1;
+            int flip = controller.IsFacingRight;
 
             RaycastHit2D[] hits;
 
@@ -55,19 +53,17 @@ public class ChargedThrust : MonoBehaviour
                 }
             }
 
-
-
-            attackTime = attackCooldown;
+            cooldownClock = cooldown;
         }
     }
 
     private void ChargedThrustUpdate()
     {
-        if (attackTime > 0 && canAttack)
+        if (cooldownClock > 0 && canAttack)
         {
             if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
             else attackHitboxDebug.enabled = true;
-            attackTime -= Time.deltaTime;
+            cooldownClock -= Time.deltaTime;
         }
         else
         {
@@ -77,12 +73,9 @@ public class ChargedThrust : MonoBehaviour
         }
     }
 
-    
-
-    // Start is called before the first frame update
-    void Start()
+    protected override IEnumerator VecShift()
     {
-        controller = GetComponent<CharacterController2D>();
+        yield return null;
     }
 
     // Update is called once per frame
