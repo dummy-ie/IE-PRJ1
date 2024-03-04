@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  m_GroupName: Level 3
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9bbacfca7a26bb84c96485e917c28710
+  m_SerializeEntries:
+  - m_GUID: b03cd044b3eebec448cee270063da841
+    m_Address: Assets/Scenes/Level-3/Room1_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c78fdb5f1137934bb021d88c7b004c0
+    m_Address: Assets/Scenes/Level-3/Room2_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b0d8b9b1a2abdf44969510b50e308a6
+    m_Address: Assets/Scenes/Level-3/Room3_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c97457db999c8b40af74a3ee66010ce
+    m_Address: Assets/Scenes/Level-3/Room4_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14116a0c36d2f2f4cbc9ef742dd60f2f
+    m_Address: Assets/Scenes/Level-3/Room5_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 00d57840e499c1049bf4656c64373942
+    m_Address: Assets/Scenes/Level-3/RoomArtilleryBoss_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf3f9054b7da4d240be9cf6f91cbe64d
+    m_Address: Assets/Scenes/Level-3/RoomUnderground1_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb8a02e6fb71ab04c8dc84879d175927
+    m_Address: Assets/Scenes/Level-3/RoomUnderground2_Level_3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bbb3ef0baa2bbf347a859617d91cc0eb, type: 2}
+    - {fileID: 11400000, guid: 7d8fef135e522da4aa86640c468faf05, type: 2}

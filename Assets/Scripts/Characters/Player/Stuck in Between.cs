@@ -116,6 +116,24 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3610e9b-f03d-4b89-8071-add1da2b54a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GroundPound"",
+                    ""type"": ""Button"",
+                    ""id"": ""5340e116-9bba-4ada-bcfe-86c565492798"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -545,6 +563,39 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7fb6e325-2cd1-4455-bcf3-37913bf48ce8"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bb9401a-bdda-41b6-8995-30f9a0c09064"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GroundPound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e38a8dd-9d97-46ce-a7ec-412eb83ccff9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GroundPound"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1142,6 +1193,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         m_Player_ChargedThrust = m_Player.FindAction("Charged Thrust", throwIfNotFound: true);
         m_Player_ManiteSlash = m_Player.FindAction("Manite Slash", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
+        m_Player_GroundPound = m_Player.FindAction("GroundPound", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1225,6 +1278,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ChargedThrust;
     private readonly InputAction m_Player_ManiteSlash;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Submit;
+    private readonly InputAction m_Player_GroundPound;
     public struct PlayerActions
     {
         private @StuckinBetween m_Wrapper;
@@ -1239,6 +1294,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         public InputAction @ChargedThrust => m_Wrapper.m_Player_ChargedThrust;
         public InputAction @ManiteSlash => m_Wrapper.m_Player_ManiteSlash;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Submit => m_Wrapper.m_Player_Submit;
+        public InputAction @GroundPound => m_Wrapper.m_Player_GroundPound;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1278,6 +1335,12 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @GroundPound.started += instance.OnGroundPound;
+            @GroundPound.performed += instance.OnGroundPound;
+            @GroundPound.canceled += instance.OnGroundPound;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1312,6 +1375,12 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @GroundPound.started -= instance.OnGroundPound;
+            @GroundPound.performed -= instance.OnGroundPound;
+            @GroundPound.canceled -= instance.OnGroundPound;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1504,6 +1573,8 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         void OnChargedThrust(InputAction.CallbackContext context);
         void OnManiteSlash(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnGroundPound(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

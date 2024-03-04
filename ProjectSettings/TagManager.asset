@@ -13,6 +13,9 @@ TagManager:
   - EnvBreakable
   - Interactable
   - Sound
+  - SceneConnection
+  - SceneBounds
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

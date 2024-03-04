@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
     private SceneConnection _sceneConnection;
-
+    [SerializeField]
+    private AssetReference _targetSceneReference;
     [SerializeField]
     private string _targetSceneName;
-
     [SerializeField]
     private Transform _spawnPoint;
 
@@ -19,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            FindObjectOfType<CharacterController2D>().transform.position = _spawnPoint.position; // maybe store a player reference in the scriptableObject?
+            PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
             FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }
 
@@ -32,6 +33,11 @@ public class SceneChanger : MonoBehaviour
 
     }
 
+    public bool IsActiveConnection()
+    {
+        return _sceneConnection == SceneConnection.ActiveConnection;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -39,7 +45,7 @@ public class SceneChanger : MonoBehaviour
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 
@@ -50,7 +56,8 @@ public class SceneChanger : MonoBehaviour
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            if (_targetSceneReference != null)
+                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 }

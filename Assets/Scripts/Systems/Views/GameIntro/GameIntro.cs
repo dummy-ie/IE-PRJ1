@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using Unity.Profiling;
+using UnityEngine.AddressableAssets;
 
-public class GameIntro : MonoBehaviour {
+public class GameIntro : MonoBehaviour
+{
+    [SerializeField]
+    private bool _skipIntro = false;
     [SerializeField]
     private float _transitionDuration = 3.0f;
     [SerializeField]
@@ -22,19 +26,23 @@ public class GameIntro : MonoBehaviour {
 
     private UnityEngine.UIElements.Image _logo;
 
-    [SerializeField] string _nextScene;
-    
+    [SerializeField]
+    AssetReference _nextSceneReference;
+
 
     IEnumerator ShowLogo(string className) {
         yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < _logos.Length; i++) {
-            this._logo.sprite = _logos[i];
-            this._logo.RemoveFromClassList("logo--hidden");
-            yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
-            this._logo.AddToClassList("logo--hidden");
-            yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
+        if (!_skipIntro)
+        {
+            for (int i = 0; i < _logos.Length; i++) {
+                this._logo.sprite = _logos[i];
+                this._logo.RemoveFromClassList("logo--hidden");
+                yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
+                this._logo.AddToClassList("logo--hidden");
+                yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
+            }
         }
-        SceneLoader.Instance.LoadScene(_nextScene);
+        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference);
     }
 
     void Start() {

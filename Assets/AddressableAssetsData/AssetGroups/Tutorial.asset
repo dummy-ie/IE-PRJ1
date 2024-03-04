@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Tutorial
+  m_EditorClassIdentifier: 
+  m_GroupName: Tutorial
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5293481c08e758d4f8c76ddf18c61507
+  m_SerializeEntries:
+  - m_GUID: 3e9620ce146136e49a0394f70f7266bd
+    m_Address: Assets/Scenes/Trudee Hut (Inside).unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02773fa3bb8edae4593a9dad9dc88efd
+    m_Address: Assets/Scenes/Trudee Hut (Outside).unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51d3b747028affb488b2508d35731854
+    m_Address: Assets/Scenes/Jungle Combat.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf25f3182d499914db973d8210a873c3
+    m_Address: Assets/Scenes/Jungle Dash.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9173a4efee39ce345872ad6d5620c00e
+    m_Address: Assets/Scenes/Jungle Entrance.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f90b8ea8b51d804c9906a71d424ef92
+    m_Address: Assets/Scenes/Drawbridge.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3746885644a76284990787b9a77da463
+    m_Address: Assets/Scenes/Drawbridge Hole.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cfa6c4a7c54fc54298047cee9bade99
+    m_Address: Assets/Scenes/Jungle Log Trap.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0832cbd0e4356fe4d8dbbbf7218c7745
+    m_Address: Assets/Scenes/Jungle Movement.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83bed9f85617ead4ab604f2a985439a9
+    m_Address: Assets/Scenes/Manite Slash.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5da4a60c349077d44913c0a87d6c32e4
+    m_Address: Assets/Scenes/Ruined Temple.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2de6b0bbf3daff1449761660a5407338
+    m_Address: Assets/Scenes/Underground Exit.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 980bab57ab862c54ea652236b34333f4
+    m_Address: Assets/Scenes/Underground Left.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5771f2c2b9a571840b8b141c33f83f98
+    m_Address: Assets/Scenes/Underground Middle.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf6d308a218fe7b4394deb0a685b420b
+    m_Address: Assets/Scenes/Jungle Exit.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 394f5f48dc6a5604b841d6afe1958751, type: 2}
+    - {fileID: 11400000, guid: ebfa29e6f03324946a8206436b04688d, type: 2}

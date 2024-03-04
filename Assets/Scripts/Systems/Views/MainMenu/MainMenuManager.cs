@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    private string _nextScene;
+    AssetReference _nextSceneReference;
 
     VisualElement _root;
     Button _playButton;
@@ -25,7 +26,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     void OnPlayButtonPressed() {
-        SceneLoader.Instance.LoadScene(_nextScene ,true);
+        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
     }
     void OnSettingsButtonPressed() { }
     void OnQuitButtonPressed()

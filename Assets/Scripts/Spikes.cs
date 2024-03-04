@@ -9,7 +9,8 @@ public class ForceRespawnTrap : MonoBehaviour
     int _damage = 1;
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            PlayerSpawner.Instance.ForceSpawn(SceneManager.GetActiveScene().name, collision.gameObject.GetComponent<CharacterController2D>().LastSpawnPosition.position);
+            //PlayerSpawner.Instance.ForceSpawn(SceneManager.GetActiveScene().name, collision.gameObject.GetComponent<CharacterController2D>().LastSpawnPosition.position);
+            PlayerSpawner.Instance.ForceSpawn(SceneLoader.Instance.ActiveSceneReference, collision.gameObject.GetComponent<CharacterController2D>().LastSpawnPosition.position);
             collision.gameObject.GetComponent<CharacterController2D>().Damage(_damage);
         }
     }
