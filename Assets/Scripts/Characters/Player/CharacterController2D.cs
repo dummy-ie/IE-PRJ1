@@ -66,6 +66,13 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private int _isFacingRight = -1;
 
+    private bool _canMove = true;
+    public bool CanMove
+    {
+        get { return _canMove; }
+        set { _canMove = value; }
+    }
+
     private bool _isDashing = false;
     private float _dashTime = 0f;
     private float _dashDuration;
@@ -175,7 +182,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit || (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().IsPlaying)))
+        if (!(_isDashing || _isHit || (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().IsPlaying)) && _canMove)
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }

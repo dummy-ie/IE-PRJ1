@@ -73,6 +73,7 @@ public class GroundPound : AAbility
     {
         if (isGroundPound)
         {
+            controller.CanMove = false;
             if (controller.IsGrounded())
             {
                 RaycastHit2D[] hits;
@@ -90,6 +91,7 @@ public class GroundPound : AAbility
                     }
                 }
                 isGroundPound = false;
+                controller.CanMove = true;
                 controller.ResetFallMultiplier();
                 controller.Data.CanAttack = true;
                 controller.ShiftTo2D();
