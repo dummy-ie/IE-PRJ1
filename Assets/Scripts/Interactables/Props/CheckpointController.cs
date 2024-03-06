@@ -28,7 +28,7 @@ public class CheckpointController : MonoBehaviour
     }
     private void Awake(){
 
-        _wasUsed = _interactableData.WasInteracted;
+        _wasUsed = _interactableData.Enabled;
         _animator = GetComponent<Animator>();
         if (_animator != null)
         {

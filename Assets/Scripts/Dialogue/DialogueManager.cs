@@ -5,10 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : Singleton<DialogueManager>
 {
-
-    private static DialogueManager instance;
 
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -22,23 +20,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     private bool submitPressed;
-
-    public static DialogueManager GetInstance()
-    {
-        return instance;
-    }
-
-    void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(instance);
-        }
-    }
 
     void Start()
     {

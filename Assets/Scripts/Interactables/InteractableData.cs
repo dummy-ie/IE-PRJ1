@@ -3,61 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InteractableData", menuName = "Scriptable Objects/InteractableData")]
+//[CreateAssetMenu(fileName = "InteractableData", menuName = "Scriptable Objects/InteractableData")]
 [Serializable]
-public class InteractableData : ScriptableObject
-{   
+public class InteractableData
+{
     [SerializeField]
-    private string baseName;
-
-    [SerializeField]
-    private Sprite _baseSprite;
-
-    [SerializeField]
-    private bool _baseState;
-
     private string _objectName;
-    public string ObjectName{
+    public string ObjectName
+    {
 
-        get{ return this._objectName; }
+        get { return this._objectName; }
 
         set { this._objectName = value; }
     }
-    
+
+    /*[SerializeField]
     private Sprite _sprite;
+    public Sprite Sprite
+    {
 
-    public Sprite Sprite{
-
-        get{ return this._sprite; }
+        get { return this._sprite; }
 
         set { this._sprite = value; }
-    }
-    
-    private bool _wasInteracted;
+    }*/
 
-    public bool WasInteracted{
+    [SerializeField]
+    private bool _enabled;
+    public bool Enabled
+    {
 
-        get{ return this._wasInteracted; }
+        get { return this._enabled; }
 
-        set { _wasInteracted = value; }
-    }
-    
-
-    private void OnEnable(){
-
-        this._objectName  = this.baseName;
-        this._sprite = this._baseSprite;
-        this._wasInteracted = this._baseState;
-        
+        set { _enabled = value; }
     }
 
+    InteractableData(string _objectName, bool _enabled)
+    {
+        this._objectName = _objectName;
+        //this._sprite = _sprite;
+        this._enabled = _enabled;
+    }
+
+    /*
     private void AfterDeserializeField(){
         Debug.Log("Values succesfully reset.");
         this._objectName  = this.baseName;
         this._sprite = this._baseSprite;
         this._wasInteracted = this._baseState;
     }
-
+    */
 
 }
 

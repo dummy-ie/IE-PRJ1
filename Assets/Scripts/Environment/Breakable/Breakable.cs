@@ -18,7 +18,7 @@ public class Breakable : MonoBehaviour, IHittable
 
         if (_health <= 0)
         {
-            _breakData.WasInteracted = true;
+            _breakData.Enabled = true;
             HitBehavior();
         }
     }

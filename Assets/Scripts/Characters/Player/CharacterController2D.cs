@@ -182,7 +182,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit || (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().IsPlaying)) && _canMove)
+        if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)) && _canMove)
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }

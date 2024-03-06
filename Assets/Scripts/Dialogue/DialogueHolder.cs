@@ -12,9 +12,9 @@ public class DialogueHolder : MonoBehaviour
 
     public void OnInteract()
     {
-        if (!DialogueManager.GetInstance().IsPlaying)
-        {
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        if (!DialogueManager.Instance.IsPlaying)
+        {   
+            DialogueManager.Instance.EnterDialogueMode(inkJSON);
         }
     }
 }

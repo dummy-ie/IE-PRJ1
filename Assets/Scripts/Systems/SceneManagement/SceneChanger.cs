@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
+            //PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
             FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }
 
@@ -42,6 +42,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            JSONSave.Instance.SaveAll();
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
@@ -53,6 +54,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
