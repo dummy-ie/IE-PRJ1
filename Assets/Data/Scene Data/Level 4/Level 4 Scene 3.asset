@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea3e0a4dbe0f864284f835bd9edb515, type: 3}
-  m_Name: Level 4 test - Level 4 Boss
+  m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
+  m_Name: Level 4 Scene 3
   m_EditorClassIdentifier: 
+  SceneReference:
+    m_AssetGUID: 9bcebd6d11d98844894ed4459eb50a70
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

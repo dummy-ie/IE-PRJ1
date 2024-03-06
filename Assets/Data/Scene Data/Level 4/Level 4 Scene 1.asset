@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
-  m_Name: Level 4 test
+  m_Name: Level 4 Scene 1
   m_EditorClassIdentifier: 
   SceneReference:
-    m_AssetGUID: 205fab7581eebaf44a6b4deeef56fd37
+    m_AssetGUID: 7c0234398ff3383448483dbed944131a
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
