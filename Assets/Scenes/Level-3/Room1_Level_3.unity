@@ -526,6 +526,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -3.21
       objectReference: {fileID: 0}
+    - target: {fileID: 723362304905003819, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
+      objectReference: {fileID: 0}
     - target: {fileID: 870215990038823674, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.21
@@ -556,11 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733809005284489021, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.52236
+      value: 15.112629
       objectReference: {fileID: 0}
     - target: {fileID: 2733809005284489021, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1399999
+      value: -6.54
       objectReference: {fileID: 0}
     - target: {fileID: 2890964630222442138, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_Name
@@ -638,6 +642,10 @@ PrefabInstance:
       propertyPath: _moveSpeedY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4751389854151376144, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
+      objectReference: {fileID: 0}
     - target: {fileID: 5014755004601469629, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.21
@@ -666,6 +674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Layer-6
       objectReference: {fileID: 0}
+    - target: {fileID: 5476001628511339280, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
+      objectReference: {fileID: 0}
     - target: {fileID: 5731059305367509620, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: _moveSpeedX
       value: 0.5
@@ -678,17 +690,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Layer-8
       objectReference: {fileID: 0}
+    - target: {fileID: 5967082089084397696, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
+      objectReference: {fileID: 0}
     - target: {fileID: 6081952411484506150, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.21
       objectReference: {fileID: 0}
     - target: {fileID: 6441337503313350105, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.349606
+      value: 4.1690607
       objectReference: {fileID: 0}
     - target: {fileID: 6441337503313350105, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1399999
+      value: -6.54
       objectReference: {fileID: 0}
     - target: {fileID: 6639656435996144473, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_Name
@@ -704,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091415943176130356, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1399999
+      value: -6.54
       objectReference: {fileID: 0}
     - target: {fileID: 7457239751633921568, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_Name
@@ -721,6 +737,14 @@ PrefabInstance:
     - target: {fileID: 7762500530382755648, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882015244652493205, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970599634445242834, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_Size.y
+      value: 9.95
       objectReference: {fileID: 0}
     - target: {fileID: 8025093116585290963, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_Name
