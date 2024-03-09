@@ -53,8 +53,41 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Sky
     uniqueID: 2963050733
+    locked: 0
+  - name: Clouds
+    uniqueID: 1337063619
+    locked: 0
+  - name: Buildings1
+    uniqueID: 3951325499
+    locked: 0
+  - name: Buildings2
+    uniqueID: 2625145453
+    locked: 0
+  - name: Buildings3
+    uniqueID: 2182133499
+    locked: 0
+  - name: Buildings4
+    uniqueID: 1707653901
+    locked: 0
+  - name: Bridges
+    uniqueID: 34355053
+    locked: 0
+  - name: Buildings5
+    uniqueID: 1781356023
+    locked: 0
+  - name: Broken Infrastructure1
+    uniqueID: 2089762049
+    locked: 0
+  - name: Rocks
+    uniqueID: 1300393443
+    locked: 0
+  - name: Broken Infrastructure2
+    uniqueID: 304593113
+    locked: 0
+  - name: Fog
+    uniqueID: 351245303
     locked: 0
   - name: Midground
     uniqueID: 987081829
