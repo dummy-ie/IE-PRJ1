@@ -152,9 +152,10 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jummp");
+        
         if (context.started)
         {
+            Debug.Log("Jummp");
             _isJumpPress = true;
             // reset jump buffer counter
             _jumpBufferCounter = _data.JumpBufferTime;

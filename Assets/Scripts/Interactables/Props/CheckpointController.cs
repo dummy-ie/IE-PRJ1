@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointController : MonoBehaviour
+public class CheckpointController : MonoBehaviour, ISaveable
 {
     // Start is called before the first frame update
     [SerializeField]
@@ -27,13 +27,25 @@ public class CheckpointController : MonoBehaviour
 
     }
     private void Awake(){
-
-        _wasUsed = _interactableData.Enabled;
         _animator = GetComponent<Animator>();
         if (_animator != null)
         {
 
-        _animator.StopPlayback();
+            _animator.StopPlayback();
         }
+
+        LoadData();
+        _wasUsed = _interactableData.Enabled;
+        
+    }
+
+    public void LoadData()
+    {
+        JSONSave.Instance.LoadData(this._interactableData);
+    }
+
+    public void SaveData()
+    {
+        JSONSave.Instance.SaveData(this._interactableData);
     }
 }

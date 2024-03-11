@@ -71,7 +71,7 @@ public class DoorController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        this._interactableData = JSONSave.Instance.LoadData(this._interactableData);
+        JSONSave.Instance.LoadData(this._interactableData);
     }
 
     public void SaveData()

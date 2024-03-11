@@ -53,8 +53,15 @@ public class JSONSave : Singleton<JSONSave>
         writer.Write(json);
     }
 
-    public InteractableData LoadData(InteractableData interactData)
+    public void LoadData(InteractableData interactData)
     {
+        StartCoroutine(BufferLoadData(interactData));
+    }
+
+    private IEnumerator BufferLoadData(InteractableData interactData)
+    {
+        yield return new WaitForSeconds(.1f);
+
         string loadPath = this._savePath + interactData.ObjectName + ".json";
 
         using StreamReader reader = new StreamReader(loadPath);
@@ -62,8 +69,7 @@ public class JSONSave : Singleton<JSONSave>
 
         string json = reader.ReadToEnd();
         reader.Close();
-        return JsonUtility.FromJson<InteractableData>(json);
-
+        interactData = JsonUtility.FromJson<InteractableData>(json);
     }
 
     public void SaveAll()
