@@ -445,7 +445,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
         Animate();
 
-        Debug.Log(_stats.Manite.Current);
 
     }
 
