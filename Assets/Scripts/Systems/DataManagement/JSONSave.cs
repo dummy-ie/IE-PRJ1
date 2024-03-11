@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -17,7 +16,7 @@ public class JSONSave : Singleton<JSONSave>
     {
         SetPaths();
 
-        /*try
+        try
         {
             if (!Directory.Exists(_persistentPath))
             {
@@ -27,7 +26,7 @@ public class JSONSave : Singleton<JSONSave>
         }
         catch (IOException ex)
         {
-        }*/
+        }
     }
 
     // Update is called once per frame
@@ -38,39 +37,38 @@ public class JSONSave : Singleton<JSONSave>
 
     private void SetPaths()
     {
-        this._savePath = Application.dataPath + Path.AltDirectorySeparatorChar + "/SaveData/";
+        this._savePath = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveData/";
         this._persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData/";
     }
 
-    public void SaveData(InteractableData interactData)
+    public void SaveData(BaseData data)
     {
-        string savePath = this._savePath + interactData.ObjectName + ".json";
+        string savePath = this._savePath + data.ObjectName + ".json";
 
         Debug.Log("Saving data at " + savePath);
-        string json = JsonUtility.ToJson(interactData);
+        string json = JsonUtility.ToJson(data);
 
         using StreamWriter writer = new StreamWriter(savePath);
         writer.Write(json);
     }
 
-    public void LoadData(InteractableData interactData)
+    public T LoadData<T>(BaseData data)
     {
-        StartCoroutine(BufferLoadData(interactData));
-    }
-
-    private IEnumerator BufferLoadData(InteractableData interactData)
-    {
-        yield return new WaitForSeconds(.1f);
-
-        string loadPath = this._savePath + interactData.ObjectName + ".json";
+        string loadPath = this._savePath + data.ObjectName + ".json";
 
         using StreamReader reader = new StreamReader(loadPath);
         Debug.Log("Loading data from " + loadPath);
 
         string json = reader.ReadToEnd();
-        reader.Close();
-        interactData = JsonUtility.FromJson<InteractableData>(json);
+        return JsonUtility.FromJson<T>(json);
     }
+
+
+
+
+
+
+
 
     public void SaveAll()
     {

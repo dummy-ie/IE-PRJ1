@@ -5,18 +5,8 @@ using UnityEngine;
 
 //[CreateAssetMenu(fileName = "InteractableData", menuName = "Scriptable Objects/InteractableData")]
 [Serializable]
-public class InteractableData
+public class InteractableData : BaseData
 {
-    [SerializeField]
-    private string _objectName;
-    public string ObjectName
-    {
-
-        get { return this._objectName; }
-
-        set { this._objectName = value; }
-    }
-
     /*[SerializeField]
     private Sprite _sprite;
     public Sprite Sprite

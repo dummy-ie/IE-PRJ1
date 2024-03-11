@@ -9,7 +9,6 @@ public class CheckpointController : MonoBehaviour, ISaveable
     private InteractableData _interactableData;
     private CharacterController2D _playerData;
     private Animator _animator;
-    private bool _wasUsed;
 
     public void OnInteract(){
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -20,7 +19,11 @@ public class CheckpointController : MonoBehaviour, ISaveable
             _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ObjectName;
             _playerData.Stats.Health.Current = _playerData.Data.MaxHealth;
             if (_animator != null)
-                _animator.Play("CheckpointActivate");
+                PlayAnim();
+            _interactableData.Enabled = true;
+
+            _playerData.PlayerSaveData();
+
             Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ObjectName);
         }
        
@@ -34,14 +37,29 @@ public class CheckpointController : MonoBehaviour, ISaveable
             _animator.StopPlayback();
         }
 
-        LoadData();
-        _wasUsed = _interactableData.Enabled;
+        StartCoroutine(LoadBuffer());
         
+        
+    }
+
+    private void PlayAnim()
+    {
+        if (_animator != null)
+            _animator.Play("CheckpointActivate");
+    }
+
+    public IEnumerator LoadBuffer()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadData();
+
+        if (_interactableData.Enabled)
+            PlayAnim();
     }
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData(this._interactableData);
+        this._interactableData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
     }
 
     public void SaveData()

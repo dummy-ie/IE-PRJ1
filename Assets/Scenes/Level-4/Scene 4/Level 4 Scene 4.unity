@@ -1536,6 +1536,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -13
       objectReference: {fileID: 0}
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: _drawGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: _data._objectName
+      value: PlayerData
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489200118419860923, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: _data._groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -59.81

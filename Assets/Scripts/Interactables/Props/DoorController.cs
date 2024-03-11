@@ -52,12 +52,15 @@ public class DoorController : MonoBehaviour, ISaveable
 
         //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
         StartCoroutine(LoadBuffer());
+
+       
     }
 
-    private IEnumerator LoadBuffer()
+    public IEnumerator LoadBuffer()
     {
         yield return new WaitForSeconds(.1f);
         LoadData();
+
 
         this._enabled = this._interactableData.Enabled;
         CheckDoorRender();
@@ -71,7 +74,7 @@ public class DoorController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData(this._interactableData);
+        this._interactableData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
     }
 
     public void SaveData()
