@@ -18,7 +18,7 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
     {
         GameObject player = Instantiate(_player);
         player.transform.position = position;
-        player.GetComponent<CharacterController2D>().SetVirtualCameraBoundingBox(GameObject.FindGameObjectWithTag("SceneBounds").GetComponent<CompositeCollider2D>());
+        //player.GetComponent<CharacterController2D>().SetVirtualCameraBoundingBox(GameObject.FindGameObjectWithTag("SceneBounds").GetComponent<CompositeCollider2D>());
     }
     public void SpawnPlayerFromSpawnPoint()
     {
