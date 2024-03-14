@@ -38,7 +38,16 @@ public class SceneChanger : MonoBehaviour
         return _sceneConnection == SceneConnection.ActiveConnection;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public void LoadNextScene()
+    {
+        SceneConnection.ActiveConnection = _sceneConnection;
+        //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
+        //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+        if (_targetSceneReference != null)
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+    }
+
+    /*private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -61,5 +70,5 @@ public class SceneChanger : MonoBehaviour
             if (_targetSceneReference != null)
                 SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
-    }
+    }*/
 }
