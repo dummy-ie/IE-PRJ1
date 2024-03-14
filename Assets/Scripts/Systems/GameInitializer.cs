@@ -9,6 +9,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField]
     PlayerStatField _playerStats;
 
+    [SerializeField] private AssetReference _nextSceneReference;
+
     private IEnumerator Start()
     {
         _playerStats.Health.SetMax(3);
@@ -17,6 +19,7 @@ public class GameInitializer : MonoBehaviour
         _playerStats.Manite.SetCurrent(100);
         AsyncOperationHandle<IList<GameObject>> singletons = Addressables.LoadAssetsAsync<GameObject>("Singleton", singletons => Instantiate(singletons));
         yield return singletons;
-        
+
+        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference);
     }
 }
