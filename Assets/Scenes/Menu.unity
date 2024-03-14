@@ -411,10 +411,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextSceneReference:
-    m_AssetGUID: 31a4c3d29518a80499d5d2c46c7e3f49
+    m_AssetGUID: 07efdec356b3f9b4c853356ec472b060
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
 --- !u!1 &1634396354
 GameObject:
   m_ObjectHideFlags: 0
