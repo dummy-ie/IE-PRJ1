@@ -42,27 +42,27 @@ public class JSONSave : Singleton<JSONSave>
         this._persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData/";
     }
 
-    public void SaveData(InteractableData interactData)
+    public void SaveData(BaseData data)
     {
-        string savePath = this._savePath + interactData.ObjectName + ".json";
+        string savePath = this._savePath + data.ID + ".json";
 
         Debug.Log("Saving data at " + savePath);
-        string json = JsonUtility.ToJson(interactData);
+        string json = JsonUtility.ToJson(data);
 
         using StreamWriter writer = new StreamWriter(savePath);
         writer.Write(json);
     }
 
-    public InteractableData LoadData(InteractableData interactData)
+    public void LoadData(BaseData data)
     {
-        string loadPath = this._savePath + interactData.ObjectName + ".json";
+        string loadPath = this._savePath + data.ID + ".json";
 
         using StreamReader reader = new StreamReader(loadPath);
         Debug.Log("Loading data from " + loadPath);
 
         string json = reader.ReadToEnd();
         reader.Close();
-        return JsonUtility.FromJson<InteractableData>(json);
+        JsonUtility.FromJsonOverwrite(json, data);
 
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour//, IHittable
+public class CharacterController2D : MonoBehaviour, ISaveable
 {
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
@@ -401,8 +401,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
 
-        _dashSpeed = _data.DashOriginalSpeed;
-        UpdateDashDuration();
+        StartCoroutine(LoadBuffer());
     }
 
     private void Start()
@@ -436,7 +435,26 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
 
 
+    private IEnumerator LoadBuffer()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadData();
 
+        _dashSpeed = _data.DashOriginalSpeed;
+        UpdateDashDuration();
+    }
+
+    public void LoadData()
+    {
+        JSONSave.Instance.LoadData(this._data);
+        JSONSave.Instance.LoadData(this._stats);
+    }
+
+    public void SaveData()
+    {
+        JSONSave.Instance.SaveData(this._data);
+        JSONSave.Instance.SaveData(this._stats);
+    }
 
 
     /*Experimental SHit

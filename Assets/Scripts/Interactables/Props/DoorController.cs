@@ -54,6 +54,12 @@ public class DoorController : MonoBehaviour, ISaveable
         StartCoroutine(LoadBuffer());
     }
 
+    private void OnEnable()
+    {
+        CheckDoorRender();
+
+    }
+
     private IEnumerator LoadBuffer()
     {
         yield return new WaitForSeconds(.1f);
@@ -63,15 +69,9 @@ public class DoorController : MonoBehaviour, ISaveable
         CheckDoorRender();
     }
 
-
-    private void OnEnable(){
-        CheckDoorRender();
-        
-    }
-
     public void LoadData()
     {
-        this._interactableData = JSONSave.Instance.LoadData(this._interactableData);
+        JSONSave.Instance.LoadData(this._interactableData);
     }
 
     public void SaveData()

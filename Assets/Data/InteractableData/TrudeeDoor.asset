@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 346a05fe32d03c04981ce680ce7a70b8, type: 3}
-  m_Name: Door
+  m_Name: TrudeeDoor
   m_EditorClassIdentifier: 
-  baseName: Door
-  _baseSprite: {fileID: 21300000, guid: dff626296f323e240a1f74025ce3aac9, type: 3}
-  _baseState: 0
+  dataId: TrudeeDoor
+  _enabled: 1

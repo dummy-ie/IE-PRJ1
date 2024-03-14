@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerAttackData", menuName = "Scriptable Objects/Characters/Player/Actions/Attack")]
+[Serializable]
 public class PlayerAttackData : ScriptableObject
 {
     [Header("Player Attack Properties")]

@@ -113,7 +113,7 @@ public class SceneLoader : Singleton<SceneLoader> {
             yield return null;
         }
         //yield return ScreenFader.Instance.FadeIn();
-        JSONSave.Instance.LoadAll();
+        //JSONSave.Instance.LoadAll();
     }
 
     private void FindAllSceneConnections()
