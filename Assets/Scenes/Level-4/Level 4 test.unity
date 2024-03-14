@@ -269,7 +269,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c28bc3eb3e71c624f8c1d2a97c0dd006, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1800920524979646138, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
@@ -372,6 +373,51 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Level 4 Boss Room
   _spawnPoint: {fileID: 626503916}
+--- !u!1 &231214380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231214382}
+  - component: {fileID: 231214381}
+  m_Layer: 0
+  m_Name: JSONSaver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &231214381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231214380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5684a57056445b9408f18e497a3e5d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistent: 1
+--- !u!4 &231214382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231214380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -336.15625, y: 46.663116, z: -26.627047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312640126
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60e80ed83bbea34eb7ac8ac115f62a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   dialoguePanel: {fileID: 312640126}
   dialogueText: {fileID: 995327611}
 --- !u!4 &379458707
@@ -778,7 +825,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 57f8fee44e9eb594cba9c63be477f319, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1800920524979646138, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
@@ -1169,7 +1217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3409955318802853514, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.40000153
+      value: 0.39999962
       objectReference: {fileID: 0}
     - target: {fileID: 3409955318802853514, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1177,11 +1225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -199.3
+      value: -343.3
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.4
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1499,7 +1547,7 @@ Transform:
   m_GameObject: {fileID: 1179340399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -173.84, y: -6.24, z: 0}
+  m_LocalPosition: {x: -176.3, y: -6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20671,11 +20719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -199.3
+      value: -343.3
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.800003
+      value: 8.599999
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20812,9 +20860,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1577287334}
+  - component: {fileID: 1577287335}
   - component: {fileID: 1577287337}
   - component: {fileID: 1577287336}
-  - component: {fileID: 1577287335}
   m_Layer: 0
   m_Name: Scene Bounds
   m_TagString: SceneBounds
@@ -20869,7 +20917,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 5.250992, y: -5.3747845}
+  m_Offset: {x: -2.7334824, y: -5.3747864}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -20880,7 +20928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 343.6199, y: 88.53635}
+  m_Size: {x: 359.58887, y: 88.53635}
   m_EdgeRadius: 0
 --- !u!66 &1577287336
 CompositeCollider2D:
@@ -20923,9 +20971,9 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 1770609408
         Y: 388933856
-      - X: -1665589632
+      - X: -1825279232
         Y: 388933856
-      - X: -1665589632
+      - X: -1825279232
         Y: -496429600
       - X: 1770609408
         Y: -496429600
@@ -20933,8 +20981,8 @@ CompositeCollider2D:
     m_Paths:
     - - {x: 177.06091, y: -49.64296}
       - {x: 177.06091, y: 38.893387}
-      - {x: -166.55896, y: 38.893356}
-      - {x: -166.55894, y: -49.64296}
+      - {x: -182.52792, y: 38.893356}
+      - {x: -182.5279, y: -49.64296}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -21220,3 +21268,4 @@ SceneRoots:
   - {fileID: 515468949}
   - {fileID: 1524681315}
   - {fileID: 404559067}
+  - {fileID: 231214382}

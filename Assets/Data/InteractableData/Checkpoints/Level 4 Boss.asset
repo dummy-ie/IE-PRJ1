@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346a05fe32d03c04981ce680ce7a70b8, type: 3}
   m_Name: Level 4 Boss
   m_EditorClassIdentifier: 
-  baseName: 
-  _baseSprite: {fileID: 0}
-  _baseState: 0
+  dataId: Level 4 Checkpoint 2
+  _enabled: 0

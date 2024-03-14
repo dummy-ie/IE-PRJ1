@@ -19,6 +19,9 @@ public class CheckpointController : MonoBehaviour, ISaveable
             _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ID;
             _playerData.Stats.Health.Current = _playerData.Data.MaxHealth;
             PlayAnimation();
+
+            this._interactableData.Enabled = true;
+            JSONSave.Instance.SaveAll();
             Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ID);
         }
        
