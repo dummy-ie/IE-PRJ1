@@ -107,11 +107,13 @@ public class SceneLoader : Singleton<SceneLoader> {
         //yield return ScreenFader.Instance.FadeOut();
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
+        
         while (!handle.IsDone)
         {
             yield return null;
         }
         //yield return ScreenFader.Instance.FadeIn();
+        //JSONSave.Instance.LoadAll();
     }
 
     private void FindAllSceneConnections()

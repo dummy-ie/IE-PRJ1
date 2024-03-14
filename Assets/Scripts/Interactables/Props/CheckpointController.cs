@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointController : MonoBehaviour
+public class CheckpointController : MonoBehaviour, ISaveable
 {
     // Start is called before the first frame update
     [SerializeField]
     private InteractableData _interactableData;
     private CharacterController2D _playerData;
     private Animator _animator;
-    private bool _wasUsed;
 
     public void OnInteract(){
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -17,23 +16,52 @@ public class CheckpointController : MonoBehaviour
         if(player != null){
             _playerData = player.GetComponent<CharacterController2D>();
             _playerData.Stats.CheckPointData.RespawnPosition = gameObject.transform.position;
-            _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ObjectName;
+            _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ID;
             _playerData.Stats.Health.Current = _playerData.Data.MaxHealth;
-            if (_animator != null)
-                _animator.Play("CheckpointActivate");
-            Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ObjectName);
+            PlayAnimation();
+            Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ID);
         }
        
 
     }
-    private void Awake(){
 
-        _wasUsed = _interactableData.WasInteracted;
+    void PlayAnimation()
+    {
+        if (_animator != null)
+            _animator.Play("CheckpointActivate");
+    }
+
+    private void Awake(){
         _animator = GetComponent<Animator>();
         if (_animator != null)
         {
 
         _animator.StopPlayback();
         }
+
+
+        StartCoroutine(LoadBuffer());
+    }
+
+    private IEnumerator LoadBuffer()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadData();
+
+        if (this._interactableData.Enabled)
+        {
+            PlayAnimation();
+        }
+
+    }
+
+    public void LoadData()
+    {
+        JSONSave.Instance.LoadData(this._interactableData);
+    }
+
+    public void SaveData()
+    {
+        JSONSave.Instance.SaveData(this._interactableData);
     }
 }

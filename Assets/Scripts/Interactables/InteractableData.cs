@@ -5,59 +5,23 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "InteractableData", menuName = "Scriptable Objects/InteractableData")]
 [Serializable]
-public class InteractableData : ScriptableObject
-{   
-    [SerializeField]
-    private string baseName;
+public class InteractableData : BaseData
+{
 
     [SerializeField]
-    private Sprite _baseSprite;
+    private bool _enabled;
+    public bool Enabled
+    {
 
-    [SerializeField]
-    private bool _baseState;
+        get { return this._enabled; }
 
-    private string _objectName;
-    public string ObjectName{
-
-        get{ return this._objectName; }
-
-        set { this._objectName = value; }
-    }
-    
-    private Sprite _sprite;
-
-    public Sprite Sprite{
-
-        get{ return this._sprite; }
-
-        set { this._sprite = value; }
-    }
-    
-    private bool _wasInteracted;
-
-    public bool WasInteracted{
-
-        get{ return this._wasInteracted; }
-
-        set { _wasInteracted = value; }
-    }
-    
-
-    private void OnEnable(){
-
-        this._objectName  = this.baseName;
-        this._sprite = this._baseSprite;
-        this._wasInteracted = this._baseState;
-        
+        set { _enabled = value; }
     }
 
-    private void AfterDeserializeField(){
-        Debug.Log("Values succesfully reset.");
-        this._objectName  = this.baseName;
-        this._sprite = this._baseSprite;
-        this._wasInteracted = this._baseState;
+    InteractableData(string _dataId, bool _enabled)
+    {
+        this.dataId = _dataId;
+        this._enabled = _enabled;
     }
-
-
 }
 

@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d1a4531c56e316f46844ce6a39d02965
   m_SerializeEntries:
-  - m_GUID: ded0861010831d24390345b2b7b45d05
-    m_Address: Assets/Scenes/Level-3/RoomArtilleryBoss_Level_3_Part_2.unity
+  - m_GUID: 81c1a87ac8fb4f7488e3d44af969a2d6
+    m_Address: Assets/Scenes/Level-4/Level 4 Boss.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

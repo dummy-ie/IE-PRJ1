@@ -3,57 +3,79 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : MonoBehaviour, ISaveable
 {
     [SerializeField]
     InteractableData _interactableData;
     private SpriteRenderer _renderer;
-    private Sprite _tempSprite;
-    private bool _wasUsed;
+    [SerializeField]
+    private Sprite _openSprite;
+    [SerializeField]
+    private Sprite _closedSprite;
+    [SerializeField]
+    private bool _enabled;
     private Collider2D _collider;
     public void OnInteract(){
-        if(this._wasUsed == true){
+        if(this._enabled == true){
             this._collider.enabled = true;
-            this._wasUsed = false;
+            this._enabled = false;
         }
 
         else {
             this._collider.enabled = false;
-            this._wasUsed = true;
+            this._enabled = true;
         }
 
         CheckDoorRender();
         //"Save" the data if the object was interacted or not      
-        this._interactableData.WasInteracted = this._wasUsed;
+        this._interactableData.Enabled = this._enabled;
+
+        
     }
 
     private void CheckDoorRender(){
 
-        if(this._wasUsed == true){
-            this._renderer.sprite = this._interactableData.Sprite;
+        if(this._enabled == true){
+            this._renderer.sprite = this._openSprite;
             this._collider.enabled = false;
         }
 
-        else if(this._wasUsed == false){
-            this._renderer.sprite = this._tempSprite;
+        else if(this._enabled == false){
+            this._renderer.sprite = this._closedSprite;
         }
     }
 
-    
-    private void Awake(){
 
-        
-        this._renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        
-        //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
-        this._wasUsed = this._interactableData.WasInteracted;
+    private void Awake(){
         this._collider = this.gameObject.GetComponent<Collider2D>();
-        this._tempSprite = this._renderer.sprite;
+        this._renderer = this.gameObject.GetComponent<SpriteRenderer>();
+
+        //gets the info if the door was opened or closed beforehand, to "save" the memory of the door being opened
+        StartCoroutine(LoadBuffer());
+    }
+
+    private void OnEnable()
+    {
+        CheckDoorRender();
 
     }
 
+    private IEnumerator LoadBuffer()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadData();
 
-    private void OnEnable(){
+        this._enabled = this._interactableData.Enabled;
         CheckDoorRender();
+    }
+
+    public void LoadData()
+    {
+        JSONSave.Instance.LoadData(this._interactableData);
+    }
+
+    public void SaveData()
+    {
+        JSONSave.Instance.SaveData(this._interactableData);
     }
 }

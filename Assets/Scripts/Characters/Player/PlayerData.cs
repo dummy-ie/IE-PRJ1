@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Characters/Player/Data")]
-public class PlayerData : ScriptableObject {
+public class PlayerData : BaseData{
     // have default values for all fields to prevent null errors
     [Header("Properties")]
     [SerializeField]

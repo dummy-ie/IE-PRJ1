@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71c799ce9bb9674f878ae3aff15cbd3, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  dataId: PlayerData
   _maxHealth: 3
   _maxManite: 100
   _groundLayer:
@@ -28,4 +29,4 @@ MonoBehaviour:
   _dashCooldown: 0.5
   _dashDistance: 4
   _canAttack: 1
-  _attackCooldown: 1.5
+  _attackCooldown: 0.3

@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour//, IHittable
+public class CharacterController2D : MonoBehaviour, ISaveable
 {
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
@@ -66,6 +66,13 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private int _isFacingRight = -1;
 
+    private bool _canMove = true;
+    public bool CanMove
+    {
+        get { return _canMove; }
+        set { _canMove = value; }
+    }
+
     private bool _isDashing = false;
     private float _dashTime = 0f;
     private float _dashDuration;
@@ -74,7 +81,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     private bool _isJumpPress = false;
     private bool _extraJump = false;
-    private bool _isGrounded = false;
+    [SerializeField]private bool _isGrounded = false;
 
     private bool _isHit = false;
     private float _setHitTime = .5f;
@@ -145,6 +152,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        Debug.Log("Jummp");
         if (context.started)
         {
             _isJumpPress = true;
@@ -174,7 +182,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit /*|| DialogueManager.GetInstance().IsPlaying*/))
+        if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)) && _canMove)
         {
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }
@@ -393,8 +401,7 @@ public class CharacterController2D : MonoBehaviour//, IHittable
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
 
-        _dashSpeed = _data.DashOriginalSpeed;
-        UpdateDashDuration();
+        StartCoroutine(LoadBuffer());
     }
 
     private void Start()
@@ -428,7 +435,26 @@ public class CharacterController2D : MonoBehaviour//, IHittable
     }
 
 
+    private IEnumerator LoadBuffer()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadData();
 
+        _dashSpeed = _data.DashOriginalSpeed;
+        UpdateDashDuration();
+    }
+
+    public void LoadData()
+    {
+        JSONSave.Instance.LoadData(this._data);
+        JSONSave.Instance.LoadData(this._stats);
+    }
+
+    public void SaveData()
+    {
+        JSONSave.Instance.SaveData(this._data);
+        JSONSave.Instance.SaveData(this._stats);
+    }
 
 
     /*Experimental SHit

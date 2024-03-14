@@ -5,13 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Characters/Stat Field")]
-public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
+public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 {
     [SerializeField]
-    private CheckpointData _baseCheckpointData;
-
     private CheckpointData _checkPointData;
-
     public CheckpointData CheckPointData {
         get { return this._checkPointData; }
         set { this._checkPointData = value; }
@@ -89,7 +86,7 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
     }
 
     [SerializeField]
-    private bool _hasDash = false;
+    private bool _hasDash = true;
     public bool HasDash {
         get { return _hasDash; }
         set { _hasDash = value; }
@@ -112,7 +109,6 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
 
     private void OnEnable()
     {
-        _checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;
     }
