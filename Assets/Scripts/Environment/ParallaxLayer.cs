@@ -24,7 +24,7 @@ public class ParallaxLayer : MonoBehaviour
     void Scroll()
     {
         float delta = _moveSpeedX * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, Camera.main.transform.position.y, 0f);
+        transform.position = new Vector3(transform.position.x, Camera.main.transform.position.y, transform.position.z);
         transform.position += new Vector3(delta, 0f, 0f);
     }
 
