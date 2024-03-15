@@ -20,7 +20,8 @@ public class SceneChanger : MonoBehaviour
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            //PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
+            if (GameObject.FindGameObjectWithTag("Player") == null)
+                PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
             FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }
 
