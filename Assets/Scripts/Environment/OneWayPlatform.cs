@@ -74,7 +74,7 @@ public class OneWayPlatform : MonoBehaviour
     public IEnumerator Wait()
     {
         _platform.surfaceArc = 0f;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         _platform.surfaceArc = 180f;
     }
 }
