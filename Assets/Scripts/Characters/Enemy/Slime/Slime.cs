@@ -118,9 +118,6 @@ public class SlimeMovement : EnemyBaseScript
         yield return new WaitForSeconds(5.0f);
 
         StartCoroutine(FlipInterval());
-
-        
-
     }
 
     IEnumerator AttackLunge()
