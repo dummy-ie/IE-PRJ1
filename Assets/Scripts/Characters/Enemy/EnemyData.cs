@@ -7,9 +7,33 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyData : ScriptableObject
 {
-    public string enemyName;
-    public string description;
-    public Sprite spritesheet;
-    public int health = 3;
-    public int damage = 1;
+    //public Sprite spritesheet;
+
+    [SerializeField]
+    private string _enemyName;
+    public string EnemyName
+    {
+        get { return _enemyName; }
+    }
+
+    [SerializeField]
+    private string _description;
+    public string Description
+    {
+        get { return _description; }
+    }
+
+    [SerializeField]
+    private int _health = 3;
+    public int Health
+    {
+        get { return _health; }
+    }
+
+    [SerializeField]
+    private int _baseDamage = 1;
+    public int BaseDamage
+    {
+        get { return _baseDamage; }
+    }
 }

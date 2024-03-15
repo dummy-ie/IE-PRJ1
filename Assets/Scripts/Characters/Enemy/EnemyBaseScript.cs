@@ -7,7 +7,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
 {
     protected Rigidbody2D _rb;
 
-    protected bool _isFacingRight;
+    
 
     [SerializeField]
     EnemyData _enemyData;
@@ -18,6 +18,8 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     protected int _currentHealth;
 
     private Material _mat;
+
+    protected bool _isFacingRight;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -37,7 +39,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     {
         _rb = GetComponent<Rigidbody2D>();
 
-        _currentHealth = _enemyData.health;
+        _currentHealth = _enemyData.Health;
         _mat = GetComponent<SpriteRenderer>().material;
     }
 
@@ -95,7 +97,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.damage));
+            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.BaseDamage));
         }
     }
 
