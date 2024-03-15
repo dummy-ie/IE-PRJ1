@@ -204,42 +204,47 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Jump()
     {
-        // while grounded, set coyote time and jump limit
-        if (_isGrounded = IsGrounded())
+        // checks if player is not pressing down
+        if (_deltaY > -0.5f)
         {
-            if(!_extraJump)
-                AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
-            _coyoteTimeCounter = _data.CoyoteTime;
-            _extraJump = true; // refresh double jump
-            _aerialDash = true; //refresh aerialDash
-        }
-        else
-            _coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
+            // while grounded, set coyote time and jump limit
+            if (_isGrounded = IsGrounded())
+            {
+                if (!_extraJump)
+                    AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
+                _coyoteTimeCounter = _data.CoyoteTime;
+                _extraJump = true; // refresh double jump
+                _aerialDash = true; //refresh aerialDash
+            }
+            else
+                _coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
 
-        if (!IsGrounded())
-            _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
+            if (!IsGrounded())
+                _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
 
-        if (!_isJumpPress && _rb.velocity.y > 0f)
-        {
-            // fall when releasing the jump button early (allows low jumping)
-            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
-            _coyoteTimeCounter = 0f;
-        }
-        else if (_rb.velocity.y < 0f) // fast fall over time
-        {
-            _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
-        }
+            if (!_isJumpPress && _rb.velocity.y > 0f)
+            {
+                // fall when releasing the jump button early (allows low jumping)
+                _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
+                _coyoteTimeCounter = 0f;
+            }
+            else if (_rb.velocity.y < 0f) // fast fall over time
+            {
+                _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            }
 
-        // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
-        if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
-        {
-            AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
-            _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
-            _jumpBufferCounter = 0f;
+            // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
+            if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
+            {
+                AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
+                _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
+                _jumpBufferCounter = 0f;
 
-            if (!_isGrounded && _coyoteTimeCounter <= 0f)
-                _extraJump = false;
+                if (!_isGrounded && _coyoteTimeCounter <= 0f)
+                    _extraJump = false;
+            }
         }
+        
     }
 
     
