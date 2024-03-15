@@ -521,7 +521,7 @@ MonoBehaviour:
     m_ActionId: 5340e116-9bba-4ada-bcfe-86c565492798
     m_ActionName: Player/GroundPound[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -545,6 +545,7 @@ MonoBehaviour:
   _model3D: {fileID: 2659381263334121756}
   _boxCastDistance: 0.47
   _boxSize: {x: 0.3, y: 0.4}
+  _isGrounded: 0
 --- !u!114 &6500837453471319468
 MonoBehaviour:
   m_ObjectHideFlags: 0

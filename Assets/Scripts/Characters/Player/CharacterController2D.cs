@@ -1,4 +1,4 @@
- using Cinemachine;
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +14,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [SerializeField] private bool _drawGizmos;
 #endif
     Transform _lastSpawnPosition;
-    public Transform LastSpawnPosition {
+    public Transform LastSpawnPosition
+    {
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
     }
@@ -22,9 +23,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [Header("Player Data")]
     [SerializeField]
     PlayerData _data;
-    public PlayerData Data 
-    { 
-        get { return _data; } 
+    public PlayerData Data
+    {
+        get { return _data; }
     }
     [SerializeField]
     PlayerStatField _stats;
@@ -51,7 +52,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private float _deltaX = 0f;
     private float _deltaY = 0f;
 
-    public float Vertical{ get { return _deltaY; } }
+    public float Vertical { get { return _deltaY; } }
+
+    private bool _isPressDown;
 
     private float _currentFallMultiplier;
     public float CurrentFallMultiplier
@@ -61,7 +64,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
     private float _coyoteTimeCounter = 0f, _jumpBufferCounter = 0f;
-    
+
     private float _vectorShift = 100f;
 
     private int _isFacingRight = -1;
@@ -81,7 +84,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private bool _isJumpPress = false;
     private bool _extraJump = false;
-    [SerializeField]private bool _isGrounded = false;
+    [SerializeField] private bool _isGrounded = false;
 
     private bool _isHit = false;
     private float _setHitTime = .5f;
@@ -114,13 +117,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         set { _onLadder = value; }
     }
 
-    public int IsFacingRight {
+    public int IsFacingRight
+    {
         get { return _isFacingRight; }
     }
-    public void FlipTo(int isFacingRight) { 
+    public void FlipTo(int isFacingRight)
+    {
         _isFacingRight = isFacingRight;
     }
-    private void Flip() {
+    private void Flip()
+    {
         if (_isFacingRight == 1 && _deltaX < 0f || _isFacingRight == -1 && _deltaX > 0f)
         {
             _isFacingRight *= -1;
@@ -130,7 +136,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
     }
 
-    
+
     public void OnMove(InputAction.CallbackContext context)
     {
         float moveX = context.ReadValue<Vector2>().x;
@@ -143,6 +149,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         {
             // Debug.Log("Moving now" + moveX);
 
+            if (moveY <= -0.5f)
+                _isPressDown = true;
+
             if (moveX >= 0.5f || moveX <= -0.5f)
                 _deltaX = moveX;
             if (moveY >= 0.5f || moveY <= -0.5f)
@@ -150,10 +159,18 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
         else if (context.canceled)
         {
+            _isPressDown = false;
             // Debug.Log("Move released");
             _deltaX = 0;
             _deltaY = 0;
         }
+    }
+
+    private OneWayPlatform GetPlatformBelow()
+    {
+        Collider2D collider = GetGroundRaycast().collider;
+        OneWayPlatform platform = collider.gameObject.GetComponent<OneWayPlatform>();
+        return platform;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -161,6 +178,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Debug.Log("Jummp");
         if (context.started)
         {
+            OneWayPlatform platform = GetPlatformBelow();
+            if (platform != null && _isPressDown)
+            {
+                Debug.Log("SHOULD DROP DOWN");
+                StartCoroutine(platform.Wait());
+                return;
+            }
+
             _isJumpPress = true;
             // reset jump buffer counter
             _jumpBufferCounter = _data.JumpBufferTime;
@@ -182,8 +207,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _isDashing = true;
             _aerialDash = false;
 
-             //dash direction based on where playr is facing
-             _dashSpeed *= _isFacingRight;
+            //dash direction based on where playr is facing
+            _dashSpeed *= _isFacingRight;
         }
     }
     private void Move()
@@ -244,10 +269,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
                     _extraJump = false;
             }
         }
-        
+
     }
 
-    
+
     private void Dash()
     {
         if (_stats.HasDash)
@@ -324,6 +349,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
 
+    private RaycastHit2D GetGroundRaycast()
+    {
+        return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
+    }
 
     public bool IsGrounded()
     {
@@ -335,7 +364,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
 
-    
+
 
     public void ShiftTo2D()
     {
@@ -431,7 +460,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         Hits();
 
-        if(this._stats.Health.Current == 0){
+        if (this._stats.Health.Current == 0)
+        {
             //PlayerSpawner.Instance.Respawn(Stats.CheckPointData.CheckPointName, Stats.CheckPointData.RespawnPosition);
             this._stats.Health.Current = this._data.MaxHealth;
             this._data.CanAttack = true;
@@ -446,7 +476,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Move();
         Jump();
         Dash();
-        
+
         if (!_isDashing) Flip();
     }
 
