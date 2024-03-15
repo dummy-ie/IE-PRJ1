@@ -18,6 +18,7 @@ public class OneWayPlatform : MonoBehaviour
         float moveY = context.ReadValue<Vector2>().y;
         if (context.started)
         {
+            Debug.Log("PLATFORM : PRESSING");
         }
         else if (context.performed)
         {
@@ -35,6 +36,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log("PLATFORM : JUMPING");
             _isPressJump = true;
         }
         else if (context.canceled)
@@ -50,7 +52,7 @@ public class OneWayPlatform : MonoBehaviour
 
     void Update()
     {
-        if (_isColliding && _isPressDown && _isPressJump)
+        if (_isColliding && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.Z))
         {
             Debug.Log("SHOULD DROP DOWN");
             _platform.surfaceArc = 0f;
@@ -71,7 +73,7 @@ public class OneWayPlatform : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(2.0f);
         _platform.surfaceArc = 180f;
     }
 }
