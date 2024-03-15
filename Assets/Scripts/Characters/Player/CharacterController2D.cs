@@ -108,6 +108,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private float _dashSpeed = 0f;
     //private bool submitPressed = false;
 
+    private bool _onLadder = false;
+    public bool OnLadder
+    {
+        set { _onLadder = value; }
+    }
+
     public int IsFacingRight {
         get { return _isFacingRight; }
     }
@@ -187,6 +193,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }
 
+        if (_onLadder)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
+        }
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
         //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
