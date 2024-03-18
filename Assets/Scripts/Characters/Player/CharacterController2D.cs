@@ -1,4 +1,4 @@
- using Cinemachine;
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +14,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [SerializeField] private bool _drawGizmos;
 #endif
     Transform _lastSpawnPosition;
-    public Transform LastSpawnPosition {
+    public Transform LastSpawnPosition
+    {
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
     }
@@ -22,9 +23,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [Header("Player Data")]
     [SerializeField]
     PlayerData _data;
-    public PlayerData Data 
-    { 
-        get { return _data; } 
+    public PlayerData Data
+    {
+        get { return _data; }
     }
     [SerializeField]
     PlayerStatField _stats;
@@ -51,7 +52,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private float _deltaX = 0f;
     private float _deltaY = 0f;
 
-    public float Vertical{ get { return _deltaY; } }
+    public float Vertical { get { return _deltaY; } }
+
+    private bool _isPressDown;
 
     private float _currentFallMultiplier;
     public float CurrentFallMultiplier
@@ -61,7 +64,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
     private float _coyoteTimeCounter = 0f, _jumpBufferCounter = 0f;
-    
+
     private float _vectorShift = 100f;
 
     private int _isFacingRight = -1;
@@ -81,7 +84,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private bool _isJumpPress = false;
     private bool _extraJump = false;
-    [SerializeField]private bool _isGrounded = false;
+    [SerializeField] private bool _isGrounded = false;
 
     private bool _isHit = false;
     private float _setHitTime = .5f;
@@ -108,13 +111,22 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private float _dashSpeed = 0f;
     //private bool submitPressed = false;
 
-    public int IsFacingRight {
+    private bool _onLadder = false;
+    public bool OnLadder
+    {
+        set { _onLadder = value; }
+    }
+
+    public int IsFacingRight
+    {
         get { return _isFacingRight; }
     }
-    public void FlipTo(int isFacingRight) { 
+    public void FlipTo(int isFacingRight)
+    {
         _isFacingRight = isFacingRight;
     }
-    private void Flip() {
+    private void Flip()
+    {
         if (_isFacingRight == 1 && _deltaX < 0f || _isFacingRight == -1 && _deltaX > 0f)
         {
             _isFacingRight *= -1;
@@ -124,7 +136,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
     }
 
-    
+
     public void OnMove(InputAction.CallbackContext context)
     {
         float moveX = context.ReadValue<Vector2>().x;
@@ -137,6 +149,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         {
             // Debug.Log("Moving now" + moveX);
 
+            if (moveY <= -0.5f)
+                _isPressDown = true;
+
             if (moveX >= 0.5f || moveX <= -0.5f)
                 _deltaX = moveX;
             if (moveY >= 0.5f || moveY <= -0.5f)
@@ -144,10 +159,18 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
         else if (context.canceled)
         {
+            _isPressDown = false;
             // Debug.Log("Move released");
             _deltaX = 0;
             _deltaY = 0;
         }
+    }
+
+    private OneWayPlatform GetPlatformBelow()
+    {
+        Collider2D collider = GetGroundRaycast().collider;
+        OneWayPlatform platform = collider.gameObject.GetComponent<OneWayPlatform>();
+        return platform;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -155,6 +178,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Debug.Log("Jummp");
         if (context.started)
         {
+            OneWayPlatform platform = GetPlatformBelow();
+            if (platform != null && _isPressDown)
+            {
+                Debug.Log("SHOULD DROP DOWN");
+                StartCoroutine(platform.Wait());
+                return;
+            }
+
             _isJumpPress = true;
             // reset jump buffer counter
             _jumpBufferCounter = _data.JumpBufferTime;
@@ -176,8 +207,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _isDashing = true;
             _aerialDash = false;
 
-             //dash direction based on where playr is facing
-             _dashSpeed *= _isFacingRight;
+            //dash direction based on where playr is facing
+            _dashSpeed *= _isFacingRight;
         }
     }
     private void Move()
@@ -187,6 +218,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }
 
+        if (_onLadder)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
+        }
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
         //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
@@ -194,45 +229,50 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Jump()
     {
-        // while grounded, set coyote time and jump limit
-        if (_isGrounded = IsGrounded())
+        // checks if player is not pressing down
+        if (_deltaY > -0.5f)
         {
-            if(!_extraJump)
-                AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
-            _coyoteTimeCounter = _data.CoyoteTime;
-            _extraJump = true; // refresh double jump
-            _aerialDash = true; //refresh aerialDash
-        }
-        else
-            _coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
+            // while grounded, set coyote time and jump limit
+            if (_isGrounded = IsGrounded())
+            {
+                if (!_extraJump)
+                    AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
+                _coyoteTimeCounter = _data.CoyoteTime;
+                _extraJump = true; // refresh double jump
+                _aerialDash = true; //refresh aerialDash
+            }
+            else
+                _coyoteTimeCounter -= Time.deltaTime; // otherwise, count down the coyote time
 
-        if (!IsGrounded())
-            _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
+            if (!IsGrounded())
+                _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
 
-        if (!_isJumpPress && _rb.velocity.y > 0f)
-        {
-            // fall when releasing the jump button early (allows low jumping)
-            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
-            _coyoteTimeCounter = 0f;
-        }
-        else if (_rb.velocity.y < 0f) // fast fall over time
-        {
-            _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            if (!_isJumpPress && _rb.velocity.y > 0f)
+            {
+                // fall when releasing the jump button early (allows low jumping)
+                _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
+                _coyoteTimeCounter = 0f;
+            }
+            else if (_rb.velocity.y < 0f) // fast fall over time
+            {
+                _rb.velocity += (_currentFallMultiplier - 1f) * Time.deltaTime * Physics2D.gravity * Vector2.up;
+            }
+
+            // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
+            if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
+            {
+                AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
+                _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
+                _jumpBufferCounter = 0f;
+
+                if (!_isGrounded && _coyoteTimeCounter <= 0f)
+                    _extraJump = false;
+            }
         }
 
-        // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
-        if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
-        {
-            AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
-            _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
-            _jumpBufferCounter = 0f;
-
-            if (!_isGrounded && _coyoteTimeCounter <= 0f)
-                _extraJump = false;
-        }
     }
 
-    
+
     private void Dash()
     {
         if (_stats.HasDash)
@@ -309,6 +349,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
 
+    private RaycastHit2D GetGroundRaycast()
+    {
+        return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _data.GroundLayer);
+    }
 
     public bool IsGrounded()
     {
@@ -320,7 +364,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _dashTime = _dashDuration = _data.DashDistance / _dashSpeed;
     }
 
-    
+
 
     public void ShiftTo2D()
     {
@@ -416,7 +460,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         Hits();
 
-        if(this._stats.Health.Current == 0){
+        if (this._stats.Health.Current == 0)
+        {
             //PlayerSpawner.Instance.Respawn(Stats.CheckPointData.CheckPointName, Stats.CheckPointData.RespawnPosition);
             this._stats.Health.Current = this._data.MaxHealth;
             this._data.CanAttack = true;
@@ -431,7 +476,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Move();
         Jump();
         Dash();
-        
+
         if (!_isDashing) Flip();
     }
 
