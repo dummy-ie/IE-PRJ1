@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d1a4531c56e316f46844ce6a39d02965
-  m_SerializeEntries:
-  - m_GUID: a9c0ab8986e060f46a1ea1d34587216a
-    m_Address: Assets/Data/Scene Connection/Level 1 - Bunker - Level 3.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
   m_SchemaSet:

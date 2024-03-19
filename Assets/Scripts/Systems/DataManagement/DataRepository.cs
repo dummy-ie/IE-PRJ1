@@ -29,18 +29,17 @@ public class DataRepository
         }
     }
 
-    public T RetrieveData<T>(T getData) where T : BaseData
+    public T RetrieveData<T>(string ID)
     {
-        if (_dataList.ContainsKey(getData.ID))
+        if (_dataList.ContainsKey(ID))
         {
-            return _dataList[getData.ID] as T;
-        }
+
+            return  (T)_dataList[ID];
+        } 
         else
         {
-            Debug.Log("Data ID [" + getData.ID + "] does not exist!");
-            Debug.Log("Generating new data for [" + getData.ID + "]");
-            AddData(getData);
-            return _dataList[getData.ID] as T;
+            Debug.Log("Data ID [" + ID + "] does not exist!");
+            return default;
         }
     }
 }

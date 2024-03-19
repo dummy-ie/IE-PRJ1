@@ -61,7 +61,7 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData(this._interactableData);
+        this._interactableData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
     }
 
     public void SaveData()

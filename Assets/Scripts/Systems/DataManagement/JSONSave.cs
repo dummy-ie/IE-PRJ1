@@ -57,7 +57,7 @@ public class JSONSave : Singleton<JSONSave>
     {
         if (this._dataRepository == null)
             Debug.LogError("WTF THERES NO DATA REPOSITORY AHAHAHAHAHAH");
-        return this._dataRepository.DataList[data.ID];
+        return this._dataRepository.RetrieveData<T>(data.ID);
         //return this._dataRepository.DataList[data.ID] as T;
     }
 
