@@ -487,7 +487,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private IEnumerator LoadBuffer()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(1f);
         LoadData();
 
         _dashSpeed = _data.DashOriginalSpeed;

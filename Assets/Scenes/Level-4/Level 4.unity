@@ -2625,6 +2625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData.dataId
+      value: Level 4 Plank 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1683464319481859067, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
       propertyPath: m_Name
       value: planks (1)
@@ -2951,6 +2955,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData.dataId
+      value: Level 4 Plank 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1683464319481859067, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
       propertyPath: m_Name
       value: planks (3)
@@ -3856,7 +3864,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.13329124, y: 11.65904}
@@ -3890,9 +3898,9 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 3 Secondary
+  _targetSceneName: Level 3
   _spawnPoint: {fileID: 482796389}
-  _changeOnTrigger: 0
+  _changeOnTrigger: 1
 --- !u!1001 &1455791724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3901,6 +3909,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData.dataId
+      value: Level 4 Plank 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1683464319481859067, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
       propertyPath: m_Name
       value: planks (4)
@@ -58690,6 +58702,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData.dataId
+      value: Level 4 Plank 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1683464319481859067, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
       propertyPath: m_Name
       value: planks
@@ -58764,6 +58780,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData.dataId
+      value: Level 4 Plank 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3686418708000023644, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
+      propertyPath: _breakData._enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1683464319481859067, guid: 121383fb1071be74580b3ba1248cf3c6, type: 3}
       propertyPath: m_Name
       value: planks (2)
@@ -59702,7 +59726,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.13329124, y: 11.65904}
@@ -59736,9 +59760,9 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 3 Main
+  _targetSceneName: Level 3
   _spawnPoint: {fileID: 835547391}
-  _changeOnTrigger: 0
+  _changeOnTrigger: 1
 --- !u!114 &2137603698
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
         if(player != null){
             _playerData = player.GetComponent<CharacterController2D>();
-            _playerData.Stats.CheckPointData.RespawnPosition = gameObject.transform.position;
+            _playerData.Stats.CheckPointData.SetRespawnPos(gameObject.transform.position);
             _playerData.Stats.CheckPointData.CheckPointName = _interactableData.ID;
             _playerData.Stats.Health.Current = _playerData.Data.MaxHealth;
             PlayAnimation();
@@ -49,7 +49,7 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     private IEnumerator LoadBuffer()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(1f);
         LoadData();
 
         if (this._interactableData.Enabled)
@@ -61,7 +61,7 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        this._interactableData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
+        JSONSave.Instance.LoadData(this._interactableData);
     }
 
     public void SaveData()
