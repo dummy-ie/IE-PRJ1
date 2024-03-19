@@ -17,46 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9bbacfca7a26bb84c96485e917c28710
   m_SerializeEntries:
-  - m_GUID: b03cd044b3eebec448cee270063da841
-    m_Address: Assets/Scenes/Level-3/Room1_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6c78fdb5f1137934bb021d88c7b004c0
-    m_Address: Assets/Scenes/Level-3/Room2_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6b0d8b9b1a2abdf44969510b50e308a6
-    m_Address: Assets/Scenes/Level-3/Room3_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9c97457db999c8b40af74a3ee66010ce
-    m_Address: Assets/Scenes/Level-3/Room4_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 14116a0c36d2f2f4cbc9ef742dd60f2f
-    m_Address: Assets/Scenes/Level-3/Room5_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 00d57840e499c1049bf4656c64373942
-    m_Address: Assets/Scenes/Level-3/RoomArtilleryBoss_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf3f9054b7da4d240be9cf6f91cbe64d
-    m_Address: Assets/Scenes/Level-3/RoomUnderground1_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eb8a02e6fb71ab04c8dc84879d175927
-    m_Address: Assets/Scenes/Level-3/RoomUnderground2_Level_3.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d2252e006fb8e24080e96fb39507838
     m_Address: Assets/Scenes/Level-3/Level3.unity
     m_ReadOnly: 0

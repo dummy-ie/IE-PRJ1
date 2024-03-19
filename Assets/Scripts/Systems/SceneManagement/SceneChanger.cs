@@ -14,6 +14,8 @@ public class SceneChanger : MonoBehaviour
     private string _targetSceneName;
     [SerializeField]
     private Transform _spawnPoint;
+    [SerializeField]
+    private bool _changeOnTrigger = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,18 +60,21 @@ public class SceneChanger : MonoBehaviour
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (_changeOnTrigger)
         {
-            
-            SceneConnection.ActiveConnection = _sceneConnection;
-            //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            if (_targetSceneReference != null)
-                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            if (other.CompareTag("Player"))
+            {
+
+                SceneConnection.ActiveConnection = _sceneConnection;
+                //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
+                //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+                if (_targetSceneReference != null)
+                    SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            }
         }
-    }*/
+    }
 }

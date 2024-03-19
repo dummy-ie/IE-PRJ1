@@ -17,8 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 1050506dc74f9ca4fb11e904ed3b9d26
   m_SerializeEntries:
-  - m_GUID: a322e925ef583cf4cb9e8b8d5b41000e
-    m_Address: Assets/Prefabs/Environment/Level1.obj
+  - m_GUID: 0b7e9b7e13b06da4ea7effe18846fdbf
+    m_Address: Assets/Scenes/Level-1/Level1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c5869383b923e04e9a3a710c66ab00b
+    m_Address: Assets/Scenes/Level-1/Level1-Bunker.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
