@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
   _nextSceneReference:
-    m_AssetGUID: d1ffc18c727543f48b2c448932167a55
+    m_AssetGUID: f837ca701c3abec4ea842abde88565a1
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
