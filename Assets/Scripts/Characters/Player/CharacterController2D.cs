@@ -21,12 +21,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
     [Header("Player Data")]
+
+
     [SerializeField]
     PlayerData _data;
     public PlayerData Data
     {
         get { return _data; }
     }
+
+
     [SerializeField]
     PlayerStatField _stats;
     public PlayerStatField Stats
@@ -492,8 +496,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData(this._data);
-        JSONSave.Instance.LoadData(this._stats);
+        this._data = JSONSave.Instance.LoadData<PlayerData>(this._data);
+        this._stats = JSONSave.Instance.LoadData<PlayerStatField>(this._stats);
     }
 
     public void SaveData()

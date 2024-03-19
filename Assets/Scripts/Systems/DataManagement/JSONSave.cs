@@ -10,7 +10,8 @@ public class JSONSave : Singleton<JSONSave>
     private string _savePath;
     private string _persistentPath;
 
-    
+    private DataRepository _dataRepository;
+    public DataRepository Repository { get { return _dataRepository; } }
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,16 @@ public class JSONSave : Singleton<JSONSave>
 
     public void SaveData(BaseData data)
     {
+        this._dataRepository.AddData(data);
+    }
+
+    public T LoadData<T>(BaseData data) where T : class
+    {
+        return this._dataRepository.RetrieveData(data) as T;
+    }
+
+    /*public void SaveData(BaseData data)
+    {
         string savePath = this._savePath + data.ID + ".json";
 
         Debug.Log("Saving data at " + savePath);
@@ -64,7 +75,7 @@ public class JSONSave : Singleton<JSONSave>
         reader.Close();
         JsonUtility.FromJsonOverwrite(json, data);
 
-    }
+    }*/
 
     public void SaveAll()
     {
