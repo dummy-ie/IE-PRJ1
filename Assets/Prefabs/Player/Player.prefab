@@ -538,8 +538,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drawGizmos: 1
-  _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
-  _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
+  _data:
+    dataId: PlayerData
+    _maxHealth: 3
+    _maxManite: 100
+    _groundLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    _speed: 6
+    _allowDoubleJump: 0
+    _jumpForce: 14
+    _fallMultiplier: 4
+    _lowJumpMultiplier: 0.8
+    _coyoteTime: 0.2
+    _jumpBufferTime: 0.2
+    _dashOriginalSpeed: 20
+    _dashCooldown: 0.5
+    _dashDistance: 4
+    _canAttack: 1
+    _attackCooldown: 3
+  _stats:
+    dataId: PlayerStats
+    _checkPointData:
+      _checkPointName: 
+      _respawnPosition: {x: 0, y: 0, z: 0}
+    _hasDash: 1
+    _hasSlash: 0
+    _hasPound: 0
   _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
@@ -775,7 +800,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: -8}
+  m_LocalPosition: {x: 0, y: 0.40000153, z: -8}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

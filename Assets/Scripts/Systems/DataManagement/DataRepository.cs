@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ using UnityEngine;
 public class DataRepository 
 {
     
-    Dictionary<string,BaseData> _dataList;
+    Dictionary<string,BaseData> _dataList = new Dictionary<string, BaseData>();
 
     public void AddData(BaseData newData)
     {

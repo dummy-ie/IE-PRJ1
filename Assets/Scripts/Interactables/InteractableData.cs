@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InteractableData", menuName = "Scriptable Objects/InteractableData")]
 [Serializable]
 public class InteractableData : BaseData
 {

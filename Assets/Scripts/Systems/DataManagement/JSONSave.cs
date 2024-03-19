@@ -10,7 +10,7 @@ public class JSONSave : Singleton<JSONSave>
     private string _savePath;
     private string _persistentPath;
 
-    private DataRepository _dataRepository;
+    private DataRepository _dataRepository = new();
     public DataRepository Repository { get { return _dataRepository; } }
 
     // Start is called before the first frame update
@@ -50,6 +50,8 @@ public class JSONSave : Singleton<JSONSave>
 
     public T LoadData<T>(BaseData data) where T : class
     {
+        if (this._dataRepository == null)
+            Debug.LogError("WTF THERES NO DATA REPOSITORY AHAHAHAHAHAH");
         return this._dataRepository.RetrieveData(data) as T;
     }
 

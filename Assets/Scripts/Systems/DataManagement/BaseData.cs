@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [Serializable]
-public class BaseData : MonoBehaviour
+public class BaseData 
 {
     [SerializeField]
     protected string dataId;

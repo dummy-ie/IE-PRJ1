@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Characters/Stat Field")]
+[Serializable]
 public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 {
     [SerializeField]

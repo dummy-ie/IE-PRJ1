@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Characters/Player/Data")]
+[Serializable]
 public class PlayerData : BaseData{
     // have default values for all fields to prevent null errors
     [Header("Properties")]
