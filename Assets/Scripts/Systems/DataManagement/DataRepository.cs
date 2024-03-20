@@ -9,12 +9,12 @@ public class DataRepository
 {
     [SerializeField]
     [JsonProperty]
-    private SerializableDictionary<string, BaseData> _dataList = new();
-    public SerializableDictionary<string, BaseData> DataList
+    private Dictionary<string, BaseData> _dataList = new();
+
+    public Dictionary<string, BaseData> DataList
     {
         get { return _dataList; }
     }
-
 
     public void AddData(BaseData newData)
     {
@@ -29,17 +29,24 @@ public class DataRepository
         }
     }
 
-    public T RetrieveData<T>(string ID)
+    public T RetrieveData<T>(BaseData data) where T : class
     {
-        if (_dataList.ContainsKey(ID))
+        if (_dataList.ContainsKey(data.ID))
         {
+            
 
-            return  (T)_dataList[ID];
+            Debug.Log("["+data.ID+"] key found! Retrieving...");
+            return _dataList[data.ID] as T;
+            
         } 
         else
         {
-            Debug.Log("Data ID [" + ID + "] does not exist!");
+            Debug.Log("Data ID [" + data.ID + "] does not exist!");
+            Debug.Log("Generating new data for ["+ data.ID +"]");
+            AddData(data);
             return default;
         }
     }
+
+   
 }

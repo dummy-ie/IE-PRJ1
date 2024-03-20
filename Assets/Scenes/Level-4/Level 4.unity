@@ -3900,7 +3900,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Level 3
   _spawnPoint: {fileID: 482796389}
-  _changeOnTrigger: 1
+  _changeOnTrigger: 0
 --- !u!1001 &1455791724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59035,6 +59035,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
+  _dataRepository:
+    _dataList:
+      keys: []
+      values: []
 --- !u!4 &1983229091
 Transform:
   m_ObjectHideFlags: 0
@@ -59762,7 +59766,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Level 3
   _spawnPoint: {fileID: 835547391}
-  _changeOnTrigger: 1
+  _changeOnTrigger: 0
 --- !u!114 &2137603698
 MonoBehaviour:
   m_ObjectHideFlags: 0

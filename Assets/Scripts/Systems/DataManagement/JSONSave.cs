@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -32,19 +33,12 @@ public class JSONSave : Singleton<JSONSave>
         catch (IOException ex)
         {
         }*/
-        var info = new DirectoryInfo(this._savePath);
-        var fileInfo = info.GetFiles("*.json");
-        foreach (var file in fileInfo)
-        {
-            Debug.Log(file.Name);
-            LoadRepository(file.Name);
-        }
-        LoadAll();
+        LoadRepository();
     }
 
     private void SetPaths()
     {
-        this._savePath = Application.dataPath + Path.AltDirectorySeparatorChar + "/SaveData/";
+        this._savePath = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveData/";
         this._persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData/";
     }
 
@@ -53,30 +47,29 @@ public class JSONSave : Singleton<JSONSave>
         this._dataRepository.AddData(data);
     }
 
-    public T LoadData<T>(BaseData data)
+    public T LoadData<T>(BaseData data) where T : class
     {
-        if (this._dataRepository == null)
-            Debug.LogError("WTF THERES NO DATA REPOSITORY AHAHAHAHAHAH");
-        return this._dataRepository.RetrieveData<T>(data.ID);
+        Debug.Log("LoadData called for ["+ data.ID +"]");
+        return this._dataRepository.RetrieveData<T>(data);
         //return this._dataRepository.DataList[data.ID] as T;
     }
 
-    public void SaveRepository(BaseData data)
+    public void SaveRepository()
     {
-        string savePath = this._savePath + data.ID + ".json";
+        string savePath = this._savePath + "SaveData.json";
 
         Debug.Log("Saving data at " + savePath);
-        string json = JsonConvert.SerializeObject(data);
+        string json = JsonConvert.SerializeObject(this._dataRepository);
 
         using StreamWriter writer = new StreamWriter(savePath);
         writer.Write(json);
     }
 
-    public void LoadRepository(string fileName)
+    public void LoadRepository()
     {
         
 
-        string loadPath = this._savePath + fileName;
+        string loadPath = this._savePath + "SaveData.json";
 
         if (File.Exists(loadPath))
         {
@@ -85,9 +78,12 @@ public class JSONSave : Singleton<JSONSave>
 
             string json = reader.ReadToEnd();
             reader.Close();
-            this._dataRepository.AddData(JsonConvert.DeserializeObject<BaseData>(json));
 
+            Debug.Log(json);
             
+            this._dataRepository = JsonConvert.DeserializeObject<DataRepository>(json);
+            Debug.Log("dataList Size:" + _dataRepository.DataList.Count);
+
         }
         else
         {
@@ -106,10 +102,8 @@ public class JSONSave : Singleton<JSONSave>
             saver.SaveData();
         }*/
 
-        foreach (var data in _dataRepository.DataList)
-        {
-            SaveRepository(data.Value);
-        }
+        SaveRepository();
+
     }
 
     public void LoadAll()

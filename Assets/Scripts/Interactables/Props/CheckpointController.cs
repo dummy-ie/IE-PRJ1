@@ -49,9 +49,9 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     private IEnumerator LoadBuffer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         LoadData();
-
+        yield return new WaitForSeconds(1f);
         if (this._interactableData.Enabled)
         {
             PlayAnimation();
@@ -61,7 +61,15 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        this._interactableData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
+        InteractableData newData = JSONSave.Instance.LoadData<InteractableData>(this._interactableData);
+        if (newData != null)
+        {
+            this._interactableData = newData;
+        }
+        else
+        {
+            Debug.Log("NEWDATA NULL");
+        }
     }
 
     public void SaveData()

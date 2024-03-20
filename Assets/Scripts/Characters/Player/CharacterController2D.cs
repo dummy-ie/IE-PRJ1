@@ -487,17 +487,24 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private IEnumerator LoadBuffer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         LoadData();
-
+        yield return new WaitForSeconds(1f);
         _dashSpeed = _data.DashOriginalSpeed;
         UpdateDashDuration();
     }
 
     public void LoadData()
     {
-        this._data = JSONSave.Instance.LoadData<PlayerData>(this._data);
-        this._stats = JSONSave.Instance.LoadData<PlayerStatField>(this._stats);
+        PlayerData newData = JSONSave.Instance.LoadData<PlayerData>(this._data);
+        PlayerStatField newStats = JSONSave.Instance.LoadData<PlayerStatField>(this._stats);
+
+        if (newData != null && newStats != null)
+        {
+            this._data = newData;
+            this._stats = newStats;
+        }
+        
     }
 
     public void SaveData()
