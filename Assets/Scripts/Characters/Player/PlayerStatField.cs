@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 {
     [SerializeField]
-    [JsonProperty]
     private CheckpointData _checkPointData;
     public CheckpointData CheckPointData {
         get { return this._checkPointData; }
@@ -17,7 +16,6 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     }
 
     [Serializable]
-    [JsonObject]
     public class PlayerHealthField {
         private int _max;
         public int Max {
@@ -45,14 +43,12 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         }
     }
     [SerializeField]
-    [JsonProperty]
     private PlayerHealthField _health;
     public PlayerHealthField Health { 
         get { return _health; } 
     }
 
     [Serializable]
-    [JsonObject]
     public class PlayerManiteField {
         private int _max;
         public int Max {
@@ -84,27 +80,23 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 
     }
     [SerializeField]
-    [JsonProperty]
     private PlayerManiteField _manite;
     public PlayerManiteField Manite { 
         get { return _manite; } 
     }
     [SerializeField]
-    [JsonProperty]
     private bool _hasDash = true;
     public bool HasDash {
         get { return _hasDash; }
         set { _hasDash = value; }
     }
     [SerializeField]
-    [JsonProperty]
     private bool _hasSlash = false;
     public bool HasSlash {
         get { return _hasSlash; }
         set { _hasSlash = value; }
     }
     [SerializeField]
-    [JsonProperty]
     private bool _hasPound = false;
     public bool HasPound
     {

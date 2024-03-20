@@ -1,4 +1,6 @@
+using Ink.Runtime;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +9,17 @@ using UnityEngine;
 [JsonObject]
 public class DataRepository
 {
-    [SerializeField]
     [JsonProperty]
-    private Dictionary<string, BaseData> _dataList = new();
+    private Dictionary<string, dynamic> _dataList = new();
 
-    public Dictionary<string, BaseData> DataList
+    [JsonIgnore]
+    public Dictionary<string, dynamic> DataList
     {
         get { return _dataList; }
+        set { _dataList = value; }
     }
 
-    public void AddData(BaseData newData)
+    public void AddData<T>(T newData) where T : BaseData
     {
         Debug.Log("Adding Data ["+ newData.ID + "]...");
         if (!_dataList.ContainsKey(newData.ID))
@@ -29,14 +32,25 @@ public class DataRepository
         }
     }
 
-    public T RetrieveData<T>(BaseData data) where T : class
+    public void RetrieveData<T>(ref T data) where T : BaseData
     {
         if (_dataList.ContainsKey(data.ID))
         {
-            
 
             Debug.Log("["+data.ID+"] key found! Retrieving...");
-            return _dataList[data.ID] as T;
+
+            if (_dataList[data.ID] is JObject)
+            {
+                Debug.Log(_dataList[data.ID]);
+                T obj = JsonConvert.DeserializeObject<T>(_dataList[data.ID]);
+                Debug.Log(obj);
+                //data = obj;
+            }
+            else
+            {
+                data = _dataList[data.ID];
+            }
+
             
         } 
         else
@@ -44,7 +58,7 @@ public class DataRepository
             Debug.Log("Data ID [" + data.ID + "] does not exist!");
             Debug.Log("Generating new data for ["+ data.ID +"]");
             AddData(data);
-            return default;
+            data = _dataList[data.ID];
         }
     }
 

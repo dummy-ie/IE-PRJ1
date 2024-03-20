@@ -4,14 +4,14 @@ using UnityEngine;
 
 
 [Serializable]
-[JsonObject]
 public class BaseData 
 {
     [SerializeField]
+    protected string _dataId;
     [JsonProperty]
-    protected string dataId;
     public string ID
     {
-        get { return dataId; }
+        get { return _dataId; }
+        set { _dataId = value; }
     }
 }

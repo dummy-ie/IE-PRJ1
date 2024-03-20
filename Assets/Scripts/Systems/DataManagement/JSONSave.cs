@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,13 +15,17 @@ public class JSONSave : Singleton<JSONSave>
 
     [JsonProperty]
     [SerializeField]
-    private DataRepository _dataRepository = new();
+    private DataRepository _dataRepository;
     public DataRepository Repository { get { return _dataRepository; } }
+
+    List<BaseData> datas = new List<BaseData>();
 
     // Start is called before the first frame update
     void Start()
     {
         SetPaths();
+        
+        
 
         /*try
         {
@@ -42,15 +47,15 @@ public class JSONSave : Singleton<JSONSave>
         this._persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData/";
     }
 
-    public void SaveData(BaseData data)
+    public void SaveData(dynamic data)
     {
         this._dataRepository.AddData(data);
     }
 
-    public T LoadData<T>(BaseData data) where T : class
+    public void LoadData<T>(ref T data) where T : BaseData
     {
         Debug.Log("LoadData called for ["+ data.ID +"]");
-        return this._dataRepository.RetrieveData<T>(data);
+        this._dataRepository.RetrieveData(ref data);
         //return this._dataRepository.DataList[data.ID] as T;
     }
 
@@ -59,7 +64,7 @@ public class JSONSave : Singleton<JSONSave>
         string savePath = this._savePath + "SaveData.json";
 
         Debug.Log("Saving data at " + savePath);
-        string json = JsonConvert.SerializeObject(this._dataRepository);
+        string json = JsonUtility.ToJson(this._dataRepository);
 
         using StreamWriter writer = new StreamWriter(savePath);
         writer.Write(json);
@@ -67,7 +72,7 @@ public class JSONSave : Singleton<JSONSave>
 
     public void LoadRepository()
     {
-        
+        Debug.Log("--LOADING REPOSITORY--");
 
         string loadPath = this._savePath + "SaveData.json";
 
@@ -82,12 +87,12 @@ public class JSONSave : Singleton<JSONSave>
             Debug.Log(json);
             
             this._dataRepository = JsonConvert.DeserializeObject<DataRepository>(json);
-            Debug.Log("dataList Size:" + _dataRepository.DataList.Count);
 
         }
         else
         {
             Debug.Log("Save Data does not exist");
+            this._dataRepository = new();
         }
 
         //this._dataRepository.RefreshData();

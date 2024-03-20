@@ -4,13 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[JsonObject]
 [Serializable]
+[JsonObject]
 public class InteractableData : BaseData
 {
-    [JsonProperty]
     [SerializeField]
     private bool _enabled;
+    [JsonProperty]
     public bool Enabled
     {
 
@@ -19,9 +19,10 @@ public class InteractableData : BaseData
         set { _enabled = value; }
     }
 
+    [JsonConstructor]
     InteractableData(string _dataId, bool _enabled)
     {
-        this.dataId = _dataId;
+        this._dataId = _dataId;
         this._enabled = _enabled;
     }
 }

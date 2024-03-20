@@ -496,15 +496,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        PlayerData newData = JSONSave.Instance.LoadData<PlayerData>(this._data);
-        PlayerStatField newStats = JSONSave.Instance.LoadData<PlayerStatField>(this._stats);
-
-        if (newData != null && newStats != null)
-        {
-            this._data = newData;
-            this._stats = newStats;
-        }
-        
+        JSONSave.Instance.LoadData<PlayerData>(ref this._data);
+        JSONSave.Instance.LoadData<PlayerStatField>(ref this._stats);
     }
 
     public void SaveData()

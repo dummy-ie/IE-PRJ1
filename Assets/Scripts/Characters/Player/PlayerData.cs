@@ -2,19 +2,17 @@ using Newtonsoft.Json;
 using System;
 using UnityEngine;
 
-[JsonObject]
 [Serializable]
+[JsonObject]
 public class PlayerData : BaseData{
     // have default values for all fields to prevent null errors
     [Header("Properties")]
-    [JsonProperty]
     [SerializeField]
     private int _maxHealth = 3;
     public int MaxHealth {
         get { return _maxHealth; }
         set { _maxHealth = value; }
     }
-    [JsonProperty]
     [SerializeField]
     private int _maxManite = 100;
     public int MaxManite {
@@ -35,7 +33,6 @@ public class PlayerData : BaseData{
     }*/
 
     [Header("Ground Check")]
-    [JsonProperty]
     [SerializeField] LayerMask _groundLayer;
     public LayerMask GroundLayer { 
         get { return _groundLayer; } 
@@ -43,7 +40,6 @@ public class PlayerData : BaseData{
 
     [Header("Movement")]
     [Range(0, 100)]
-    [JsonProperty]
     [SerializeField]
     private float _speed = 6f;
     public float Speed { 
@@ -51,7 +47,6 @@ public class PlayerData : BaseData{
     }
 
     [Header("Jumping")]
-    [JsonProperty]
     [SerializeField]
     private bool _allowDoubleJump = false;
     public bool AllowDoubleJump { 
@@ -59,7 +54,6 @@ public class PlayerData : BaseData{
     }
 
     [Range(0, 100)]
-    [JsonProperty]
     [SerializeField]
     private float _jumpForce = 14f;
     public float JumpForce { 
@@ -67,7 +61,6 @@ public class PlayerData : BaseData{
     }
 
     [Range(0, 10)]
-    [JsonProperty]
     [SerializeField]
     private float _fallMultiplier = 4f, _lowJumpMultiplier = 0.8f;
     public float FallMultiplier { 
@@ -78,7 +71,6 @@ public class PlayerData : BaseData{
     }
 
     [Range(0, 5)]
-    [JsonProperty]
     [SerializeField]
     private float _coyoteTime = 0.2f, _jumpBufferTime = 0.2f;
     public float CoyoteTime { 
@@ -89,19 +81,16 @@ public class PlayerData : BaseData{
     }
 
     [Header("Dashing")]
-    [JsonProperty]
     [SerializeField]
     private float _dashOriginalSpeed = 20f;
     public float DashOriginalSpeed {
         get { return _dashOriginalSpeed; }
     }
-    [JsonProperty]
     [SerializeField]
     private float _dashCooldown = .5f;
     public float DashCooldown {
         get { return _dashCooldown; }
     }
-    [JsonProperty]
     [SerializeField]
     private float _dashDistance = 4f;
     public float DashDistance {
@@ -109,7 +98,6 @@ public class PlayerData : BaseData{
     }
 
     [Header("Attacking")]
-    [JsonProperty]
     [SerializeField]
     private bool _canAttack = true;
     public bool CanAttack
@@ -117,7 +105,6 @@ public class PlayerData : BaseData{
         get { return _canAttack; }
         set { _canAttack = value; }
     }
-    [JsonProperty]
     [SerializeField]
     private float _attackCooldown;
     public float AttackCooldown

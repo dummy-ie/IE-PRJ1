@@ -58508,6 +58508,10 @@ PrefabInstance:
       propertyPath: _interactableData.dataId
       value: Level 4 Checkpoint 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5059702682058423945, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
+      propertyPath: _interactableData._dataId
+      value: Level 4 Checkpoint 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1800920524979646138, guid: f9ca4370e5532894699fea6fb5a7b5d6, type: 3}
@@ -59035,10 +59039,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  _dataRepository:
-    _dataList:
-      keys: []
-      values: []
 --- !u!4 &1983229091
 Transform:
   m_ObjectHideFlags: 0
@@ -59694,7 +59694,7 @@ Transform:
   m_GameObject: {fileID: 2119959683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -441, y: 59.3, z: 0}
+  m_LocalPosition: {x: -440.44, y: 59.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59766,7 +59766,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Level 3
   _spawnPoint: {fileID: 835547391}
-  _changeOnTrigger: 0
+  _changeOnTrigger: 1
 --- !u!114 &2137603698
 MonoBehaviour:
   m_ObjectHideFlags: 0
