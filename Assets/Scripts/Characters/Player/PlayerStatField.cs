@@ -1,10 +1,10 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Characters/Stat Field")]
+[Serializable]
+[JsonObject]
 public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 {
     [SerializeField]
@@ -84,21 +84,18 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     public PlayerManiteField Manite { 
         get { return _manite; } 
     }
-
     [SerializeField]
     private bool _hasDash = true;
     public bool HasDash {
         get { return _hasDash; }
         set { _hasDash = value; }
     }
-
     [SerializeField]
     private bool _hasSlash = false;
     public bool HasSlash {
         get { return _hasSlash; }
         set { _hasSlash = value; }
     }
-
     [SerializeField]
     private bool _hasPound = false;
     public bool HasPound

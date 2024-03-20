@@ -1,9 +1,9 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Characters/Player/Data")]
+[Serializable]
+[JsonObject]
 public class PlayerData : BaseData{
     // have default values for all fields to prevent null errors
     [Header("Properties")]
@@ -98,7 +98,6 @@ public class PlayerData : BaseData{
     }
 
     [Header("Attacking")]
-
     [SerializeField]
     private bool _canAttack = true;
     public bool CanAttack
@@ -106,7 +105,6 @@ public class PlayerData : BaseData{
         get { return _canAttack; }
         set { _canAttack = value; }
     }
-
     [SerializeField]
     private float _attackCooldown;
     public float AttackCooldown

@@ -1,16 +1,17 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 [Serializable]
-public class BaseData : ScriptableObject
+public class BaseData 
 {
     [SerializeField]
-    protected string dataId;
+    protected string _dataId;
+    [JsonProperty]
     public string ID
     {
-        get { return dataId; }
+        get { return _dataId; }
+        set { _dataId = value; }
     }
 }
