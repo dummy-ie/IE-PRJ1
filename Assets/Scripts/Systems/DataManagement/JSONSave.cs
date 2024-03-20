@@ -47,7 +47,7 @@ public class JSONSave : Singleton<JSONSave>
         this._persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData/";
     }
 
-    public void SaveData(dynamic data)
+    public void SaveData(BaseData data)
     {
         this._dataRepository.AddData(data);
     }
@@ -64,7 +64,10 @@ public class JSONSave : Singleton<JSONSave>
         string savePath = this._savePath + "SaveData.json";
 
         Debug.Log("Saving data at " + savePath);
-        string json = JsonUtility.ToJson(this._dataRepository);
+
+        _dataRepository.ConvertToJson();
+
+        string json = JsonConvert.SerializeObject(this._dataRepository);
 
         using StreamWriter writer = new StreamWriter(savePath);
         writer.Write(json);

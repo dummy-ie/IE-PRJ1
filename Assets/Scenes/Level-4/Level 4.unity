@@ -59766,7 +59766,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Level 3
   _spawnPoint: {fileID: 835547391}
-  _changeOnTrigger: 1
+  _changeOnTrigger: 0
 --- !u!114 &2137603698
 MonoBehaviour:
   m_ObjectHideFlags: 0
