@@ -222,7 +222,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
         }
 
-        if (_onLadder)
+        if (_onLadder && _canMove)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
         }
@@ -480,7 +480,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Move();
         Jump();
         Dash();
-
+        if (_onLadder)
+            _rb.gravityScale = 0;
+        else
+        {
+            _rb.gravityScale = 3;
+        }
         if (!_isDashing) Flip();
     }
 
