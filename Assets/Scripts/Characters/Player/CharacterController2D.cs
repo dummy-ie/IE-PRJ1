@@ -186,7 +186,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             if (platform != null && _isPressDown)
             {
                 Debug.Log("SHOULD DROP DOWN");
-                StartCoroutine(platform.Wait());
+                platform.StartDropPlatform();
                 return;
             }
 
