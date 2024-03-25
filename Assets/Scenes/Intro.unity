@@ -152,9 +152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478eb1fb51e8c2d43bb11d53463be652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
+  _playerStats:
+    _dataId: 
+    _checkPointData:
+      _checkPointName: 
+      _posX: 0
+      _posY: 0
+      _posZ: 0
+    _hasDash: 1
+    _hasSlash: 0
+    _hasPound: 0
   _nextSceneReference:
-    m_AssetGUID: f837ca701c3abec4ea842abde88565a1
+    m_AssetGUID: 07efdec356b3f9b4c853356ec472b060
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

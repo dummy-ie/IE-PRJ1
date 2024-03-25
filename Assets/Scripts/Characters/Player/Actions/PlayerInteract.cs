@@ -18,9 +18,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private bool _canInteract = true;
 
-   
-    [SerializeField]
-    Collider2D _interactHitbox;
+    
     IInteractable _interactable;
     public IInteractable Interactable { set { _interactable = value; } }
     
@@ -39,6 +37,7 @@ public class PlayerInteract : MonoBehaviour
         else
             Debug.Log("wtf");
     }
+
     /*private void OnPressInteract()
     {
         if (this._canInteract)

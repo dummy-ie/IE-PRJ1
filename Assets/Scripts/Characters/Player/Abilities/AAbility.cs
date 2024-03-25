@@ -27,8 +27,7 @@ public abstract class AAbility : MonoBehaviour
 
     protected void TriggerCooldown()
     {
-        controller.Data.AttackCooldown = cooldown;
-        StartCoroutine(controller.Cooldown());
+        controller.StartCooldown(cooldown);
     }
 
     // we can use this to consolidate mutual functions/properties of every ability later.

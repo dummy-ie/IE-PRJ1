@@ -7,16 +7,9 @@ using UnityEngine.Tilemaps;
 
 public class PlayerAttack : MonoBehaviour
 {
-    CharacterController2D controller;
+    CharacterController2D _controller;
     private Animator _animator;
 
-    [SerializeField]
-    private PlayerAttackData _attackData;
-    public PlayerAttackData AttackData
-    {
-        get { return _attackData; }
-        set { _attackData = value; }
-    }
     
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
@@ -42,76 +35,42 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnPressAttack()
     {
-        if (controller.Data.CanAttack)
+        if (_controller.Data.CanAttack)
         {
             AudioManager.Instance.PlaySFX(EClipIndex.NORMAL_ATTACK);
             isAttacking = true;
-            controller.Data.CanAttack = false;
+            _controller.Data.CanAttack = false;
 
             RaycastHit2D[] hits;
 
-            if (controller.Vertical >= .9f)
+            if (_controller.Vertical >= .9f)
             {
                 _animator.Play("animTrudeeUprightAttack");
                 hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, transform.up, 2);
             }
-            else if (controller.Vertical <= -.9f && !controller.IsGrounded())
+            else if (_controller.Vertical <= -.9f && !_controller.IsGrounded())
             {
                 _animator.Play("animTrudeeDownrightAttack");
                 hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.up, 2);
             }
             else
             {
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * controller.IsFacingRight, 2);
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * _controller.IsFacingRight, 2);
             }
 
             foreach (RaycastHit2D hit in hits)
             {
-                // Debug.Log($"Hit : {hit.collider.gameObject.name}");
-                /*if (hit.collider.gameObject.CompareTag("Breakable"))
-                {
-                    EnemyBaseScript enemy;
-                    enemy = hit.collider.gameObject.GetComponent<EnemyBaseScript>();
-
-                    if (enemy != null)
-                    {
-                        enemy.Hit(gameObject, gameObject.transform.position, playerAttackDamage);
-                    }
-                }
-
-                else if(hit.collider.gameObject.CompareTag("EnvBreakable"))
-                {
-                    BreakEnvironment environment;
-                    environment = hit.collider.gameObject.GetComponent<BreakEnvironment>();
-
-                    if (environment != null){
-                        environment.Hit();
-                    }
-
-
-                }*/
                 if (hit.collider.gameObject.layer == 6)
                     break;
                 IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                 if (handler != null)
                 {
-                    handler.OnHit(transform, _attackData.NormalAttackDamage);
+                    handler.OnHit(transform, _controller.Data.FirstAttack.Damage);
                 }
             }
 
-            /*RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 0.5f);
-            if (hit.collider != null) {
-                Debug.Log($"hit: {hit.collider.gameObject.name}");
-                IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
-                if (handler != null) {
-                    //if (hit.collider.gameObject.GetComponent<BreakableWall>())
-                        handler.OnHit(playerAttackDamage);
-                }
-            }*/
-
             TriggerCooldown();
-
-            attackTime = _attackData.NormalAttackCooldown;
+            attackTime = _controller.Data.FirstAttack.Cooldown;
         }
     }
 
@@ -119,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (isAttacking)
         {
-            if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
+            if (_controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
             else attackHitboxDebug.enabled = true;
             attackTime -= Time.deltaTime;
         }
@@ -134,8 +93,7 @@ public class PlayerAttack : MonoBehaviour
 
     void TriggerCooldown()
     {
-        controller.Data.AttackCooldown = _attackData.NormalAttackCooldown;
-        StartCoroutine(controller.Cooldown());
+        _controller.StartCooldown(_controller.Data.FirstAttack.Cooldown);
     }
 
     /*public void HitDetected(EnemyBaseScript enemy)
@@ -148,17 +106,17 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator VecShift() //temp
     {
-        controller.ShiftTo3D();
+        _controller.ShiftTo3D();
 
         yield return new WaitForSeconds(1);
 
-        controller.ShiftTo2D();
+        _controller.ShiftTo2D();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController2D>();
+        _controller = GetComponent<CharacterController2D>();
         _animator = GetComponent<Animator>();
     }
 
@@ -166,11 +124,6 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         AttackUpdate();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position, new Vector2(.5f, .5f));
     }
 
 

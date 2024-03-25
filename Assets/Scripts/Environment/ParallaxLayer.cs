@@ -72,7 +72,6 @@ public class ParallaxLayer : MonoBehaviour
     {
         if (_followPlayer)
         {
-            Debug.Log("moving X");
             Vector3 newPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
             newPos.x -= delta * _moveSpeedX / 10;
 
@@ -84,7 +83,6 @@ public class ParallaxLayer : MonoBehaviour
     {
         if (_followPlayer)
         {
-            Debug.Log("moving Y");
             Vector3 newPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
             newPos.y -= delta * _moveSpeedY / 10;
 

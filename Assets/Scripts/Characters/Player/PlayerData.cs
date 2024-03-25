@@ -1,10 +1,11 @@
 using Newtonsoft.Json;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 [Serializable]
 [JsonObject]
-public class PlayerData : BaseData{
+public class PlayerData : ScriptableObject {
     // have default values for all fields to prevent null errors
     [Header("Properties")]
     [SerializeField]
@@ -19,18 +20,38 @@ public class PlayerData : BaseData{
         get { return _maxManite; }
         set { _maxManite = value; }
     }
-    /*[SerializeField]
-    private int _health = 3;
-    public int Health {
-        get { return _health; }
-        set { _health = value; }
+    [Serializable]
+    public class Attack
+    {
+        [SerializeField]
+        private int _damage = 1;
+        public int Damage
+        {
+            get { return _damage; }
+        }
+
+        [SerializeField]
+        private float _cooldown = .3f;
+        public float Cooldown
+        {
+            get { return _cooldown; }
+        }
+
+        [SerializeField] private Vector2 _hitboxSize;
+
+        public Vector2 HitboxSize
+        {
+            get { return _hitboxSize; }
+        }
+
+        [SerializeField] private float _hitboxCastDistance;
+
+        public float HitboxCastDistance
+        {
+            get { return _hitboxCastDistance; }
+        }
     }
-    [SerializeField]
-    private float _manite = 100;
-    public float Manite {
-        get { return _manite; }
-        set { _manite = value; }
-    }*/
+
 
     [Header("Ground Check")]
     [SerializeField] LayerMask _groundLayer;
@@ -98,6 +119,7 @@ public class PlayerData : BaseData{
     }
 
     [Header("Attacking")]
+    public Attack FirstAttack;
     [SerializeField]
     private bool _canAttack = true;
     public bool CanAttack
@@ -106,44 +128,10 @@ public class PlayerData : BaseData{
         set { _canAttack = value; }
     }
     [SerializeField]
-    private float _attackCooldown;
-    public float AttackCooldown
+    private float _actionCooldown;
+    public float ActionCooldown
     {
-        get { return _attackCooldown; }
-        set { _attackCooldown = value; }
+        get { return _actionCooldown; }
+        set { _actionCooldown = value; }
     }
-
-    /*[SerializeField]
-    private bool _isAttacking = false;
-    public bool IsAttacking
-    {
-        get { return _isAttacking; }
-        set { _isAttacking = value; }
-    }*/
-
-
-    /*[SerializeField]
-    private Vector3 _position;
-    public Vector3 Position {
-        get { return _position; }
-        set { _position = value; }
-    }
-    [SerializeField]
-    private string _currentSceneName;
-    public string CurrentSceneName {
-        get { return _currentSceneName; }
-        set { _currentSceneName = value; }
-    }
-    [SerializeField]
-    private bool _hasDash = false;
-    public bool HasDash {
-        get { return _hasDash; }
-        set { _hasDash = value; }
-    }
-    [SerializeField]
-    private bool _hasSlash = false;
-    public bool HasSlash {
-        get { return _hasSlash; }
-        set { _hasSlash = value; }
-    }*/
 }

@@ -172,8 +172,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private OneWayPlatform GetPlatformBelow()
     {
+        OneWayPlatform platform = null;
         Collider2D collider = GetGroundRaycast().collider;
-        OneWayPlatform platform = collider.gameObject.GetComponent<OneWayPlatform>();
+        if (collider != null)
+            platform = collider.gameObject.GetComponent<OneWayPlatform>();
         return platform;
     }
 
@@ -251,7 +253,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             if (!IsGrounded())
                 _jumpBufferCounter -= Time.deltaTime; // when not pressing jump, count down jump buffering time
 
-            if (!_isJumpPress && _rb.velocity.y > 0f)
+            if (!_isJumpPress && !_onLadder && _rb.velocity.y > 0f)
             {
                 // fall when releasing the jump button early (allows low jumping)
                 _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * _data.LowJumpMultiplier);
@@ -346,9 +348,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
     }
 
-    public IEnumerator Cooldown()
+    public void StartCooldown(float cooldown)
     {
-        yield return new WaitForSeconds(Data.AttackCooldown);
+        StartCoroutine(Cooldown(cooldown));
+    }
+
+    private IEnumerator Cooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
         Data.CanAttack = true;
     }
 
@@ -441,6 +448,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasSlash = true;
     }
 
+    public void ObtainGroundPound()
+    {
+        _stats.HasPound = true;
+    }
+
     private void Awake()
     {
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
@@ -501,13 +513,13 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData<PlayerData>(ref this._data);
+        //JSONSave.Instance.LoadData<PlayerData>(ref this._data);
         JSONSave.Instance.LoadData<PlayerStatField>(ref this._stats);
     }
 
     public void SaveData()
     {
-        JSONSave.Instance.SaveData(this._data);
+        //JSONSave.Instance.SaveData(this._data);
         JSONSave.Instance.SaveData(this._stats);
     }
 
@@ -544,6 +556,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         if (!_drawGizmos)
             return;
         Gizmos.DrawWireCube(transform.position - Vector3.up * _boxCastDistance, _boxSize);
+        DrawAttack(_data.FirstAttack);
+
+        void DrawAttack(PlayerData.Attack attackData)
+        {
+            Vector3 facing = Vector3.right * _isFacingRight;
+            Gizmos.color = Color.red;;
+            Gizmos.DrawWireCube(transform.position + facing * attackData.HitboxCastDistance, attackData.HitboxSize);
+        }
     }
 #endif
 }

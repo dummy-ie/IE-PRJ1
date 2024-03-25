@@ -10,7 +10,10 @@ public class GroundPound : AAbility
     Rigidbody2D rb;
 
     private bool isGroundPound = false;
-
+    [SerializeField]
+    private float boxCastDistance;
+    [SerializeField]
+    private Vector2 groundPoundHitBox;
     public bool IsGroundPound
     {
         get { return isGroundPound; }
@@ -77,7 +80,7 @@ public class GroundPound : AAbility
             if (controller.IsGrounded())
             {
                 RaycastHit2D[] hits;
-                hits = Physics2D.BoxCastAll(transform.position, new Vector2(2f, 2f), 0, -transform.up, 0);
+                hits = Physics2D.BoxCastAll(transform.position, groundPoundHitBox, 0, -transform.up, boxCastDistance);
                 foreach (RaycastHit2D hit in hits)
                 {
                     //if (hit.collider.gameObject.layer == 6)
@@ -101,7 +104,7 @@ public class GroundPound : AAbility
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position - Vector3.up, new Vector2(2f, 2f));
+        Gizmos.DrawWireCube(transform.position - Vector3.up * boxCastDistance, groundPoundHitBox);
     }
 }
 

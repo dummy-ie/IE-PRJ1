@@ -21,7 +21,7 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         public int Max {
             get { return _max; }
         }
-        [NonSerialized]
+        //[NonSerialized]
         private int _current;
         public int Current
         {
@@ -34,6 +34,7 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 
         public void SetMax(int max) {
             _max = max;
+            Debug.Log("Stat Field Manite Max : " + _max);
             MaxChanged?.Invoke(_max);
         }
         public void SetCurrent(int current) {
@@ -55,7 +56,7 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
             get { return _max; }
         }
 
-        [NonSerialized]
+        //[NonSerialized]
         private int _current;
         public int Current
         {
@@ -69,6 +70,7 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         public void SetMax(int max)
         {
             _max = max;
+            Debug.Log("Stat Field Health Max : " + _max);
             MaxChanged?.Invoke(_max);
         }
 

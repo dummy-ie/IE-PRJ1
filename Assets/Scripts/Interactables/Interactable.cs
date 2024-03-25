@@ -8,7 +8,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] private UnityEvent _interact;
     private SpriteRenderer _indicator;
 
-    
+    [SerializeField]
+    private bool _disableOnUse = false;
 
 
     private void Start()
@@ -20,6 +21,8 @@ public class Interactable : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         _interact.Invoke();
+        if (_disableOnUse)
+            gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
