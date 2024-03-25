@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 
 
 public class EnemyBase : MonoBehaviour, IHittable
@@ -14,7 +15,6 @@ public class EnemyBase : MonoBehaviour, IHittable
     }
 
     protected Rigidbody2D _rb;
-
 
     [SerializeField]
     protected EnemyData _enemyData;
@@ -53,9 +53,31 @@ public class EnemyBase : MonoBehaviour, IHittable
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
     [SerializeField] LayerMask _groundLayer;
 
+    /** Particle System Test **/
+    [SerializeField]
+    private GameObject _particleSystem;
+
+    [SerializeField] private int _particleDropsOnHit = 3;
+    [SerializeField] private int _particleDropsOnDeath = 7;
+
+    private bool _isDead = false;
+    void DropParticle(int particlesDropped)
+    {
+        GameObject newObject = Instantiate(_particleSystem, transform.position, Quaternion.identity);
+        ParticleSystem particleSystem = newObject.GetComponent<ParticleSystem>();
+        ParticleSystem.EmissionModule emission = particleSystem.emission;
+        float duration = particleSystem.main.duration;
+
+        emission.enabled = true;
+        emission.burstCount = particlesDropped;
+        particleSystem.Play();
+    }
+
     virtual public void OnHit(Transform source, int damage)
     {
         Stagger(source);
+        DropParticle(_particleDropsOnHit);
+        _currentHealth -= damage;
         //StartCoroutine(Blink());
         Debug.Log("Hit");
     }
@@ -87,16 +109,18 @@ public class EnemyBase : MonoBehaviour, IHittable
 
         _currentHealth = _enemyData.Health;
         _mat = GetComponent<SpriteRenderer>().material;
+
+        //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this._currentHealth <= 0)
+        if (this._currentHealth <= 0 && !_isDead)
         {
             Debug.Log("Enemy Killed");
-            Instantiate(_manitePrefab, transform.position, transform.rotation);
-            this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
+            DropParticle(_particleDropsOnDeath);
+            gameObject.SetActive(false);
         }
 
         if (CurrentState == State.Patrol)

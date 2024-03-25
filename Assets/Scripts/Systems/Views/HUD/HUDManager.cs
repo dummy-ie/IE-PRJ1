@@ -7,7 +7,6 @@ using TMPro;
 
 public class HUDManager : Singleton<HUDManager>
 {
-    [SerializeField]
     PlayerStatField _playerStats;
 
     [SerializeField]
@@ -43,13 +42,11 @@ public class HUDManager : Singleton<HUDManager>
         int i = 0;
         for (; i < value; i++) {
             GameObject clone = Instantiate(_heart, _heartContainer);
-            Debug.Log(i);
             RectTransform rectTransform = clone.GetComponent<RectTransform>();
             rectTransform.localPosition = new Vector3(i * padding, 0);
         }
         for (; i < _playerStats.Health.Max; i++) {
             GameObject clone = Instantiate(_emptyHeart, _heartContainer);
-            Debug.Log(i);
             RectTransform rectTransform = clone.GetComponent<RectTransform>();
             rectTransform.localPosition = new Vector3(i * padding, 0);
         }
@@ -77,6 +74,7 @@ public class HUDManager : Singleton<HUDManager>
 
     private void Start()
     {
+        _playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().Stats;
         _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
         _initialRightMask = _mask.padding.z;
         Debug.Log("HUDManagerStart");

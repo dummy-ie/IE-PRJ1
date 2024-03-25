@@ -469,6 +469,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Debug.Log("Player");
         _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
+        Debug.Log("Player Max Health : " + _stats.Health.Max);
+        Debug.Log("Player Max Manite : " + _stats.Manite.Max);
     }
 
     private void Update()

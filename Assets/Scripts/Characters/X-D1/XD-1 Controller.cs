@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
 
 public class XD1Controller : MonoBehaviour
@@ -51,6 +52,23 @@ public class XD1Controller : MonoBehaviour
     private void Idle() { 
         if (Vector3.Distance(this.transform.position, _player.transform.position) >= 2) {
             state = State.FOLLOW;
+        }
+    }
+
+    public void CollectManite()
+    {
+        if (_player.CompareTag("Player"))
+        {
+            CharacterController2D controller = _player.GetComponent<CharacterController2D>();
+
+            if (controller.Stats.Manite.Current <= controller.Stats.Manite.Max)
+            {
+
+            Debug.Log("Collected Manite");
+                controller.Stats.Manite.Current += 1;
+            }
+            else
+                controller.Stats.Manite.Current = controller.Stats.Manite.Max;
         }
     }
 
