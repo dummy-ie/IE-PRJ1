@@ -50,16 +50,12 @@ public class XD1Controller : MonoBehaviour
         _stateMachine.ChangeState(_idleState);
     }
 
+    // Update is called once per frame
     void Update()
     {
         _stateMachine.Update();
     }
 
-    // Update is called once per frame
-    void FixedUpdate() {
-        if (_player == null)
-            return;
-    }
 
     public class IdleState : IState
     {

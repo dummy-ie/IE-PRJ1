@@ -6,15 +6,17 @@ using UnityEngine.Android;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour, IHittable
 {
-    public enum State
-    {
-        Idle, //not moving
-        Patrol, //moving around
-        Engaging, //positioning for attack against player
-        Attacking //trigger attack
-    }
 
     protected StateMachine _stateMachine;
+
+    [System.Serializable]
+    protected struct AttackData
+    {
+        public float moveOffset;
+        public Rect attackCollision;
+        public int damage;
+        public Vector2 knockbackForce;
+    }
 
     protected Rigidbody2D _rb;
 
@@ -24,14 +26,6 @@ public class EnemyBase : MonoBehaviour, IHittable
     [SerializeField]
     protected int _currentHealth;
     protected int _speed = 1;
-
-    [SerializeField]
-    protected State _currentState = State.Patrol;
-    public State CurrentState 
-    { 
-        get { return _currentState; } 
-        set { _currentState = value; }
-    }
 
     protected Collider2D _visionCollider;
 
@@ -44,6 +38,12 @@ public class EnemyBase : MonoBehaviour, IHittable
         get { return _patrolDirection; }
         set { _patrolDirection = value; }
     }
+
+    [Header("Behaviours")] 
+    [SerializeField] protected VisionBehaviour _visionBehaviour;
+    [SerializeField] protected RangeBehaviour _rangeBehaviour;
+    [SerializeField] protected WallDetectBehaviour _wallDetectBehaviour;
+    [SerializeField] protected CliffDetectBehaviour _cliffDetectBehaviour;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -59,6 +59,7 @@ public class EnemyBase : MonoBehaviour, IHittable
 
     private PatrolState _patrolState;
     private DeathState _deathState;
+
     void DropParticle(int particlesDropped)
     {
         GameObject newObject = Instantiate(_particleSystem, transform.position, Quaternion.identity);
@@ -102,13 +103,14 @@ public class EnemyBase : MonoBehaviour, IHittable
         //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         _stateMachine = new StateMachine();
         _patrolState = new PatrolState(this);
         _deathState = new DeathState(this);
-
+        
         _stateMachine.ChangeState(_patrolState);
+
     }
 
     // Update is called once per frame

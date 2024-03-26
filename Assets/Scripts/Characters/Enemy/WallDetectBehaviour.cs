@@ -16,10 +16,10 @@ public class WallDetectBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject.layer == 6 && _enemyScript.CurrentState == EnemyBase.State.Patrol)
+        /*if (collision.gameObject.layer == 6 && _enemyScript.CurrentState == EnemyBase.State.Patrol)
         {
             _enemyScript.PatrolDirection *= -1;
-        }
+        }*/
     }
 
     /*void OnTriggerExit2D(Collider2D collision)

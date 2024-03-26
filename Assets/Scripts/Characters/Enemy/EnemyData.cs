@@ -29,11 +29,4 @@ public class EnemyData : ScriptableObject
     {
         get { return _health; }
     }
-
-    [SerializeField]
-    private int _baseDamage = 1;
-    public int BaseDamage
-    {
-        get { return _baseDamage; }
-    }
 }

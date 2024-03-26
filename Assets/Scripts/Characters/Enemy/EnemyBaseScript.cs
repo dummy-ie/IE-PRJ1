@@ -97,7 +97,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.BaseDamage));
+            //StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.BaseDamage));
         }
     }
 

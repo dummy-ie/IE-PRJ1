@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VisionBehaviour : MonoBehaviour
 {
     [SerializeField]
     EnemyBase _enemy;
+
+    public bool PlayerSeen = false;
 
     void Awake()
     {
@@ -17,7 +21,8 @@ public class VisionBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemy.CurrentState = EnemyBase.State.Engaging;
+            //_enemy.CurrentState = EnemyBase.State.Engaging;
+            PlayerSeen = true;
         }
     }
 
@@ -26,8 +31,8 @@ public class VisionBehaviour : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemy.CurrentState = EnemyBase.State.Idle;
-
+            //_enemy.CurrentState = EnemyBase.State.Idle;
+            PlayerSeen = false;
         }
     }
 }

@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &13464857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8138087796901793253, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+  m_PrefabInstance: {fileID: 1039777276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8fff25ec6bd054f905cc43e606d3c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &28949879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,6 +903,17 @@ ParticleSystemForceField:
         m_RotationOrder: 4
     m_MultiplyDragByParticleSize: 1
     m_MultiplyDragByParticleVelocity: 1
+--- !u!114 &632177311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3073428040112387144, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+  m_PrefabInstance: {fileID: 1039777276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2d1c69c35169748bef9a5716f90a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &721480985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6186,6 +6208,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812282989489131150, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_Size.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812282989489131150, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5289754506172032787, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
       propertyPath: _line
       value: 
@@ -6194,6 +6224,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1180057560}
+    - target: {fileID: 5289754506172032787, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5404164754725100306, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6
@@ -6202,16 +6236,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 9005795341728189921, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_Size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005795341728189921, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9060218829071539946, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
       propertyPath: m_Name
       value: Railgunner
       objectReference: {fileID: 0}
     - target: {fileID: 9060218829071539946, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2794467548214215591, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+    - {fileID: 5289754506172032787, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6863,7 +6906,18 @@ LineRenderer:
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
+--- !u!114 &1608275301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8916761016640998918, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+  m_PrefabInstance: {fileID: 1039777276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6db1fd16a435ea48a7e3fd88af188f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1722030738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9060218829071539946, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
@@ -6883,15 +6937,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 39a738df6c146eb49a6a7b05108d9990, type: 2}
   _currentHealth: 0
-  _currentState: 1
+  _visionBehaviour: {fileID: 632177311}
+  _rangeBehaviour: {fileID: 1725500157}
+  _wallDetectBehaviour: {fileID: 1608275301}
+  _cliffDetectBehaviour: {fileID: 13464857}
   _boxCastDistance: 0.4
   _boxSize: {x: 0.3, y: 0.4}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  _particleSystem: {fileID: 0}
+    m_Bits: 64
+  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  _attack:
+    moveOffset: 0
+    attackCollision:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    damage: 1
+    knockbackForce: {x: 0, y: 0}
+  _target: {fileID: 0}
+  _line: {fileID: 1231550685}
+  _timeToShoot: 1.5
+  _rotationSpeed: 25
+--- !u!114 &1725500157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6328381873882838375, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+  m_PrefabInstance: {fileID: 1039777276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d72a8979cacd94589b379fbac60fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1782984171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7594,7 +7676,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: e813eebe1849eff458cf6441e10735bf, type: 2}
   _currentHealth: 3
-  _currentState: 1
+  _visionBehaviour: {fileID: 0}
+  _rangeBehaviour: {fileID: 0}
+  _wallDetectBehaviour: {fileID: 0}
+  _cliffDetectBehaviour: {fileID: 0}
   _boxCastDistance: 0.4
   _boxSize: {x: 0.3, y: 0.4}
   _groundLayer:

@@ -7,6 +7,7 @@ public class RangeBehaviour : MonoBehaviour
     [SerializeField]
     EnemyBase _enemy;
 
+    public bool InRange = false;
     void Awake()
     {
         _enemy = GetComponentInParent<EnemyBase>();
@@ -17,7 +18,8 @@ public class RangeBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemy.CurrentState = EnemyBase.State.Attacking;
+            //_enemy.ChangeState() = EnemyBase.State.Attacking;
+            InRange = true;
         }
     }
 
@@ -26,7 +28,8 @@ public class RangeBehaviour : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemy.CurrentState = EnemyBase.State.Engaging;
+            //_enemy.CurrentState = EnemyBase.State.Engaging;
+            InRange = false;
         }
     }
 }

@@ -71,8 +71,8 @@ public class HUDManager : Singleton<HUDManager>
 
     void Update()
     {
-        //SetManiteValue(_playerStats.Manite.Current);
-        //SetHearts(_playerStats.Health.Current);
+        SetManiteValue(_playerStats.Manite.Current);
+        SetHearts(_playerStats.Health.Current);
     }
 
     private void Start()

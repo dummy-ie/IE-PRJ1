@@ -389,6 +389,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _model3D.enabled = true;
     }
 
+    public void StartHit(GameObject enemy, int damageTaken = 0)
+    {
+        StartCoroutine(Hit(enemy, damageTaken));
+    }
 
     public IEnumerator Hit(GameObject enemy, int damageTaken = 0)
     {
