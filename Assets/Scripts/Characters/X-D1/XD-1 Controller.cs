@@ -8,52 +8,20 @@ using UnityEngine.Rendering;
 
 public class XD1Controller : MonoBehaviour
 {
+    private StateMachine _stateMachine;
+
     [SerializeField] private float _acceleration;
-    //*[SerializeField]*/ private float speed = 1;
-    //[SerializeField] private float maxVelocity;
     [SerializeField] private Vector3 _offsetFromPlayer;
-    //[SerializeField] private float springConstant;
     [SerializeField] private float _catchUpTime = 0.4f;
-    //private float velocity = 0;
     private GameObject _player;
     private Vector3 _velocity;
     private Rigidbody _rb;
-    private float _ticks;
+
     private Material _material;
-    private enum State {
-        IDLE,
-        FOLLOW,
-    }
 
-    private State state;
+    private IdleState _idleState;
+    private FollowState _followState;
 
-    private void FollowPlayer() {
-        Vector3 target;
-        if (_player.GetComponent<CharacterController2D>().FacingDirection == 1) {
-            target = new Vector3(-_offsetFromPlayer.x, _offsetFromPlayer.y, _offsetFromPlayer.z) + _player.transform.position;
-        }
-        else { 
-            target = _offsetFromPlayer + _player.transform.position; 
-        }
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref _velocity, _catchUpTime);
-        if (_velocity.magnitude <= 1f) {
-            _ticks += Time.deltaTime;
-            if (_ticks > 2)
-                state = State.IDLE;
-        }
-        else {
-            _ticks = 0;
-        }
-
-        Vector3 lookAtPosition = new Vector3(_player.transform.position.x, transform.position.y, transform.position.z);
-        transform.LookAt(lookAtPosition, Vector3.up);
-    }
-
-    private void Idle() { 
-        if (Vector3.Distance(this.transform.position, _player.transform.position) >= 2) {
-            state = State.FOLLOW;
-        }
-    }
 
     public void CollectManite()
     {
@@ -63,8 +31,6 @@ public class XD1Controller : MonoBehaviour
 
             if (controller.Stats.Manite.Current <= controller.Stats.Manite.Max)
             {
-
-            Debug.Log("Collected Manite");
                 controller.Stats.Manite.Current += 1;
             }
             else
@@ -76,19 +42,79 @@ public class XD1Controller : MonoBehaviour
     void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
-        state = State.IDLE;
-        _ticks = 0;
+
+        _stateMachine = new StateMachine();
+        _idleState = new IdleState(this);
+        _followState = new FollowState(this);
+
+        _stateMachine.ChangeState(_idleState);
+    }
+
+    void Update()
+    {
+        _stateMachine.Update();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         if (_player == null)
             return;
-        if (state == State.FOLLOW)
-            FollowPlayer();
-        if (state == State.IDLE)
-            Idle();
-        
     }
 
+    public class IdleState : IState
+    {
+        private XD1Controller _controller;
+        public IdleState(XD1Controller controller)
+        {
+            _controller = controller;
+        }
+        public void Execute()
+        {
+            if (Vector3.Distance(_controller.transform.position, _controller._player.transform.position) >= 2)
+            {
+                _controller._stateMachine.ChangeState(_controller._followState);
+            }
+        }
+    }
+
+    public class FollowState : IState
+    {
+        private XD1Controller _controller;
+        Vector3 _target;
+        private float _followTicks;
+        public FollowState(XD1Controller controller)
+        {
+            _controller = controller;
+        }
+        public void Enter()
+        {
+            _followTicks = 0.0f;
+            
+        }
+
+        public void Execute()
+        {
+            if (_controller._player.GetComponent<CharacterController2D>().FacingDirection == 1)
+            {
+                _target = new Vector3(-_controller._offsetFromPlayer.x, _controller._offsetFromPlayer.y, _controller._offsetFromPlayer.z) + _controller._player.transform.position;
+            }
+            else
+            {
+                _target = _controller._offsetFromPlayer + _controller._player.transform.position;
+            }
+            _controller.transform.position = Vector3.SmoothDamp(_controller.transform.position, _target, ref _controller._velocity, _controller._catchUpTime);
+            if (_controller._velocity.magnitude <= 1f)
+            {
+                _followTicks += Time.deltaTime;
+                if (_followTicks > 2)
+                    _controller._stateMachine.ChangeState(_controller._idleState);
+            }
+            else
+            {
+                _followTicks = 0;
+            }
+            Vector3 lookAtPosition = new Vector3(_controller._player.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
+            _controller.transform.LookAt(lookAtPosition, Vector3.up);
+        }
+    }
 }

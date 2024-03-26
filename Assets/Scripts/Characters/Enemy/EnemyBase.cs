@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
-
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour, IHittable
 {
     public enum State
@@ -14,7 +14,7 @@ public class EnemyBase : MonoBehaviour, IHittable
         Attacking //trigger attack
     }
 
-    private StateMachine _stateMachine;
+    protected StateMachine _stateMachine;
 
     protected Rigidbody2D _rb;
 
