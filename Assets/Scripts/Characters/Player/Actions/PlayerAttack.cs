@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                hits = Physics2D.BoxCastAll(transform.position, _controller.Data.FirstAttack.HitboxSize, 0, transform.right * _controller.IsFacingRight, _controller.Data.FirstAttack.HitboxCastDistance);
+                hits = Physics2D.BoxCastAll(transform.position, _controller.Data.FirstAttack.HitboxSize, 0, transform.right * _controller.FacingDirection, _controller.Data.FirstAttack.HitboxCastDistance);
             }
 
             foreach (RaycastHit2D hit in hits)

@@ -29,7 +29,7 @@ public class XD1Controller : MonoBehaviour
 
     private void FollowPlayer() {
         Vector3 target;
-        if (_player.GetComponent<CharacterController2D>().IsFacingRight == 1) {
+        if (_player.GetComponent<CharacterController2D>().FacingDirection == 1) {
             target = new Vector3(-_offsetFromPlayer.x, _offsetFromPlayer.y, _offsetFromPlayer.z) + _player.transform.position;
         }
         else { 

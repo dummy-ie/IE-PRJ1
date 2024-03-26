@@ -14,6 +14,8 @@ public class EnemyBase : MonoBehaviour, IHittable
         Attacking //trigger attack
     }
 
+    private StateMachine _stateMachine;
+
     protected Rigidbody2D _rb;
 
     [SerializeField]
@@ -33,9 +35,6 @@ public class EnemyBase : MonoBehaviour, IHittable
 
     protected Collider2D _visionCollider;
 
-    [SerializeField]
-    GameObject _manitePrefab;
-
     private Material _mat;
 
     protected bool _isFacingRight = true;
@@ -45,8 +44,6 @@ public class EnemyBase : MonoBehaviour, IHittable
         get { return _patrolDirection; }
         set { _patrolDirection = value; }
     }
-
-    protected float _patrolTick;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -60,7 +57,8 @@ public class EnemyBase : MonoBehaviour, IHittable
     [SerializeField] private int _particleDropsOnHit = 3;
     [SerializeField] private int _particleDropsOnDeath = 7;
 
-    private bool _isDead = false;
+    private PatrolState _patrolState;
+    private DeathState _deathState;
     void DropParticle(int particlesDropped)
     {
         GameObject newObject = Instantiate(_particleSystem, transform.position, Quaternion.identity);
@@ -89,15 +87,6 @@ public class EnemyBase : MonoBehaviour, IHittable
         _rb.AddForce(vec * 5, ForceMode2D.Impulse);
     }
 
-    protected virtual void Patrol() 
-    {
-
-        Vector3 pos = new(transform.position.x + (this._patrolDirection.x * _speed), transform.position.y + (this._patrolDirection.y * _speed), 0);
-        transform.position = Vector3.MoveTowards(_rb.transform.position, pos, Time.deltaTime * _speed);
-
-
-    }
-
     public bool IsGrounded()
     {
         return Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _boxCastDistance, _groundLayer);
@@ -113,21 +102,23 @@ public class EnemyBase : MonoBehaviour, IHittable
         //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
+    void Start()
+    {
+        _stateMachine = new StateMachine();
+        _patrolState = new PatrolState(this);
+        _deathState = new DeathState(this);
+
+        _stateMachine.ChangeState(_patrolState);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (this._currentHealth <= 0 && !_isDead)
+        if (this._currentHealth <= 0)
         {
-            Debug.Log("Enemy Killed");
-            DropParticle(_particleDropsOnDeath);
-            gameObject.SetActive(false);
+            _stateMachine.ChangeState(_deathState);
         }
-
-        if (CurrentState == State.Patrol)
-        {
-            Patrol();
-        }
-
+        _stateMachine.Update();
         Flip();
     }
 
@@ -136,5 +127,51 @@ public class EnemyBase : MonoBehaviour, IHittable
         Vector3 localScale = transform.localScale;
         localScale.x = PatrolDirection.x;
         transform.localScale = localScale;
+    }
+
+    public class PatrolState : IState
+    {
+        private EnemyBase _enemy;
+
+        protected float _patrolTick;
+        public PatrolState(EnemyBase enemy)
+        {
+            _enemy = enemy;
+        }
+        public void Enter()
+        {
+            _patrolTick = 0.0f;
+        }
+        public void Execute()
+        {
+            Vector3 pos = new(_enemy.transform.position.x + (_enemy._patrolDirection.x * _enemy._speed), _enemy.transform.position.y + (_enemy._patrolDirection.y * _enemy._speed), 0);
+            _enemy.transform.position = Vector3.MoveTowards(_enemy._rb.transform.position, pos, Time.deltaTime * _enemy._speed);
+        }
+        public void Exit()
+        {
+
+        }
+    }
+
+    public class DeathState : IState
+    {
+        private EnemyBase _enemy;
+
+        public DeathState(EnemyBase enemy)
+        {
+            _enemy = enemy;
+        }
+        public void Enter()
+        {
+            _enemy.DropParticle(_enemy._particleDropsOnDeath);
+            _enemy.gameObject.SetActive(false);
+        }
+        public void Execute()
+        {
+        }
+        public void Exit()
+        {
+
+        }
     }
 }

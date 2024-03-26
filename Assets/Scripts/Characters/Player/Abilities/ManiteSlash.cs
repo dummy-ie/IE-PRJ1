@@ -39,7 +39,7 @@ public class ManiteSlash : AAbility
                 Debug.Log("manite slash2");
                 controller.Data.CanAttack = false;
 
-                int flip = controller.IsFacingRight;
+                int flip = controller.FacingDirection;
 
                 GameObject projectile = Instantiate(
                     slashProjectile,

@@ -5,11 +5,11 @@ using UnityEngine;
 public class VisionBehaviour : MonoBehaviour
 {
     [SerializeField]
-    EnemyBase _enemyScript;
+    EnemyBase _enemy;
 
     void Awake()
     {
-        _enemyScript = GetComponentInParent<EnemyBase>();
+        _enemy = GetComponentInParent<EnemyBase>();
     }
 
 
@@ -17,7 +17,7 @@ public class VisionBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemyScript.CurrentState = EnemyBase.State.Engaging;
+            _enemy.CurrentState = EnemyBase.State.Engaging;
         }
     }
 
@@ -26,7 +26,7 @@ public class VisionBehaviour : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemyScript.CurrentState = EnemyBase.State.Idle;
+            _enemy.CurrentState = EnemyBase.State.Idle;
 
         }
     }

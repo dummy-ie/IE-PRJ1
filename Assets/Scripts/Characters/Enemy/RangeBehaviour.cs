@@ -5,11 +5,11 @@ using UnityEngine;
 public class RangeBehaviour : MonoBehaviour
 {
     [SerializeField]
-    EnemyBase _enemyScript;
+    EnemyBase _enemy;
 
     void Awake()
     {
-        _enemyScript = GetComponentInParent<EnemyBase>();
+        _enemy = GetComponentInParent<EnemyBase>();
     }
 
 
@@ -17,7 +17,7 @@ public class RangeBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemyScript.CurrentState = EnemyBase.State.Attacking;
+            _enemy.CurrentState = EnemyBase.State.Attacking;
         }
     }
 
@@ -26,7 +26,7 @@ public class RangeBehaviour : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            _enemyScript.CurrentState = EnemyBase.State.Engaging;
+            _enemy.CurrentState = EnemyBase.State.Engaging;
         }
     }
 }

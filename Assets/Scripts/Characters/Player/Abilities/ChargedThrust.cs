@@ -34,7 +34,7 @@ public class ChargedThrust : AAbility
         {
             canAttack = false;
 
-            int flip = controller.IsFacingRight;
+            int flip = controller.FacingDirection;
 
             RaycastHit2D[] hits;
 

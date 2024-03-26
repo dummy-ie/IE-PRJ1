@@ -7,6 +7,7 @@ using TMPro;
 
 public class HUDManager : Singleton<HUDManager>
 {
+    [SerializeField]
     PlayerStatField _playerStats;
 
     [SerializeField]
@@ -58,6 +59,8 @@ public class HUDManager : Singleton<HUDManager>
         Debug.Log("HUDManager");
         _playerStats.Health.CurrentChanged += SetHearts;
         _playerStats.Manite.CurrentChanged += SetManiteValue;
+        SetManiteValue(_playerStats.Manite.Current);
+        SetHearts(_playerStats.Health.Current);
     }
 
     private void OnDisable()
@@ -68,8 +71,8 @@ public class HUDManager : Singleton<HUDManager>
 
     void Update()
     {
-        SetManiteValue(_playerStats.Manite.Current);
-        SetHearts(_playerStats.Health.Current);
+        //SetManiteValue(_playerStats.Manite.Current);
+        //SetHearts(_playerStats.Health.Current);
     }
 
     private void Start()

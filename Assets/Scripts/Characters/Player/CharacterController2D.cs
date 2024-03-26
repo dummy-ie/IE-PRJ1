@@ -71,7 +71,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private float _vectorShift = 100f;
 
-    private int _isFacingRight = -1;
+    private int _facingDirection = -1;
 
     private bool _canMove = true;
     public bool CanMove
@@ -121,19 +121,19 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         set { _onLadder = value; }
     }
 
-    public int IsFacingRight
+    public int FacingDirection
     {
-        get { return _isFacingRight; }
+        get { return _facingDirection; }
     }
-    public void FlipTo(int isFacingRight)
+    public void FlipTo(int facingDirection)
     {
-        _isFacingRight = isFacingRight;
+        _facingDirection = facingDirection;
     }
     private void Flip()
     {
-        if (_isFacingRight == 1 && _deltaX < 0f || _isFacingRight == -1 && _deltaX > 0f)
+        if (_facingDirection == 1 && _deltaX < 0f || _facingDirection == -1 && _deltaX > 0f)
         {
-            _isFacingRight *= -1;
+            _facingDirection *= -1;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
@@ -214,7 +214,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _aerialDash = false;
 
             //dash direction based on where playr is facing
-            _dashSpeed *= _isFacingRight;
+            _dashSpeed *= _facingDirection;
         }
     }
     private void Move()
@@ -562,7 +562,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         void DrawAttack(PlayerData.Attack attackData)
         {
-            Vector3 facing = Vector3.right * _isFacingRight;
+            Vector3 facing = Vector3.right * _facingDirection;
             Gizmos.color = Color.red;;
             Gizmos.DrawWireCube(transform.position + facing * attackData.HitboxCastDistance, attackData.HitboxSize);
         }
