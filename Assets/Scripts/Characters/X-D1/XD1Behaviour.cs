@@ -5,11 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class XD1Controller : MonoBehaviour
+public class XD1Behaviour : EntityStateMachine<XD1Behaviour>
 {
-    private StateMachine _stateMachine;
-
     [SerializeField] private float _acceleration;
     [SerializeField] private Vector3 _offsetFromPlayer;
     [SerializeField] private float _catchUpTime = 0.4f;
@@ -43,74 +42,74 @@ public class XD1Controller : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
 
-        _stateMachine = new StateMachine();
         _idleState = new IdleState(this);
         _followState = new FollowState(this);
 
-        _stateMachine.ChangeState(_idleState);
+        SwitchState(_idleState);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _stateMachine.Update();
+        base.Update();
     }
 
-
-    public class IdleState : IState
+    public abstract class StateBase : EntityState<XD1Behaviour>
     {
-        private XD1Controller _controller;
-        public IdleState(XD1Controller controller)
+        protected StateBase(XD1Behaviour entity) : base(entity) {}
+    }
+
+    public class IdleState : StateBase
+    {
+        public IdleState(XD1Behaviour entity) : base(entity) {}
+
+        public override void Enter()
         {
-            _controller = controller;
+            Debug.Log("Entered Idle State");
         }
-        public void Execute()
+        public override void Execute()
         {
-            if (Vector3.Distance(_controller.transform.position, _controller._player.transform.position) >= 2)
+            if (Vector3.Distance(_entity.transform.position, _entity._player.transform.position) >= 2)
             {
-                _controller._stateMachine.ChangeState(_controller._followState);
+                Debug.Log("idle");
+                _entity.SwitchState(_entity._followState);
             }
         }
     }
 
-    public class FollowState : IState
+    public class FollowState : EntityState<XD1Behaviour>
     {
-        private XD1Controller _controller;
         Vector3 _target;
         private float _followTicks;
-        public FollowState(XD1Controller controller)
-        {
-            _controller = controller;
-        }
-        public void Enter()
+        public FollowState(XD1Behaviour entity) : base(entity) { }
+        public override void Enter()
         {
             _followTicks = 0.0f;
             
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            if (_controller._player.GetComponent<CharacterController2D>().FacingDirection == 1)
+            if (_entity._player.GetComponent<CharacterController2D>().FacingDirection == 1)
             {
-                _target = new Vector3(-_controller._offsetFromPlayer.x, _controller._offsetFromPlayer.y, _controller._offsetFromPlayer.z) + _controller._player.transform.position;
+                _target = new Vector3(-_entity._offsetFromPlayer.x, _entity._offsetFromPlayer.y, _entity._offsetFromPlayer.z) + _entity._player.transform.position;
             }
             else
             {
-                _target = _controller._offsetFromPlayer + _controller._player.transform.position;
+                _target = _entity._offsetFromPlayer + _entity._player.transform.position;
             }
-            _controller.transform.position = Vector3.SmoothDamp(_controller.transform.position, _target, ref _controller._velocity, _controller._catchUpTime);
-            if (_controller._velocity.magnitude <= 1f)
+            _entity.transform.position = Vector3.SmoothDamp(_entity.transform.position, _target, ref _entity._velocity, _entity._catchUpTime);
+            if (_entity._velocity.magnitude <= 1f)
             {
                 _followTicks += Time.deltaTime;
                 if (_followTicks > 2)
-                    _controller._stateMachine.ChangeState(_controller._idleState);
+                    _entity.SwitchState(_entity._idleState);
             }
             else
             {
                 _followTicks = 0;
             }
-            Vector3 lookAtPosition = new Vector3(_controller._player.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
-            _controller.transform.LookAt(lookAtPosition, Vector3.up);
+            Vector3 lookAtPosition = new Vector3(_entity._player.transform.position.x, _entity.transform.position.y, _entity.transform.position.z);
+            _entity.transform.LookAt(lookAtPosition, Vector3.up);
         }
     }
 }

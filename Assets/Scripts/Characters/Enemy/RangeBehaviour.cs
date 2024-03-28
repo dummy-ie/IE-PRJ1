@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RangeBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    EnemyBase _enemy;
+    //[SerializeField]
+    //EnemyBase _enemy;
 
     public bool InRange = false;
     void Awake()
     {
-        _enemy = GetComponentInParent<EnemyBase>();
+        //_enemy = GetComponentInParent<EnemyBase>();
     }
 
 

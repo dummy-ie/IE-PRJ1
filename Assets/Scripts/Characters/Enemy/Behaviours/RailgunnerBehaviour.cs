@@ -5,11 +5,8 @@ using UnityEngine.Android;
 using UnityEngine.InputSystem.XR;
 
 
-public class Railgunner : EnemyBase //, IHittable
+public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
 {
-    private StateMachine _stateMachine;
-
-
 
     [SerializeField] AttackData _attack;
 
@@ -25,44 +22,35 @@ public class Railgunner : EnemyBase //, IHittable
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
-        _stateMachine = new StateMachine();
         _detectionState = new DetectionState(this);
         _trackingState = new TrackingState(this);
 
-        _stateMachine.ChangeState(_detectionState);
+        SwitchState(_detectionState);
     }
 
-
-    void Update()
+    public abstract class StateBase : EntityState<RailgunnerBehaviour>
     {
-        _stateMachine.Update();
+        protected StateBase(RailgunnerBehaviour entity) : base(entity) { }
     }
-
-    public class DetectionState : IState
+    public class DetectionState : StateBase
     {
-        private Railgunner _railgunner;
         private LineRenderer _line;
+        public DetectionState(RailgunnerBehaviour entity) : base (entity) { }
 
-        public DetectionState(Railgunner railgunner)
+        public override void Enter()
         {
-            _railgunner = railgunner;
+            _line = _entity._line;
         }
 
-        public void Enter()
+        public override void Execute()
         {
-            _line = _railgunner._line;
-        }
-
-        public void Execute()
-        {
-            if (_railgunner._visionBehaviour.PlayerSeen)
-                _railgunner._stateMachine.ChangeState(_railgunner._trackingState);
+            if (_entity._visionBehaviour.PlayerSeen)
+                _entity.SwitchState(_entity._trackingState);
         }
     }
 
-    public class TrackingState : IState
+    public class TrackingState : StateBase
     {
-        private Railgunner _railgunner;
 
         private Transform _target;
         private Vector2 _direction;
@@ -72,20 +60,17 @@ public class Railgunner : EnemyBase //, IHittable
 
         private float _trackingTicks = 0.0f;
 
-        public TrackingState(Railgunner railgunner)
-        {
-            _railgunner = railgunner;
-        }
+        public TrackingState(RailgunnerBehaviour entity) : base(entity) {}
 
-        public void Enter()
+        public override void Enter()
         {
             _trackingTicks = 0.0f;
-            _target = _railgunner._target;
-            _line = _railgunner._line;
+            _target = _entity._target;
+            _line = _entity._line;
             _line.widthMultiplier = 0.05f;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             _trackingTicks += Time.deltaTime;
 
@@ -94,7 +79,7 @@ public class Railgunner : EnemyBase //, IHittable
             float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             _line.transform.rotation = Quaternion.Slerp(_line.transform.rotation, rotation,
-                _railgunner._rotationSpeed * Time.deltaTime);
+                _entity._rotationSpeed * Time.deltaTime);
             //_line.transform.rotation = rotation;
 
             _raycastDirection = _line.transform.right;
@@ -110,18 +95,18 @@ public class Railgunner : EnemyBase //, IHittable
                     _line.SetPosition(1, hit.point);
             }
 
-            if (!_railgunner._rangeBehaviour.InRange)
+            if (!_entity._rangeBehaviour.InRange)
             {
                 _line.positionCount = 0;
-                _railgunner._stateMachine.ChangeState(_railgunner._detectionState);
+                _entity.SwitchState(_entity._detectionState);
             }
 
-            if (_trackingTicks >= _railgunner._timeToShoot)
+            if (_trackingTicks >= _entity._timeToShoot)
             {
                 _line.widthMultiplier = 0.5f;
-                PerformAttack(_railgunner._attack);
+                PerformAttack(_entity._attack);
                 _line.positionCount = 0;
-                _railgunner._stateMachine.ChangeState(_railgunner._detectionState);
+                _entity.SwitchState(_entity._detectionState);
             }
 
 
@@ -135,7 +120,7 @@ public class Railgunner : EnemyBase //, IHittable
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>().StartHit(_railgunner.gameObject, attack.damage);
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(_entity.gameObject, attack.damage);
                     /*IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                     if (handler != null)
                     {

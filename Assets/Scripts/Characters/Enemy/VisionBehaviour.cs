@@ -6,14 +6,14 @@ using UnityEngine.Events;
 
 public class VisionBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    EnemyBase _enemy;
+    //[SerializeField]
+    //EnemyBase _enemy;
 
     public bool PlayerSeen = false;
 
     void Awake()
     {
-        _enemy = GetComponentInParent<EnemyBase>();
+        //_enemy = GetComponentInParent<EnemyBase>();
     }
 
 

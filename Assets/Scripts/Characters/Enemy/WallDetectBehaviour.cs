@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WallDetectBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    EnemyBase _enemyScript;
+    //[SerializeField]
+    //EnemyBase _enemyScript;
 
     void Awake()
     {
-        _enemyScript = GetComponentInParent<EnemyBase>();
+        //_enemyScript = GetComponentInParent<EnemyBase>();
     }
 
 
