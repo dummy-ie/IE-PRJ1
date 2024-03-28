@@ -57,8 +57,8 @@ public class EnemyBase : MonoBehaviour, IHittable
     [SerializeField] private int _particleDropsOnHit = 3;
     [SerializeField] private int _particleDropsOnDeath = 7;
 
-    private PatrolState _patrolState;
-    private DeathState _deathState;
+    protected PatrolState _patrolState;
+    protected DeathState _deathState;
 
     void DropParticle(int particlesDropped)
     {
