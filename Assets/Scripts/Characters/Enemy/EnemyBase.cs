@@ -95,7 +95,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
         _rb = GetComponent<Rigidbody2D>();
 
         _currentHealth = _enemyData.Health;
-        _mat = GetComponent<SpriteRenderer>().material;
+        //_mat = GetComponent<SpriteRenderer>().material;
 
         //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }

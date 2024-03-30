@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8fff25ec6bd054f905cc43e606d3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyScript: {fileID: 0}
   detectedColliders: []
 --- !u!61 &5638163132753483809
 BoxCollider2D:
@@ -182,7 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d1c69c35169748bef9a5716f90a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
   PlayerSeen: 0
 --- !u!1 &4852364979054706284
 GameObject:
@@ -229,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6db1fd16a435ea48a7e3fd88af188f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyScript: {fileID: 0}
 --- !u!61 &349638053872648457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -365,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d72a8979cacd94589b379fbac60fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
   InRange: 0
 --- !u!1 &9060218829071539946
 GameObject:
@@ -379,6 +375,7 @@ GameObject:
   - component: {fileID: 4962073293594266483}
   - component: {fileID: 2596730438186367363}
   - component: {fileID: 4430003552056080591}
+  - component: {fileID: 5667055554619261285}
   m_Layer: 0
   m_Name: Exo Artillery
   m_TagString: Breakable
@@ -523,6 +520,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0060344, y: 3.3736134}
   m_EdgeRadius: 0
+--- !u!114 &5667055554619261285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060218829071539946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbae8da3834ac80468e77b1c457af728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyData: {fileID: 11400000, guid: 2651ccf9473367148933b0dba9f3be26, type: 2}
+  _currentHealth: 0
+  _visionBehaviour: {fileID: 3073428040112387144}
+  _rangeBehaviour: {fileID: 6328381873882838375}
+  _wallDetectBehaviour: {fileID: 8916761016640998918}
+  _cliffDetectBehaviour: {fileID: 8138087796901793253}
+  _boxCastDistance: 0.4
+  _boxSize: {x: 0.3, y: 0.4}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
+  _particleDropsOnHit: 3
+  _particleDropsOnDeath: 7
+  _attack:
+    moveOffset: 0
+    attackCollision:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    damage: 0
+    knockbackForce: {x: 0, y: 0}
 --- !u!1001 &5699312132873654016
 PrefabInstance:
   m_ObjectHideFlags: 0
