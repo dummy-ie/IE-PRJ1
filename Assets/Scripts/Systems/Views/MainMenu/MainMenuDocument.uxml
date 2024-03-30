@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/Systems/Views/MainMenu/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=1ec4b707e5c730745851a77e99a4e138&amp;type=3#MainMenuStyle" />
-    <ui:Image name="StuckInBetweenLogo" />
-    <ui:Button text="Play" name="PlayButton" />
-    <ui:Button text="Settings" name="SettingsButton" />
-    <ui:Button text="Quit" name="QuitButton" />
-</ui:UXML>

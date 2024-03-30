@@ -605,6 +605,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Manite Slash
   _spawnPoint: {fileID: 45271851}
+  _changeOnTrigger: 1
 --- !u!61 &276525204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -634,7 +635,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1632,7 +1633,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5999,6 +6000,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 1
   _targetSceneName: Drawbridge Hole
   _spawnPoint: {fileID: 76345791}
+  _changeOnTrigger: 1
 --- !u!1001 &1772943705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6274,11 +6276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.974094
+      value: -22.42
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0700202
+      value: 0.07000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -6455,7 +6461,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -6578,6 +6584,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Underground Left
   _spawnPoint: {fileID: 4051866202152235056}
+  _changeOnTrigger: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

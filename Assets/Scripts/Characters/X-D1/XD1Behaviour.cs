@@ -50,6 +50,8 @@ public class XD1Behaviour : EntityStateMachine<XD1Behaviour>
 
     void Update()
     {
+        if (_player == null)
+            _player = GameObject.FindGameObjectWithTag("Player");
         base.Update();
     }
 

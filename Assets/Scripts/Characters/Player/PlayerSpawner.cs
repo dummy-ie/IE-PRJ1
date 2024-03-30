@@ -12,13 +12,14 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
 
     void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
         SpawnPlayerFromSpawnPoint();
     }
     private void InitializePlayer(Vector3 position)
     {
-        GameObject player = Instantiate(_player);
-        player.transform.position = position;
-        //player.GetComponent<CharacterController2D>().SetVirtualCameraBoundingBox(GameObject.FindGameObjectWithTag("SceneBounds").GetComponent<CompositeCollider2D>());
+        //GameObject player = Instantiate(_player);
+        _player.transform.position = position;
+        _player.GetComponent<CharacterController2D>().SetVirtualCameraBoundingBox(GameObject.FindGameObjectWithTag("SceneBounds").GetComponent<CompositeCollider2D>());
     }
     public void SpawnPlayerFromSpawnPoint()
     {

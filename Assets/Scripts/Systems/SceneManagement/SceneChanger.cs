@@ -22,8 +22,8 @@ public class SceneChanger : MonoBehaviour
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            if (GameObject.FindGameObjectWithTag("Player") != null)
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
+            //if (GameObject.FindGameObjectWithTag("Player") != null)
+            //    Destroy(GameObject.FindGameObjectWithTag("Player"));
             PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
             FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
         }

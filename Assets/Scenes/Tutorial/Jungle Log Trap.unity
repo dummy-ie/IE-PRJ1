@@ -194,7 +194,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 82217d38f8a4e9344ae2b9ddeb6effba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,7 +278,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8f60a6eb470a1f4dac577c5498d8505, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -718,7 +718,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.23598957, y: 3.3566995}
@@ -754,6 +754,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Jungle Combat
   _spawnPoint: {fileID: 1130677600}
+  _changeOnTrigger: 1
 --- !u!1 &181452404
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60e80ed83bbea34eb7ac8ac115f62a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   dialoguePanel: {fileID: 1144112559}
   dialogueText: {fileID: 617610969}
 --- !u!4 &181452406
@@ -972,7 +974,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 82217d38f8a4e9344ae2b9ddeb6effba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1205,7 +1207,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1428,7 +1430,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1781,7 +1783,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1988,7 +1990,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478eb1fb51e8c2d43bb11d53463be652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 0}
+  _playerStats:
+    _dataId: 
+    _checkPointData:
+      _checkPointName: 
+      _posX: 0
+      _posY: 0
+      _posZ: 0
+    _hasDash: 1
+    _hasSlash: 0
+    _hasPound: 0
+  _nextSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!4 &888343583
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,7 +2091,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2301,6 +2317,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Jungle Exit
   _spawnPoint: {fileID: 1570111981}
+  _changeOnTrigger: 1
 --- !u!1 &1124281205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,7 +2831,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3371,7 +3388,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3539,7 +3556,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3623,7 +3640,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 82217d38f8a4e9344ae2b9ddeb6effba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3707,7 +3724,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3791,7 +3808,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4103,15 +4120,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.4421053
+      value: -1.7799997
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7708
+      value: -3.44
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -4285,7 +4302,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8bcc6260c4ae9d4eb65bc73f52d8200, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4519,7 +4536,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: aa692787768a5594f83f27101b4bf79b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4832,7 +4849,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f8f60a6eb470a1f4dac577c5498d8505, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5038,7 +5055,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0625, y: 0.0625, z: 0}
@@ -7167,6 +7184,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Jungle Dash
   _spawnPoint: {fileID: 288236785}
+  _changeOnTrigger: 1
 --- !u!1001 &2031088570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7300,7 +7318,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: aa692787768a5594f83f27101b4bf79b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
