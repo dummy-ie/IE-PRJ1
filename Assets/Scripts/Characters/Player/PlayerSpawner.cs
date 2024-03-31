@@ -40,7 +40,7 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
         InitializePlayer(position);
     }
     public void Respawn(string checkpointName, Vector3 position){
-        SceneLoader.Instance.LoadScene(checkpointName, true);
+        //SceneLoader.Instance.LoadScene(checkpointName, true);
         InitializePlayer(position);
     }
     
