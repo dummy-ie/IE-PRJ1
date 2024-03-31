@@ -112,6 +112,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Ability1",
+                    "type": "Button",
+                    "id": "7438938f-0a73-4d3d-9334-b05960b5ae87",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability2",
+                    "type": "Button",
+                    "id": "096fa185-b01e-4d0b-96cc-e162464ba8be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "86423432-9dee-4e66-bd07-bab8cbc7b161",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability Cycle",
+                    "type": "Button",
+                    "id": "fd424c21-8d37-486d-96f0-0470d8f84130",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -127,7 +163,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Arrow Keys",
+                    "name": "WASD",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
                     "path": "Dpad",
                     "interactions": "",
@@ -140,7 +176,7 @@
                 {
                     "name": "up",
                     "id": "8180e8bd-4097-4f4e-ab88-4523101a6ce9",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -151,7 +187,7 @@
                 {
                     "name": "down",
                     "id": "1c5327b5-f71c-4f60-99c7-4e737386f1d1",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -162,7 +198,7 @@
                 {
                     "name": "left",
                     "id": "2e46982e-44cc-431b-9f0b-c11910bf467a",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -173,7 +209,7 @@
                 {
                     "name": "right",
                     "id": "77bff152-3580-4b21-b6de-dcd0c7e41164",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -294,7 +330,7 @@
                 {
                     "name": "",
                     "id": "00cc23b8-4066-4868-8d6b-9f1309ebac52",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -316,7 +352,7 @@
                 {
                     "name": "",
                     "id": "9dff376b-cee2-43e2-beff-0751f6a0c5d6",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -338,7 +374,7 @@
                 {
                     "name": "",
                     "id": "c6917a02-f7fb-4d2f-81bf-1eb20be11499",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -536,7 +572,7 @@
                 {
                     "name": "",
                     "id": "7113b349-3a2e-4f57-9b8c-6901bf0cf9b1",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -574,6 +610,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "GroundPound",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c4503d6-521a-4cd5-bcd8-df73fc53b206",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d3023b9-4092-4a12-8f98-73bf089a822d",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e8ace7c-8b51-47d9-9054-9c8c7e4250a7",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd6c6634-138d-4064-91f7-ee3c955c67bb",
+                    "path": "<Keyboard>/leftAlt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability Cycle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

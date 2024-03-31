@@ -10,7 +10,6 @@ public class PlayerAttack : MonoBehaviour
     CharacterController2D _controller;
     private Animator _animator;
 
-    
     private bool isAttacking = false;
     //private float attackDuration = 0.1f;
     private float attackTime;

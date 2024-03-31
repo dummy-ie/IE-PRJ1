@@ -9,28 +9,13 @@ using UnityEngine.InputSystem;
 // using a PlayerInput component with Unity Events.
 
 [RequireComponent(typeof(PlayerInput))]
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     private Vector2 moveDirection = Vector2.zero;
     private bool jumpPressed = false;
     private bool interactPressed = false;
     private bool submitPressed = false;
 
-    private static InputManager instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("Found more than one Input Manager in the scene.");
-        }
-        instance = this;
-    }
-
-    public static InputManager GetInstance() 
-    {
-        return instance;
-    }
 
     public void MovePressed(InputAction.CallbackContext context)
     {

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using static PlayerData;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,6 +14,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
 #endif
+    // INPUTS
+    private StuckinBetween _playerActions;
+
+    private InputAction _moveAction;
+
     Transform _lastSpawnPosition;
     public Transform LastSpawnPosition
     {
@@ -140,36 +146,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         }
     }
 
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        float moveX = context.ReadValue<Vector2>().x;
-        float moveY = context.ReadValue<Vector2>().y;
-        if (context.started)
-        {
-            // Debug.Log("Move pressed");
-        }
-        else if (context.performed)
-        {
-            // Debug.Log("Moving now" + moveX);
-
-            if (moveY <= -0.5f)
-                _isPressDown = true;
-
-            if (moveX >= 0.5f || moveX <= -0.5f)
-                _deltaX = moveX;
-            if (moveY >= 0.5f || moveY <= -0.5f)
-                _deltaY = moveY;
-        }
-        else if (context.canceled)
-        {
-            _isPressDown = false;
-            // Debug.Log("Move released");
-            _deltaX = 0;
-            _deltaY = 0;
-        }
-    }
-
     private OneWayPlatform GetPlatformBelow()
     {
         OneWayPlatform platform = null;
@@ -181,6 +157,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        
         Debug.Log("Jummp");
         if (context.started)
         {
@@ -219,14 +196,15 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
     private void Move()
     {
-        if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)) && _canMove)
-        {
-            _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
-        }
+        _deltaX = _moveAction.ReadValue<Vector2>().x;
+        _deltaY = _moveAction.ReadValue<Vector2>().y;
 
-        if (_onLadder && _canMove)
+        if (_canMove)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
+            if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
+                _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
+            if (_onLadder)
+                _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
         }
         // interpolate the camera towards where the player is currently moving if they are moving?
         // propose the idea later on idk
@@ -459,6 +437,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Awake()
     {
+        _playerActions = new StuckinBetween();
+
         _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
         _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
@@ -509,6 +489,33 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         if (!_isDashing) Flip();
     }
 
+    void OnEnable()
+    {
+        _moveAction = _playerActions.Player.Move;
+        _moveAction.Enable();
+
+        _playerActions.Player.Jump.started += OnJump;
+        _playerActions.Player.Jump.canceled += OnJump;
+        _playerActions.Player.Jump.Enable();
+
+        _playerActions.Player.Dash.started += OnDash;
+        _playerActions.Player.Dash.Enable();
+
+        _playerActions.Player.Attack.started += GetComponent<PlayerAttack>().OnAttack;
+        _playerActions.Player.Attack.Enable();
+
+        _playerActions.Player.Interact.started += GetComponent<PlayerInteract>().OnInteract;
+        _playerActions.Player.Interact.Enable();
+    }
+
+    void OnDisable()
+    {
+        _moveAction.Disable();
+        _playerActions.Player.Jump.Disable();
+        _playerActions.Player.Dash.Disable();
+        _playerActions.Player.Attack.Disable();
+        _playerActions.Player.Interact.Disable();
+    }
 
     private IEnumerator LoadBuffer()
     {

@@ -134,6 +134,42 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability1"",
+                    ""type"": ""Button"",
+                    ""id"": ""7438938f-0a73-4d3d-9334-b05960b5ae87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability2"",
+                    ""type"": ""Button"",
+                    ""id"": ""096fa185-b01e-4d0b-96cc-e162464ba8be"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""86423432-9dee-4e66-bd07-bab8cbc7b161"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability Cycle"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd424c21-8d37-486d-96f0-0470d8f84130"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -149,7 +185,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Arrow Keys"",
+                    ""name"": ""WASD"",
                     ""id"": ""00ca640b-d935-4593-8157-c05846ea39b3"",
                     ""path"": ""Dpad"",
                     ""interactions"": """",
@@ -162,7 +198,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""8180e8bd-4097-4f4e-ab88-4523101a6ce9"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -173,7 +209,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""1c5327b5-f71c-4f60-99c7-4e737386f1d1"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -184,7 +220,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""2e46982e-44cc-431b-9f0b-c11910bf467a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -195,7 +231,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""77bff152-3580-4b21-b6de-dcd0c7e41164"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -316,7 +352,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""00cc23b8-4066-4868-8d6b-9f1309ebac52"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -338,7 +374,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9dff376b-cee2-43e2-beff-0751f6a0c5d6"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -360,7 +396,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c6917a02-f7fb-4d2f-81bf-1eb20be11499"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -558,7 +594,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7113b349-3a2e-4f57-9b8c-6901bf0cf9b1"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -596,6 +632,50 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GroundPound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c4503d6-521a-4cd5-bcd8-df73fc53b206"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d3023b9-4092-4a12-8f98-73bf089a822d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e8ace7c-8b51-47d9-9054-9c8c7e4250a7"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd6c6634-138d-4064-91f7-ee3c955c67bb"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability Cycle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1195,6 +1275,10 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         m_Player_GroundPound = m_Player.FindAction("GroundPound", throwIfNotFound: true);
+        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
+        m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
+        m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
+        m_Player_AbilityCycle = m_Player.FindAction("Ability Cycle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1280,6 +1364,10 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Submit;
     private readonly InputAction m_Player_GroundPound;
+    private readonly InputAction m_Player_Ability1;
+    private readonly InputAction m_Player_Ability2;
+    private readonly InputAction m_Player_Parry;
+    private readonly InputAction m_Player_AbilityCycle;
     public struct PlayerActions
     {
         private @StuckinBetween m_Wrapper;
@@ -1296,6 +1384,10 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Submit => m_Wrapper.m_Player_Submit;
         public InputAction @GroundPound => m_Wrapper.m_Player_GroundPound;
+        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
+        public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
+        public InputAction @Parry => m_Wrapper.m_Player_Parry;
+        public InputAction @AbilityCycle => m_Wrapper.m_Player_AbilityCycle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1341,6 +1433,18 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @GroundPound.started += instance.OnGroundPound;
             @GroundPound.performed += instance.OnGroundPound;
             @GroundPound.canceled += instance.OnGroundPound;
+            @Ability1.started += instance.OnAbility1;
+            @Ability1.performed += instance.OnAbility1;
+            @Ability1.canceled += instance.OnAbility1;
+            @Ability2.started += instance.OnAbility2;
+            @Ability2.performed += instance.OnAbility2;
+            @Ability2.canceled += instance.OnAbility2;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
+            @AbilityCycle.started += instance.OnAbilityCycle;
+            @AbilityCycle.performed += instance.OnAbilityCycle;
+            @AbilityCycle.canceled += instance.OnAbilityCycle;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1381,6 +1485,18 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @GroundPound.started -= instance.OnGroundPound;
             @GroundPound.performed -= instance.OnGroundPound;
             @GroundPound.canceled -= instance.OnGroundPound;
+            @Ability1.started -= instance.OnAbility1;
+            @Ability1.performed -= instance.OnAbility1;
+            @Ability1.canceled -= instance.OnAbility1;
+            @Ability2.started -= instance.OnAbility2;
+            @Ability2.performed -= instance.OnAbility2;
+            @Ability2.canceled -= instance.OnAbility2;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
+            @AbilityCycle.started -= instance.OnAbilityCycle;
+            @AbilityCycle.performed -= instance.OnAbilityCycle;
+            @AbilityCycle.canceled -= instance.OnAbilityCycle;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1575,6 +1691,10 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnGroundPound(InputAction.CallbackContext context);
+        void OnAbility1(InputAction.CallbackContext context);
+        void OnAbility2(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
+        void OnAbilityCycle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
