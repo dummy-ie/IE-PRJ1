@@ -16,12 +16,28 @@ public class BoundsSwitcher : MonoBehaviour
     {
         
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("SceneBounds"))
         {
             GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = collision.GetComponent<CompositeCollider2D>();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SceneBounds"))
+        {
+            GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = collision.GetComponent<CompositeCollider2D>();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SceneBounds"))
+        {
+            if (GetComponent<CinemachineConfiner2D>().m_BoundingShape2D == collision.GetComponent<CompositeCollider2D>())
+                GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = null;
         }
     }
 }
