@@ -162,7 +162,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         if (context.started)
         {
             OneWayPlatform platform = GetPlatformBelow();
-            if (platform != null && _isPressDown)
+            if (platform != null && _deltaY <= -0.5f)
             {
                 Debug.Log("SHOULD DROP DOWN");
                 platform.StartDropPlatform();
@@ -453,6 +453,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         Debug.Log("Player");
         _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
+        _stats.Health.SetCurrent(_data.MaxHealth);
+        _stats.Manite.SetCurrent(_data.MaxManite);
         Debug.Log("Player Max Health : " + _stats.Health.Max);
         Debug.Log("Player Max Manite : " + _stats.Manite.Max);
     }

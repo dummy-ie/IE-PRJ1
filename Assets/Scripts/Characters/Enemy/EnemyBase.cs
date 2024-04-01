@@ -57,7 +57,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
     //private PatrolState _patrolState;
     //private DeathState _deathState;
 
-    void DropParticle(int particlesDropped)
+    public void DropParticle(int particlesDropped)
     {
         GameObject newObject = Instantiate(_particleSystem, transform.position, Quaternion.identity);
         ParticleSystem particleSystem = newObject.GetComponent<ParticleSystem>();
@@ -117,14 +117,13 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
         {
             //SwitchState(_deathState);
         }
-        Flip();
+        //Flip();
     }
 
     virtual protected void FlipTo()
     {
-        Vector3 localScale = transform.localScale;
-        localScale.x = PatrolDirection.x;
-        transform.localScale = -localScale;
+        _isFacingRight = !_isFacingRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
     virtual protected void Flip()
     {
@@ -132,46 +131,4 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
         localScale.x = PatrolDirection.x;
         transform.localScale = localScale;
     }
-    /*
-    public abstract class StateBase : EntityState<EnemyBase<>>
-    {
-        public StateBase(EnemyBase entity) : base(entity) { }
-    }
-
-    public class PatrolState : StateBase
-    {
-
-        protected float _patrolTick;
-        public PatrolState(EnemyBase entity) : base(entity) { }
-        public void Enter()
-        {
-            _patrolTick = 0.0f;
-        }
-        public void Execute()
-        {
-            Vector3 pos = new(_entity.transform.position.x + (_entity._patrolDirection.x * _entity._speed), _entity.transform.position.y + (_entity._patrolDirection.y * _entity._speed), 0);
-            _entity.transform.position = Vector3.MoveTowards(_entity._rb.transform.position, pos, Time.deltaTime * _entity._speed);
-        }
-        public void Exit()
-        {
-
-        }
-    }
-
-    public class DeathState : StateBase
-    {
-        public DeathState(EnemyBase entity) : base(entity) { }
-        public void Enter()
-        {
-            _entity.DropParticle(_entity._particleDropsOnDeath);
-            _entity.gameObject.SetActive(false);
-        }
-        public void Execute()
-        {
-        }
-        public void Exit()
-        {
-
-        }
-    }*/
 }
