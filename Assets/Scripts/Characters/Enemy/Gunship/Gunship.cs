@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gunship : EnemyBase
+public class Gunship : EnemyBaseShip
 {
     [SerializeField] AttackData _attack;
 
