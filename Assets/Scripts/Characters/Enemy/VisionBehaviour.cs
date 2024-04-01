@@ -6,7 +6,8 @@ using UnityEngine.Events;
 
 public class VisionBehaviour : MonoBehaviour
 {
-    //[SerializeField]
+    [SerializeField]
+    public GameObject detectedObject;
     //EnemyBase _enemy;
 
     public bool PlayerSeen = false;
@@ -23,6 +24,7 @@ public class VisionBehaviour : MonoBehaviour
         {
             //_enemy.CurrentState = EnemyBase.State.Engaging;
             PlayerSeen = true;
+            detectedObject = collision.gameObject;
         }
     }
 

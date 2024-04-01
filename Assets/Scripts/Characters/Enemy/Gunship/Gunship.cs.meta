@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: be4a3c1760d053242b1057ced33946b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _enemyData: {fileID: 11400000, guid: 88638c64d166033498b5da56f919d013, type: 2}
+  - _visionBehaviour: {instanceID: 0}
+  - _rangeBehaviour: {instanceID: 0}
+  - _wallDetectBehaviour: {instanceID: 0}
+  - _cliffDetectBehaviour: {instanceID: 0}
+  - _particleSystem: {instanceID: 0}
+  - _directionalEMP: {fileID: 5014597553800095601, guid: a53cd6c01212b9944887c94e43922b78, type: 3}
+  - _directionalCannon: {fileID: 5014597553800095601, guid: a53cd6c01212b9944887c94e43922b78, type: 3}
+  - _EMPtarget: {instanceID: 0}
+  - _playerTarget: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
