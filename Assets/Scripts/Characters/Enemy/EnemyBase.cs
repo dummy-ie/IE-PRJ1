@@ -22,6 +22,8 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
 
     [SerializeField]
     protected int _currentHealth;
+
+    [SerializeField]
     protected int _speed = 1;
 
     protected Collider2D _visionCollider;
