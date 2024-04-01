@@ -239,7 +239,7 @@ public class Gunship : EnemyBase<Gunship>
 
         public override void Execute() {
 
-            //Destroy(this.gameObject);
+            Destroy(this._entity.gameObject);
 
         }
 

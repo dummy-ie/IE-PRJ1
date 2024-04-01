@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class GroundPound : AAbility
 {
-
-    CharacterController2D controller;
     Rigidbody2D rb;
 
     private bool isGroundPound = false;
