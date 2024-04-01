@@ -7,36 +7,59 @@ public enum DroneState{
     HOVERING
 }
 
-public class LM40DroneBase : MonoBehaviour
+public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : LM40DroneBase<TDrone>
 {
+
+    [System.Serializable]
+    protected struct AttackData
+    {
+        public float moveOffset;
+        public Rect attackCollision;
+        public int damage;
+        public Vector2 knockbackForce;
+    }
+
+    [SerializeField]
+    protected EnemyData _enemyData;
+
+    [SerializeField]
+    protected GameObject _targetPlayer;
+
+
     Rigidbody _rb;
 
     [SerializeField]
     Vector3 _targetLoc;
 
     [SerializeField]
-    protected DroneState _state = DroneState.HOVERING;
+    protected int floatingValueX = 1;
 
     [SerializeField]
-    protected int floatingValueX = 2;
+    protected int floatingValueY = 1;
 
     [SerializeField]
-    protected int floatingValueY = 6;
+    protected int floatingSpeedX = 2;
 
     [SerializeField]
-    GameObject test;
+    protected int floatingSpeedY = 2;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        _targetLoc = transform.position + Vector3.up * 5;
+       // _targetLoc = transform.position + Vector3.up * 5;
+        
+    }
+
+    private void Awake()
+    {
         _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        _targetLoc = test.transform.position;
+        base.Update();
+        /*_targetLoc = test.transform.position;
         switch (_state)
         {
             case DroneState.MOVING:
@@ -49,25 +72,48 @@ public class LM40DroneBase : MonoBehaviour
 
             default:
                 break;
-        }
+        }*/
 
     }
 
-    private void Hovering()
+    public float GetDirection(GameObject target)
     {
-        Vector3 vectorForce = (new Vector3(Mathf.Sin(Time.time * floatingValueX), Mathf.Sin(Time.time * floatingValueY), 0));
+        if (target != null)
+        {
+
+            float value = target.transform.position.x - target.transform.position.x;
+            if (value < 0)
+                return -1;
+
+            else
+                return 1;
+
+        }
+
+        return 0;
+
+    }
+
+    protected void Hovering()
+    {
+        Vector3 vectorForce = (new Vector3(Mathf.Sin(Time.time * floatingSpeedX) * floatingValueX, Mathf.Sin(Time.time * floatingSpeedY) * floatingValueY, 0));
 
         this._rb.velocity = vectorForce;
 
-        if (Vector3.Distance(_targetLoc, transform.position) > 3)
+        /*if (Vector3.Distance(_targetLoc, transform.position) > 3)
         {
             _state = DroneState.MOVING;
-        }
+        }*/
     }
 
     protected void MoveTargetLoc(Vector3 targetLoc)
     {
         this._targetLoc = targetLoc;
+    }
+
+    protected float GetDistanceToTarget()
+    {
+        return Vector3.Distance(_targetLoc, transform.position);
     }
 
     protected void Moving()
@@ -79,9 +125,9 @@ public class LM40DroneBase : MonoBehaviour
         Debug.Log(vectorForce);
         this._rb.velocity = vectorForce * Vector3.Distance(transform.position, _targetLoc);
 
-        if(Vector3.Distance(_targetLoc, transform.position) <= 1)
+        /*if(Vector3.Distance(_targetLoc, transform.position) <= 1)
         {
             _state = DroneState.HOVERING;
-        }
+        }*/
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using UnityEditor.ShaderGraph.Internal;
+
 using UnityEngine;
 
 public class Gunship : EnemyBase<Gunship>
@@ -242,7 +239,7 @@ public class Gunship : EnemyBase<Gunship>
 
         public override void Execute() {
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
 
         }
 

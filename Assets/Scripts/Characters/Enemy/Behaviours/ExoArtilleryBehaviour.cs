@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEditorInternal;
+
 using UnityEngine;
-using UnityEngine.Android;
-using UnityEngine.PlayerLoop;
-using UnityEngine.U2D;
+
 using static PlayerData;
 
 [RequireComponent(typeof(Rigidbody2D))]

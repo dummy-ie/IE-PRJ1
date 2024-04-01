@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
+
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Rendering;
+
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class XD1Behaviour : EntityStateMachine<XD1Behaviour>
