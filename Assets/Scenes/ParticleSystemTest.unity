@@ -6397,6 +6397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Railgunner
       objectReference: {fileID: 0}
+    - target: {fileID: 9060218829071539946, guid: 411b88640b9090d41b2aac2d693bb492, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7821,6 +7825,10 @@ PrefabInstance:
     - target: {fileID: 2890964630222442138, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_Name
       value: ParallaxLevel3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890964630222442138, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175759161110666471, guid: 2b4ebb4ea8f963841b8fbed7a853176a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -71,7 +71,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
 
     virtual public void OnHit(Transform source, int damage)
     {
-        Stagger(source);
+        //Stagger(source);
         DropParticle(_particleDropsOnHit);
         _currentHealth -= damage;
         //StartCoroutine(Blink());
@@ -120,6 +120,12 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
         Flip();
     }
 
+    virtual protected void FlipTo()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x = PatrolDirection.x;
+        transform.localScale = -localScale;
+    }
     virtual protected void Flip()
     {
         Vector3 localScale = transform.localScale;

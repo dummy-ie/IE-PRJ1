@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EntityState<TEntity> : EntityStateMachine<TEntity>, IState where TEntity : EntityStateMachine<TEntity>
+public abstract class EntityState<TEntity> : IState where TEntity : EntityStateMachine<TEntity>
 {
     public TEntity _entity;
     protected EntityState(TEntity entity)
