@@ -348,19 +348,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3489200118419860923}
-        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c7a32a4b-d5be-480c-807e-68c809806926
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -519,6 +507,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5340e116-9bba-4ada-bcfe-86c565492798
     m_ActionName: Player/GroundPound[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7438938f-0a73-4d3d-9334-b05960b5ae87
+    m_ActionName: Player/Ability1[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 096fa185-b01e-4d0b-96cc-e162464ba8be
+    m_ActionName: Player/Ability2[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86423432-9dee-4e66-bd07-bab8cbc7b161
+    m_ActionName: Player/Parry[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd424c21-8d37-486d-96f0-0470d8f84130
+    m_ActionName: Player/Ability Cycle[/Keyboard/leftAlt]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -566,7 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dee4ea6e6df7b45b320a7f83367460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackData: {fileID: 11400000, guid: 15741659414e9e345b32a93b9f66a511, type: 2}
   attackHitboxDebug: {fileID: 496892192983152945}
   attackHitboxVDebug: {fileID: 496892192983152945}
   attackHitbox: {fileID: 2653795914489541926}
@@ -602,6 +605,8 @@ MonoBehaviour:
   cooldown: 2
   maniteCost: 0
   damage: 5
+  boxCastDistance: 0
+  groundPoundHitBox: {x: 0, y: 0}
   groundPoundFallMultiplier: 8
 --- !u!114 &8860734082083504054
 MonoBehaviour:
@@ -616,7 +621,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canInteract: 1
-  _interactHitbox: {fileID: 0}
 --- !u!95 &5296035857875587231
 Animator:
   serializedVersion: 5

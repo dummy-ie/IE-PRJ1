@@ -457,6 +457,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.Manite.SetCurrent(_data.MaxManite);
         Debug.Log("Player Max Health : " + _stats.Health.Max);
         Debug.Log("Player Max Manite : " + _stats.Manite.Max);
+
+        // TEMP
+
+        ObtainSlash();
+        ObtainGroundPound();
     }
 
     private void Update()
@@ -509,6 +514,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.Interact.started += GetComponent<PlayerInteract>().OnInteract;
         _playerActions.Player.Interact.Enable();
+
+        _playerActions.Player.ManiteSlash.started += GetComponent<ManiteSlash>().OnManiteSlash;
+        _playerActions.Player.ManiteSlash.Enable();
+
+        _playerActions.Player.GroundPound.started += GetComponent<GroundPound>().OnGroundPound;
+        _playerActions.Player.GroundPound.Enable();
     }
 
     void OnDisable()
@@ -518,6 +529,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _playerActions.Player.Dash.Disable();
         _playerActions.Player.Attack.Disable();
         _playerActions.Player.Interact.Disable();
+        _playerActions.Player.ManiteSlash.Disable();
+        _playerActions.Player.GroundPound.Disable();
+        Debug.Log("CHARACTER DISABLED");
     }
 
     private IEnumerator LoadBuffer()

@@ -572,7 +572,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""06e2b214-480a-460c-b70e-e1bed652d3ed"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -616,7 +616,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3bb9401a-bdda-41b6-8995-30f9a0c09064"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
