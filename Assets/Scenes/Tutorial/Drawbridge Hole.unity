@@ -321,8 +321,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 2b9910c5c9ccb37499538faa3c4818a9, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Drawbridge
   _spawnPoint: {fileID: 1610393672}
+  _changeOnTrigger: 1
 --- !u!1001 &186892886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2045,11 +2051,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.029986858
+      value: -17.2
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.2188206
+      value: -34.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -2397,7 +2407,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0625, y: 0.0625, z: 0}
@@ -8431,8 +8441,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: ea2a758aaf6de1d4886ef3bf75d5daaf, type: 2}
+  _targetSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _targetSceneName: Underground Middle
   _spawnPoint: {fileID: 288236785}
+  _changeOnTrigger: 1
 --- !u!1001 &2031088570
 PrefabInstance:
   m_ObjectHideFlags: 0

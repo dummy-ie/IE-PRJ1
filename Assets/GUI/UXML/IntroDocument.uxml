@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/GUI/USS/IntroStyle.uss?fileID=7433441132597879392&amp;guid=2a8d0e405d1849245893d0ed10ddae58&amp;type=3#IntroStyle" />
-    <ui:VisualElement name="LogoContainer" style="flex-grow: 1;">
-        <ui:Image name="KaniInteractiveLogo" class="logo logo--hidden" />
-    </ui:VisualElement>
-</ui:UXML>

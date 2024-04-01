@@ -25,7 +25,7 @@ public class ParticleCollector : MonoBehaviour
             _collectManiteAdded = true;
             ParticleSystem.TriggerModule trigger = _particleSystem.trigger;
             trigger.AddCollider(GameObject.FindGameObjectWithTag("XD1").GetComponent<Transform>());
-            OnParticleCollect.AddListener(GameObject.FindGameObjectWithTag("XD1").GetComponent<XD1Controller>().CollectManite);
+            OnParticleCollect.AddListener(GameObject.FindGameObjectWithTag("XD1").GetComponent<XD1Behaviour>().CollectManite);
         }
     }
 

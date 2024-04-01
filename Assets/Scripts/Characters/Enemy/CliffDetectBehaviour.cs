@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CliffDetectBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    EnemyBase _enemyScript;
+    //[SerializeField]
+    //EnemyBase _enemyScript;
 
     [SerializeField]
     private List<Collider2D> detectedColliders;
 
     void Awake()
     {
-        _enemyScript = GetComponentInParent<EnemyBase>();
+        //_enemyScript = GetComponentInParent<EnemyBase>();
     }
 
 

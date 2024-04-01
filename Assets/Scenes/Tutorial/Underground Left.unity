@@ -338,7 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
-  _breakData: {fileID: 11400000, guid: dacf10f6d435b3242bc246c09022d59a, type: 2}
+  _breakData:
+    _dataId: 
+    _enabled: 0
 --- !u!50 &29265535
 Rigidbody2D:
   serializedVersion: 4
@@ -552,7 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
-  _breakData: {fileID: 11400000, guid: dacf10f6d435b3242bc246c09022d59a, type: 2}
+  _breakData:
+    _dataId: 
+    _enabled: 0
 --- !u!50 &120687196
 Rigidbody2D:
   serializedVersion: 4
@@ -763,7 +767,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -919,6 +923,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Underground Middle
   _spawnPoint: {fileID: 45271851}
+  _changeOnTrigger: 1
 --- !u!61 &276525204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -948,7 +953,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1405,7 +1410,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2145,7 +2150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2311,7 +2316,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2492,7 +2497,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2793,7 +2798,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2944,7 +2949,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3028,7 +3033,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3112,7 +3117,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 956b960b1ca77244a98e049f4dd0add2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3296,7 +3301,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7787,7 +7792,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 22959b9347fefae44935b67f2680f720, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7920,7 +7925,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2058433351
-  m_SortingLayer: 4
+  m_SortingLayer: 15
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 22959b9347fefae44935b67f2680f720, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8008,7 +8013,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a31840670e987444fb3d4332dc77e79e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8141,7 +8146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
-  _breakData: {fileID: 11400000, guid: 0696411501fe9ee41afd317c09809272, type: 2}
+  _breakData:
+    _dataId: 
+    _enabled: 0
   _tethers:
   - {fileID: 120687193}
   - {fileID: 29265532}
@@ -8343,11 +8350,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.685917
+      value: -22.42
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12998962
+      value: 0.07000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -8391,7 +8402,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8514,6 +8525,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 1
   _targetSceneName: Underground Exit
   _spawnPoint: {fileID: 9135367264783763487}
+  _changeOnTrigger: 1
 --- !u!4 &8095485576871286585
 Transform:
   m_ObjectHideFlags: 0

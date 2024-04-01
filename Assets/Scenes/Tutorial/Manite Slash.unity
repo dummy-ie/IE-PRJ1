@@ -448,7 +448,7 @@ SortingGroup:
   m_GameObject: {fileID: 234022407}
   m_Enabled: 1
   m_SortingLayerID: 1463617667
-  m_SortingLayer: 6
+  m_SortingLayer: 17
   m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!114 &234022410
@@ -1078,7 +1078,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1463617667
-  m_SortingLayer: 6
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 664be0bee39665c49873404798e24f4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1256,7 +1256,7 @@ SortingGroup:
   m_GameObject: {fileID: 725299923}
   m_Enabled: 1
   m_SortingLayerID: 1463617667
-  m_SortingLayer: 6
+  m_SortingLayer: 17
   m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!114 &725299926
@@ -1479,6 +1479,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Underground Middle
   _spawnPoint: {fileID: 1078529836}
+  _changeOnTrigger: 1
 --- !u!61 &780927204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1508,7 +1509,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2180,7 +2181,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 470587901
-  m_SortingLayer: 5
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6408,11 +6409,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2040792
+      value: -8.15
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08999014
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalRotation.w
