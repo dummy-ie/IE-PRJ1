@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5404164754725100306}
   - component: {fileID: 1601637729005887619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 9163824493345615546}
   - component: {fileID: 8138087796901793253}
   - component: {fileID: 5638163132753483809}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Cliff Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 9051568804199964532}
   - component: {fileID: 4812282989489131150}
   - component: {fileID: 3073428040112387144}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d1c69c35169748bef9a5716f90a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectedObject: {fileID: 0}
   PlayerSeen: 0
 --- !u!1 &4852364979054706284
 GameObject:
@@ -329,7 +330,7 @@ GameObject:
   - component: {fileID: 4695827521700525288}
   - component: {fileID: 8916761016640998918}
   - component: {fileID: 349638053872648457}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Wall Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +420,7 @@ GameObject:
   - component: {fileID: 8251134077660125594}
   - component: {fileID: 9005795341728189921}
   - component: {fileID: 6328381873882838375}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +513,7 @@ GameObject:
   - component: {fileID: 4478638830684088495}
   - component: {fileID: 4962073293594266483}
   - component: {fileID: 8532056608049701934}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Railgunner
   m_TagString: Breakable
   m_Icon: {fileID: 0}
@@ -553,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 39a738df6c146eb49a6a7b05108d9990, type: 2}
   _currentHealth: 0
+  _speed: 1
   _visionBehaviour: {fileID: 3073428040112387144}
   _rangeBehaviour: {fileID: 6328381873882838375}
   _wallDetectBehaviour: {fileID: 8916761016640998918}

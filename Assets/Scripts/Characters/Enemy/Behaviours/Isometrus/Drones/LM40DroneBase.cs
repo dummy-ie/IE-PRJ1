@@ -26,22 +26,26 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
     protected GameObject _targetPlayer;
 
 
-    Rigidbody _rb;
+    Rigidbody2D _rb;
+    public Rigidbody2D rb
+    {
+        get {  return _rb; }
+    }
 
     [SerializeField]
     Vector3 _targetLoc;
 
     [SerializeField]
-    protected int floatingValueX = 1;
+    protected float floatingValueX = 1;
 
     [SerializeField]
-    protected int floatingValueY = 1;
+    protected float floatingValueY = 1;
 
     [SerializeField]
-    protected int floatingSpeedX = 2;
+    protected float floatingSpeedX = 2;
 
     [SerializeField]
-    protected int floatingSpeedY = 2;
+    protected float floatingSpeedY = .1f;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -52,7 +56,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -74,6 +78,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
                 break;
         }*/
 
+        
     }
 
     public float GetDirection(GameObject target)
@@ -94,11 +99,16 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
 
     }
 
-    protected void Hovering()
+    protected void SetVelocity(Vector2 velocity)
     {
-        Vector3 vectorForce = (new Vector3(Mathf.Sin(Time.time * floatingSpeedX) * floatingValueX, Mathf.Sin(Time.time * floatingSpeedY) * floatingValueY, 0));
+        this._rb.velocity = velocity;
+    }
 
-        this._rb.velocity = vectorForce;
+    protected Vector2 Hovering()
+    {
+        Vector2 vectorForce = (new Vector3(Mathf.Sin(Time.time * floatingSpeedX) * floatingValueX, Mathf.Sin(Time.time * floatingSpeedY) * floatingValueY));
+
+        return vectorForce;
 
         /*if (Vector3.Distance(_targetLoc, transform.position) > 3)
         {
@@ -116,14 +126,14 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
         return Vector3.Distance(_targetLoc, transform.position);
     }
 
-    protected void Moving()
+    protected Vector2 Moving()
     {
         
-        Vector3 vectorForce = _targetLoc - transform.position;
+        Vector2 vectorForce = (_targetLoc - transform.position) * (Vector3.Distance(transform.position, _targetLoc));
 
-        vectorForce = new Vector3(Mathf.Clamp(vectorForce.x, -2, 2), Mathf.Clamp(vectorForce.y, -2, 2), 0);
+        //vectorForce = new Vector3(Mathf.Clamp(vectorForce.x, -2, 2), Mathf.Clamp(vectorForce.y, -2, 2), 0);
         Debug.Log(vectorForce);
-        this._rb.velocity = vectorForce * Vector3.Distance(transform.position, _targetLoc);
+        return vectorForce;
 
         /*if(Vector3.Distance(_targetLoc, transform.position) <= 1)
         {

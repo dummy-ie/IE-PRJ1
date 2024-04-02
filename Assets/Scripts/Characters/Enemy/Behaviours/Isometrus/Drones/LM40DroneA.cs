@@ -8,14 +8,18 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
 
     [SerializeField]
     private GameObject _bullet;
+
+    [SerializeField]
+    private GameObject _testEnemy;
     
     private ShootState _shootState;
     private SummonState _summonState;
 
+    int dir = 1;
 
     override protected void Start()
     {
-        Debug.Log("AAAAAAAA");
+        Debug.Log("LM40 DRONE A");
         _shootState = new ShootState(this);
         _summonState = new SummonState(this);
 
@@ -28,6 +32,22 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
         protected StateBase(LM40DroneA entity) : base(entity) { }
     }
 
+    public void StartShootingBullets(int count) { StartCoroutine(ShootBullet(count)); }
+    private IEnumerator ShootBullet(int count)
+    {
+        GameObject projectile = Instantiate(_bullet, new Vector3(transform.position.x * GetDirection(_targetPlayer), transform.position.y, transform.position.z), Quaternion.identity);
+        rb.AddForce((_targetPlayer.transform.position - transform.position) * 100);
+        // set source and target
+        var temp = projectile.GetComponent<DirectionalProjectile>();
+        temp.SourcePlayer = gameObject;
+
+        temp.SetTarget(_targetPlayer.transform);
+        count--;
+        yield return new WaitForSeconds(.1f);
+
+        if (count > 0) { StartCoroutine(ShootBullet(count)); }
+    }
+
     public class ShootState : StateBase
     {
 
@@ -37,8 +57,6 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
         float durationTicks = 0.0f;
         float stateDuration = 6.0f;
 
-        bool arrivedAtLoc = false;
-
         public ShootState(LM40DroneA entity) : base(entity) { }
 
         public override void Enter()
@@ -47,49 +65,34 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
             _entity.floatingValueX = 2;
             _entity.floatingValueY = 15;
 
-            int dir = 1;
-            if (Random.Range(0, 2) == 1)
-            {
-                dir = -1;
-            }
-            Debug.Log(_entity._targetPlayer.transform.position + Vector3.right * 10 * dir);
-            _entity.MoveTargetLoc(_entity._targetPlayer.transform.position + Vector3.right * 10 * dir);
+            //Debug.Log(_entity._targetPlayer.transform.position + Vector3.right * 10 * dir);
+            
         }
 
         public override void Execute()
         {
 
+            _entity.MoveTargetLoc(_entity._targetPlayer.transform.position + Vector3.right * 10 * _entity.dir);
+
             durationTicks += Time.deltaTime;
             shootTicks += Time.deltaTime;
 
-            if (_entity.GetDistanceToTarget() >= 1 && !arrivedAtLoc)
-            {
-                _entity.Moving();
-            }
-            else
-            {
-                arrivedAtLoc = true;
-                _entity.Hovering();
-            }
+
+            _entity.SetVelocity(_entity.Hovering() + _entity.Moving());
+
 
             if (shootCooldown <= shootTicks)
             {
                 shootTicks = 0;
-                GameObject projectile = Instantiate(_entity._bullet, new Vector3(_entity.transform.position.x + 0.2f * _entity.GetDirection(_entity._targetPlayer), _entity.transform.position.y + 0.1f, _entity.transform.position.z), Quaternion.identity);
-
-                // set source and target
-                var temp = projectile.GetComponent<DirectionalProjectile>();
-                temp.SourcePlayer = _entity.gameObject;
-
-                temp.SetTarget(_entity._targetPlayer.transform);
+                _entity.StartShootingBullets(5);
             }
 
 
             if (stateDuration <= durationTicks)
             {
 
-                //_entity.SwitchState(_entity._summonState);
-
+                _entity.SwitchState(_entity._summonState);
+                durationTicks = 0;
             }
 
         }
@@ -101,14 +104,18 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
 
         float ticks = 0.0f;
 
-        float stateDuration = 3.0f;
+        float stateDuration = 5.0f;
+
+        bool hasSpawned = false;
 
         public SummonState(LM40DroneA entity) : base(entity) { }
 
         public override void Enter()
         {
+            hasSpawned = false;
 
-
+            
+            _entity.MoveTargetLoc(_entity._targetPlayer.transform.position + Vector3.right * 15 * _entity.dir);
         }
 
         public override void Execute()
@@ -116,14 +123,25 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
 
             ticks += Time.deltaTime;
 
+            _entity.SetVelocity(_entity.Moving()/2);
+
+            if (stateDuration / 2 <= ticks && !hasSpawned)
+            {
+                GameObject projectile = Instantiate(_entity._testEnemy, _entity.transform.position, Quaternion.identity);
+                hasSpawned = true;
+            }
+
             if (stateDuration <= ticks)
             {
-
-                _entity.SwitchState(_entity._summonState);
-
+                _entity.SwitchState(_entity._shootState);
+                ticks = 0;
             }
 
         }
 
+        public override void Exit()
+        {
+            _entity.dir *= -1;
+        }
     }
 }
