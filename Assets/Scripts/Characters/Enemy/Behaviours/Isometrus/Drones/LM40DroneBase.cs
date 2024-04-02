@@ -132,7 +132,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
         Vector2 vectorForce = (_targetLoc - transform.position) * (Vector3.Distance(transform.position, _targetLoc));
 
         //vectorForce = new Vector3(Mathf.Clamp(vectorForce.x, -2, 2), Mathf.Clamp(vectorForce.y, -2, 2), 0);
-        Debug.Log(vectorForce);
+        //Debug.Log(vectorForce);
         return vectorForce;
 
         /*if(Vector3.Distance(_targetLoc, transform.position) <= 1)

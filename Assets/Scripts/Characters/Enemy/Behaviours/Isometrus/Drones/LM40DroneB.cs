@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using static LM40DroneA;
 
@@ -54,7 +56,7 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
             _entity._point = new Vector2(_entity._targetPlayer.transform.position.x, _entity._targetPlayer.transform.position.y) + _entity._rndRotation * 10;
             _entity.MoveTargetLoc(_entity._point);
 
-            _entity.SetVelocity(_entity.Moving()/10);
+            _entity.SetVelocity(_entity.Moving());
             ticks += Time.deltaTime;
 
             
@@ -73,7 +75,7 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
     public class DashState : StateBase
     {
         float telegraphTick = 0;
-        float telegrapDuration = 1; 
+        float telegraphDuration = 1f; 
 
         float ticks = 0.0f;
         float stateDuration = 2.0f;
@@ -87,16 +89,17 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
             telegraphTick = 0;
             _entity._point = new Vector2(_entity._targetPlayer.transform.position.x, _entity._targetPlayer.transform.position.y) + _entity._rndRotation * -10;
             _entity.MoveTargetLoc(_entity._point);
+            _entity.SetVelocity(Vector3.zero);
         }
 
         public override void Execute()
         {
             ticks += Time.deltaTime;
             telegraphTick += Time.deltaTime;
-
-            if (telegrapDuration <= telegraphTick)
+            
+            if (telegraphDuration <= telegraphTick)
             {
-                _entity.SetVelocity(_entity.Moving()/2);
+                _entity.SetVelocity(_entity.Moving() / 1.5f);
             }
 
             if (stateDuration <= ticks)
@@ -132,6 +135,18 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
         {
             _entity._dashCount = 0;
             _entity.MoveTargetLoc(_entity._targetPlayer.transform.position + Vector3.right * 20);
+
+            Debug.Log("BUFFFFFF");
+
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Breakable"))
+            {
+                IBuffable buff = enemy.GetComponent<IBuffable>();
+                if (buff != null)
+                {
+                    buff.Buff(25, 5);
+                }
+
+            }
         }
 
         public override void Execute()
@@ -147,6 +162,19 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
                 ticks = 0;
             }
 
+        }
+
+        public override void Exit()
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Breakable"))
+            {
+                IBuffable buff = enemy.GetComponent<IBuffable>();
+                if (buff != null)
+                {
+                    buff.Buff(0, 0);
+                }
+
+            }
         }
 
     }

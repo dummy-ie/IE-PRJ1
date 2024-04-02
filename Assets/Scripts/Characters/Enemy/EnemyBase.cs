@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Android;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEnemy : EnemyBase<TEnemy>
+public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable where TEnemy : EnemyBase<TEnemy>
 {
     [System.Serializable]
     protected struct AttackData
@@ -16,12 +16,21 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
     }
 
     protected Rigidbody2D _rb;
+    public Rigidbody2D rb
+    {
+        get { return _rb; }
+    }
 
     [SerializeField]
     protected EnemyData _enemyData;
 
+
     [SerializeField]
     protected int _currentHealth;
+
+    [SerializeField]
+    protected int _damageBuff;
+
 
     [SerializeField]
     protected int _speed = 1;
@@ -132,5 +141,11 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IHittable where TEn
         Vector3 localScale = transform.localScale;
         localScale.x = PatrolDirection.x;
         transform.localScale = localScale;
+    }
+
+    virtual public void Buff(int healthBuff, int damageBuff)
+    {
+        this._currentHealth += healthBuff;
+        this._damageBuff = damageBuff;
     }
 }
