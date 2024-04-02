@@ -444,17 +444,17 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-
+        _stats.Health.SetMax(_data.MaxHealth);
+        _stats.Manite.SetMax(_data.MaxManite);
+        _stats.Health.SetCurrent(_data.MaxHealth);
+        _stats.Manite.SetCurrent(_data.MaxManite);
         StartCoroutine(LoadBuffer());
     }
 
     private void Start()
     {
         Debug.Log("Player");
-        _stats.Health.SetMax(_data.MaxHealth);
-        _stats.Manite.SetMax(_data.MaxManite);
-        _stats.Health.SetCurrent(_data.MaxHealth);
-        _stats.Manite.SetCurrent(_data.MaxManite);
+        
         Debug.Log("Player Max Health : " + _stats.Health.Max);
         Debug.Log("Player Max Manite : " + _stats.Manite.Max);
 
@@ -515,8 +515,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _playerActions.Player.Interact.started += GetComponent<PlayerInteract>().OnInteract;
         _playerActions.Player.Interact.Enable();
 
-        _playerActions.Player.ManiteSlash.started += GetComponent<ManiteSlash>().OnManiteSlash;
-        _playerActions.Player.ManiteSlash.Enable();
+        //_playerActions.Player.ManiteSlash.started += GetComponent<ManiteSlash>().OnManiteSlash;
+        //_playerActions.Player.ManiteSlash.Enable();
 
         _playerActions.Player.GroundPound.started += GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Enable();
@@ -525,11 +525,24 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     void OnDisable()
     {
         _moveAction.Disable();
+
+        _playerActions.Player.Jump.started -= OnJump;
+        _playerActions.Player.Jump.canceled -= OnJump;
         _playerActions.Player.Jump.Disable();
+
+        _playerActions.Player.Dash.started -= OnDash;
         _playerActions.Player.Dash.Disable();
+
+        _playerActions.Player.Attack.started -= GetComponent<PlayerAttack>().OnAttack;
         _playerActions.Player.Attack.Disable();
+
+        _playerActions.Player.Interact.started -= GetComponent<PlayerInteract>().OnInteract;
         _playerActions.Player.Interact.Disable();
-        _playerActions.Player.ManiteSlash.Disable();
+
+        //_playerActions.Player.ManiteSlash.started -= GetComponent<ManiteSlash>().OnManiteSlash;
+        //_playerActions.Player.ManiteSlash.Disable();
+
+        _playerActions.Player.GroundPound.started -= GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Disable();
         Debug.Log("CHARACTER DISABLED");
     }

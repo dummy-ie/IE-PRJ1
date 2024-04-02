@@ -160,10 +160,10 @@ MonoBehaviour:
       _posY: 0
       _posZ: 0
     _hasDash: 1
-    _hasSlash: 0
-    _hasPound: 0
+    _hasSlash: 1
+    _hasPound: 1
   _nextSceneReference:
-    m_AssetGUID: fea72decc78594646a2acf996533e27e
+    m_AssetGUID: d1ffc18c727543f48b2c448932167a55
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

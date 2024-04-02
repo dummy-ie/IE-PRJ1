@@ -24,8 +24,15 @@ public class SceneChanger : MonoBehaviour
         {
             //if (GameObject.FindGameObjectWithTag("Player") != null)
             //    Destroy(GameObject.FindGameObjectWithTag("Player"));
-            PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
-            FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
+            if (_spawnPoint != null)
+            {
+                PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
+                FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
+            }
+            else
+            {
+                Debug.LogError("Spawn Point is NULL");
+            }
         }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
