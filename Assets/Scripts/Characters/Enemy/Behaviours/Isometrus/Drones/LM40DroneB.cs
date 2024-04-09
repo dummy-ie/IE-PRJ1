@@ -25,6 +25,8 @@ public class LM40DroneB : LM40DroneBase<LM40DroneB>
         _dashState = new DashState(this);
         _buffState = new BuffState(this);
 
+        _targetPlayer = GameObject.Find("Player");
+
         SwitchState(_prepDashState);
     }
 

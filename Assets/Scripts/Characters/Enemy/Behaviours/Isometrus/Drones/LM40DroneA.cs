@@ -23,6 +23,8 @@ public class LM40DroneA : LM40DroneBase<LM40DroneA>
         _shootState = new ShootState(this);
         _summonState = new SummonState(this);
 
+        _targetPlayer = GameObject.Find("Player");
+
         SwitchState(_shootState);
 
     }
