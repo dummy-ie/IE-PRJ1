@@ -48,6 +48,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
+    private Material _original2DMaterial;
+    private Material _original3DMaterial;
+    [SerializeField] private Material _flashMaterial;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
@@ -367,32 +370,55 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _model3D.enabled = true;
     }
 
-    public void StartHit(GameObject enemy, int damageTaken = 0)
+    public void StartHit(HitData hitData)
     {
-        StartCoroutine(Hit(enemy, damageTaken));
+        StartCoroutine(Hit(hitData));
     }
 
-    public IEnumerator Hit(GameObject enemy, int damageTaken = 0)
+    public void StartBlink()
+    {
+        StartCoroutine(Blink());
+    }
+
+    private IEnumerator Hit(HitData hitData)
     {
         if (!_isHit && _iFrames <= 0)
         {
             _rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
             _isHit = true;
-
             _iFrames = 2;
 
-            Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
-            vec.Normalize();
+            StartBlink();
 
-            _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+            //Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
+            //vec.Normalize();
 
-            if (damageTaken > 0)
-                Damage(damageTaken);
+            _rb.AddForce(new Vector2(hitData.force, 1), ForceMode2D.Impulse);
+
+            if (hitData.damage > 0)
+                Damage((int)hitData.damage);
 
             yield return new WaitForSeconds(.2f);
 
             _rb.velocity = Vector3.zero;
+        }
+    }
+
+    private IEnumerator Blink()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            Debug.Log("Is blinking");
+            _render2D.material = _flashMaterial;
+            _model3D.material = _flashMaterial;
+
+            yield return new WaitForSeconds(0.3f);
+
+            _render2D.material = _original2DMaterial;
+            _model3D.material = _original3DMaterial;
+
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -448,6 +474,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.Manite.SetMax(_data.MaxManite);
         _stats.Health.SetCurrent(_data.MaxHealth);
         _stats.Manite.SetCurrent(_data.MaxManite);
+
+        _original2DMaterial = _render2D.material;
+        _original3DMaterial = _model3D.material;
+
         StartCoroutine(LoadBuffer());
     }
 

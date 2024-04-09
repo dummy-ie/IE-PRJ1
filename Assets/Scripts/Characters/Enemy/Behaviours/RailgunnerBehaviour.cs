@@ -120,7 +120,11 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>().StartHit(_entity.gameObject, attack.damage);
+                    int facingRight = 1;
+                    if (!_entity._isFacingRight)
+                        facingRight = -1;
+                    HitData hitData = new HitData(attack.damage, attack.moveOffset * facingRight);
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                     /*IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                     if (handler != null)
                     {

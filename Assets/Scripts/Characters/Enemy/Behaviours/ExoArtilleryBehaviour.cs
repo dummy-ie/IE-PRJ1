@@ -242,7 +242,11 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>().StartHit(_entity.gameObject, attack.damage);
+                    int facingRight = 1;
+                    if (!_entity._isFacingRight)
+                        facingRight = -1;
+                    HitData hitData = new HitData(attack.damage, attack.moveOffset * facingRight);
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
             }
         }
@@ -262,8 +266,8 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>()
-                        .StartHit(_entity.gameObject, attack.damage);
+                    HitData hitData = new HitData(attack.damage, attack.moveOffset * facingRight);
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
             }
         }

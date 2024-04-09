@@ -9,10 +9,12 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
     [System.Serializable]
     protected struct AttackData
     {
+        public bool drawGizmos;
         public float moveOffset;
         public Rect attackCollision;
         public int damage;
         public Vector2 knockbackForce;
+        public bool parriable;
     }
 
     protected Rigidbody2D _rb;

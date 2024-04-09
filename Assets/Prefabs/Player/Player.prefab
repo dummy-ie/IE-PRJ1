@@ -555,6 +555,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}
+  _flashMaterial: {fileID: 2100000, guid: 5b7f5ac84fb7be943b4a9e45125de095, type: 2}
   _boxCastDistance: 0.47
   _boxSize: {x: 0.3, y: 0.4}
   _isGrounded: 0
