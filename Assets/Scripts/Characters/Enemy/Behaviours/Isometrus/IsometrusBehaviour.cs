@@ -14,6 +14,8 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     [SerializeField] GameObject _droneC;
     bool _droneASpawned = false, _droneBSpawned = false, _droneCSpawned = false;
 
+    
+
     override protected void Start()
     {
         Debug.Log("ISOMETRUSSY");
@@ -22,6 +24,11 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         _yappingState = new(this);
         _basicState = new BasicState(this);
 
+        
+    }
+
+    public void TriggerEncounter()
+    {
         SwitchState(_yappingState);
     }
 
@@ -42,7 +49,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
 
         public override void Enter()
         {
-
+           
         }
 
         public override void Execute()
@@ -56,6 +63,8 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
             }
 
         }
+
+        
 
     }
 
@@ -71,12 +80,17 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
 
         public override void Enter()
         {
+            _entity._targetPlayer.GetComponent<CharacterController2D>().CanMove = false;
+            _entity._targetPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            _entity.MoveTargetLoc(_entity._targetPlayer.transform.position + (Vector3.right * 10) + (Vector3.up * 5));
 
         }
 
         public override void Execute()
         {
             ticks+= Time.deltaTime;
+
+            _entity.SetVelocity(_entity.Moving());
 
             if (stateDuration <= ticks)
             {
@@ -85,7 +99,10 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
             }
 
         }
-
+        public override void Exit()
+        {
+            _entity._targetPlayer.GetComponent<CharacterController2D>().CanMove = true;
+        }
     }
 
     public class BasicState : StateBase
@@ -104,7 +121,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         public override void Enter()
         {
             
-            GameObject droneA = Instantiate(_entity._droneA, _entity.transform.position, Quaternion.identity);
+            GameObject droneA = Instantiate(_entity._droneA, _entity.transform.position + new Vector3(1, 1) * 15, Quaternion.identity);
             _entity._droneASpawned = true;
         }
 
@@ -137,7 +154,6 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
 
     void CheckForDroneSpawn()
     {
-
         if (_currentHealth <= 70 & !_droneBSpawned)
         {
             GameObject droneB = Instantiate(_droneB, transform.position + new Vector3(1,1) * 15, Quaternion.identity);
