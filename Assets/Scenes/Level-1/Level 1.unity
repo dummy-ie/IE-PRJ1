@@ -3417,7 +3417,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _nextSpawnPointKey: default
+  _nextSpawnPointKey: level 1 - level 1 bunker
 --- !u!4 &1228733670
 Transform:
   m_ObjectHideFlags: 0

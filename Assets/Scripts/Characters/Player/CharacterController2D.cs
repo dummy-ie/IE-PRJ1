@@ -531,14 +531,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         if (this._stats.Health.Current <= 0)
         {
-            Vector3 respawnPos = new Vector3(Stats.CheckPointData.PosX, Stats.CheckPointData.PosY,
-                Stats.CheckPointData.PosZ);
-            if (PlayerSpawner.Instance != null)
-                PlayerSpawner.Instance.SpawnPlayerAtLocation(respawnPos);
+            RespawnOnCheckpoint();
             this._stats.Health.Current = this._data.MaxHealth;
             this._data.CanAttack = true;
             //Destroy(gameObject);
         }
+
+        if (transform.position.y <= -250)
+            RespawnOnLastSpawnPoint();
         Animate();
 
     }

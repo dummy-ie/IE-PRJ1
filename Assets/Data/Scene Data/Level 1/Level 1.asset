@@ -24,6 +24,6 @@ MonoBehaviour:
       position: {x: -89.2, y: 21.5}
       faceToRight: 0
     spawnPoints:
-    - key: level 1 bunker entrance
+    - key: level 1 - level 1 bunker
       position: {x: 2.08, y: -7.39}
       faceToRight: 0
