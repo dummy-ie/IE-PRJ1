@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 // This script acts as a single point for all other scripts to get
@@ -9,8 +10,34 @@ using UnityEngine.InputSystem;
 // using a PlayerInput component with Unity Events.
 
 [RequireComponent(typeof(PlayerInput))]
-public class InputManager : Singleton<InputManager>
+public class InputManager : Singleton<InputManager>//, StuckinBetween.IPlayerActions
 {
+    public StuckinBetween inputActions { get; private set; }
+
+    private UnityEvent _moveEvent;
+    private UnityEvent _pauseEvent;
+
+    private void OnEnable()
+    {
+        if (inputActions == null)
+        {
+            inputActions = new StuckinBetween();
+
+            //inputActions.Player.SetCallbacks(this);
+        }
+        //inputActions.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Disable();
+    }
+
+    //void StuckinBetween.IPlayerActions.OnMove(InputAction.CallbackContext context)
+    //{
+//
+    //}
+    /*
     private Vector2 moveDirection = Vector2.zero;
     private bool jumpPressed = false;
     private bool interactPressed = false;
@@ -26,7 +53,7 @@ public class InputManager : Singleton<InputManager>
         else if (context.canceled)
         {
             moveDirection = context.ReadValue<Vector2>();
-        } 
+        }
     }
 
     public void JumpPressed(InputAction.CallbackContext context)
@@ -50,7 +77,7 @@ public class InputManager : Singleton<InputManager>
         else if (context.canceled)
         {
             interactPressed = false;
-        } 
+        }
     }
 
     public void SubmitPressed(InputAction.CallbackContext context)
@@ -65,7 +92,7 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    public Vector2 GetMoveDirection() 
+    public Vector2 GetMoveDirection()
     {
         return moveDirection;
     }
@@ -74,30 +101,30 @@ public class InputManager : Singleton<InputManager>
     // which means we should set it to false so that it can't be used again until actually
     // pressed again.
 
-    public bool GetJumpPressed() 
+    public bool GetJumpPressed()
     {
         bool result = jumpPressed;
         jumpPressed = false;
         return result;
     }
 
-    public bool GetInteractPressed() 
+    public bool GetInteractPressed()
     {
         bool result = interactPressed;
         interactPressed = false;
         return result;
     }
 
-    public bool GetSubmitPressed() 
+    public bool GetSubmitPressed()
     {
         bool result = submitPressed;
         submitPressed = false;
         return result;
     }
 
-    public void RegisterSubmitPressed() 
+    public void RegisterSubmitPressed()
     {
         submitPressed = false;
     }
-
+    */
 }

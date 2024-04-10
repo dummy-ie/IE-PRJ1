@@ -1,11 +1,9 @@
 using Cinemachine;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
-using static PlayerData;
+using UnityEngine.U2D.IK;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,8 +17,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private InputAction _moveAction;
 
-    Transform _lastSpawnPosition;
-    public Transform LastSpawnPosition
+    CharacterSpawnPoint _lastSpawnPosition;
+    public CharacterSpawnPoint LastSpawnPosition
     {
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
@@ -48,19 +46,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
+    [SerializeField] private Material _flashMaterial;
+
     private Material _original2DMaterial;
     private Material _original3DMaterial;
-    [SerializeField] private Material _flashMaterial;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private Rigidbody2D _rb;
-
-    private CinemachineVirtualCamera _cmVC;
-    private Cinemachine3rdPersonFollow _cmTP;
-    private CinemachineConfiner2D _cmC2D;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
@@ -407,8 +402,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private IEnumerator Blink()
     {
-        for (int i = 0; i < 2; i++)
-        {
             Debug.Log("Is blinking");
             _render2D.material = _flashMaterial;
             _model3D.material = _flashMaterial;
@@ -419,7 +412,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _model3D.material = _original3DMaterial;
 
             yield return new WaitForSeconds(0.3f);
-        }
     }
 
     public void Damage(int amount)
@@ -439,7 +431,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void SetVirtualCameraBoundingBox(Collider2D collider)
     {
-        _cmC2D.m_BoundingShape2D = collider;
+        CinemachineConfiner2D cmC2D = CameraUtility.playerVCam.gameObject.GetComponent<CinemachineConfiner2D>();
+        cmC2D.m_BoundingShape2D = collider;
     }
 
     public void ResetFallMultiplier()
@@ -461,13 +454,44 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasPound = true;
     }
 
+    private CharacterSpawnPoint GetSpawnPoint(SceneLoader.TransitionData transitionData)
+    {
+
+        SpawnPoints spawnPoints = transitionData.currentScene.spawnPoints;
+        SpawnPoints.SpawnPoint spawnPoint = spawnPoints.defaultSpawnPoint;
+
+        spawnPoints.TryGetSpawnPoint(transitionData.spawnPoint, ref spawnPoint);
+
+        return new CharacterSpawnPoint()
+        {
+            position = spawnPoint.position,
+            faceToRight = spawnPoint.faceToRight
+        };
+    }
+
+    public void RespawnOnCheckpoint()
+    {
+        //transform.position = _stats.CheckPointData.position;
+        //FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+
+    public void RespawnOnLastSpawnPoint()
+    {
+        transform.position = _lastSpawnPosition.position;
+        FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+
+    public void OnSceneLoad(SceneLoader.TransitionData transitionData)
+    {
+        _lastSpawnPosition = GetSpawnPoint(transitionData);
+        transform.position = _lastSpawnPosition.position;
+        FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+        
     private void Awake()
     {
         _playerActions = new StuckinBetween();
 
-        _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
-        _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _stats.Health.SetMax(_data.MaxHealth);
@@ -483,13 +507,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        Debug.Log("Player");
-        
-        Debug.Log("Player Max Health : " + _stats.Health.Max);
-        Debug.Log("Player Max Manite : " + _stats.Manite.Max);
-
-        // TEMP
-
         ObtainSlash();
         ObtainGroundPound();
     }

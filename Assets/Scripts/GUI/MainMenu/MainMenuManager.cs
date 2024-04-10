@@ -26,7 +26,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     void OnPlayButtonPressed() {
-        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
+        //SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
     }
     void OnSettingsButtonPressed() { }
     void OnQuitButtonPressed()

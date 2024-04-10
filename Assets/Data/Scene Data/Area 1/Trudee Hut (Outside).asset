@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Trudee Hut (Outside)
   m_EditorClassIdentifier: 
+  sceneType: 0
   SceneReference:
     m_AssetGUID: 02773fa3bb8edae4593a9dad9dc88efd
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: -14.5, y: -5.56}
+      faceToRight: 0
+    spawnPoints:
+    - key: 1
+      position: {x: 11.44, y: -5.56}
+      faceToRight: 0

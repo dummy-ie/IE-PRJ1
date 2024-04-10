@@ -14,6 +14,8 @@ public class SceneChanger : MonoBehaviour
     private string _targetSceneName;
     [SerializeField]
     private Transform _spawnPoint;
+
+    [SerializeField] private string _nextSpawnPointKey = "default";
     [SerializeField]
     private bool _changeOnTrigger = false;
 
@@ -26,8 +28,8 @@ public class SceneChanger : MonoBehaviour
             //    Destroy(GameObject.FindGameObjectWithTag("Player"));
             if (_spawnPoint != null)
             {
-                PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
-                FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
+                //PlayerSpawner.Instance.SpawnPlayerAtLocation();
+                //FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
             }
             else
             {
@@ -52,10 +54,12 @@ public class SceneChanger : MonoBehaviour
     public void LoadNextScene()
     {
         SceneConnection.ActiveConnection = _sceneConnection;
-        //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-        //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+        SceneLoader.TransitionData transitionData = new SceneLoader.TransitionData
+        {
+            spawnPoint = _nextSpawnPointKey
+        };
         if (_targetSceneReference != null)
-            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference, transitionData);
     }
 
     /*private void OnCollisionEnter2D(Collision2D other)
@@ -78,10 +82,12 @@ public class SceneChanger : MonoBehaviour
             {
 
                 SceneConnection.ActiveConnection = _sceneConnection;
-                //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-                //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+                SceneLoader.TransitionData transitionData = new SceneLoader.TransitionData
+                {
+                    spawnPoint = _nextSpawnPointKey
+                };
                 if (_targetSceneReference != null)
-                    SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+                    SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference, transitionData);
             }
         }
     }

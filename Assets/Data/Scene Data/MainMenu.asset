@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: MainMenu
   m_EditorClassIdentifier: 
+  sceneType: 1
   SceneReference:
     m_AssetGUID: 0c3c90a2dfc9abb4d8cd41e716a58c94
     m_SubObjectName: 

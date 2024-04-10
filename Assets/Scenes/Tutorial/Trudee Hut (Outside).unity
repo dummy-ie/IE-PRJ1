@@ -592,6 +592,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Jungle Entrance
   _spawnPoint: {fileID: 1844265414}
+  _spawnPointKey: 1
   _changeOnTrigger: 1
 --- !u!4 &410920740
 Transform:
@@ -766,21 +767,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: hasDash
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.15
+      value: -6.4999995
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.07999992
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7946400000566528609, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_Enabled
@@ -4586,6 +4591,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.4000001
       objectReference: {fileID: 0}
+    - target: {fileID: 3409955318802853514, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.44
@@ -5000,6 +5009,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 1
   _targetSceneName: Trudee Hut (Inside)
   _spawnPoint: {fileID: 2566756418648588774}
+  _spawnPointKey: 1
   _changeOnTrigger: 1
 --- !u!1 &8511981056973595395
 GameObject:
