@@ -1163,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 482796388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.79, y: 3.17, z: 0}
+  m_LocalPosition: {x: 1.7900391, y: 3.17, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2652,7 +2652,7 @@ Transform:
   m_GameObject: {fileID: 835547390}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.79, y: 3.17, z: 0}
+  m_LocalPosition: {x: 1.7900391, y: 3.170002, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3790,6 +3790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402987867}
   - component: {fileID: 1402987869}
+  - component: {fileID: 1402987870}
   - component: {fileID: 1402987868}
   m_Layer: 0
   m_Name: Scene Connections (Secondary)
@@ -3877,9 +3878,34 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 3
-  _spawnPoint: {fileID: 482796389}
-  _changeOnTrigger: 0
+  _nextSpawnPointKey: level 3 - level 4 secondary
+--- !u!114 &1402987870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402987866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1402987869}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1455791724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4038,9 +4064,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 4 Boss Room
-  _spawnPoint: {fileID: 1055339534}
-  _changeOnTrigger: 0
+  _nextSpawnPointKey: default
 --- !u!1 &1618908179
 GameObject:
   m_ObjectHideFlags: 0
@@ -58197,6 +58221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119959684}
   - component: {fileID: 2119959686}
+  - component: {fileID: 2119959687}
   - component: {fileID: 2119959685}
   m_Layer: 0
   m_Name: Scene Connections (Main)
@@ -58284,9 +58309,34 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 3
-  _spawnPoint: {fileID: 835547391}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: level 3 - level 4 main
+--- !u!114 &2119959687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119959683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2119959686}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2032341259765361149
 PrefabInstance:
   m_ObjectHideFlags: 0
