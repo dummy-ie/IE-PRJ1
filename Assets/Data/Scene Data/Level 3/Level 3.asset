@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Level 3
   m_EditorClassIdentifier: 
+  sceneType: 0
   SceneReference:
     m_AssetGUID: 9d2252e006fb8e24080e96fb39507838
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: 0, y: 0}
+      faceToRight: 0
+    spawnPoints:
+    - key: level 2 - level 3 portal
+      position: {x: 8.34, y: 2.02}
+      faceToRight: 0

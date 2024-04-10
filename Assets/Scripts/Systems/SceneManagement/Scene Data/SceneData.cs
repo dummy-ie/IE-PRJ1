@@ -11,8 +11,14 @@ public class SceneData : ScriptableObject
     public enum SceneType
     {
         GAMEPLAY,
-        MAIN_MENU
+        MAIN_MENU,
+        GAME_OVER
     }
+
+    public SceneType sceneType;
+
     public AssetReference SceneReference;
+    public SpawnPoints spawnPoints;
+
     public AsyncOperationHandle<SceneInstance> Operation;
 }

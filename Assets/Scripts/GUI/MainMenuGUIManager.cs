@@ -22,7 +22,7 @@ public class MainMenuGUIManager : MonoBehaviour
 
     void OnPlayButtonClicked()
     {
-        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
+        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
     }
 
     void OnSettingsButtonClicked()

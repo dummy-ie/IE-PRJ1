@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Level 1 - Bunker
   m_EditorClassIdentifier: 
+  sceneType: 0
   SceneReference:
     m_AssetGUID: 1c5869383b923e04e9a3a710c66ab00b
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: 4.93, y: -2.55}
+      faceToRight: 0
+    spawnPoints:
+    - key: level 1 bunker - level 2 portal
+      position: {x: 113.64, y: 19.02}
+      faceToRight: 0

@@ -42,7 +42,7 @@ public class GameIntro : MonoBehaviour
                 yield return new WaitForSeconds(_transitionDuration + _logoUpTime);
             }
         }
-        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference);
+        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference, new SceneLoader.TransitionData());
     }
 
     void Start() {

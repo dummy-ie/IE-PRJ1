@@ -20,6 +20,8 @@ public class LM40DroneC : LM40DroneBase<LM40DroneC>
         _shootState = new ShootState(this);
         _shockwaveState = new ShockwaveState(this);
 
+        _targetPlayer = GameObject.Find("Player");
+
         SwitchState(_shootState);
     }
 

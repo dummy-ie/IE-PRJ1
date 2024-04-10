@@ -11,28 +11,14 @@ public class SceneChanger : MonoBehaviour
     [SerializeField]
     private AssetReference _targetSceneReference;
     [SerializeField]
-    private string _targetSceneName;
-    [SerializeField]
-    private Transform _spawnPoint;
-    [SerializeField]
-    private bool _changeOnTrigger = false;
+    private string _nextSpawnPointKey = "default";
 
     // Start is called before the first frame update
     void Start()
     {
         if (_sceneConnection == SceneConnection.ActiveConnection)
         {
-            //if (GameObject.FindGameObjectWithTag("Player") != null)
-            //    Destroy(GameObject.FindGameObjectWithTag("Player"));
-            if (_spawnPoint != null)
-            {
-                PlayerSpawner.Instance.SpawnPlayerAtLocation(_spawnPoint.position);
-                FindObjectOfType<CharacterController2D>().LastSpawnPosition = _spawnPoint;
-            }
-            else
-            {
-                Debug.LogError("Spawn Point is NULL");
-            }
+
         }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -52,37 +38,11 @@ public class SceneChanger : MonoBehaviour
     public void LoadNextScene()
     {
         SceneConnection.ActiveConnection = _sceneConnection;
-        //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-        //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+        SceneLoader.TransitionData transitionData = new SceneLoader.TransitionData
+        {
+            spawnPoint = _nextSpawnPointKey
+        };
         if (_targetSceneReference != null)
-            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
-    }
-
-    /*private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            JSONSave.Instance.SaveAll();
-            SceneConnection.ActiveConnection = _sceneConnection;
-            //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
-        }
-    }*/
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_changeOnTrigger)
-        {
-            if (other.CompareTag("Player"))
-            {
-
-                SceneConnection.ActiveConnection = _sceneConnection;
-                //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-                //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-                if (_targetSceneReference != null)
-                    SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
-            }
-        }
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference, transitionData);
     }
 }

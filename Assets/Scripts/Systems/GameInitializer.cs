@@ -20,6 +20,6 @@ public class GameInitializer : MonoBehaviour
         AsyncOperationHandle<IList<GameObject>> singletons = Addressables.LoadAssetsAsync<GameObject>("Singleton", singletons => Instantiate(singletons));
         yield return singletons;
 
-        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference);
+        SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference, new SceneLoader.TransitionData());
     }
 }

@@ -12,6 +12,10 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
     [SerializeField] private Transform _center;
 
+    [Header("Robot")]
+    [SerializeField] private GameObject _rightArm;
+    [SerializeField] private GameObject _leftArm;
+
     [Header("Laser")]
     [SerializeField] private Transform _target;
     [SerializeField] private LineRenderer _line;
@@ -158,14 +162,19 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 _line.transform.rotation = Quaternion.Slerp(_line.transform.rotation, rotation,
                     _entity._rotationSpeed * Time.deltaTime);
+                Quaternion armRotation = Quaternion.AngleAxis(angle, Vector3.right);
+                _entity._rightArm.transform.localRotation = Quaternion.Slerp(_entity._rightArm.transform.localRotation, armRotation,
+                    _entity._rotationSpeed * Time.deltaTime);
 
                 _line2.positionCount = 2;
                 _direction2 = _target.position - _line2.transform.position;
                 angle = Mathf.Atan2(_direction2.y, _direction2.x) * Mathf.Rad2Deg;
-                rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                rotation = Quaternion.AngleAxis(angle, Vector3.right);
                 _line2.transform.rotation = Quaternion.Slerp(_line2.transform.rotation, rotation,
                     _entity._rotationSpeed * Time.deltaTime);
-
+                armRotation = Quaternion.AngleAxis(angle, Vector3.right);
+                _entity._leftArm.transform.localRotation = Quaternion.Slerp(_entity._leftArm.transform.localRotation, armRotation,
+                    _entity._rotationSpeed * Time.deltaTime);
 
                 _raycastDirection = _line.transform.right;
                 RaycastHit2D[] hits = Physics2D.RaycastAll(_line.transform.position, _raycastDirection);
@@ -187,6 +196,9 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
                 }
                 _line2.SetPosition(0, _line2.transform.position);
                 _line2.SetPosition(1, _raycastDirection * 10);
+
+                //_entity._leftArm.transform.LookAt(_line2.GetPosition(1));
+                //_entity._rightArm.transform.LookAt(_line.GetPosition(1));
 
                 if (!_entity._rangeBehaviour.InRange)
                 {
@@ -230,7 +242,11 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>().StartHit(_entity.gameObject, attack.damage);
+                    int facingRight = 1;
+                    if (!_entity._isFacingRight)
+                        facingRight = -1;
+                    HitData hitData = new HitData(attack.damage, attack.knockbackForce);
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
             }
         }
@@ -250,8 +266,8 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>()
-                        .StartHit(_entity.gameObject, attack.damage);
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
             }
         }

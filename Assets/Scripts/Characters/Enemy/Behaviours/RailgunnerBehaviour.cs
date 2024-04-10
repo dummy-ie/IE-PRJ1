@@ -101,6 +101,8 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
                 _entity.SwitchState(_entity._detectionState);
             }
 
+            _line.widthMultiplier = Mathf.Lerp(0.1f, 0.5f, _trackingTicks / _entity._timeToShoot);
+
             if (_trackingTicks >= _entity._timeToShoot)
             {
                 _line.widthMultiplier = 0.5f;
@@ -120,7 +122,11 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<CharacterController2D>().StartHit(_entity.gameObject, attack.damage);
+                    int facingRight = 1;
+                    if (!_entity._isFacingRight)
+                        facingRight = -1;
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                     /*IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
                     if (handler != null)
                     {

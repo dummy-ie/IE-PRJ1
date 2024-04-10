@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
+  sceneType: 0
   SceneReference:
     m_AssetGUID: 0b7e9b7e13b06da4ea7effe18846fdbf
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: -89.2, y: 21.5}
+      faceToRight: 0
+    spawnPoints:
+    - key: level 1 bunker entrance
+      position: {x: 2.08, y: -7.39}
+      faceToRight: 0

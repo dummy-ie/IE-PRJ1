@@ -7,14 +7,13 @@ using UnityEngine.UIElements;
 
 public class PlayerSpawner : Singleton<PlayerSpawner>
 {   
-    [SerializeField]
     private GameObject _player;
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        SpawnPlayerFromSpawnPoint();
     }
+
     private void InitializePlayer(Vector3 position)
     {
         //GameObject player = Instantiate(_player);
@@ -45,19 +44,19 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
     }
     
     public void ForceSpawn(string forcedAreaName, Vector3 forcedSpawnPosition){
-        SceneLoader.Instance.LoadScene(forcedAreaName, true);
+        //SceneLoader.Instance.LoadScene(forcedAreaName, true);
         InitializePlayer(forcedSpawnPosition);
     }
 
     public void Respawn(AssetReference sceneReference, Vector3 position)
     {
-        SceneLoader.Instance.LoadSceneWithFade(sceneReference);
+        //SceneLoader.Instance.LoadSceneWithFade(sceneReference);
         InitializePlayer(position);
     }
 
     public void ForceSpawn(AssetReference sceneReference, Vector3 forcedSpawnPosition)
     {
-        SceneLoader.Instance.LoadSceneWithFade(sceneReference);
+        //SceneLoader.Instance.LoadSceneWithFade(sceneReference);
         InitializePlayer(forcedSpawnPosition);
     }
 

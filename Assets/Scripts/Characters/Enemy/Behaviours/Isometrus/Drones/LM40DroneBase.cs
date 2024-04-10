@@ -25,6 +25,8 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
     [SerializeField]
     protected GameObject _targetPlayer;
 
+    [SerializeField]
+    protected int _currentHealth;
 
     Rigidbody2D _rb;
     public Rigidbody2D rb
@@ -57,6 +59,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _currentHealth = 100;//_enemyData.Health; //drones cant get hit but iso can
     }
 
     // Update is called once per frame

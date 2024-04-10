@@ -8,11 +8,21 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : Singleton<SceneLoader> {
+
+    public struct TransitionData
+    {
+        public string spawnPoint;
+        public SceneData currentScene;
+    }
+
     [SerializeField]
     private AssetReference _mainMenuReference;
     private string _sceneName;
-    private SceneData _activeScene;
+
+    private GameObject[] _spawnPoints;
     private GameObject[] sceneConnections;
+
+    private SceneData _activeScene;
     public SceneData ActiveScene
     {
         get { return _activeScene; }
@@ -24,33 +34,33 @@ public class SceneLoader : Singleton<SceneLoader> {
     }
     public void LoadMainMenu()
     {
-        LoadSceneWithoutFade(_mainMenuReference);
+        LoadSceneWithoutFade(_mainMenuReference, new TransitionData());
     }
     public void LoadSceneWithoutFade(string sceneName) { 
         _sceneName = sceneName;
         SceneManager.LoadScene(_sceneName);
     }
 
-    public void LoadSceneWithoutFade(AssetReference sceneData)
+    public void LoadSceneWithoutFade(AssetReference sceneData, TransitionData transitionData)
     {
         _activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-                StartCoroutine(SceneLoad((SceneData)sceneData.Asset));
+            if (handle.Status == AsyncOperationStatus.Succeeded) 
+                StartCoroutine(SceneLoad((SceneData)sceneData.Asset, transitionData));
             else
                 Debug.LogError($"{sceneData.RuntimeKey}.");
         };
     }
-    public void LoadSceneWithFade(AssetReference sceneData)
+    public void LoadSceneWithFade(AssetReference sceneData, TransitionData transitionData)
     {
         _activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
-                StartCoroutine(SceneLoadWithFade((SceneData)sceneData.Asset));
+                StartCoroutine(SceneLoadWithFade((SceneData)sceneData.Asset, transitionData));
             else
                 Debug.LogError($"{sceneData.RuntimeKey}.");
         };
@@ -79,10 +89,13 @@ public class SceneLoader : Singleton<SceneLoader> {
         else
             StartCoroutine(FadeAndLoadScene());
     }
-    private IEnumerator SceneLoad(SceneData sceneData)
+    private IEnumerator SceneLoad(SceneData sceneData, TransitionData transitionData)
     {
         Debug.Log("Loading Scene...");
+
         _activeScene = sceneData;
+        transitionData.currentScene = _activeScene;
+
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
         while (!handle.IsDone)
@@ -90,20 +103,16 @@ public class SceneLoader : Singleton<SceneLoader> {
             yield return null;
         }
 
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            //GameObject player = GameObject.FindGameObjectWithTag("Player");
-            //Rigidbody2D rb = player.GetComponent<CharacterController2D>().Rigidbody;
-            //rb.gravityScale = 0.0f;
-            //yield return new WaitForSeconds(0.1f);
-            //rb.isKinematic = false;
-        }
+        OnSceneLoad(transitionData);
     }
 
-    private IEnumerator SceneLoadWithFade(SceneData sceneData)
+    private IEnumerator SceneLoadWithFade(SceneData sceneData, TransitionData transitionData)
     {
         Debug.Log("Loading Scene...");
+
         _activeScene = sceneData;
+        transitionData.currentScene = _activeScene;
+
         //yield return ScreenFader.Instance.FadeOut();
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
@@ -112,17 +121,16 @@ public class SceneLoader : Singleton<SceneLoader> {
         {
             yield return null;
         }
-        //yield return ScreenFader.Instance.FadeIn();
-        //JSONSave.Instance.LoadAll();
+
+        OnSceneLoad(transitionData);
     }
 
-    private void FindAllSceneConnections()
+    private void OnSceneLoad(TransitionData transitionData)
     {
-        sceneConnections = GameObject.FindGameObjectsWithTag("SceneConnection");
-    }
-
-    private void SpawnPlayer()
-    {
-
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<CharacterController2D>().OnSceneLoad(transitionData);
+        }
     }
 }

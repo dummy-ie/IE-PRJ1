@@ -1,11 +1,10 @@
 using Cinemachine;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
-using static PlayerData;
+using UnityEngine.U2D.IK;
+using static SpawnPoints;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,8 +18,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private InputAction _moveAction;
 
-    Transform _lastSpawnPosition;
-    public Transform LastSpawnPosition
+    CharacterSpawnPoint _lastSpawnPosition;
+    public CharacterSpawnPoint LastSpawnPosition
     {
         get { return _lastSpawnPosition; }
         set { _lastSpawnPosition = value; }
@@ -48,16 +47,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
     [SerializeField] MeshRenderer _model3D;
+    [SerializeField] private Material _flashMaterial;
+
+    private Material _original2DMaterial;
+    private Material _original3DMaterial;
 
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
 
     private Rigidbody2D _rb;
-
-    private CinemachineVirtualCamera _cmVC;
-    private Cinemachine3rdPersonFollow _cmTP;
-    private CinemachineConfiner2D _cmC2D;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
@@ -367,33 +366,53 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _model3D.enabled = true;
     }
 
-    public void StartHit(GameObject enemy, int damageTaken = 0)
+    public void StartHit(HitData hitData)
     {
-        StartCoroutine(Hit(enemy, damageTaken));
+        StartCoroutine(Hit(hitData));
     }
 
-    public IEnumerator Hit(GameObject enemy, int damageTaken = 0)
+    public void StartBlink()
+    {
+        StartCoroutine(Blink());
+    }
+
+    private IEnumerator Hit(HitData hitData)
     {
         if (!_isHit && _iFrames <= 0)
         {
             _rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
             _isHit = true;
+            _iFrames = 1;
 
-            _iFrames = 2;
+            StartBlink();
 
-            Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
-            vec.Normalize();
+            //Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
+            //vec.Normalize();
 
-            _rb.AddForce(new Vector2(vec.x, 1) * 10, ForceMode2D.Impulse);
+            _rb.AddForce(hitData.force, ForceMode2D.Impulse);
 
-            if (damageTaken > 0)
-                Damage(damageTaken);
+            if (hitData.damage > 0)
+                Damage((int)hitData.damage);
 
             yield return new WaitForSeconds(.2f);
 
             _rb.velocity = Vector3.zero;
         }
+    }
+
+    private IEnumerator Blink()
+    {
+            Debug.Log("Is blinking");
+            _render2D.material = _flashMaterial;
+            _model3D.material = _flashMaterial;
+
+            yield return new WaitForSeconds(0.3f);
+
+            _render2D.material = _original2DMaterial;
+            _model3D.material = _original3DMaterial;
+
+            yield return new WaitForSeconds(0.3f);
     }
 
     public void Damage(int amount)
@@ -413,7 +432,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void SetVirtualCameraBoundingBox(Collider2D collider)
     {
-        _cmC2D.m_BoundingShape2D = collider;
+        CinemachineConfiner2D cmC2D = CameraUtility.playerVCam.gameObject.GetComponent<CinemachineConfiner2D>();
+        cmC2D.m_BoundingShape2D = collider;
     }
 
     public void ResetFallMultiplier()
@@ -425,6 +445,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     {
         _stats.HasDash = true;
     }
+
     public void ObtainSlash()
     {
         _stats.HasSlash = true;
@@ -435,33 +456,72 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasPound = true;
     }
 
+    private CharacterSpawnPoint GetSpawnPoint(SceneLoader.TransitionData transitionData)
+    {
+
+        SpawnPoints spawnPoints = transitionData.currentScene.spawnPoints;
+        SpawnPoints.SpawnPoint spawnPoint = spawnPoints.defaultSpawnPoint;
+
+        spawnPoints.TryGetSpawnPoint(transitionData.spawnPoint, ref spawnPoint);
+
+        Debug.Log("Spawn Point Position : " + spawnPoint.position);
+
+        return new CharacterSpawnPoint()
+        {
+            position = spawnPoint.position,
+            faceToRight = spawnPoint.faceToRight
+        };
+    }
+
+    public void RespawnOnCheckpoint()
+    {
+        if (_stats.CheckPointData.CheckPointName == "default")
+        {
+            RespawnOnLastSpawnPoint();
+            return;
+        }
+        CharacterSpawnPoint checkpointSpawn = new CharacterSpawnPoint()
+        {
+            position = new Vector2(_stats.CheckPointData.PosX, _stats.CheckPointData.PosY),
+        };
+        
+        // TODO : LOAD SCENE IF DIFFERENT SCENE REFERENCE OTHERWISE RESPAWN PLAYER
+
+        //SceneLoader.Instance.LoadSceneWithFade(_stats.CheckPointData.);
+    }
+
+    public void RespawnOnLastSpawnPoint()
+    {
+        transform.position = _lastSpawnPosition.position;
+        FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+
+    public void OnSceneLoad(SceneLoader.TransitionData transitionData)
+    {
+        _lastSpawnPosition = GetSpawnPoint(transitionData);
+        transform.position = _lastSpawnPosition.position;
+        FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+        
     private void Awake()
     {
         _playerActions = new StuckinBetween();
 
-        _cmVC = FindFirstObjectByType<CinemachineVirtualCamera>();
-        _cmTP = _cmVC.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        _cmC2D = _cmVC.gameObject.GetComponent<CinemachineConfiner2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
         _stats.Health.SetCurrent(_data.MaxHealth);
         _stats.Manite.SetCurrent(_data.MaxManite);
+
+        _original2DMaterial = _render2D.material;
+        _original3DMaterial = _model3D.material;
+
         StartCoroutine(LoadBuffer());
     }
 
     private void Start()
     {
-        Debug.Log("Player");
-        
-        Debug.Log("Player Max Health : " + _stats.Health.Max);
-        Debug.Log("Player Max Manite : " + _stats.Manite.Max);
-
-        // TEMP
-
-        ObtainSlash();
-        ObtainGroundPound();
     }
 
     private void Update()
@@ -544,7 +604,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.GroundPound.started -= GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Disable();
-        Debug.Log("CHARACTER DISABLED");
     }
 
     private IEnumerator LoadBuffer()
