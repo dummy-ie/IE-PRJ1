@@ -522,8 +522,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        ObtainSlash();
-        ObtainGroundPound();
     }
 
     private void Update()

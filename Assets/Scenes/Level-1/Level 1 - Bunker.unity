@@ -1904,76 +1904,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.042445585, y: 34572.094}
   m_EdgeRadius: 0
---- !u!1001 &160925957
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1032087703}
-    m_Modifications:
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6695600630595561322, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_Name
-      value: Spawn Point
-      objectReference: {fileID: 0}
-    - target: {fileID: 6695600630595561322, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6695600630595561322, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-      propertyPath: m_TagString
-      value: SpawnPoint
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
---- !u!4 &160925958 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3931693574738907867, guid: 160d84f66b85ce44882f3997355a89dd, type: 3}
-  m_PrefabInstance: {fileID: 160925957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &174652140
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +7212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 618268512}
   - component: {fileID: 618268514}
+  - component: {fileID: 618268515}
   - component: {fileID: 618268513}
   m_Layer: 0
   m_Name: Scene Connections (Hut) (1)
@@ -7369,9 +7300,34 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Level 3
-  _spawnPoint: {fileID: 1450596841}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &618268515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618268511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 618268514}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &656012044
 GameObject:
   m_ObjectHideFlags: 0
@@ -10432,7 +10388,6 @@ Transform:
   - {fileID: 421102103}
   - {fileID: 148646149}
   - {fileID: 1485803724}
-  - {fileID: 160925958}
   - {fileID: 1035223095}
   - {fileID: 266589928}
   - {fileID: 1258640299}
@@ -14637,7 +14592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3409955318802853514, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.4000001
       objectReference: {fileID: 0}
     - target: {fileID: 3409955318802853514, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14645,11 +14600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.1
+      value: 88.31
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 3983012199411502577, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17195,6 +17150,10 @@ PrefabInstance:
       value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
+      propertyPath: _nextSpawnPointKey
+      value: level 1 bunker - level 2 portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
       propertyPath: _targetSceneReference.m_AssetGUID
       value: f375476bbd1b48d49b21278a2072fe08
       objectReference: {fileID: 0}
@@ -18655,6 +18614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905702532}
   - component: {fileID: 1905702533}
+  - component: {fileID: 1905702535}
   - component: {fileID: 1905702534}
   m_Layer: 0
   m_Name: Scene Connections (Hut)
@@ -18697,9 +18657,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
-  _targetSceneName: Level 1
-  _spawnPoint: {fileID: 160925958}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: level 1 bunker entrance
 --- !u!61 &1905702534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18745,6 +18703,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &1905702535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905702531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1905702533}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1919920417
 GameObject:
   m_ObjectHideFlags: 0
@@ -19560,11 +19545,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.039997
+      value: 95.25
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z

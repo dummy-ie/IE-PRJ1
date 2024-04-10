@@ -4941,6 +4941,10 @@ PrefabInstance:
       value: Level 3
       objectReference: {fileID: 0}
     - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
+      propertyPath: _nextSpawnPointKey
+      value: level 2 - level 3 portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
       propertyPath: _targetSceneReference.m_AssetGUID
       value: 07efdec356b3f9b4c853356ec472b060
       objectReference: {fileID: 0}
@@ -27062,11 +27066,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4fa80cb21059fb1478a27a3731624e56, type: 2}
     - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
       propertyPath: _targetSceneName
-      value: Level 1
+      value: Level 1 - Bunker
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
+      propertyPath: _nextSpawnPointKey
+      value: level 1 bunker - level 2 portal
       objectReference: {fileID: 0}
     - target: {fileID: 1577194022335168757, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
       propertyPath: _targetSceneReference.m_AssetGUID
-      value: 1c5869383b923e04e9a3a710c66ab00b
+      value: fea72decc78594646a2acf996533e27e
       objectReference: {fileID: 0}
     - target: {fileID: 6103626122981952697, guid: 176b1e96e3f18ec44bbe30a7d49c6a9a, type: 3}
       propertyPath: m_LocalPosition.x
