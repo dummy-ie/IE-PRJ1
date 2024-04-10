@@ -103,12 +103,6 @@ public class SceneLoader : Singleton<SceneLoader> {
             yield return null;
         }
 
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<CharacterController2D>().OnSceneLoad(transitionData);
-        }
-
         OnSceneLoad(transitionData);
     }
 
@@ -138,20 +132,5 @@ public class SceneLoader : Singleton<SceneLoader> {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<CharacterController2D>().OnSceneLoad(transitionData);
         }
-    }
-
-    private void FindAllSceneConnections()
-    {
-        sceneConnections = GameObject.FindGameObjectsWithTag("SceneConnection");
-    }
-
-    private void FindAllSpawnPoints()
-    {
-
-    }
-
-    private void SpawnPlayer()
-    {
-
     }
 }

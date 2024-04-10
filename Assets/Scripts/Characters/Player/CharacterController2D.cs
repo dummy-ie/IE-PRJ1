@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.IK;
+using static SpawnPoints;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -444,6 +445,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     {
         _stats.HasDash = true;
     }
+
     public void ObtainSlash()
     {
         _stats.HasSlash = true;
@@ -462,6 +464,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         spawnPoints.TryGetSpawnPoint(transitionData.spawnPoint, ref spawnPoint);
 
+        Debug.Log("Spawn Point Position : " + spawnPoint.position);
+
         return new CharacterSpawnPoint()
         {
             position = spawnPoint.position,
@@ -471,8 +475,19 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void RespawnOnCheckpoint()
     {
-        //transform.position = _stats.CheckPointData.position;
-        //FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+        if (_stats.CheckPointData.CheckPointName == "default")
+        {
+            RespawnOnLastSpawnPoint();
+            return;
+        }
+        CharacterSpawnPoint checkpointSpawn = new CharacterSpawnPoint()
+        {
+            position = new Vector2(_stats.CheckPointData.PosX, _stats.CheckPointData.PosY),
+        };
+        
+        // TODO : LOAD SCENE IF DIFFERENT SCENE REFERENCE OTHERWISE RESPAWN PLAYER
+
+        //SceneLoader.Instance.LoadSceneWithFade(_stats.CheckPointData.);
     }
 
     public void RespawnOnLastSpawnPoint()
@@ -591,7 +606,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.GroundPound.started -= GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Disable();
-        Debug.Log("CHARACTER DISABLED");
     }
 
     private IEnumerator LoadBuffer()

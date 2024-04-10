@@ -592,7 +592,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   _targetSceneName: Jungle Entrance
   _spawnPoint: {fileID: 1844265414}
-  _spawnPointKey: 1
+  _nextSpawnPointKey: default
   _changeOnTrigger: 1
 --- !u!4 &410920740
 Transform:
@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 1030904911}
   m_Layer: 0
   m_Name: Scene Bounds
-  m_TagString: Untagged
+  m_TagString: SceneBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5009,7 +5009,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 1
   _targetSceneName: Trudee Hut (Inside)
   _spawnPoint: {fileID: 2566756418648588774}
-  _spawnPointKey: 1
+  _nextSpawnPointKey: 1
   _changeOnTrigger: 1
 --- !u!1 &8511981056973595395
 GameObject:
