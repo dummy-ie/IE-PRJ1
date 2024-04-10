@@ -951,8 +951,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3212ee823dd052b42b170dd565a52479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextSceneReference:
+  _gameSceneReference:
     m_AssetGUID: f837ca701c3abec4ea842abde88565a1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  _settingsSceneReference:
+    m_AssetGUID: d752f88b9ed7169479dafd7d0672ecf1
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

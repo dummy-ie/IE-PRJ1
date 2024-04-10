@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class MainMenuGUIManager : MonoBehaviour
 {
     [SerializeField]
-    AssetReference _nextSceneReference;
+    AssetReference _gameSceneReference;
+    
+    [SerializeField]
+    AssetReference _settingsSceneReference;
 
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _settingsButton;
@@ -22,11 +25,12 @@ public class MainMenuGUIManager : MonoBehaviour
 
     void OnPlayButtonClicked()
     {
-        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
+        SceneLoader.Instance.LoadSceneWithFade(_gameSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
     }
 
     void OnSettingsButtonClicked()
     {
+        SceneLoader.Instance.LoadSceneWithFade(_settingsSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
 
     }
 
