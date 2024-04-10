@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Level 4
   m_EditorClassIdentifier: 
+  sceneType: 0
   SceneReference:
     m_AssetGUID: cc3c7f067ead48e44acf90d5dcadc874
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: 0, y: 0}
+      faceToRight: 0
+    spawnPoints:
+    - key: level 3 - level 4 main
+      position: {x: -608.85, y: 75.07}
+      faceToRight: 0
+    - key: level 3 - level 4 secondary
+      position: {x: -650.21, y: 36.97}
+      faceToRight: 0
