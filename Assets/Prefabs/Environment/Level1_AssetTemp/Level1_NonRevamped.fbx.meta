@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: a322e925ef583cf4cb9e8b8d5b41000e
+guid: 51c54b2f2d70e3248bf2ce705aaa3aef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 3810611028758523401, guid: 89587521dc50e0a43bbfc16899253c53, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2926557707537190794, guid: 89587521dc50e0a43bbfc16899253c53, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 3810611028758523401, guid: 89587521dc50e0a43bbfc16899253c53, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: -2505642851634945670, guid: 89587521dc50e0a43bbfc16899253c53, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -32,12 +52,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
