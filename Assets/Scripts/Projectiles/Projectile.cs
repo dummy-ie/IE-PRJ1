@@ -67,7 +67,7 @@ public abstract class Projectile : MonoBehaviour
         else if (_sourcePlayer.CompareTag("Breakable") && other.gameObject.CompareTag("Player"))
         {
             Debug.Log(name + " collided with target " + other.name);
-            HitData hitData = new HitData(_data.Damage, 5);
+            HitData hitData = new HitData(_data.Damage, new Vector2(5 * CheckFlipped(), 1));
             other.gameObject.GetComponent<CharacterController2D>().StartHit(hitData);
             if (_data.DestroyOnImpactWithTarget)
             {

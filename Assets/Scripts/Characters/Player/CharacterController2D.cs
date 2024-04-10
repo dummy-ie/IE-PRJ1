@@ -383,14 +383,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
             _isHit = true;
-            _iFrames = 2;
+            _iFrames = 1;
 
             StartBlink();
 
             //Vector2 vec = new(transform.position.x - enemy.transform.position.x, 0);
             //vec.Normalize();
 
-            _rb.AddForce(new Vector2(hitData.force, 1), ForceMode2D.Impulse);
+            _rb.AddForce(hitData.force, ForceMode2D.Impulse);
 
             if (hitData.damage > 0)
                 Damage((int)hitData.damage);

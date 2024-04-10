@@ -214,7 +214,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    HitData hitData = new HitData(attack.damage, attack.moveOffset * facingRight);
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
                     hit.collider.GetComponent<CharacterController2D>()
                         .StartHit(hitData);
                 }

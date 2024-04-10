@@ -550,8 +550,8 @@ MonoBehaviour:
       _posY: 0
       _posZ: 0
     _hasDash: 1
-    _hasSlash: 1
-    _hasPound: 1
+    _hasSlash: 0
+    _hasPound: 0
   _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}

@@ -8,7 +8,7 @@ public class VineHit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            HitData hitData = new HitData(1, 1);
+            HitData hitData = new HitData(1, new Vector2(1, 1));
             collision.gameObject.GetComponent<CharacterController2D>().StartHit(hitData);
         }
     }
