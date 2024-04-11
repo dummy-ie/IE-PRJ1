@@ -41,7 +41,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
     private DeathState _deathState;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    void Start()
     {
         _preBattleState = new PreBattleState(this);
         _idleState = new IdleState(this);

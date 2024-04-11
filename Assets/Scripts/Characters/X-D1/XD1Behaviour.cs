@@ -44,7 +44,7 @@ public class XD1Behaviour : EntityStateMachine<XD1Behaviour>
         SwitchState(_idleState);
     }
 
-    void Update()
+    protected override void Update()
     {
         if (_player == null)
             _player = GameObject.FindGameObjectWithTag("Player");

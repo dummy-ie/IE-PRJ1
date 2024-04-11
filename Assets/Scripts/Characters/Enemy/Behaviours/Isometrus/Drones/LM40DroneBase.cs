@@ -63,7 +63,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
         base.Update();
         /*_targetLoc = test.transform.position;
@@ -81,7 +81,7 @@ public class LM40DroneBase<TDrone> : EntityStateMachine<TDrone> where TDrone : L
                 break;
         }*/
 
-        
+
     }
 
     public float GetDirection(GameObject target)

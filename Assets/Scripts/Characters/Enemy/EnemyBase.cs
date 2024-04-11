@@ -113,26 +113,6 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
         //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    protected virtual void Start()
-    {
-        //_patrolState = new PatrolState(this);
-        //_deathState = new DeathState(this);
-        
-        //SwitchState(_patrolState);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update();
-        if (this._currentHealth <= 0)
-        {
-            //SwitchState(_deathState);
-        }
-        //Flip();
-    }
-
     virtual protected void FlipTo()
     {
         _isFacingRight = !_isFacingRight;
