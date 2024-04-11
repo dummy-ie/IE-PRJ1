@@ -82,17 +82,17 @@ public class HUDManager : Singleton<HUDManager>
     private void OnEnable()
     {
         // Debug.Log("HUDManager");
-        _playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().Stats;
+        /*_playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().Stats;
         _playerStats.Health.CurrentChanged += SetHearts;
         _playerStats.Manite.CurrentChanged += SetManiteValue;
         SetManiteValue(_playerStats.Manite.Current);
-        SetHearts(_playerStats.Health.Current);
+        SetHearts(_playerStats.Health.Current);*/
     }
 
     private void OnDisable()
     {
-        _playerStats.Health.CurrentChanged -= SetHearts;
-        _playerStats.Manite.CurrentChanged -= SetManiteValue;
+        //_playerStats.Health.CurrentChanged -= SetHearts;
+        //_playerStats.Manite.CurrentChanged -= SetManiteValue;
     }
 
     void Update()
@@ -108,8 +108,8 @@ public class HUDManager : Singleton<HUDManager>
         // _initialRightMask = _mask.padding.z;
         // Debug.Log("HUDManagerStart");
         // Debug.Log($"Player Hearts : {_playerStats.Health.Current}");
-        _playerStats.Health.CurrentChanged += SetHearts;
-        _playerStats.Manite.CurrentChanged += SetManiteValue;
+        //_playerStats.Health.CurrentChanged += SetHearts;
+        //_playerStats.Manite.CurrentChanged += SetManiteValue;
         _maniteBarRect.anchoredPosition = Vector2.zero;
         _healthBarRect.anchoredPosition = Vector2.zero;
         SetManiteValue(_playerStats.Manite.Current);

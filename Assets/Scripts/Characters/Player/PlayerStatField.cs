@@ -7,13 +7,7 @@ using UnityEngine.Events;
 [JsonObject]
 public class PlayerStatField : BaseData, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    private CheckpointData _checkPointData;
-    public CheckpointData CheckPointData {
-        get { return this._checkPointData; }
-        set { this._checkPointData = value; }
-
-    }
+    public CheckpointData CheckPointData;
 
     [Serializable]
     public class PlayerHealthField {
@@ -86,31 +80,19 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     public PlayerManiteField Manite { 
         get { return _manite; } 
     }
-    [SerializeField]
-    private bool _hasDash = true;
-    public bool HasDash {
-        get { return _hasDash; }
-        set { _hasDash = value; }
-    }
-    [SerializeField]
-    private bool _hasSlash = false;
-    public bool HasSlash {
-        get { return _hasSlash; }
-        set { _hasSlash = value; }
-    }
+
     [SerializeField]
     private bool _hasThrust = false;
     public bool HasThrust {
         get { return _hasThrust; }
         set { _hasThrust = value; }
     }
-    [SerializeField]
-    private bool _hasPound = false;
-    public bool HasPound
-    {
-        get { return _hasPound; }
-        set { _hasPound = value; }
-    }
+
+
+    public bool HasDash = false;
+    public bool HasSlash = false;
+    public bool HasPound = false;
+    public bool HasInvisibility = false;
 
     private void OnEnable()
     {

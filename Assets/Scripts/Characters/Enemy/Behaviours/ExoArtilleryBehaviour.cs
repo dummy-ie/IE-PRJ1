@@ -32,7 +32,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     private DamagePhaseState _damagePhaseState;
     private Phase2State _phase2State;
     private DeathState _deathState;
-    virtual public void OnHit(Transform source, int damage)
+    public override void OnHit(Transform source, int damage)
     {
     }
 
@@ -49,9 +49,9 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
     protected override void Update()
     {
-        base.Update();
         if (_currentHealth <= 0)
             SwitchState(_deathState);
+        base.Update();
     }
 
     public abstract class StateBase : EntityState<ExoArtilleryBehaviour>
@@ -152,7 +152,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
             _tracking = _entity._rangeBehaviour.InRange;
 
-            if (_tracking && !_entity._firstAttack)
+            if (_tracking && !_entity._firstAttack && _entity._visionBehaviour.PlayerSeen)
             {
                 _trackingTicks += Time.deltaTime;
 
@@ -366,13 +366,13 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     public class Phase2State : StateBase
     {
         public Phase2State(ExoArtilleryBehaviour entity) : base(entity) {}
-        public void Enter()
+        public override void Enter()
         {
         }
-        public void Execute()
+        public override void Execute()
         {
         }
-        public void Exit()
+        public override void Exit()
         {
 
         }
@@ -380,14 +380,14 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     public class DeathState : StateBase
     {
         public DeathState(ExoArtilleryBehaviour entity) : base(entity) { }
-        public void Enter()
+        public override void Enter()
         {
             _entity.gameObject.SetActive(false);
         }
-        public void Execute()
+        public override void Execute()
         {
         }
-        public void Exit()
+        public override void Exit()
         {
 
         }

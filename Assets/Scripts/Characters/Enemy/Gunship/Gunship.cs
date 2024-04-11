@@ -64,7 +64,7 @@ public class Gunship : EnemyBase<Gunship>
         this._playerTarget = target;
     }
 
-    override protected void Start()
+    void Start()
     {
         
         _deathState = new DeathState(this);

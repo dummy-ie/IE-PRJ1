@@ -21,7 +21,12 @@ public class PlayerInteract : MonoBehaviour
     
     IInteractable _interactable;
     public IInteractable Interactable { set { _interactable = value; } }
-    
+
+    void Start()
+    {
+        _controller = GetComponent<CharacterController2D>();
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -33,7 +38,13 @@ public class PlayerInteract : MonoBehaviour
     private void Interact()
     {
         if (_interactable != null)
+        {
+            // DISABLE INVISIBILITY
+            _controller.DeactivateInvisible();
+
             _interactable.OnInteract();
+        }
+            
         else
             Debug.Log("wtf");
     }

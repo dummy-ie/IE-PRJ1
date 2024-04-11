@@ -1,10 +1,7 @@
 using Cinemachine;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.U2D.IK;
-using static SpawnPoints;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -101,24 +98,18 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private float _iFrames = 0;
 
-    /*[SerializeField]
-    private bool _hasDash = false;
-    public bool HasDash
-    {
-        get { return _hasDash; }
-        set { _hasDash = value; }
-    }
-    [SerializeField]
-    private bool _hasSlash = false;
-    public bool HasSlash
-    {
-        get { return _hasSlash; }
-        set { _hasSlash = value; }
-    }*/
-
     private float _dashCooldownTime = 0f;
     private float _dashSpeed = 0f;
     //private bool submitPressed = false;
+
+    private bool _isInvisible = false;
+
+    public bool IsInvisible
+    {
+        get { return _isInvisible; }
+    }
+    private float _invisibilityTicks = 0.0f;
+    public float InvisibilityTime = 1.0f;
 
     private bool _onLadder = false;
     public bool OnLadder
@@ -456,6 +447,29 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasPound = true;
     }
 
+    public void ObtainInvisibility()
+    {
+        _stats.HasInvisibility = true;
+    }
+
+    public void ActivateInvisible()
+    {
+        _isInvisible = true;
+    }
+
+    public void DeactivateInvisible()
+    {
+        _isInvisible = false;
+    }
+
+    public void OnPressInvisibility(InputAction.CallbackContext context)
+    {
+        if (_stats.HasInvisibility)
+        {
+            _isInvisible = !_isInvisible;
+        }
+    }
+
     private CharacterSpawnPoint GetSpawnPoint(SceneLoader.TransitionData transitionData)
     {
 
@@ -529,6 +543,29 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         Hits();
 
+        if (_isInvisible)
+        {
+            _invisibilityTicks += Time.deltaTime;
+
+            Color color = _render2D.color;
+            color.a = 0.5f;
+            _render2D.color = color;
+
+            if (_invisibilityTicks >= InvisibilityTime)
+            {
+                _stats.Manite.Current -= 1;
+                _invisibilityTicks = 0.0f;
+            }
+            
+        }
+        else
+        {
+            Color color = _render2D.color;
+            color.a = 1f;
+            _render2D.color = color;
+        }
+            
+
         if (this._stats.Health.Current <= 0)
         {
             RespawnOnCheckpoint();
@@ -559,6 +596,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     void OnEnable()
     {
+        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+        HUDManager.Instance.SetHearts(_stats.Manite.Current);
+        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
+
         _moveAction = _playerActions.Player.Move;
         _moveAction.Enable();
 
@@ -583,10 +625,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.GroundPound.started += GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Enable();
+
+        _playerActions.Player.Ability1.started += OnPressInvisibility;
+        _playerActions.Player.Ability1.Enable();
     }
 
     void OnDisable()
     {
+        _stats.Health.CurrentChanged -= HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged -= HUDManager.Instance.SetManiteValue;
+
         _moveAction.Disable();
 
         _playerActions.Player.Jump.started -= OnJump;
@@ -607,6 +655,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.GroundPound.started -= GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Disable();
+
+        _playerActions.Player.Ability1.started -= OnPressInvisibility;
+        _playerActions.Player.Ability1.Disable();
     }
 
     private IEnumerator LoadBuffer()
@@ -668,7 +719,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         void DrawAttack(PlayerData.Attack attackData)
         {
             Vector3 facing = Vector3.right * _facingDirection;
-            Gizmos.color = Color.red;;
+            Gizmos.color = Color.red;
             Gizmos.DrawWireCube(transform.position + facing * attackData.HitboxCastDistance, attackData.HitboxSize);
         }
     }

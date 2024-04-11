@@ -23,8 +23,29 @@ public class VisionBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //_enemy.CurrentState = EnemyBase.State.Engaging;
-            PlayerSeen = true;
-            detectedObject = collision.gameObject;
+            if (!collision.gameObject.GetComponent<CharacterController2D>().IsInvisible)
+            {
+                PlayerSeen = true;
+                detectedObject = collision.gameObject;
+            }
+            
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //_enemy.CurrentState = EnemyBase.State.Engaging;
+            if (collision.gameObject.GetComponent<CharacterController2D>().IsInvisible)
+            {
+                PlayerSeen = false;
+            }
+            else
+            {
+                PlayerSeen = true;
+            }
+
         }
     }
 
