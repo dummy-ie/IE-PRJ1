@@ -185,7 +185,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _aerialDash = false;
 
             //dash direction based on where playr is facing
-            _dashSpeed *= _facingDirection;
+            _dashSpeed *= -_facingDirection;
         }
     }
     private void Move()

@@ -430,8 +430,8 @@ MonoBehaviour:
       _posY: 0
       _posZ: 0
     HasThrust: 0
-    HasDash: 0
-    HasSlash: 0
+    HasDash: 1
+    HasSlash: 1
     HasPound: 0
     HasInvisibility: 0
   _animator: {fileID: 0}
