@@ -12,16 +12,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : Singleton<InputManager>//, StuckinBetween.IPlayerActions
 {
-    public StuckinBetween inputActions { get; private set; }
+    public StuckinBetween InputActions { get; private set; }
 
     private UnityEvent _moveEvent;
     private UnityEvent _pauseEvent;
 
     private void OnEnable()
     {
-        if (inputActions == null)
+        if (InputActions == null)
         {
-            inputActions = new StuckinBetween();
+            InputActions = new StuckinBetween();
 
             //inputActions.Player.SetCallbacks(this);
         }
@@ -30,7 +30,7 @@ public class InputManager : Singleton<InputManager>//, StuckinBetween.IPlayerAct
 
     private void OnDisable()
     {
-        inputActions.Player.Disable();
+        InputActions.Player.Disable();
     }
 
     //void StuckinBetween.IPlayerActions.OnMove(InputAction.CallbackContext context)

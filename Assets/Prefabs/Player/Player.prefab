@@ -228,7 +228,6 @@ GameObject:
   - component: {fileID: 3983012199411502577}
   - component: {fileID: 5962612819004959911}
   - component: {fileID: 207511811344072622}
-  - component: {fileID: 7176358806896291459}
   - component: {fileID: 3489200118419860923}
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
@@ -323,204 +322,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7176358806896291459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6933529248856894337}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5bc041f602b5ff04f8380431fc122a48, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c7a32a4b-d5be-480c-807e-68c809806926
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 179ad280-1c5e-4c29-8b59-3f167a7497ee
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4cd0a903-28ac-4ddf-b931-6fd78745be58
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b3e3eea8-ead7-4adb-a70d-d73e5da60ea0
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d67f6e28-692d-41b7-a82a-32dbd35082e3
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1fa6c850-deb8-428d-a634-e06f39b715b3
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6a6b8848-e412-4a01-91b8-9b6c1ff24219
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 63ccd4b0-edf5-4d6a-9a26-97533a9cdb2e
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 77efaa91-1274-4477-ad6d-f3c9df66f8b0
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6a740694-e1e5-4757-b259-bdb865de051d
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cf546ca4-e305-49cc-81b6-3a2181107b3e
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3489200118419860923}
-        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bda27d66-8cb7-4571-9076-6e5a8800bfd8
-    m_ActionName: Player/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3489200118419860923}
-        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
-        m_MethodName: OnDash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2649d89b-ea1e-4eb7-a4c5-8a1216c02153
-    m_ActionName: Player/Dash[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6500837453471319468}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: OnAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1af218ea-5a3c-4b6d-8680-742af7a61655
-    m_ActionName: Player/Attack[/Keyboard/x]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3e6a6902-d277-4f34-9a9d-06e89b32d15b
-    m_ActionName: Player/Vector Shift[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cd54f896-c341-4728-8b24-d975a595ff96
-    m_ActionName: Player/Charged Thrust[/Keyboard/a,/Keyboard/leftArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8300612678563695145}
-        m_TargetAssemblyTypeName: ManiteSlash, Assembly-CSharp
-        m_MethodName: OnManiteSlash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 99ff6a69-522c-4fc6-a6e0-21b4eab474e3
-    m_ActionName: Player/Manite Slash[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8860734082083504054}
-        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 58b5d2c8-4966-4a81-9200-e900d535d53b
-    m_ActionName: Player/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d3610e9b-f03d-4b89-8071-add1da2b54a6
-    m_ActionName: Player/Submit[/Keyboard/z]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2499320351120869182}
-        m_TargetAssemblyTypeName: GroundPound, Assembly-CSharp
-        m_MethodName: OnGroundPound
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5340e116-9bba-4ada-bcfe-86c565492798
-    m_ActionName: Player/GroundPound[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7438938f-0a73-4d3d-9334-b05960b5ae87
-    m_ActionName: Player/Ability1[/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 096fa185-b01e-4d0b-96cc-e162464ba8be
-    m_ActionName: Player/Ability2[/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 86423432-9dee-4e66-bd07-bab8cbc7b161
-    m_ActionName: Player/Parry[/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fd424c21-8d37-486d-96f0-0470d8f84130
-    m_ActionName: Player/Ability Cycle[/Keyboard/leftAlt]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &3489200118419860923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,9 +343,9 @@ MonoBehaviour:
       _posX: 0
       _posY: 0
       _posZ: 0
+    _hasThrust: 0
     HasDash: 0
     HasSlash: 0
-    _hasThrust: 0
     HasPound: 0
     HasInvisibility: 0
   _animator: {fileID: 0}
@@ -802,7 +603,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.40000153, z: -90}
+  m_LocalPosition: {x: 0, y: 0.4, z: -90}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

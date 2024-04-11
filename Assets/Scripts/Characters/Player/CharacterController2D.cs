@@ -186,19 +186,22 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
     private void Move()
     {
-        _deltaX = _moveAction.ReadValue<Vector2>().x;
-        _deltaY = _moveAction.ReadValue<Vector2>().y;
-
-        if (_canMove)
+        if (_moveAction != null)
         {
-            if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
-                _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
-            if (_onLadder)
-                _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
+            _deltaX = _moveAction.ReadValue<Vector2>().x;
+            _deltaY = _moveAction.ReadValue<Vector2>().y;
+
+            if (_canMove)
+            {
+                if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
+                    _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
+                if (_onLadder)
+                    _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
+            }
+            // interpolate the camera towards where the player is currently moving if they are moving?
+            // propose the idea later on idk
+            //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
         }
-        // interpolate the camera towards where the player is currently moving if they are moving?
-        // propose the idea later on idk
-        //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
     }
 
     private void Jump()
@@ -596,11 +599,23 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     void OnEnable()
     {
-        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
-        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-        HUDManager.Instance.SetHearts(_stats.Manite.Current);
-        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
 
+        if (_playerActions == null)
+        {
+            _playerActions = new StuckinBetween();
+
+            //inputActions.Player.SetCallbacks(this);
+        }
+        Debug.Log(_playerActions + " PLAYER ENABLED");
+
+        if (HUDManager.Instance != null)
+        {
+            _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+            _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+            HUDManager.Instance.SetHearts(_stats.Manite.Current);
+            HUDManager.Instance.SetManiteValue(_stats.Health.Current);
+        }
+        
         _moveAction = _playerActions.Player.Move;
         _moveAction.Enable();
 
