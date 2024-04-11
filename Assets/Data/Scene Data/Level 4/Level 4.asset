@@ -21,7 +21,7 @@ MonoBehaviour:
   spawnPoints:
     defaultSpawnPoint:
       key: default
-      position: {x: 0, y: 0}
+      position: {x: -608.85, y: 75.07}
       faceToRight: 0
     spawnPoints:
     - key: level 3 - level 4 main
