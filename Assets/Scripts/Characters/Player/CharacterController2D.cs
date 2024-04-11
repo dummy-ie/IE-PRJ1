@@ -127,13 +127,17 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
     private void Flip()
     {
-        if (_facingDirection == 1 && _deltaX < 0f || _facingDirection == -1 && _deltaX > 0f)
-        {
-            _facingDirection *= -1;
+        if (_deltaX < 0f) 
+            FlipTo(1);
+        else if (_deltaX > 0f)
+            FlipTo(-1);
+        //if (_facingDirection == 1 && _deltaX < 0f || _facingDirection == -1 && _deltaX > 0f)
+        //{
+            //_facingDirection *= -1;
             Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
+            localScale.x = _facingDirection;
             transform.localScale = localScale;
-        }
+        //}
     }
 
     private OneWayPlatform GetPlatformBelow()
@@ -519,7 +523,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     {
         _lastSpawnPosition = GetSpawnPoint(transitionData);
         transform.position = _lastSpawnPosition.position;
-        FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+        FlipTo(_lastSpawnPosition.faceToRight ? -1 : 1);
     }
         
     private void Awake()
