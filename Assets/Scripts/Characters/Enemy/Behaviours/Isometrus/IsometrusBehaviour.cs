@@ -13,7 +13,9 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     [SerializeField] GameObject _droneB;
     [SerializeField] GameObject _droneC;
     bool _droneASpawned = false, _droneBSpawned = false, _droneCSpawned = false;
-
+    GameObject _droneAobj;
+    GameObject _droneBobj;
+    GameObject _droneCobj;
     
 
     override protected void Start()
@@ -90,7 +92,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         {
             ticks+= Time.deltaTime;
 
-            _entity.SetVelocity(_entity.Moving());
+            _entity.SetVelocity(_entity.Moving()/2);
 
             if (stateDuration <= ticks)
             {
@@ -121,7 +123,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         public override void Enter()
         {
             
-            GameObject droneA = Instantiate(_entity._droneA, _entity.transform.position + new Vector3(1, 1) * 15, Quaternion.identity);
+            _entity._droneAobj = Instantiate(_entity._droneA, _entity.transform.position + new Vector3(1, 1) * 15, Quaternion.identity);
             _entity._droneASpawned = true;
         }
 
@@ -156,12 +158,12 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     {
         if (_currentHealth <= 70 & !_droneBSpawned)
         {
-            GameObject droneB = Instantiate(_droneB, transform.position + new Vector3(1,1) * 15, Quaternion.identity);
+            _droneBobj = Instantiate(_droneB, transform.position + new Vector3(1,1) * 15, Quaternion.identity);
             _droneBSpawned = true;
         }
         if (_currentHealth <= 40 & !_droneCSpawned)
         {
-            GameObject droneC = Instantiate(_droneC, transform.position + new Vector3(1, 1) * 15, Quaternion.identity);
+            _droneCobj = Instantiate(_droneC, transform.position + new Vector3(1, 1) * 15, Quaternion.identity);
             _droneCSpawned = true;
         }
     }
@@ -172,6 +174,14 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         //DropParticle(_particleDropsOnHit);
         _currentHealth -= damage;
         //StartCoroutine(Blink());
+
+        if (_currentHealth <= 0)
+        {
+            Destroy(_droneAobj);
+            Destroy(_droneBobj);
+            Destroy(_droneCobj);
+            Destroy(this.gameObject);
+        }
 
         CheckForDroneSpawn();
 
