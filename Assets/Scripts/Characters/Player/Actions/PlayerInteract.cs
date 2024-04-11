@@ -33,7 +33,13 @@ public class PlayerInteract : MonoBehaviour
     private void Interact()
     {
         if (_interactable != null)
+        {
+            // DISABLE INVISIBILITY
+            _controller.DeactivateInvisible();
+
             _interactable.OnInteract();
+        }
+            
         else
             Debug.Log("wtf");
     }

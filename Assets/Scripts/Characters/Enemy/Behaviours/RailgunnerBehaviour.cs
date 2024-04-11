@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.InputSystem.XR;
@@ -72,6 +73,9 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
 
         public override void Execute()
         {
+            
+                
+
             _trackingTicks += Time.deltaTime;
 
             _line.positionCount = 2;
@@ -103,6 +107,13 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
 
             _line.widthMultiplier = Mathf.Lerp(0.1f, 0.5f, _trackingTicks / _entity._timeToShoot);
 
+            if (!_entity._visionBehaviour.PlayerSeen)
+            {
+                _line.widthMultiplier = 0.5f;
+                _line.positionCount = 0;
+                _entity.SwitchState(_entity._detectionState);
+            }
+
             if (_trackingTicks >= _entity._timeToShoot)
             {
                 _line.widthMultiplier = 0.5f;
@@ -111,7 +122,13 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
                 _entity.SwitchState(_entity._detectionState);
             }
 
+            
+        }
 
+        public override void Exit()
+        {
+            _line.widthMultiplier = 0.5f;
+            _line.positionCount = 0;
         }
 
         private void PerformAttack(AttackData attack)

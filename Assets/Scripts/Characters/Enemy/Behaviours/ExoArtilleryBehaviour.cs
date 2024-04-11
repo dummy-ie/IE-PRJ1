@@ -152,7 +152,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
             _tracking = _entity._rangeBehaviour.InRange;
 
-            if (_tracking && !_entity._firstAttack)
+            if (_tracking && !_entity._firstAttack && _entity._visionBehaviour.PlayerSeen)
             {
                 _trackingTicks += Time.deltaTime;
 

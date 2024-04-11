@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+
 public class GroundPound : AAbility
 {
     Rigidbody2D rb;
@@ -35,6 +37,9 @@ public class GroundPound : AAbility
         {
             if (controller.Data.CanAttack)
             {
+                // DISABLE INVISIBILITY
+                controller.DeactivateInvisible();
+
                 controller.Data.CanAttack = false;
 
                 rb.velocity = new Vector2(0.0f, 0.0f);
