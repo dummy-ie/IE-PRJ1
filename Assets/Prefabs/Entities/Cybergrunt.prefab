@@ -449,7 +449,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  _particleSystem: {fileID: 0}
+  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
   _attack:
