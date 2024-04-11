@@ -47,7 +47,7 @@ public class HUDManager : Singleton<HUDManager>
             targetX,
             0.5f
         );
-        Debug.Log("manite bar " + targetX);
+        // Debug.Log("manite bar " + targetX);
         _maniteText.GetComponent<TextMeshProUGUI>().text = value + " / " + _playerStats.Manite.Max;
     }
 
@@ -72,16 +72,16 @@ public class HUDManager : Singleton<HUDManager>
             targetX,
             0.5f
         );
-        Debug.Log("health bar width " + _healthBarRect.rect.width);
-        Debug.Log("player stat hp max " + _playerStats.Health.Max);
-        Debug.Log("health bar " + targetX);
-        Debug.Log("health bar anchored pos " + _healthBarRect.anchoredPosition);
+        // Debug.Log("health bar width " + _healthBarRect.rect.width);
+        // Debug.Log("player stat hp max " + _playerStats.Health.Max);
+        // Debug.Log("health bar " + targetX);
+        // Debug.Log("health bar anchored pos " + _healthBarRect.anchoredPosition);
         _healthText.GetComponent<TextMeshProUGUI>().text = value + " / " + _playerStats.Health.Max;
     }
 
     private void OnEnable()
     {
-        Debug.Log("HUDManager");
+        // Debug.Log("HUDManager");
         _playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().Stats;
         _playerStats.Health.CurrentChanged += SetHearts;
         _playerStats.Manite.CurrentChanged += SetManiteValue;
@@ -106,8 +106,8 @@ public class HUDManager : Singleton<HUDManager>
         _playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().Stats;
         // _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
         // _initialRightMask = _mask.padding.z;
-        Debug.Log("HUDManagerStart");
-        Debug.Log($"Player Hearts : {_playerStats.Health.Current}");
+        // Debug.Log("HUDManagerStart");
+        // Debug.Log($"Player Hearts : {_playerStats.Health.Current}");
         _playerStats.Health.CurrentChanged += SetHearts;
         _playerStats.Manite.CurrentChanged += SetManiteValue;
         _maniteBarRect.anchoredPosition = Vector2.zero;

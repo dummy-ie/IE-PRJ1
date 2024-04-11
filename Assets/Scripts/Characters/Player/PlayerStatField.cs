@@ -99,6 +99,12 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         set { _hasSlash = value; }
     }
     [SerializeField]
+    private bool _hasThrust = false;
+    public bool HasThrust {
+        get { return _hasThrust; }
+        set { _hasThrust = value; }
+    }
+    [SerializeField]
     private bool _hasPound = false;
     public bool HasPound
     {

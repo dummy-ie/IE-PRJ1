@@ -578,6 +578,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         //_playerActions.Player.ManiteSlash.started += GetComponent<ManiteSlash>().OnManiteSlash;
         //_playerActions.Player.ManiteSlash.Enable();
 
+        _playerActions.Player.ChargedThrust.started += GetComponent<ChargedThrust>().OnChargedThrust;
+        _playerActions.Player.ChargedThrust.Enable();
+
         _playerActions.Player.GroundPound.started += GetComponent<GroundPound>().OnGroundPound;
         _playerActions.Player.GroundPound.Enable();
     }

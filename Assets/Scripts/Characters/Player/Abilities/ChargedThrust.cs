@@ -44,12 +44,14 @@ public class ChargedThrust : AAbility
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.tag == "Breakable")
+                if (hit.collider.gameObject.CompareTag("Breakable"))
                 {
                     //hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
-                    IHittable handler = hit.collider.GetComponent<IHittable>();
-                    if (handler != null)
+                    if (hit.collider.TryGetComponent<IHittable>(out var handler))
+                    {
                         handler.OnHit(transform, 0);
+                        Debug.Log("hit obj: " + hit.collider.gameObject.name);
+                    }
                 }
             }
 
@@ -61,14 +63,14 @@ public class ChargedThrust : AAbility
     {
         if (cooldownClock > 0 && canAttack)
         {
-            if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
-            else attackHitboxDebug.enabled = true;
+            // if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
+            // else attackHitboxDebug.enabled = true;
             cooldownClock -= Time.deltaTime;
         }
         else
         {
-            attackHitboxDebug.enabled = false;
-            attackHitboxVDebug.enabled = false;
+            // attackHitboxDebug.enabled = false;
+            // attackHitboxVDebug.enabled = false;
             canAttack = true;
         }
     }

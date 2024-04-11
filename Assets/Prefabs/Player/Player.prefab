@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
   - component: {fileID: 2499320351120869182}
+  - component: {fileID: 6415987169465834756}
   - component: {fileID: 8860734082083504054}
   - component: {fileID: 5296035857875587231}
   m_Layer: 3
@@ -351,14 +352,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c7a32a4b-d5be-480c-807e-68c809806926
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 646fd6e2-cb2c-4d45-a1b4-f4df2ac288a3
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e1f2437d-cc40-4922-a909-d0b726b302df
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 179ad280-1c5e-4c29-8b59-3f167a7497ee
@@ -551,6 +544,7 @@ MonoBehaviour:
       _posZ: 0
     _hasDash: 1
     _hasSlash: 0
+    _hasThrust: 0
     _hasPound: 0
   _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
@@ -609,6 +603,24 @@ MonoBehaviour:
   boxCastDistance: 0
   groundPoundHitBox: {x: 0, y: 0}
   groundPoundFallMultiplier: 8
+--- !u!114 &6415987169465834756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8154fc76f0846384b94ef888cbcdc665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  maniteCost: 20
+  damage: 5
+  attackHitboxDebug: {fileID: 0}
+  attackHitboxVDebug: {fileID: 0}
+  attackHitbox: {fileID: 2653795914489541926}
 --- !u!114 &8860734082083504054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +800,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4000001, z: -15}
+  m_LocalPosition: {x: 0, y: 0.40000153, z: -90}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
