@@ -65,7 +65,7 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
         this._playerTarget = target;
     }
 
-    override protected void Start()
+    void Start()
     {
         _idleState = new IdleState(this);
         _deathState = new DeathState(this);
