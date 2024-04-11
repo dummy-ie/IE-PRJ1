@@ -3906,6 +3906,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1455791724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58337,6 +58340,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2032341259765361149
 PrefabInstance:
   m_ObjectHideFlags: 0
