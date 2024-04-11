@@ -92,7 +92,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         {
             ticks+= Time.deltaTime;
 
-            _entity.SetVelocity(_entity.Moving());
+            _entity.SetVelocity(_entity.Moving()/2);
 
             if (stateDuration <= ticks)
             {
