@@ -7,8 +7,6 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
 {
     protected Rigidbody2D _rb;
 
-    
-
     [SerializeField]
     EnemyData _enemyData;
 
@@ -97,7 +95,13 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.BaseDamage));
+            if (collision.TryGetComponent<CharacterController2D>(out CharacterController2D player))
+            {
+                HitData hitData = new HitData(2, new Vector2(1 * player.FacingDirection, 1));
+                player.StartHit(hitData);
+            }
+
+            // StartCoroutine(collision.gameObject.GetComponent<CharacterController2D>().Hit(gameObject, _enemyData.BaseDamage));
         }
     }
 

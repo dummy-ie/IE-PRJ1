@@ -544,6 +544,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Start()
     {
+        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+        HUDManager.Instance.SetHearts(_stats.Manite.Current);
+        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
     }
 
     private void Update()
@@ -648,7 +652,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.Ability1.started += OnPressInvisibility;
         _playerActions.Player.Ability1.Enable();
-        
+
         _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
         _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
         HUDManager.Instance.SetHearts(_stats.Manite.Current);
