@@ -12,8 +12,8 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
     [SerializeField]
     EnemyData _enemyData;
 
-    [SerializeField]
-    GameObject _manitePrefab;
+    // [SerializeField]
+    // GameObject _manitePrefab;
 
     protected int _currentHealth;
 
@@ -49,7 +49,7 @@ public class EnemyBaseScript : MonoBehaviour, IHittable
         if (this._currentHealth <= 0)
         {
             Debug.Log("Enemy Killed");
-            Instantiate(_manitePrefab, transform.position, transform.rotation);
+            // Instantiate(_manitePrefab, transform.position, transform.rotation);
             this.gameObject.SetActive(false); //OR Destroy(this.gameObject);
         }
     }

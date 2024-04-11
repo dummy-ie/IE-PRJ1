@@ -437,6 +437,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasDash = true;
     }
 
+    public void ObtainThrust()
+    {
+        _stats.HasThrust = true;
+    }
+
     public void ObtainSlash()
     {
         _stats.HasSlash = true;
@@ -596,10 +601,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     void OnEnable()
     {
-        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
-        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-        HUDManager.Instance.SetHearts(_stats.Manite.Current);
-        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
 
         _moveAction = _playerActions.Player.Move;
         _moveAction.Enable();
@@ -628,6 +629,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
         _playerActions.Player.Ability1.started += OnPressInvisibility;
         _playerActions.Player.Ability1.Enable();
+        
+        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+        HUDManager.Instance.SetHearts(_stats.Manite.Current);
+        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
     }
 
     void OnDisable()

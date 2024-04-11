@@ -30,32 +30,36 @@ public class ChargedThrust : AAbility
 
     private void OnPressChargedThrust()
     {
-        if (canAttack)
+        if (controller.Stats.HasThrust)
         {
-            canAttack = false;
-
-            int flip = controller.FacingDirection;
-
-            RaycastHit2D[] hits;
-
-            
-            hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
-            
-
-            foreach (RaycastHit2D hit in hits)
+            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
-                if (hit.collider.gameObject.CompareTag("Breakable"))
+                canAttack = false;
+
+                int flip = controller.FacingDirection;
+
+                RaycastHit2D[] hits;
+
+
+                hits = Physics2D.BoxCastAll(transform.position, new Vector2(.5f, .5f), 0, -transform.right * flip, 2);
+
+
+                foreach (RaycastHit2D hit in hits)
                 {
-                    //hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
-                    if (hit.collider.TryGetComponent<IHittable>(out var handler))
+                    if (hit.collider.gameObject.CompareTag("Breakable"))
                     {
-                        handler.OnHit(transform, 0);
-                        Debug.Log("hit obj: " + hit.collider.gameObject.name);
+                        //hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
+                        if (hit.collider.TryGetComponent<IHittable>(out var handler))
+                        {
+                            handler.OnHit(transform, 0);
+                            Debug.Log("hit obj: " + hit.collider.gameObject.name);
+                        }
                     }
                 }
+                StartCoroutine(VecShift());
+                controller.Stats.Manite.Current -= maniteCost;
+                cooldownClock = cooldown;
             }
-
-            cooldownClock = cooldown;
         }
     }
 
@@ -63,21 +67,30 @@ public class ChargedThrust : AAbility
     {
         if (cooldownClock > 0 && canAttack)
         {
-            // if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
-            // else attackHitboxDebug.enabled = true;
+            if (controller.Vertical >= .9) attackHitboxVDebug.enabled = true;
+            else attackHitboxDebug.enabled = true;
             cooldownClock -= Time.deltaTime;
         }
         else
         {
-            // attackHitboxDebug.enabled = false;
-            // attackHitboxVDebug.enabled = false;
+            attackHitboxDebug.enabled = false;
+            attackHitboxVDebug.enabled = false;
             canAttack = true;
         }
     }
 
     protected override IEnumerator VecShift()
     {
-        yield return null;
+        controller.ShiftTo3D();
+        controller.GetComponent<Rigidbody2D>().drag = 100f;
+
+        yield return new WaitForSeconds(.4f);
+
+        controller.GetComponent<Rigidbody2D>().drag = 0;
+
+        yield return new WaitForSeconds(.2f);
+
+        controller.ShiftTo2D();
     }
 
     // Update is called once per frame
@@ -86,6 +99,6 @@ public class ChargedThrust : AAbility
         ChargedThrustUpdate();
     }
 
-    
+
 }
 

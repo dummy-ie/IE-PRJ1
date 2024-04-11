@@ -10,9 +10,11 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     public CheckpointData CheckPointData;
 
     [Serializable]
-    public class PlayerHealthField {
+    public class PlayerHealthField
+    {
         private int _max;
-        public int Max {
+        public int Max
+        {
             get { return _max; }
         }
         //[NonSerialized]
@@ -26,12 +28,14 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         public event UnityAction<int> CurrentChanged;
         public event UnityAction<int> MaxChanged;
 
-        public void SetMax(int max) {
+        public void SetMax(int max)
+        {
             _max = max;
             Debug.Log("Stat Field Manite Max : " + _max);
             MaxChanged?.Invoke(_max);
         }
-        public void SetCurrent(int current) {
+        public void SetCurrent(int current)
+        {
             _current = current;
             Debug.Log($"Current : {_current}");
             CurrentChanged?.Invoke(_current);
@@ -39,14 +43,17 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     }
     [SerializeField]
     private PlayerHealthField _health;
-    public PlayerHealthField Health { 
-        get { return _health; } 
+    public PlayerHealthField Health
+    {
+        get { return _health; }
     }
 
     [Serializable]
-    public class PlayerManiteField {
+    public class PlayerManiteField
+    {
         private int _max;
-        public int Max {
+        public int Max
+        {
             get { return _max; }
         }
 
@@ -77,18 +84,12 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     }
     [SerializeField]
     private PlayerManiteField _manite;
-    public PlayerManiteField Manite { 
-        get { return _manite; } 
+    public PlayerManiteField Manite
+    {
+        get { return _manite; }
     }
 
-    [SerializeField]
-    private bool _hasThrust = false;
-    public bool HasThrust {
-        get { return _hasThrust; }
-        set { _hasThrust = value; }
-    }
-
-
+    public bool HasThrust = false;
     public bool HasDash = false;
     public bool HasSlash = false;
     public bool HasPound = false;
@@ -100,12 +101,14 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         Manite.Current = Manite.Max;
     }
 
-    public void OnBeforeSerialize(){
+    public void OnBeforeSerialize()
+    {
         /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;*/
     }
-    public void OnAfterDeserialize(){
+    public void OnAfterDeserialize()
+    {
         /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;*/

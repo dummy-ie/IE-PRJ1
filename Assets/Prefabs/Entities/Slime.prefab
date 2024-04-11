@@ -167,12 +167,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: adc0af77e14f9154992a862fd7b61c48, type: 2}
-  _manitePrefab: {fileID: 5094170798370719920, guid: efeada2fa11c29142826cf502d7210df, type: 3}
+  _currentHealth: 0
+  _damageBuff: 0
+  _speed: 1
+  _visionBehaviour: {fileID: 0}
+  _rangeBehaviour: {fileID: 0}
+  _wallDetectBehaviour: {fileID: 0}
+  _cliffDetectBehaviour: {fileID: 0}
   _boxCastDistance: 0.4
   _boxSize: {x: 0.3, y: 0.4}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
+  _particleDropsOnHit: 3
+  _particleDropsOnDeath: 7
   _slimeState: 0
 --- !u!212 &5584740821290689839
 SpriteRenderer:
@@ -213,7 +222,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1463617667
-  m_SortingLayer: 6
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: -329287647, guid: ab015f66f3014f84dbd0a62f92116287, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -20,7 +20,7 @@ public class SpriteHover : MonoBehaviour
     void Update()
     {
         float height = Mathf.Sin(Time.time);
-        Debug.Log(height);
+        // Debug.Log(height);
         Vector2 position = Vector2.LerpUnclamped(_originalPosition, _nextPosition, height);
 
         transform.position = position;
