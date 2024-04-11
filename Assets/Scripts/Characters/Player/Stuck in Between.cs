@@ -345,7 +345,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""modifier"",
                     ""id"": ""39e7327c-2193-4326-9a93-818d509d1d0a"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -356,7 +356,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""binding"",
                     ""id"": ""14f2af13-447f-4e7d-b9d4-d7b45ff975f6"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -411,7 +411,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""modifier"",
                     ""id"": ""20f1496f-34e5-4a88-94c2-515b730558e5"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -422,7 +422,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""binding"",
                     ""id"": ""7bf73bcc-bc25-4298-92e2-9e83ee87966d"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",

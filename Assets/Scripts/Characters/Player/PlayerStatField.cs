@@ -81,6 +81,14 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         get { return _manite; } 
     }
 
+    [SerializeField]
+    private bool _hasThrust = false;
+    public bool HasThrust {
+        get { return _hasThrust; }
+        set { _hasThrust = value; }
+    }
+
+
     public bool HasDash = false;
     public bool HasSlash = false;
     public bool HasPound = false;
