@@ -65,18 +65,22 @@ public class HUDManager : Singleton<HUDManager>
         //     RectTransform rectTransform = clone.GetComponent<RectTransform>();
         //     rectTransform.localPosition = new Vector3(i * padding, 0);
         // }
-        float targetX = Math.Abs((float)value / (float)_playerStats.Health.Max - 1) * -_healthBarRect.rect.width;
-        DOTween.To(
-            () => _healthBarRect.anchoredPosition.x,
-            x => _healthBarRect.anchoredPosition = new Vector2(x, _healthBarRect.anchoredPosition.y),
-            targetX,
-            0.5f
-        );
-        // Debug.Log("health bar width " + _healthBarRect.rect.width);
-        // Debug.Log("player stat hp max " + _playerStats.Health.Max);
-        // Debug.Log("health bar " + targetX);
-        // Debug.Log("health bar anchored pos " + _healthBarRect.anchoredPosition);
-        _healthText.GetComponent<TextMeshProUGUI>().text = value + " / " + _playerStats.Health.Max;
+        if (_healthBarRect != null)
+        {
+            float targetX = Math.Abs((float)value / (float)_playerStats.Health.Max - 1) * -_healthBarRect.rect.width;
+            DOTween.To(
+                () => _healthBarRect.anchoredPosition.x,
+                x => _healthBarRect.anchoredPosition = new Vector2(x, _healthBarRect.anchoredPosition.y),
+                targetX,
+                0.5f
+            );
+            // Debug.Log("health bar width " + _healthBarRect.rect.width);
+            // Debug.Log("player stat hp max " + _playerStats.Health.Max);
+            // Debug.Log("health bar " + targetX);
+            // Debug.Log("health bar anchored pos " + _healthBarRect.anchoredPosition);
+            _healthText.GetComponent<TextMeshProUGUI>().text = value + " / " + _playerStats.Health.Max;
+        }
+        
     }
 
     private void OnEnable()

@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+using UnityEngine.Events;
 using static PlayerData;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -23,6 +23,10 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     [SerializeField] private float _timeToShoot = 1.5f;
     [SerializeField] private float _rotationSpeed = 10.0f;
 
+    [SerializeField] private BossBar _bossBar;
+
+    private int _maxHealth;
+
     private int _phase1Count = 0;
     private bool _firstAttack = true;
 
@@ -32,12 +36,16 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     private DamagePhaseState _damagePhaseState;
     private Phase2State _phase2State;
     private DeathState _deathState;
+
+    public UnityEvent OnDeathEvents;
     public override void OnHit(Transform source, int damage)
     {
+        _currentHealth -= damage;
     }
 
     protected virtual void Start()
     {
+        _maxHealth = _currentHealth;
         _preBattleState = new PreBattleState(this);
         _phase1State = new Phase1State(this);
         _phase1LeapState = new Phase1LeapState(this);
@@ -51,6 +59,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     {
         if (_currentHealth <= 0)
             SwitchState(_deathState);
+        _bossBar.SetHealth(_currentHealth, _maxHealth);
         base.Update();
     }
 
@@ -64,6 +73,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
         public PreBattleState(ExoArtilleryBehaviour entity) : base(entity) {}
         public override void Enter()
         {
+            _entity.GetComponent<Rigidbody2D>().gravityScale = 10.0f;
         }
 
         public override void Execute()
@@ -72,6 +82,11 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 _entity.SwitchState(_entity._phase1State);
             }
+        }
+
+        public override void Exit()
+        {
+            _entity.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         }
     }
 
@@ -382,6 +397,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
         public DeathState(ExoArtilleryBehaviour entity) : base(entity) { }
         public override void Enter()
         {
+            _entity.OnDeathEvents?.Invoke();
             _entity.gameObject.SetActive(false);
         }
         public override void Execute()

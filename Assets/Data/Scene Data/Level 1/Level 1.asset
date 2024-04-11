@@ -22,7 +22,7 @@ MonoBehaviour:
     defaultSpawnPoint:
       key: default
       position: {x: -89.2, y: 21.5}
-      faceToRight: 0
+      faceToRight: 1
     spawnPoints:
     - key: level 1 - level 1 bunker
       position: {x: 2.08, y: -7.39}
