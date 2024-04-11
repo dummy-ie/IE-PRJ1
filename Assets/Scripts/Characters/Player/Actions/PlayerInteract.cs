@@ -21,7 +21,12 @@ public class PlayerInteract : MonoBehaviour
     
     IInteractable _interactable;
     public IInteractable Interactable { set { _interactable = value; } }
-    
+
+    void Start()
+    {
+        _controller = GetComponent<CharacterController2D>();
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -454,8 +454,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void ActivateInvisible()
     {
-        
-            _isInvisible = true;
+        _isInvisible = true;
     }
 
     public void DeactivateInvisible()

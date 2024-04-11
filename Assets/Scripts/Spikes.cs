@@ -12,6 +12,7 @@ public class ForceRespawnTrap : MonoBehaviour
             //PlayerSpawner.Instance.ForceSpawn(SceneManager.GetActiveScene().name, collision.gameObject.GetComponent<CharacterController2D>().LastSpawnPosition.position);
             //PlayerSpawner.Instance.ForceSpawn(SceneLoader.Instance.ActiveSceneReference, collision.gameObject.GetComponent<CharacterController2D>().LastSpawnPosition);
             collision.gameObject.GetComponent<CharacterController2D>().Damage(_damage);
+            collision.gameObject.GetComponent<CharacterController2D>().RespawnOnCheckpoint();
         }
     }
 }
