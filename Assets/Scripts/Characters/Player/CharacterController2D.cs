@@ -545,6 +545,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Start()
     {
+        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+        HUDManager.Instance.SetHearts(_stats.Manite.Current);
+        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
     }
 
     private void Update()
