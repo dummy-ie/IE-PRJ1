@@ -5,6 +5,8 @@ public class Gunship : EnemyBase<Gunship>
 {
     [SerializeField] AttackData _attack;
 
+    [SerializeField] public GameObject _portal;
+
     [SerializeField] public GameObject _directionalEMP;
 
     [SerializeField] public GameObject _directionalCannon;
@@ -17,11 +19,16 @@ public class Gunship : EnemyBase<Gunship>
 
     [SerializeField] private GameObject _patrolObject2;
 
+    private IdleState _idleState;
     private DeathState _deathState;
     private PatrolState _patrolState;
     private ActivatedState _activeState;
     private MoveState _moveState;
     private ShootState _shootState;
+
+    public void ActivateBoss(){
+        SwitchState(_activeState);
+    }
     
     public void CheckHealth(){
         if(_currentHealth <= 0){
@@ -66,20 +73,28 @@ public class Gunship : EnemyBase<Gunship>
 
     void Start()
     {
-        
+        _idleState = new IdleState(this);
         _deathState = new DeathState(this);
         _patrolState = new PatrolState(this);
         _shootState = new ShootState(this);
         _moveState = new MoveState(this);
         _activeState = new ActivatedState(this);
 
-        SwitchState(_activeState);
+        SwitchState(_idleState);
 
     }
 
     public abstract class StateBase : EntityState<Gunship>
     {
         protected StateBase(Gunship entity) : base(entity) { }
+    }
+
+    public class IdleState: StateBase {
+
+        public IdleState(Gunship entity) : base(entity) { }
+        public override void Execute()
+        {
+        }
     }
 
     public class ActivatedState : StateBase
@@ -93,6 +108,7 @@ public class Gunship : EnemyBase<Gunship>
         {
             ticks += 0.05f;
 
+            _entity._portal.SetActive(false);
             _entity.CheckHealth();
 
                 if(TickInterval <= ticks) {
@@ -238,7 +254,8 @@ public class Gunship : EnemyBase<Gunship>
         public DeathState(Gunship entity) : base(entity) { }
 
         public override void Execute() {
-
+            
+            this._entity._portal.SetActive(true);
             Destroy(this._entity.gameObject);
 
         }
