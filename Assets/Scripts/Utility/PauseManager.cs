@@ -23,15 +23,15 @@ public class PauseManager : Singleton<PauseManager>
 
     public void ResumeGame()
     {
-        HUDManager.Instance.HidePause();
         _gameIsPaused = false;
         Time.timeScale = 1.0f;
+        HUDManager.Instance.HidePause();
     }
 
     public void PauseGame()
     {
-        HUDManager.Instance.ShowPause();
         _gameIsPaused = true;
         Time.timeScale = 0.0f;
+        HUDManager.Instance.ShowPause();
     }
 }

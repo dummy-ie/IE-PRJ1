@@ -16,6 +16,7 @@ public class PauseScreenUI : MonoBehaviour
 
     public void OnQuitButtonClicked()
     {
+        PauseManager.Instance.ResumeGame();
         SceneLoader.Instance.LoadMainMenu();
     }
 }
