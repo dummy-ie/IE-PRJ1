@@ -120,12 +120,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        /*_stats.Health.SetMax(_data.MaxHealth);
+        _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
         _stats.Health.SetCurrent(_data.MaxHealth);
-        _stats.Manite.SetCurrent(_data.MaxManite);*/
-
-        
+        _stats.Manite.SetCurrent(_data.MaxManite);
 
         StartCoroutine(LoadBuffer());
     }
