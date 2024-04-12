@@ -629,7 +629,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _moveAction = _playerActions.Player.Move;
         _moveAction.Enable();
 
-        _playerActions.Player.Pause.started += PauseManager.Instance.PauseGame;
+        _playerActions.Player.Pause.started += PauseManager.Instance.OnPauseGame;
         _playerActions.Player.Pause.started += x => Debug.Log("Pausing");
         _playerActions.Player.Pause.Enable();
 

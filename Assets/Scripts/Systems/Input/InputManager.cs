@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,12 @@ using UnityEngine.InputSystem;
 // the current input from. It uses Unity's new Input System and
 // functions should be mapped to their corresponding controls
 // using a PlayerInput component with Unity Events.
-
-[RequireComponent(typeof(PlayerInput))]
-public class InputManager : Singleton<InputManager>//, StuckinBetween.IPlayerActions
+public class InputManager : ScriptableSingleton<InputManager>//, StuckinBetween.IPlayerActions, StuckinBetween.IUIActions
 {
     public StuckinBetween InputActions { get; private set; }
 
-    private UnityEvent _moveEvent;
-    private UnityEvent _pauseEvent;
+    public event Action<float> MoveEvent;
+    public event Action PauseEvent;
 
     private void OnEnable()
     {

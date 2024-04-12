@@ -17,6 +17,7 @@ public class HUDManager : Singleton<HUDManager>
     [SerializeField]
     private RectTransform _healthBarRect;
 
+    [SerializeField] private PauseScreenUI _pauseScreen;
     // [SerializeField]
     // private RectMask2D _mask;
 
@@ -32,6 +33,16 @@ public class HUDManager : Singleton<HUDManager>
 
     [SerializeField] private GameObject _healthText;
     [SerializeField] private GameObject _maniteText;
+
+    public void ShowPause()
+    {
+        _pauseScreen.gameObject.SetActive(true);
+    }
+
+    public void HidePause()
+    {
+        _pauseScreen.gameObject.SetActive(false);
+    }
 
     public void SetManiteValue(int value)
     {

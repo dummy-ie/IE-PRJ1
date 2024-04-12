@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PauseScreenUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnResumeButtonClicked()
     {
-        
+        PauseManager.Instance.ResumeGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnSettingsButtonClicked()
     {
-        
+
+    }
+
+    public void OnQuitButtonClicked()
+    {
+        SceneLoader.Instance.LoadMainMenu();
     }
 }

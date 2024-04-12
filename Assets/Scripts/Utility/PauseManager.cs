@@ -7,29 +7,31 @@ public class PauseManager : Singleton<PauseManager>
 {
     private bool _gameIsPaused = false;
 
-    public void PauseGame(InputAction.CallbackContext context)
+    public void OnPauseGame(InputAction.CallbackContext context)
     {
         _gameIsPaused = !_gameIsPaused;
         
-        if (!_gameIsPaused)
+        if (_gameIsPaused)
         {
-            Time.timeScale = 0.0f;
+            PauseGame();
         }
         else
         {
-            Time.timeScale = 1.0f;
+            ResumeGame();
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void ResumeGame()
     {
-        
+        HUDManager.Instance.HidePause();
+        _gameIsPaused = false;
+        Time.timeScale = 1.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PauseGame()
     {
-        
+        HUDManager.Instance.ShowPause();
+        _gameIsPaused = true;
+        Time.timeScale = 0.0f;
     }
 }
