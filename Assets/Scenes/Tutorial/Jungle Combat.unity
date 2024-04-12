@@ -997,6 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 779854709}
   - component: {fileID: 779854708}
+  - component: {fileID: 779854710}
   - component: {fileID: 779854707}
   m_Layer: 0
   m_Name: Scene Connections (Entrance)
@@ -1068,9 +1069,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Movement
-  _spawnPoint: {fileID: 624691939}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!4 &779854709
 Transform:
   m_ObjectHideFlags: 0
@@ -1087,6 +1086,36 @@ Transform:
   - {fileID: 624691939}
   m_Father: {fileID: 1853359918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779854710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779854706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 779854708}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &782163079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1945,6 +1974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439010080}
   - component: {fileID: 1439010079}
+  - component: {fileID: 1439010081}
   - component: {fileID: 1439010078}
   m_Layer: 0
   m_Name: Scene Connections (Exit)
@@ -2016,9 +2046,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Log Trap
-  _spawnPoint: {fileID: 1281681807}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!4 &1439010080
 Transform:
   m_ObjectHideFlags: 0
@@ -2035,6 +2063,36 @@ Transform:
   - {fileID: 1281681807}
   m_Father: {fileID: 1853359918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439010081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439010077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1439010079}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1539728589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2157,7 +2215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: hasDash
@@ -2189,15 +2247,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.65999985
+      value: 11.434893
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.40856
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7946400000566528609, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_Enabled

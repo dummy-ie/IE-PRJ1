@@ -21,26 +21,31 @@ public class PlayerInteract : MonoBehaviour
     IInteractable _interactable;
     public IInteractable Interactable { set { _interactable = value; } }
 
-    private InputAction _interactAction => InputManager.Instance.InputActions.Player.Interact;
-
     void Start()
     {
         _controller = GetComponent<CharacterController2D>();
     }
 
+    void OnEnable()
+    {
+        InputManager.Instance.InteractEvent += Interact;
+    }
+
+    void OnDisable()
+    {
+        InputManager.Instance.InteractEvent -= Interact;
+    }
+
     private void Interact()
     {
-        if (_interactable != null && _interactAction.IsPressed())
+        if (_interactable != null)
         {
             _controller.DeactivateInvisible();
             _interactable.OnInteract();
         }
     }
 
-    void Update()
-    {
-        Interact();
-    }
+    
     /*private void OnPressInteract()
     {
         if (this._canInteract)

@@ -165,7 +165,7 @@ MonoBehaviour:
     HasPound: 0
     HasInvisibility: 0
   _nextSceneReference:
-    m_AssetGUID: 07efdec356b3f9b4c853356ec472b060
+    m_AssetGUID: d1ffc18c727543f48b2c448932167a55
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

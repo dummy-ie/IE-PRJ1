@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 29265533}
   - component: {fileID: 29265536}
   - component: {fileID: 29265535}
-  - component: {fileID: 29265534}
+  - component: {fileID: 29265537}
   m_Layer: 0
   m_Name: VineLeft
   m_TagString: Breakable
@@ -325,22 +325,6 @@ Transform:
   - {fileID: 1391906212}
   m_Father: {fileID: 551708553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &29265534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29265532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 1
-  _breakData:
-    _dataId: 
-    _enabled: 0
 --- !u!50 &29265535
 Rigidbody2D:
   serializedVersion: 4
@@ -413,6 +397,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49049667, y: 4.9426394}
   m_EdgeRadius: 0
+--- !u!114 &29265537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29265532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3
+  _breakData:
+    _dataId: 
+    _enabled: 0
 --- !u!1 &45271850
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 120687194}
   - component: {fileID: 120687197}
   - component: {fileID: 120687196}
-  - component: {fileID: 120687195}
+  - component: {fileID: 120687198}
   m_Layer: 0
   m_Name: VineRight
   m_TagString: Breakable
@@ -541,22 +541,6 @@ Transform:
   - {fileID: 1022478442}
   m_Father: {fileID: 551708553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &120687195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120687193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 1
-  _breakData:
-    _dataId: 
-    _enabled: 0
 --- !u!50 &120687196
 Rigidbody2D:
   serializedVersion: 4
@@ -629,6 +613,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49049667, y: 5.0031624}
   m_EdgeRadius: 0
+--- !u!114 &120687198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120687193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3
+  _breakData:
+    _dataId: 
+    _enabled: 0
 --- !u!1 &188352734
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 276525202}
   - component: {fileID: 276525203}
+  - component: {fileID: 276525205}
   - component: {fileID: 276525204}
   m_Layer: 0
   m_Name: Underground Middle - Underground Left
@@ -921,9 +922,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Underground Middle
-  _spawnPoint: {fileID: 45271851}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!61 &276525204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -969,6 +968,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 6}
   m_EdgeRadius: 0
+--- !u!114 &276525205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276525201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276525203}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &399946954
 GameObject:
   m_ObjectHideFlags: 0
@@ -8344,21 +8373,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7823627639726853198, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.42
+      value: -9.828228
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07000017
+      value: 0.4639802
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -8428,6 +8461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8095485576871286585}
   - component: {fileID: 4195715768706227507}
+  - component: {fileID: 8095485576871286586}
   - component: {fileID: 880673479138025999}
   m_Layer: 0
   m_Name: Underground Left - Underground Exit
@@ -8523,9 +8557,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
-  _targetSceneName: Underground Exit
-  _spawnPoint: {fileID: 9135367264783763487}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!4 &8095485576871286585
 Transform:
   m_ObjectHideFlags: 0
@@ -8542,6 +8574,36 @@ Transform:
   - {fileID: 9135367264783763487}
   m_Father: {fileID: 546894596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8095485576871286586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662935051725201290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4195715768706227507}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &9135367264783763487
 Transform:
   m_ObjectHideFlags: 0

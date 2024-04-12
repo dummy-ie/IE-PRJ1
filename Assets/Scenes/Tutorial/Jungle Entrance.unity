@@ -3028,7 +3028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.25}
+  m_AnchoredPosition: {x: -0.51, y: -0.25}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!210 &972112950
@@ -3063,7 +3063,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Z]'
+  m_text: '[space]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa0607b0799e09644b5d696da1709fa3, type: 2}
   m_sharedMaterial: {fileID: -6381246862336270114, guid: aa0607b0799e09644b5d696da1709fa3, type: 2}
@@ -3465,21 +3465,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: hasDash
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.15
+      value: -7.7999997
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11000013
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7946400000566528609, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_Enabled
@@ -3629,10 +3633,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104052262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
+  _health: 3
   _breakData:
     _dataId: 
     _enabled: 0
@@ -4059,6 +4063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359421147}
   - component: {fileID: 1359421146}
+  - component: {fileID: 1359421148}
   - component: {fileID: 1359421145}
   m_Layer: 0
   m_Name: Scene Connections (Jungle)
@@ -4130,9 +4135,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Movement
-  _spawnPoint: {fileID: 1193749865}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!4 &1359421147
 Transform:
   m_ObjectHideFlags: 0
@@ -4149,6 +4152,36 @@ Transform:
   - {fileID: 1193749865}
   m_Father: {fileID: 2830608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1359421148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359421144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1359421146}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1396811606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6274968703697305288, guid: a776040a968a8d040a5430be6cee8220, type: 3}
@@ -6210,8 +6243,8 @@ GameObject:
   - component: {fileID: 1511313297}
   - component: {fileID: 1511313300}
   - component: {fileID: 1511313298}
-  - component: {fileID: 1511313301}
   - component: {fileID: 1511313302}
+  - component: {fileID: 1511313303}
   m_Layer: 0
   m_Name: Vine2
   m_TagString: EnvBreakable
@@ -6311,22 +6344,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49049667, y: 4.9426394}
   m_EdgeRadius: 0
---- !u!114 &1511313301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511313296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 1
-  _breakData:
-    _dataId: 
-    _enabled: 0
 --- !u!114 &1511313302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6339,6 +6356,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddc10ea215966f46a3224427c76a865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1511313303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511313296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3
+  _breakData:
+    _dataId: 
+    _enabled: 0
 --- !u!1 &1561884606
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,10 +7403,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888115779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
+  _health: 3
   _breakData:
     _dataId: 
     _enabled: 0
@@ -7670,6 +7703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2053579980}
   - component: {fileID: 2053579979}
+  - component: {fileID: 2053579981}
   - component: {fileID: 2053579978}
   m_Layer: 0
   m_Name: Scene Connections (Hut)
@@ -7741,9 +7775,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
-  _targetSceneName: Trudee Hut (Outside)
-  _spawnPoint: {fileID: 1496992924}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!4 &2053579980
 Transform:
   m_ObjectHideFlags: 0
@@ -7760,6 +7792,36 @@ Transform:
   - {fileID: 1496992924}
   m_Father: {fileID: 2830608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2053579981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053579977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2053579979}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2096073351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7861,7 +7923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.24}
+  m_AnchoredPosition: {x: -0.05, y: 0.35}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!210 &2103740733
@@ -7896,7 +7958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[X]'
+  m_text: "\u2190"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa0607b0799e09644b5d696da1709fa3, type: 2}
   m_sharedMaterial: {fileID: -6381246862336270114, guid: aa0607b0799e09644b5d696da1709fa3, type: 2}
@@ -7923,8 +7985,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

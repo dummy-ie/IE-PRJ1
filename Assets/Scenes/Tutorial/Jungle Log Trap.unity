@@ -665,6 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167694768}
   - component: {fileID: 167694770}
+  - component: {fileID: 167694771}
   - component: {fileID: 167694769}
   m_Layer: 0
   m_Name: Jungle Combat - Jungle Log Trap
@@ -752,9 +753,37 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Combat
-  _spawnPoint: {fileID: 1130677600}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &167694771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167694767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 167694770}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &181452404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,14 +2021,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStats:
     _dataId: 
-    _checkPointData:
+    CheckPointData:
       _checkPointName: 
       _posX: 0
       _posY: 0
       _posZ: 0
-    _hasDash: 1
-    _hasSlash: 0
-    _hasPound: 0
+    HasThrust: 0
+    HasDash: 0
+    HasSlash: 0
+    HasPound: 0
+    HasInvisibility: 0
   _nextSceneReference:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -2228,6 +2259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114128647}
   - component: {fileID: 1114128649}
+  - component: {fileID: 1114128650}
   - component: {fileID: 1114128648}
   m_Layer: 0
   m_Name: Jungle Log Trap - Jungle Exit
@@ -2315,9 +2347,37 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Exit
-  _spawnPoint: {fileID: 1570111981}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &1114128650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114128646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1114128649}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1124281205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4110,6 +4170,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7762440596518218756, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: _data
       value: 
@@ -4120,15 +4184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7799997
+      value: -5.5199995
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.44
+      value: 1.3800001
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -7095,6 +7159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989644673}
   - component: {fileID: 1989644675}
+  - component: {fileID: 1989644676}
   - component: {fileID: 1989644674}
   m_Layer: 0
   m_Name: Jungle Log Trap - Jungle Dash
@@ -7182,9 +7247,37 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Dash
-  _spawnPoint: {fileID: 288236785}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &1989644676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989644672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1989644675}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2031088570
 PrefabInstance:
   m_ObjectHideFlags: 0

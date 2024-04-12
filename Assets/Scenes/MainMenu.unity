@@ -952,10 +952,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameSceneReference:
-    m_AssetGUID: f837ca701c3abec4ea842abde88565a1
+    m_AssetGUID: 31a4c3d29518a80499d5d2c46c7e3f49
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 1
+    m_EditorAssetChanged: 0
   _settingsSceneReference:
     m_AssetGUID: d752f88b9ed7169479dafd7d0672ecf1
     m_SubObjectName: 

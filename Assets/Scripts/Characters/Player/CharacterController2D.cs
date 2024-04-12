@@ -69,7 +69,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private float _vectorShift = 100f;
 
-    private int _facingDirection = -1;
+    private int _facingDirection = 1;
 
     private bool _canMove = true;
     public bool CanMove
@@ -236,9 +236,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private void Flip()
     {
         if (_deltaX < 0f)
-            FlipTo(1);
-        else if (_deltaX > 0f)
             FlipTo(-1);
+        else if (_deltaX > 0f)
+            FlipTo(1);
         //if (_facingDirection == 1 && _deltaX < 0f || _facingDirection == -1 && _deltaX > 0f)
         //{
         //_facingDirection *= -1;
@@ -297,7 +297,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _aerialDash = false;
 
             //dash direction based on where playr is facing
-            _dashSpeed *= -_facingDirection;
+            _dashSpeed *= _facingDirection;
         }
     }
 #endregion

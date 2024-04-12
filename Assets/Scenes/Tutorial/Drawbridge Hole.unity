@@ -239,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 171782048}
   - component: {fileID: 171782050}
+  - component: {fileID: 171782051}
   - component: {fileID: 171782049}
   m_Layer: 0
   m_Name: Drawbridge - Drawbridge Hole
@@ -322,13 +323,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: 2b9910c5c9ccb37499538faa3c4818a9, type: 2}
   _targetSceneReference:
-    m_AssetGUID: 
+    m_AssetGUID: 701bfda68341ae14b81df8fd18ac59ea
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Drawbridge
-  _spawnPoint: {fileID: 1610393672}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &171782051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171782047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 171782050}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &186892886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2049,17 +2078,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.2
+      value: -0.029999971
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.12
+      value: 1.2399998
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -8359,6 +8392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989644673}
   - component: {fileID: 1989644675}
+  - component: {fileID: 1989644676}
   - component: {fileID: 1989644674}
   m_Layer: 0
   m_Name: Drawbridge Hole - Underground Middle
@@ -8442,13 +8476,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneConnection: {fileID: 11400000, guid: ea2a758aaf6de1d4886ef3bf75d5daaf, type: 2}
   _targetSceneReference:
-    m_AssetGUID: 
+    m_AssetGUID: f96f5be470bc290419610018ad04dee0
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Underground Middle
-  _spawnPoint: {fileID: 288236785}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &1989644676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989644672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1989644675}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2031088570
 PrefabInstance:
   m_ObjectHideFlags: 0

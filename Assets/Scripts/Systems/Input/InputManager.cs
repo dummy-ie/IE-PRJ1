@@ -18,6 +18,7 @@ public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IP
     public event Action JumpEvent;
     public event Action JumpEventCanceled;
     public event Action DashEvent;
+    public event Action InteractEvent;
     public event Action InvisibilityEvent;
     public event Action PauseEvent;
 
@@ -87,6 +88,8 @@ public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IP
 
     void StuckinBetween.IPlayerActions.OnInteract(InputAction.CallbackContext context)
     {
+        if (context.phase == InputActionPhase.Started)
+            InteractEvent?.Invoke();
     }
 
     void StuckinBetween.IPlayerActions.OnSubmit(InputAction.CallbackContext context)

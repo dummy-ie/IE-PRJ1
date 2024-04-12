@@ -323,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 164979126}
   - component: {fileID: 164979128}
+  - component: {fileID: 164979129}
   - component: {fileID: 164979127}
   m_Layer: 0
   m_Name: Jungle Exit - Drawbridge
@@ -410,9 +411,37 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Jungle Exit
-  _spawnPoint: {fileID: 1192892230}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &164979129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164979125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 164979128}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &167189060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,17 +3018,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7549096216839823585, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05000019
+      value: 8.138216
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.23
+      value: 0.16398
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8140632933305418824, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_BoundingShape2D
@@ -3162,7 +3195,7 @@ GameObject:
   - component: {fileID: 1809614813}
   - component: {fileID: 1809614812}
   - component: {fileID: 1809614811}
-  - component: {fileID: 1809614810}
+  - component: {fileID: 1809614814}
   m_Layer: 0
   m_Name: Vine
   m_TagString: Breakable
@@ -3170,22 +3203,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1809614810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809614809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28e733b4e994e4faa1b80113f8d80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 1
-  _breakData:
-    _dataId: 
-    _enabled: 0
 --- !u!50 &1809614811
 Rigidbody2D:
   serializedVersion: 4
@@ -3285,6 +3302,22 @@ Transform:
   - {fileID: 802573227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -67.677}
+--- !u!114 &1809614814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809614809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7085e554241a94d9df71a056ca9b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
+  _breakData:
+    _dataId: Bridge Vine
+    _enabled: 1
 --- !u!1001 &1834830783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7395,6 +7428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989644673}
   - component: {fileID: 1989644675}
+  - component: {fileID: 1989644676}
   - component: {fileID: 1989644674}
   m_Layer: 0
   m_Name: Drawbridge - Drawbridge Hole
@@ -7482,9 +7516,37 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Drawbridge Hole
-  _spawnPoint: {fileID: 288236785}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
+--- !u!114 &1989644676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989644672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1989644675}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2031088570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7722,9 +7784,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _targetSceneName: Ruined Temple
-  _spawnPoint: {fileID: 6658741647580955439}
-  _changeOnTrigger: 1
+  _nextSpawnPointKey: default
 --- !u!61 &3357158382340647231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7780,6 +7840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5978303253370412041}
   - component: {fileID: 1771585211037898243}
+  - component: {fileID: 5978303253370412042}
   - component: {fileID: 3357158382340647231}
   m_Layer: 0
   m_Name: Drawbridge - Ruined Temple
@@ -7856,6 +7917,36 @@ Transform:
   - {fileID: 6658741647580955439}
   m_Father: {fileID: 500718403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5978303253370412042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872018714604000442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79b59e3c99485e499c92cb04d0967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1771585211037898243}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerEnterExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &6658741647580955439
 Transform:
   m_ObjectHideFlags: 0
