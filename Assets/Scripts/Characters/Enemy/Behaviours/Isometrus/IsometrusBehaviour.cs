@@ -9,6 +9,7 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     private YappingState _yappingState;
     private BasicState _basicState;
 
+    
     [SerializeField] GameObject _droneA;
     [SerializeField] GameObject _droneB;
     [SerializeField] GameObject _droneC;
@@ -16,7 +17,11 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     GameObject _droneAobj;
     GameObject _droneBobj;
     GameObject _droneCobj;
-    
+
+    // TEMPORARY
+    private int _maxHealth;
+    [SerializeField] private BossBar _bossBar;
+    [SerializeField] private GameObject _results;
 
     override protected void Start()
     {
@@ -26,11 +31,21 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
         _yappingState = new(this);
         _basicState = new BasicState(this);
 
-        
+        _maxHealth = _currentHealth;
+    }
+
+    // TEMPORARY
+    protected override void Update()
+    {
+        if (_currentHealth <= 0)
+            _results.SetActive(true);
+        _bossBar.SetHealth(_currentHealth, _maxHealth);
+        base.Update();
     }
 
     public void TriggerEncounter()
     {
+        _bossBar.gameObject.SetActive(true); // TEMPORARY
         SwitchState(_yappingState);
     }
 

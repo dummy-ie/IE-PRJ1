@@ -39,9 +39,14 @@ public class ParticleCollector : MonoBehaviour
             ParticleSystem.Particle particle = _particles[i];
             particle.remainingLifetime = 0;
             _particles[i] = particle;
-            OnParticleCollect.Invoke();
+            OnParticleCollect?.Invoke();
         }
 
         _particleSystem.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, _particles);
+    }
+
+    void OnDisable()
+    {
+        OnParticleCollect.RemoveAllListeners();
     }
 }

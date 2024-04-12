@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca6d522fe2be1f47b90e75e365a11b4, type: 3}
   m_Name: Player Stat Field
   m_EditorClassIdentifier: 
-  dataId: PlayerStats
-  _baseCheckpointData: {fileID: 11400000, guid: b968182c5c23b634a8bf017f6c4acc0b, type: 2}
-  _hasDash: 1
-  _hasSlash: 1
-  _hasPound: 1
+  CheckPointData:
+    _checkPointName: 
+    _posX: 0
+    _posY: 0
+    _posZ: 0
+  _health:
+    _max: 100
+    _current: 100
+  _manite:
+    _max: 100
+    _current: 80
+  HasThrust: 0
+  HasDash: 1
+  HasSlash: 1
+  HasPound: 0
+  HasInvisibility: 0
