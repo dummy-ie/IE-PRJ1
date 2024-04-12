@@ -20,17 +20,11 @@ public class ChargedThrust : AAbility
     [SerializeField]
     Collider2D attackHitbox;
 
-    public void OnChargedThrust(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            OnPressChargedThrust();
-        }
-    }
+    private InputAction _chargedThrustAction => InputManager.Instance.InputActions.Player.ChargedThrust;
 
     private void OnPressChargedThrust()
     {
-        if (controller.Stats.HasThrust)
+        if (controller.Stats.HasThrust && _chargedThrustAction.IsPressed())
         {
             if (controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
@@ -96,6 +90,7 @@ public class ChargedThrust : AAbility
     // Update is called once per frame
     void Update()
     {
+        OnPressChargedThrust();
         ChargedThrustUpdate();
     }
 

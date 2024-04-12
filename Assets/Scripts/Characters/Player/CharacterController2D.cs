@@ -10,10 +10,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
 #endif
-    // INPUTS
-    private StuckinBetween _playerActions;
-
-    private InputAction _moveAction;
 
     CharacterSpawnPoint _lastSpawnPosition;
     public CharacterSpawnPoint LastSpawnPosition
@@ -121,22 +117,140 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     {
         get { return _facingDirection; }
     }
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _stats.Health.SetMax(_data.MaxHealth);
+        _stats.Manite.SetMax(_data.MaxManite);
+        _stats.Health.SetCurrent(_data.MaxHealth);
+        _stats.Manite.SetCurrent(_data.MaxManite);
+
+        _original2DMaterial = _render2D.material;
+        _original3DMaterial = _model3D.material;
+
+        StartCoroutine(LoadBuffer());
+    }
+
+    private void Start()
+    {
+        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+        HUDManager.Instance.SetHearts(_stats.Manite.Current);
+        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
+    }
+
+    private void Update()
+    {
+
+        Hits();
+
+        if (_isInvisible)
+        {
+            _invisibilityTicks += Time.deltaTime;
+
+            Color color = _render2D.color;
+            color.a = 0.5f;
+            _render2D.color = color;
+
+            if (_invisibilityTicks >= InvisibilityTime)
+            {
+                _stats.Manite.Current -= 1;
+                _invisibilityTicks = 0.0f;
+            }
+
+        }
+        else
+        {
+            Color color = _render2D.color;
+            color.a = 1f;
+            _render2D.color = color;
+        }
+
+
+        if (this._stats.Health.Current <= 0)
+        {
+            RespawnOnCheckpoint();
+            this._stats.Health.Current = this._data.MaxHealth;
+            this._data.CanAttack = true;
+            //Destroy(gameObject);
+        }
+
+        if (transform.position.y <= -250)
+            RespawnOnLastSpawnPoint();
+        Animate();
+
+    }
+
+    private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
+    {
+        Move();
+        Jump();
+        Dash();
+        CollisionChecks();
+        if (_onLadder)
+            _rb.gravityScale = 0;
+        else
+        {
+            _rb.gravityScale = 3;
+        }
+        if (!_isDashing) Flip();
+    }
+
+    void OnEnable()
+    {
+        /*if (HUDManager.Instance != null)
+        {
+            _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
+            _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
+            HUDManager.Instance.SetHearts(_stats.Manite.Current);
+            HUDManager.Instance.SetManiteValue(_stats.Health.Current);
+        }*/
+
+        InputManager.Instance.MoveEvent += ReadMoveInput;
+
+        InputManager.Instance.JumpEvent += OnJump;
+        InputManager.Instance.JumpEventCanceled += OnJumpCancelled;
+
+        InputManager.Instance.DashEvent += OnDash;
+
+        InputManager.Instance.InvisibilityEvent += OnPressInvisibility;
+
+        InputManager.Instance.PauseEvent += PauseManager.Instance.OnPauseGame;
+    }
+
+    void OnDisable()
+    {
+
+        InputManager.Instance.MoveEvent -= ReadMoveInput;
+
+        InputManager.Instance.JumpEvent -= OnJump;
+        InputManager.Instance.JumpEventCanceled -= OnJumpCancelled;
+
+        InputManager.Instance.DashEvent -= OnDash;
+
+        InputManager.Instance.InvisibilityEvent -= OnPressInvisibility;
+
+        InputManager.Instance.PauseEvent -= PauseManager.Instance.OnPauseGame;
+    }
+
     public void FlipTo(int facingDirection)
     {
         _facingDirection = facingDirection;
     }
     private void Flip()
     {
-        if (_deltaX < 0f) 
+        if (_deltaX < 0f)
             FlipTo(1);
         else if (_deltaX > 0f)
             FlipTo(-1);
         //if (_facingDirection == 1 && _deltaX < 0f || _facingDirection == -1 && _deltaX > 0f)
         //{
-            //_facingDirection *= -1;
-            Vector3 localScale = transform.localScale;
-            localScale.x = _facingDirection;
-            transform.localScale = localScale;
+        //_facingDirection *= -1;
+        Vector3 localScale = transform.localScale;
+        localScale.x = _facingDirection;
+        transform.localScale = localScale;
         //}
     }
 
@@ -149,33 +263,37 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         return platform;
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    #region Events
+    private void ReadMoveInput(Vector2 move)
     {
-        
-        Debug.Log("Jummp");
-        if (context.started)
-        {
-            OneWayPlatform platform = GetPlatformBelow();
-            if (platform != null && _deltaY <= -0.5f)
-            {
-                Debug.Log("SHOULD DROP DOWN");
-                platform.StartDropPlatform();
-                return;
-            }
-
-            _isJumpPress = true;
-            // reset jump buffer counter
-            _jumpBufferCounter = _data.JumpBufferTime;
-        }
-        else if (context.canceled)
-        {
-            _isJumpPress = false;
-        }
+        _deltaX = move.x;
+        _deltaY = move.y;
     }
 
-    public void OnDash(InputAction.CallbackContext context)
+    public void OnJump()
     {
-        if (context.started && _canDash && _stats.HasDash) //check if player can dash
+        Debug.Log("Jummp");
+        OneWayPlatform platform = GetPlatformBelow();
+        if (platform != null && _deltaY <= -0.5f)
+        {
+            Debug.Log("SHOULD DROP DOWN");
+            platform.StartDropPlatform();
+            return;
+        }
+
+        _isJumpPress = true;
+        // reset jump buffer counter
+        _jumpBufferCounter = _data.JumpBufferTime;
+    }
+
+    public void OnJumpCancelled()
+    {
+        _isJumpPress = false;
+    }
+
+    public void OnDash()
+    {
+        if (_canDash && _stats.HasDash) //check if player can dash
         {
             _dashSpeed = _data.DashOriginalSpeed;
             UpdateDashDuration();
@@ -188,25 +306,22 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _dashSpeed *= -_facingDirection;
         }
     }
+#endregion
     private void Move()
-    {
-        if (_moveAction != null)
+    { 
+        if (_canMove)
         {
-            _deltaX = _moveAction.ReadValue<Vector2>().x;
-            _deltaY = _moveAction.ReadValue<Vector2>().y;
-
-            if (_canMove)
-            {
-                if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
-                    _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
-                if (_onLadder)
-                    _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
-            }
-            // interpolate the camera towards where the player is currently moving if they are moving?
-            // propose the idea later on idk
-            //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
+            if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
+                _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
+            if (_onLadder)
+                _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
         }
+        // interpolate the camera towards where the player is currently moving if they are moving?
+        // propose the idea later on idk
+        //if (horizontal != 0) cmTP.CameraSide = Mathf.Lerp(cmTP.CameraSide, 0.5f * (horizontal + 1f), 0.05f);
     }
+
+
 
     private void Jump()
     {
@@ -444,11 +559,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasDash = true;
     }
 
-    public void ObtainThrust()
-    {
-        _stats.HasThrust = true;
-    }
-
     public void ObtainSlash()
     {
         _stats.HasSlash = true;
@@ -474,7 +584,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _isInvisible = false;
     }
 
-    public void OnPressInvisibility(InputAction.CallbackContext context)
+    public void OnPressInvisibility()
     {
         if (_stats.HasInvisibility)
         {
@@ -524,163 +634,19 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
     }
 
+    private void CollisionChecks()
+    {
+        if (IsGrounded())
+        {
+
+        }
+    }
+
     public void OnSceneLoad(SceneLoader.TransitionData transitionData)
     {
         _lastSpawnPosition = GetSpawnPoint(transitionData);
         transform.position = _lastSpawnPosition.position;
         FlipTo(_lastSpawnPosition.faceToRight ? -1 : 1);
-    }
-        
-    private void Awake()
-    {
-        _playerActions = new StuckinBetween();
-
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _stats.Health.SetMax(_data.MaxHealth);
-        _stats.Manite.SetMax(_data.MaxManite);
-        _stats.Health.SetCurrent(_data.MaxHealth);
-        _stats.Manite.SetCurrent(_data.MaxManite);
-
-        _original2DMaterial = _render2D.material;
-        _original3DMaterial = _model3D.material;
-
-        StartCoroutine(LoadBuffer());
-    }
-
-    private void Update()
-    {
-
-        Hits();
-
-        if (_isInvisible)
-        {
-            _invisibilityTicks += Time.deltaTime;
-
-            Color color = _render2D.color;
-            color.a = 0.5f;
-            _render2D.color = color;
-
-            if (_invisibilityTicks >= InvisibilityTime)
-            {
-                _stats.Manite.Current -= 1;
-                _invisibilityTicks = 0.0f;
-            }
-            
-        }
-        else
-        {
-            Color color = _render2D.color;
-            color.a = 1f;
-            _render2D.color = color;
-        }
-            
-
-        if (this._stats.Health.Current <= 0)
-        {
-            RespawnOnCheckpoint();
-            this._stats.Health.Current = this._data.MaxHealth;
-            this._data.CanAttack = true;
-            //Destroy(gameObject);
-        }
-
-        if (transform.position.y <= -250)
-            RespawnOnLastSpawnPoint();
-        Animate();
-
-    }
-
-    private void FixedUpdate() // move player on fixed update so collisions aren't fucky wucky
-    {
-        Move();
-        Jump();
-        Dash();
-        if (_onLadder)
-            _rb.gravityScale = 0;
-        else
-        {
-            _rb.gravityScale = 3;
-        }
-        if (!_isDashing) Flip();
-    }
-
-    void OnEnable()
-    {
-
-        if (_playerActions == null)
-        {
-            _playerActions = new StuckinBetween();
-
-            //inputActions.Player.SetCallbacks(this);
-        }
-        Debug.Log(_playerActions + " PLAYER ENABLED");
-
-        if (HUDManager.Instance != null)
-        {
-            _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
-            _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-        }
-            
-        _moveAction = _playerActions.Player.Move;
-        _moveAction.Enable();
-
-        _playerActions.Player.Pause.started += PauseManager.Instance.OnPauseGame;
-        _playerActions.Player.Pause.Enable();
-
-        _playerActions.Player.Jump.started += OnJump;
-        _playerActions.Player.Jump.canceled += OnJump;
-        _playerActions.Player.Jump.Enable();
-
-        _playerActions.Player.Dash.started += OnDash;
-        _playerActions.Player.Dash.Enable();
-
-        _playerActions.Player.Attack.started += GetComponent<PlayerAttack>().OnAttack;
-        _playerActions.Player.Attack.Enable();
-
-        _playerActions.Player.Interact.started += GetComponent<PlayerInteract>().OnInteract;
-        _playerActions.Player.Interact.Enable();
-
-        //_playerActions.Player.ManiteSlash.started += GetComponent<ManiteSlash>().OnManiteSlash;
-        //_playerActions.Player.ManiteSlash.Enable();
-
-        _playerActions.Player.ChargedThrust.started += GetComponent<ChargedThrust>().OnChargedThrust;
-        _playerActions.Player.ChargedThrust.Enable();
-
-        _playerActions.Player.GroundPound.started += GetComponent<GroundPound>().OnGroundPound;
-        _playerActions.Player.GroundPound.Enable();
-
-        _playerActions.Player.Ability1.started += OnPressInvisibility;
-        _playerActions.Player.Ability1.Enable();
-    }
-
-    void OnDisable()
-    {
-        _stats.Health.CurrentChanged -= HUDManager.Instance.SetHearts;
-        _stats.Manite.CurrentChanged -= HUDManager.Instance.SetManiteValue;
-
-        _moveAction.Disable();
-
-        _playerActions.Player.Jump.started -= OnJump;
-        _playerActions.Player.Jump.canceled -= OnJump;
-        _playerActions.Player.Jump.Disable();
-
-        _playerActions.Player.Dash.started -= OnDash;
-        _playerActions.Player.Dash.Disable();
-
-        _playerActions.Player.Attack.started -= GetComponent<PlayerAttack>().OnAttack;
-        _playerActions.Player.Attack.Disable();
-
-        _playerActions.Player.Interact.started -= GetComponent<PlayerInteract>().OnInteract;
-        _playerActions.Player.Interact.Disable();
-
-        //_playerActions.Player.ManiteSlash.started -= GetComponent<ManiteSlash>().OnManiteSlash;
-        //_playerActions.Player.ManiteSlash.Disable();
-
-        _playerActions.Player.GroundPound.started -= GetComponent<GroundPound>().OnGroundPound;
-        _playerActions.Player.GroundPound.Disable();
-
-        _playerActions.Player.Ability1.started -= OnPressInvisibility;
-        _playerActions.Player.Ability1.Disable();
     }
 
     private IEnumerator LoadBuffer()

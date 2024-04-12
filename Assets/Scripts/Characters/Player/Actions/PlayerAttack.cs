@@ -24,17 +24,25 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     Collider2D attackHitbox;
 
-    public void OnAttack(InputAction.CallbackContext context)
+    private InputAction _attackAction => InputManager.Instance.InputActions.Player.Attack;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        if (context.started)
-        {
-            OnPressAttack();
-        }
+        _controller = GetComponent<CharacterController2D>();
+        _animator = GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        AttackUpdate();
+        OnPressAttack();
     }
 
     private void OnPressAttack()
     {
-        if (_controller.Data.CanAttack)
+        if (_controller.Data.CanAttack && _attackAction.IsPressed())
         {
             // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
@@ -115,19 +123,6 @@ public class PlayerAttack : MonoBehaviour
         _controller.ShiftTo2D();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _controller = GetComponent<CharacterController2D>();
-        _animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        AttackUpdate();
-    }
     
-
 
 }

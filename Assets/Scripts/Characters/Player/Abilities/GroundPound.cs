@@ -22,20 +22,13 @@ public class GroundPound : AAbility
     [SerializeField]
     private float groundPoundFallMultiplier = 8.0f;
 
-    public void OnGroundPound(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            OnPressGroundPound();
-        }
-    }
+    private InputAction _groundPoundAction => InputManager.Instance.InputActions.Player.GroundPound;
 
     private void OnPressGroundPound()
     {
-                Debug.Log("ground pound");
         if (controller.Stats.HasPound)
         {
-            if (controller.Data.CanAttack)
+            if (controller.Data.CanAttack && _groundPoundAction.IsPressed())
             {
                 // DISABLE INVISIBILITY
                 controller.DeactivateInvisible();
@@ -48,7 +41,6 @@ public class GroundPound : AAbility
 
                 StartCoroutine(VecShift());
                 //TriggerCooldown();
-
             }
         }
     }
@@ -77,6 +69,7 @@ public class GroundPound : AAbility
 
     void Update()
     {
+        OnPressGroundPound();
         if (isGroundPound)
         {
             controller.CanMove = false;
