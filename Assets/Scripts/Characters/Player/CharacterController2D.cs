@@ -120,25 +120,23 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _stats.Health.SetMax(_data.MaxHealth);
+        /*_stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
         _stats.Health.SetCurrent(_data.MaxHealth);
-        _stats.Manite.SetCurrent(_data.MaxManite);
+        _stats.Manite.SetCurrent(_data.MaxManite);*/
 
-        _original2DMaterial = _render2D.material;
-        _original3DMaterial = _model3D.material;
+        
 
         StartCoroutine(LoadBuffer());
     }
 
     private void Start()
     {
-        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
-        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-        HUDManager.Instance.SetHearts(_stats.Manite.Current);
-        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+
+        _original2DMaterial = _render2D.material;
+        _original3DMaterial = _model3D.material;
     }
 
     private void Update()
@@ -200,13 +198,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     void OnEnable()
     {
-        /*if (HUDManager.Instance != null)
+        if (HUDManager.Instance != null)
         {
             _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
             _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-            HUDManager.Instance.SetHearts(_stats.Manite.Current);
-            HUDManager.Instance.SetManiteValue(_stats.Health.Current);
-        }*/
+        }
 
         InputManager.Instance.MoveEvent += ReadMoveInput;
 
@@ -557,6 +553,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     public void ObtainDash()
     {
         _stats.HasDash = true;
+    }
+
+    public void ObtainThrust()
+    {
+        _stats.HasThrust = true;
     }
 
     public void ObtainSlash()
