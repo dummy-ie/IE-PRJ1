@@ -444,6 +444,11 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         _stats.HasDash = true;
     }
 
+    public void ObtainThrust()
+    {
+        _stats.HasThrust = true;
+    }
+
     public void ObtainSlash()
     {
         _stats.HasSlash = true;
