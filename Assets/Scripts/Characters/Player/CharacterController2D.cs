@@ -543,14 +543,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         StartCoroutine(LoadBuffer());
     }
 
-    private void Start()
-    {
-        _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
-        _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-        HUDManager.Instance.SetHearts(_stats.Manite.Current);
-        HUDManager.Instance.SetManiteValue(_stats.Health.Current);
-    }
-
     private void Update()
     {
 
@@ -622,15 +614,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         {
             _stats.Health.CurrentChanged += HUDManager.Instance.SetHearts;
             _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
-            HUDManager.Instance.SetHearts(_stats.Manite.Current);
-            HUDManager.Instance.SetManiteValue(_stats.Health.Current);
         }
             
         _moveAction = _playerActions.Player.Move;
         _moveAction.Enable();
 
         _playerActions.Player.Pause.started += PauseManager.Instance.OnPauseGame;
-        _playerActions.Player.Pause.started += x => Debug.Log("Pausing");
         _playerActions.Player.Pause.Enable();
 
         _playerActions.Player.Jump.started += OnJump;
