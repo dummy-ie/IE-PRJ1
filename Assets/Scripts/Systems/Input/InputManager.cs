@@ -9,11 +9,16 @@ using UnityEngine.InputSystem;
 // the current input from. It uses Unity's new Input System and
 // functions should be mapped to their corresponding controls
 // using a PlayerInput component with Unity Events.
-public class InputManager : ScriptableSingleton<InputManager>//, StuckinBetween.IPlayerActions, StuckinBetween.IUIActions
+[CreateAssetMenu(fileName = "InputManager", menuName = "Scriptable Singletons/InputManager")]
+public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IPlayerActions//, StuckinBetween.IUIActions
 {
     public StuckinBetween InputActions { get; private set; }
 
-    public event Action<float> MoveEvent;
+    public event Action<Vector2> MoveEvent;
+    public event Action JumpEvent;
+    public event Action JumpEventCanceled;
+    public event Action DashEvent;
+    public event Action InvisibilityEvent;
     public event Action PauseEvent;
 
     private void OnEnable()
@@ -22,9 +27,9 @@ public class InputManager : ScriptableSingleton<InputManager>//, StuckinBetween.
         {
             InputActions = new StuckinBetween();
 
-            //inputActions.Player.SetCallbacks(this);
+            InputActions.Player.SetCallbacks(this);
         }
-        //inputActions.Player.Enable();
+        InputActions.Player.Enable();
     }
 
     private void OnDisable()
@@ -32,9 +37,93 @@ public class InputManager : ScriptableSingleton<InputManager>//, StuckinBetween.
         InputActions.Player.Disable();
     }
 
+    public void EnablePlayerInput()
+    {
+        InputActions.UI.Disable();
+        InputActions.Player.Enable();
+    }
+
+
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        MoveEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                JumpEvent?.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                JumpEventCanceled?.Invoke();
+                break;
+        }
+    }
+
+    void StuckinBetween.IPlayerActions.OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            DashEvent?.Invoke();
+    }
+
+    void StuckinBetween.IPlayerActions.OnAttack(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnVectorShift(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnChargedThrust(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnManiteSlash(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnInteract(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnSubmit(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnGroundPound(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnAbility1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            InvisibilityEvent?.Invoke();
+    }
+
+    void StuckinBetween.IPlayerActions.OnAbility2(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnParry(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnAbilityCycle(InputAction.CallbackContext context)
+    {
+    }
+
+    void StuckinBetween.IPlayerActions.OnPause(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            PauseEvent?.Invoke();
+    }
+
     //void StuckinBetween.IPlayerActions.OnMove(InputAction.CallbackContext context)
     //{
-//
+    //
     //}
     /*
     private Vector2 moveDirection = Vector2.zero;

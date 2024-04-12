@@ -22,19 +22,18 @@ public class ManiteSlash : AAbility
     [Range(0, 5)]
     private int slashSpawnDistance = 1;
 
-    public void OnManiteSlash(InputAction.CallbackContext context)
+    private InputAction _maniteSlashAction => InputManager.Instance.InputActions.Player.ManiteSlash;
+
+    void Update()
     {
-        if (context.started)
-        {
-            OnPressManiteSlash();
-        }
+        OnPressManiteSlash();
     }
 
     private void OnPressManiteSlash()
     {
         if (controller.Stats.HasSlash)
         {
-            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
+            if (_maniteSlashAction.IsPressed() && controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
                 Debug.Log("manite slash2");
                 controller.Data.CanAttack = false;

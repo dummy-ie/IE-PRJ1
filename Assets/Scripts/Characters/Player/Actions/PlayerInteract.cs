@@ -18,37 +18,29 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private bool _canInteract = true;
 
-    
     IInteractable _interactable;
     public IInteractable Interactable { set { _interactable = value; } }
+
+    private InputAction _interactAction => InputManager.Instance.InputActions.Player.Interact;
 
     void Start()
     {
         _controller = GetComponent<CharacterController2D>();
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Interact();
-        }
-    }
-
     private void Interact()
     {
-        if (_interactable != null)
+        if (_interactable != null && _interactAction.IsPressed())
         {
-            // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
-
             _interactable.OnInteract();
         }
-            
-        else
-            Debug.Log("wtf");
     }
 
+    void Update()
+    {
+        Interact();
+    }
     /*private void OnPressInteract()
     {
         if (this._canInteract)
