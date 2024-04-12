@@ -152,6 +152,15 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7b7231a-40d1-43e6-9a39-777472649567"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -570,6 +579,28 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability Cycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f0486a7-c1d9-4fc3-81ba-89289508770b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3585c1c4-08ff-45ac-a9d6-5e0bd8d15de4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1171,6 +1202,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
         m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
         m_Player_AbilityCycle = m_Player.FindAction("Ability Cycle", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1258,6 +1290,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ability2;
     private readonly InputAction m_Player_Parry;
     private readonly InputAction m_Player_AbilityCycle;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @StuckinBetween m_Wrapper;
@@ -1276,6 +1309,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
         public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputAction @AbilityCycle => m_Wrapper.m_Player_AbilityCycle;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1327,6 +1361,9 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @AbilityCycle.started += instance.OnAbilityCycle;
             @AbilityCycle.performed += instance.OnAbilityCycle;
             @AbilityCycle.canceled += instance.OnAbilityCycle;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1373,6 +1410,9 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @AbilityCycle.started -= instance.OnAbilityCycle;
             @AbilityCycle.performed -= instance.OnAbilityCycle;
             @AbilityCycle.canceled -= instance.OnAbilityCycle;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1569,6 +1609,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         void OnAbility2(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
         void OnAbilityCycle(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
