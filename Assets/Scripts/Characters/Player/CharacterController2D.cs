@@ -216,6 +216,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         InputManager.Instance.DashEvent += OnDash;
 
         InputManager.Instance.InvisibilityEvent += OnPressInvisibility;
+
+        InputManager.Instance.PauseEvent += PauseManager.Instance.OnPauseGame;
     }
 
     void OnDisable()
@@ -229,6 +231,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         InputManager.Instance.DashEvent -= OnDash;
 
         InputManager.Instance.InvisibilityEvent -= OnPressInvisibility;
+
+        InputManager.Instance.PauseEvent -= PauseManager.Instance.OnPauseGame;
     }
 
     public void FlipTo(int facingDirection)

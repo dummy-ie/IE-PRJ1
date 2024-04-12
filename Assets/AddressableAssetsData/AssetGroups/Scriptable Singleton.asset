@@ -10,28 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Settings
+  m_Name: Scriptable Singleton
   m_EditorClassIdentifier: 
-  m_GroupName: Settings
+  m_GroupName: Scriptable Singleton
   m_Data:
     m_SerializedData: []
-  m_GUID: 7153ab040910cb84fa0ebef1c7a87fe2
+  m_GUID: b071e3291e7a9b544b26b90d3e778098
   m_SerializeEntries:
-  - m_GUID: 121756bf131d4f2439b2614c34d76f50
-    m_Address: Assets/Prefabs/PersistentSingletons
+  - m_GUID: 1fbcbf40dfc8ff74a8fb8b6b3b45227a
+    m_Address: Assets/Data/Settings/InputManager.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Singleton
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b5b8489d5df6949428719f84b01d83c5
-    m_Address: Assets/Data/Settings
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Settings
+    - Scriptable Singleton
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: baaf39e1b0edcb548a9baed83f06dce9, type: 2}
-    - {fileID: 11400000, guid: ce582ee4249bb7245a90ca7ccb2d8015, type: 2}
+    - {fileID: 11400000, guid: 76cb44eb7fa72a046be80742074764a1, type: 2}
+    - {fileID: 11400000, guid: 4d8e5667e98e00c459d330279367bab5, type: 2}

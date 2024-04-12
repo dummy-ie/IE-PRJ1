@@ -154,16 +154,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStats:
     _dataId: 
-    _checkPointData:
+    CheckPointData:
       _checkPointName: 
       _posX: 0
       _posY: 0
       _posZ: 0
-    _hasDash: 1
-    _hasSlash: 1
-    _hasPound: 1
+    HasThrust: 0
+    HasDash: 0
+    HasSlash: 0
+    HasPound: 0
+    HasInvisibility: 0
   _nextSceneReference:
-    m_AssetGUID: d1ffc18c727543f48b2c448932167a55
+    m_AssetGUID: 07efdec356b3f9b4c853356ec472b060
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

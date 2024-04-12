@@ -7,7 +7,7 @@ public class PauseManager : Singleton<PauseManager>
 {
     private bool _gameIsPaused = false;
 
-    public void OnPauseGame(InputAction.CallbackContext context)
+    public void OnPauseGame()
     {
         _gameIsPaused = !_gameIsPaused;
         
