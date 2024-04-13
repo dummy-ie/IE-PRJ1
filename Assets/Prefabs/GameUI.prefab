@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: _pauseScreen
       value: 
       objectReference: {fileID: 2379013549498606359}
+    - target: {fileID: 8466023590689964993, guid: a43cf043e0388424c80c460691da5b77, type: 3}
+      propertyPath: _playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
     - target: {fileID: 8997210572086775599, guid: a43cf043e0388424c80c460691da5b77, type: 3}
       propertyPath: m_Name
       value: PlayerHUD - Canvas

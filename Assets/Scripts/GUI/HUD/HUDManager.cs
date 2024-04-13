@@ -34,7 +34,9 @@ public class HUDManager : Singleton<HUDManager>
 
     public void SetManiteValue(int value)
     {
-        float targetX = Math.Abs((float)value / _playerStats.Manite.Max - 1) * -_maniteBarRect.rect.width;
+        if (_playerStats.Manite.Max == 0)
+            return;
+        float targetX = Math.Abs((float)value / _playerStats.Manite.Max) * -_maniteBarRect.rect.width;
         DOTween.To(
             () => _maniteBarRect.localPosition.x,
             x => _maniteBarRect.localPosition = new Vector3(x, _maniteBarRect.localPosition.y, _maniteBarRect.localPosition.z),
@@ -46,9 +48,10 @@ public class HUDManager : Singleton<HUDManager>
 
     public void SetHearts(int value)
     {
-        if (_healthBarRect != null)
+
+        if (_healthBarRect != null && _playerStats.Health.Max != 0)
         {
-            float targetX = Math.Abs((float)value / (float)_playerStats.Health.Max - 1) * -_healthBarRect.rect.width;
+            float targetX = Math.Abs((float)value / (float)_playerStats.Health.Max) * -_healthBarRect.rect.width;
             DOTween.To(
                 () => _healthBarRect.localPosition.x,
                 x => _healthBarRect.localPosition = new Vector3(x, _healthBarRect.localPosition.y, _healthBarRect.localPosition.z),

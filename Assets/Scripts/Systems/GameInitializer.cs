@@ -6,19 +6,10 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField]
-    PlayerStatField _playerStats;
-
     [SerializeField] private AssetReference _nextSceneReference;
 
     private IEnumerator Start()
     {
-        _playerStats.Health.SetMax(3);
-        _playerStats.Manite.SetMax(100);
-        _playerStats.Health.SetCurrent(3);
-        _playerStats.Manite.SetCurrent(100);
-
-
         AsyncOperationHandle<IList<ScriptableObject>> scriptableSingletons = Addressables.LoadAssetsAsync<ScriptableObject>("Scriptable Singleton",
             singleton =>
             {

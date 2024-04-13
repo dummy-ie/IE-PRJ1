@@ -3,11 +3,13 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-[JsonObject]
-public class PlayerStatField : BaseData, ISerializationCallbackReceiver
+public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
 {
+    public bool Loaded = false;
+    
     public CheckpointData CheckPointData;
+
+
 
     [Serializable]
     public class PlayerHealthField
@@ -95,17 +97,18 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
     public bool HasPound = false;
     public bool HasInvisibility = false;
 
-    private void OnEnable()
-    {
-        Health.Current = Health.Max;
-        Manite.Current = Manite.Max;
-    }
+    //private void OnEnable()
+    //{
+    //    Health.Current = Health.Max;
+    //    Manite.Current = Manite.Max;
+    //}
 
     public void OnBeforeSerialize()
     {
         /*_checkPointData = _baseCheckpointData;
         Health.Current = Health.Max;
         Manite.Current = Manite.Max;*/
+        
     }
     public void OnAfterDeserialize()
     {
@@ -114,5 +117,6 @@ public class PlayerStatField : BaseData, ISerializationCallbackReceiver
         Manite.Current = Manite.Max;*/
         //_hasDash = false;
         //_hasSlash = false;
+        Loaded = false;
     }
 }

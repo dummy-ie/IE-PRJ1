@@ -422,18 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drawGizmos: 1
   _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
-  _stats:
-    _dataId: PlayerStats
-    CheckPointData:
-      _checkPointName: default
-      _posX: 0
-      _posY: 0
-      _posZ: 0
-    HasThrust: 0
-    HasDash: 1
-    HasSlash: 0
-    HasPound: 0
-    HasInvisibility: 0
+  _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
   _animator: {fileID: 0}
   _render2D: {fileID: 7954051531114291530}
   _model3D: {fileID: 2659381263334121756}

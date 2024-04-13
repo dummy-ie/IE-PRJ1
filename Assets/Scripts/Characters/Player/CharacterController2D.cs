@@ -123,11 +123,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        _stats.Health.SetMax(_data.MaxHealth);
-        _stats.Manite.SetMax(_data.MaxManite);
-        _stats.Health.SetCurrent(_data.MaxHealth);
-        _stats.Manite.SetCurrent(_data.MaxManite);
-
         StartCoroutine(LoadBuffer());
     }
 
@@ -657,14 +652,56 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        //JSONSave.Instance.LoadData<PlayerData>(ref this._data);
-        DataManager.Instance.LoadData<PlayerStatField>(ref this._stats);
+        if (_stats.Loaded)
+            return;
+        PlayerSavableData data = new PlayerSavableData();
+        data.ID = "PlayerStats";
+        DataManager.Instance.LoadData<PlayerSavableData>(ref data);
+        if (data.newData)
+        {
+            _stats.Health.SetMax(_data.MaxHealth);
+            _stats.Manite.SetMax(_data.MaxManite);
+            _stats.Health.SetCurrent(_data.MaxHealth);
+            _stats.Manite.SetCurrent(_data.MaxManite);
+            _stats.Loaded = true;
+            data.newData = false;
+            return;
+        }
+        _lastSpawnPosition = new CharacterSpawnPoint()
+        {
+            position = new Vector2(data.LastSpawnX, data.LastSpawnY)
+        };
+        _stats.CheckPointData.SetRespawnPos(new Vector3(data.CheckpointPosX, data.CheckpointPosY));
+        _stats.Health.Current = data.Health;
+        _stats.Manite.Current = data.Manite;
+        _stats.HasPound = data.HasPound;
+        _stats.HasDash = data.HasDash;
+        _stats.HasInvisibility = data.HasInvisibility;
+        _stats.HasSlash = data.HasSlash;
+        _stats.HasThrust = data.HasThrust;
+        _stats.Loaded = true;
     }
 
     public void SaveData()
     {
-        //JSONSave.Instance.SaveData(this._data);
-        DataManager.Instance.SaveData(this._stats);
+        PlayerSavableData data = new PlayerSavableData();
+        data.ID = "PlayerStats";
+        
+        Debug.Log("SAVING DATA : " + _lastSpawnPosition.position.x);
+
+        data.LastSpawnX = _lastSpawnPosition.position.x;
+        data.LastSpawnY = _lastSpawnPosition.position.y;
+        data.CheckpointPosX = _stats.CheckPointData.PosX;
+        data.CheckpointPosY = _stats.CheckPointData.PosY;
+        data.Health = _stats.Health.Current;
+        data.Manite = _stats.Manite.Current;
+        data.HasThrust = _stats.HasThrust;
+        data.HasDash = _stats.HasDash;
+        data.HasSlash = _stats.HasSlash;
+        data.HasPound = _stats.HasPound;
+        data.HasInvisibility = _stats.HasInvisibility;
+        data.newData = false;
+        DataManager.Instance.SaveData(data);
     }
 
 
