@@ -22,7 +22,7 @@ public class CheckpointController : MonoBehaviour, ISaveable
             PlayAnimation();
 
             this._interactableData.Enabled = true;
-            JSONSave.Instance.SaveAll();
+            DataManager.Instance.SaveAll();
             Debug.Log("Checkpoint successfully saved at position:" + _interactableData.ID);
         }
        
@@ -61,11 +61,11 @@ public class CheckpointController : MonoBehaviour, ISaveable
 
     public void LoadData()
     {
-        JSONSave.Instance.LoadData(ref this._interactableData);
+        DataManager.Instance.LoadData(ref this._interactableData);
     }
 
     public void SaveData()
     {
-        JSONSave.Instance.SaveData(this._interactableData);
+        DataManager.Instance.SaveData(this._interactableData);
     }
 }

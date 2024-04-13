@@ -2,7 +2,7 @@
     "name": "Stuck in Between",
     "maps": [
         {
-            "name": "Player",
+            "name": "Gameplay",
             "id": "acf1531e-1ac4-4615-922b-d736b1273e2c",
             "actions": [
                 {

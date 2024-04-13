@@ -24,7 +24,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
     ""name"": ""Stuck in Between"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Gameplay"",
             ""id"": ""acf1531e-1ac4-4615-922b-d736b1273e2c"",
             ""actions"": [
                 {
@@ -1186,23 +1186,23 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_VectorShift = m_Player.FindAction("Vector Shift", throwIfNotFound: true);
-        m_Player_ChargedThrust = m_Player.FindAction("Charged Thrust", throwIfNotFound: true);
-        m_Player_ManiteSlash = m_Player.FindAction("Manite Slash", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
-        m_Player_GroundPound = m_Player.FindAction("GroundPound", throwIfNotFound: true);
-        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
-        m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
-        m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
-        m_Player_AbilityCycle = m_Player.FindAction("Ability Cycle", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        m_Gameplay_VectorShift = m_Gameplay.FindAction("Vector Shift", throwIfNotFound: true);
+        m_Gameplay_ChargedThrust = m_Gameplay.FindAction("Charged Thrust", throwIfNotFound: true);
+        m_Gameplay_ManiteSlash = m_Gameplay.FindAction("Manite Slash", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Submit = m_Gameplay.FindAction("Submit", throwIfNotFound: true);
+        m_Gameplay_GroundPound = m_Gameplay.FindAction("GroundPound", throwIfNotFound: true);
+        m_Gameplay_Ability1 = m_Gameplay.FindAction("Ability1", throwIfNotFound: true);
+        m_Gameplay_Ability2 = m_Gameplay.FindAction("Ability2", throwIfNotFound: true);
+        m_Gameplay_Parry = m_Gameplay.FindAction("Parry", throwIfNotFound: true);
+        m_Gameplay_AbilityCycle = m_Gameplay.FindAction("Ability Cycle", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1273,52 +1273,52 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_VectorShift;
-    private readonly InputAction m_Player_ChargedThrust;
-    private readonly InputAction m_Player_ManiteSlash;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Submit;
-    private readonly InputAction m_Player_GroundPound;
-    private readonly InputAction m_Player_Ability1;
-    private readonly InputAction m_Player_Ability2;
-    private readonly InputAction m_Player_Parry;
-    private readonly InputAction m_Player_AbilityCycle;
-    private readonly InputAction m_Player_Pause;
-    public struct PlayerActions
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Dash;
+    private readonly InputAction m_Gameplay_Attack;
+    private readonly InputAction m_Gameplay_VectorShift;
+    private readonly InputAction m_Gameplay_ChargedThrust;
+    private readonly InputAction m_Gameplay_ManiteSlash;
+    private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_Submit;
+    private readonly InputAction m_Gameplay_GroundPound;
+    private readonly InputAction m_Gameplay_Ability1;
+    private readonly InputAction m_Gameplay_Ability2;
+    private readonly InputAction m_Gameplay_Parry;
+    private readonly InputAction m_Gameplay_AbilityCycle;
+    private readonly InputAction m_Gameplay_Pause;
+    public struct GameplayActions
     {
         private @StuckinBetween m_Wrapper;
-        public PlayerActions(@StuckinBetween wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @VectorShift => m_Wrapper.m_Player_VectorShift;
-        public InputAction @ChargedThrust => m_Wrapper.m_Player_ChargedThrust;
-        public InputAction @ManiteSlash => m_Wrapper.m_Player_ManiteSlash;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Submit => m_Wrapper.m_Player_Submit;
-        public InputAction @GroundPound => m_Wrapper.m_Player_GroundPound;
-        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
-        public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
-        public InputAction @Parry => m_Wrapper.m_Player_Parry;
-        public InputAction @AbilityCycle => m_Wrapper.m_Player_AbilityCycle;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public GameplayActions(@StuckinBetween wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
+        public InputAction @VectorShift => m_Wrapper.m_Gameplay_VectorShift;
+        public InputAction @ChargedThrust => m_Wrapper.m_Gameplay_ChargedThrust;
+        public InputAction @ManiteSlash => m_Wrapper.m_Gameplay_ManiteSlash;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @Submit => m_Wrapper.m_Gameplay_Submit;
+        public InputAction @GroundPound => m_Wrapper.m_Gameplay_GroundPound;
+        public InputAction @Ability1 => m_Wrapper.m_Gameplay_Ability1;
+        public InputAction @Ability2 => m_Wrapper.m_Gameplay_Ability2;
+        public InputAction @Parry => m_Wrapper.m_Gameplay_Parry;
+        public InputAction @AbilityCycle => m_Wrapper.m_Gameplay_AbilityCycle;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void AddCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -1366,7 +1366,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(IPlayerActions instance)
+        private void UnregisterCallbacks(IGameplayActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -1415,21 +1415,21 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(IPlayerActions instance)
+        public void RemoveCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlayerActions instance)
+        public void SetCallbacks(IGameplayActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1593,7 +1593,7 @@ public partial class @StuckinBetween: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_XRSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

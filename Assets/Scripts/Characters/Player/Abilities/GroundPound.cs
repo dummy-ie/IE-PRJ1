@@ -22,18 +22,18 @@ public class GroundPound : AAbility
     [SerializeField]
     private float groundPoundFallMultiplier = 8.0f;
 
-    private InputAction _groundPoundAction => InputManager.Instance.InputActions.Player.GroundPound;
+    private InputAction _groundPoundAction => InputManager.Instance.InputActions.Gameplay.GroundPound;
 
     private void OnPressGroundPound()
     {
         if (controller.Stats.HasPound)
         {
-            if (controller.Data.CanAttack && _groundPoundAction.IsPressed())
+            if (controller.CanAttack && _groundPoundAction.WasPressedThisFrame())
             {
                 // DISABLE INVISIBILITY
                 controller.DeactivateInvisible();
 
-                controller.Data.CanAttack = false;
+                controller.CanAttack = false;
 
                 rb.velocity = new Vector2(0.0f, 0.0f);
                 controller.CurrentFallMultiplier = groundPoundFallMultiplier;
@@ -92,7 +92,7 @@ public class GroundPound : AAbility
                 isGroundPound = false;
                 controller.CanMove = true;
                 controller.ResetFallMultiplier();
-                controller.Data.CanAttack = true;
+                controller.CanAttack = true;
                 controller.ShiftTo2D();
             }
         }

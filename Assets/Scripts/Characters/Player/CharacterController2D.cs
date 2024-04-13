@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -77,6 +78,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         get { return _canMove; }
         set { _canMove = value; }
     }
+
+    public bool CanAttack = true;
 
     private bool _isDashing = false;
     private float _dashTime = 0f;
@@ -169,7 +172,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         {
             RespawnOnCheckpoint();
             this._stats.Health.Current = this._data.MaxHealth;
-            this._data.CanAttack = true;
+            this.CanAttack = true;
             //Destroy(gameObject);
         }
 
@@ -210,13 +213,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         InputManager.Instance.DashEvent += OnDash;
 
         InputManager.Instance.InvisibilityEvent += OnPressInvisibility;
-
-        InputManager.Instance.PauseEvent += PauseManager.Instance.OnPauseGame;
     }
 
     void OnDisable()
     {
-
         InputManager.Instance.MoveEvent -= ReadMoveInput;
 
         InputManager.Instance.JumpEvent -= OnJump;
@@ -225,8 +225,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         InputManager.Instance.DashEvent -= OnDash;
 
         InputManager.Instance.InvisibilityEvent -= OnPressInvisibility;
-
-        InputManager.Instance.PauseEvent -= PauseManager.Instance.OnPauseGame;
     }
 
     public void FlipTo(int facingDirection)
@@ -440,7 +438,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     private IEnumerator Cooldown(float cooldown)
     {
         yield return new WaitForSeconds(cooldown);
-        Data.CanAttack = true;
+        CanAttack = true;
     }
 
 
@@ -490,7 +488,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _rb.velocity = Vector2.zero;
             Debug.Log("Player Has Been Hit");
             _isHit = true;
-            _iFrames = 1;
+            _iFrames = Data.defaultInvincibilityTime;
 
             StartBlink();
 
@@ -514,12 +512,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _render2D.material = _flashMaterial;
             _model3D.material = _flashMaterial;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(Data.invincibilityFlickerChange);
 
             _render2D.material = _original2DMaterial;
             _model3D.material = _original3DMaterial;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(Data.invincibilityFlickerChange);
     }
 
     public void Damage(int amount)
@@ -660,13 +658,13 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     public void LoadData()
     {
         //JSONSave.Instance.LoadData<PlayerData>(ref this._data);
-        JSONSave.Instance.LoadData<PlayerStatField>(ref this._stats);
+        DataManager.Instance.LoadData<PlayerStatField>(ref this._stats);
     }
 
     public void SaveData()
     {
         //JSONSave.Instance.SaveData(this._data);
-        JSONSave.Instance.SaveData(this._stats);
+        DataManager.Instance.SaveData(this._stats);
     }
 
 
@@ -708,7 +706,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         {
             Vector3 facing = Vector3.right * _facingDirection;
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position + facing * attackData.HitboxCastDistance, attackData.HitboxSize);
+            Vector2 hitBoxSize = new Vector2(attackData.TriggerRect.width, attackData.TriggerRect.height);
+            Gizmos.DrawWireCube(transform.position + facing * attackData.TriggerRect.x, hitBoxSize);
         }
     }
 #endif

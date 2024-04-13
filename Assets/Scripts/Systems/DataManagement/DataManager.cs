@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.ResourceManagement.Util;
 
-public class JSONSave : Singleton<JSONSave>
+[CreateAssetMenu(fileName = "DataManager", menuName = "Scriptable Singletons/DataManager")]
+public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IInitializableSingleton
 {
 
     private string _savePath;
@@ -21,8 +23,9 @@ public class JSONSave : Singleton<JSONSave>
     List<BaseData> datas = new List<BaseData>();
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
+        DataManager instance = Instance;
         SetPaths();
         
         

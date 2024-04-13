@@ -22,7 +22,7 @@ public class ManiteSlash : AAbility
     [Range(0, 5)]
     private int slashSpawnDistance = 1;
 
-    private InputAction _maniteSlashAction => InputManager.Instance.InputActions.Player.ManiteSlash;
+    private InputAction _maniteSlashAction => InputManager.Instance.InputActions.Gameplay.ManiteSlash;
 
     void Update()
     {
@@ -33,10 +33,10 @@ public class ManiteSlash : AAbility
     {
         if (controller.Stats.HasSlash)
         {
-            if (_maniteSlashAction.IsPressed() && controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
+            if (_maniteSlashAction.IsPressed() && controller.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
                 Debug.Log("manite slash2");
-                controller.Data.CanAttack = false;
+                controller.CanAttack = false;
 
                 int flip = controller.FacingDirection;
 

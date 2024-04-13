@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Tilemaps;
 
 public class PlayerAttack : MonoBehaviour
@@ -24,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     Collider2D attackHitbox;
 
-    private InputAction _attackAction => InputManager.Instance.InputActions.Player.Attack;
+    private InputAction _attackAction => InputManager.Instance.InputActions.Gameplay.Attack;
 
     // Start is called before the first frame update
     void Start()
@@ -42,14 +43,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnPressAttack()
     {
-        if (_controller.Data.CanAttack && _attackAction.IsPressed())
+        if (_controller.CanAttack && _attackAction.WasPressedThisFrame())
         {
             // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
 
             AudioManager.Instance.PlaySFX(EClipIndex.NORMAL_ATTACK);
             isAttacking = true;
-            _controller.Data.CanAttack = false;
+            _controller.CanAttack = false;
 
             RaycastHit2D[] hits;
 
@@ -65,7 +66,9 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                hits = Physics2D.BoxCastAll(transform.position, _controller.Data.FirstAttack.HitboxSize, 0, transform.right * _controller.FacingDirection, _controller.Data.FirstAttack.HitboxCastDistance);
+                Vector2 hitBoxSize = new Vector2(_controller.Data.FirstAttack.TriggerRect.width, _controller.Data.FirstAttack.TriggerRect.height);
+                //float hitBoxDistance = Vector2.Distance(transform.position, new Vector2(_controller.Data.FirstAttack.TriggerRect.x, _controller.Data.FirstAttack.TriggerRect.y));
+                hits = Physics2D.BoxCastAll(transform.position, hitBoxSize, 0, transform.right * _controller.FacingDirection, _controller.Data.FirstAttack.TriggerRect.x);
             }
 
             foreach (RaycastHit2D hit in hits)

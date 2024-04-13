@@ -34,4 +34,14 @@ public class PauseManager : Singleton<PauseManager>
         Time.timeScale = 0.0f;
         HUDManager.Instance.ShowPause();
     }
+
+    void OnEnable()
+    {
+        InputManager.Instance.PauseEvent += OnPauseGame;
+    }
+
+    void OnDisable()
+    {
+        InputManager.Instance.PauseEvent -= OnPauseGame;
+    }
 }

@@ -20,13 +20,13 @@ public class ChargedThrust : AAbility
     [SerializeField]
     Collider2D attackHitbox;
 
-    private InputAction _chargedThrustAction => InputManager.Instance.InputActions.Player.ChargedThrust;
+    private InputAction _chargedThrustAction => InputManager.Instance.InputActions.Gameplay.ChargedThrust;
 
     private void OnPressChargedThrust()
     {
-        if (controller.Stats.HasThrust && _chargedThrustAction.IsPressed())
+        if (controller.Stats.HasThrust && _chargedThrustAction.WasPressedThisFrame())
         {
-            if (controller.Data.CanAttack && controller.Stats.Manite.Current >= maniteCost)
+            if (controller.CanAttack && controller.Stats.Manite.Current >= maniteCost)
             {
                 canAttack = false;
 

@@ -12,25 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71c799ce9bb9674f878ae3aff15cbd3, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _maxManite: 100
-  _groundLayer:
+  MaxHealth: 100
+  MaxManite: 100
+  GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _speed: 6
-  _allowDoubleJump: 1
-  _jumpForce: 17
-  _fallMultiplier: 4
-  _lowJumpMultiplier: 0.3
-  _coyoteTime: 0.1
-  _jumpBufferTime: 0.2
-  _dashOriginalSpeed: 20
-  _dashCooldown: 0.5
-  _dashDistance: 4
+  Speed: 6
+  AllowDoubleJump: 1
+  JumpForce: 17
+  FallMultiplier: 4
+  LowJumpMultiplier: 0.3
+  CoyoteTime: 0.1
+  JumpBufferTime: 0.2
+  DashOriginalSpeed: 20
+  DashCooldown: 0.5
+  DashDistance: 4
   FirstAttack:
-    _damage: 1
-    _cooldown: 0.3
-    _hitboxSize: {x: 1, y: 0.5}
-    _hitboxCastDistance: 0.7
-  _canAttack: 1
-  _actionCooldown: 0
+    Damage: 1
+    Cooldown: 0.3
+    Duration: 0.3
+    HorizontalMoveOffset: 0
+    TriggerRect:
+      serializedVersion: 2
+      x: 0.7
+      y: 0
+      width: 1
+      height: 0.5
+  ActionCooldown: 0
+  invincibilityFlickerChange: 0.3
+  defaultInvincibilityTime: 1

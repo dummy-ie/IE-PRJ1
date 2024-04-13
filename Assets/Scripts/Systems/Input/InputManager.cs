@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 // functions should be mapped to their corresponding controls
 // using a PlayerInput component with Unity Events.
 [CreateAssetMenu(fileName = "InputManager", menuName = "Scriptable Singletons/InputManager")]
-public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IPlayerActions, GameInitializer.IInitializableSingleton//, StuckinBetween.IUIActions
+public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IGameplayActions, GameInitializer.IInitializableSingleton//, StuckinBetween.IUIActions
 {
     public void Initialize()
     {
@@ -32,24 +32,24 @@ public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IP
         {
             InputActions = new StuckinBetween();
 
-            InputActions.Player.SetCallbacks(this);
+            InputActions.Gameplay.SetCallbacks(this);
         }
-        InputActions.Player.Enable();
+        InputActions.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        InputActions.Player.Disable();
+        InputActions.Gameplay.Disable();
     }
 
-    public void EnablePlayerInput()
+    public void EnableGameplayInput()
     {
         InputActions.UI.Disable();
-        InputActions.Player.Enable();
+        InputActions.Gameplay.Enable();
     }
 
 
-
+    #region GameplayInput
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
@@ -68,65 +68,66 @@ public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IP
         }
     }
 
-    void StuckinBetween.IPlayerActions.OnDash(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnDash(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             DashEvent?.Invoke();
     }
 
-    void StuckinBetween.IPlayerActions.OnAttack(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnAttack(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnVectorShift(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnVectorShift(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnChargedThrust(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnChargedThrust(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnManiteSlash(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnManiteSlash(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnInteract(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             InteractEvent?.Invoke();
     }
 
-    void StuckinBetween.IPlayerActions.OnSubmit(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnSubmit(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnGroundPound(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnGroundPound(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnAbility1(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnAbility1(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             InvisibilityEvent?.Invoke();
     }
 
-    void StuckinBetween.IPlayerActions.OnAbility2(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnAbility2(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnParry(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnParry(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnAbilityCycle(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnAbilityCycle(InputAction.CallbackContext context)
     {
     }
 
-    void StuckinBetween.IPlayerActions.OnPause(InputAction.CallbackContext context)
+    void StuckinBetween.IGameplayActions.OnPause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             PauseEvent?.Invoke();
     }
+    #endregion
 
     //void StuckinBetween.IPlayerActions.OnMove(InputAction.CallbackContext context)
     //{
