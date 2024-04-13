@@ -20,15 +20,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     }
 
     [Header("Player Data")]
-
-
     [SerializeField]
     PlayerData _data;
     public PlayerData Data
     {
         get { return _data; }
     }
-
 
     [SerializeField]
     PlayerStatField _stats;
