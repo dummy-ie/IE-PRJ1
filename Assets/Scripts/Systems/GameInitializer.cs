@@ -17,9 +17,25 @@ public class GameInitializer : MonoBehaviour
         _playerStats.Manite.SetMax(100);
         _playerStats.Health.SetCurrent(3);
         _playerStats.Manite.SetCurrent(100);
+
+
+        AsyncOperationHandle<IList<ScriptableObject>> scriptableSingletons = Addressables.LoadAssetsAsync<ScriptableObject>("Scriptable Singleton",
+            singleton =>
+            {
+                if (singleton is IInitializableSingleton initializableSingleton)
+                    initializableSingleton.Initialize();
+            });
+        yield return scriptableSingletons;
+
         AsyncOperationHandle<IList<GameObject>> singletons = Addressables.LoadAssetsAsync<GameObject>("Singleton", singletons => Instantiate(singletons));
         yield return singletons;
 
+        yield return null;
         SceneLoader.Instance.LoadSceneWithoutFade(_nextSceneReference, new SceneLoader.TransitionData());
+    }
+
+    public interface IInitializableSingleton
+    {
+        void Initialize();
     }
 }

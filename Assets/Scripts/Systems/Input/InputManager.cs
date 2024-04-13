@@ -10,8 +10,12 @@ using UnityEngine.InputSystem;
 // functions should be mapped to their corresponding controls
 // using a PlayerInput component with Unity Events.
 [CreateAssetMenu(fileName = "InputManager", menuName = "Scriptable Singletons/InputManager")]
-public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IPlayerActions//, StuckinBetween.IUIActions
+public class InputManager : ScriptableSingleton<InputManager>, StuckinBetween.IPlayerActions, GameInitializer.IInitializableSingleton//, StuckinBetween.IUIActions
 {
+    public void Initialize()
+    {
+        InputManager singleton = Instance;
+    }
     public StuckinBetween InputActions { get; private set; }
 
     public event Action<Vector2> MoveEvent;

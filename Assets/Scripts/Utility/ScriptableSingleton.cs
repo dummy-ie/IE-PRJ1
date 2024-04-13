@@ -23,4 +23,6 @@ public abstract class ScriptableSingleton<T> : ScriptableObject where T : Script
             return _instance = handle.WaitForCompletion();
         }
     }
+
+    
 }
