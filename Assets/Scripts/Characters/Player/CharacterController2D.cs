@@ -34,6 +34,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable
         get { return _stats; }
     }
 
+    [SerializeField]
+    PlayerSavableData data;
+
     [Header("Player Render")]
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _render2D;
@@ -651,11 +654,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable
     {
         if (_stats.Loaded)
             return;
-        PlayerSavableData data = new PlayerSavableData();
-        data.ID = "PlayerStats";
         DataManager.Instance.LoadData<PlayerSavableData>(ref data);
         if (data.newData)
         {
+            Debug.Log("Creating New Player Stats");
             _stats.Health.SetMax(_data.MaxHealth);
             _stats.Manite.SetMax(_data.MaxManite);
             _stats.Health.SetCurrent(_data.MaxHealth);
@@ -664,13 +666,17 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             data.newData = false;
             return;
         }
+        else Debug.Log("Existing Player Stats have been loaded");
         _lastSpawnPosition = new CharacterSpawnPoint()
         {
             position = new Vector2(data.LastSpawnX, data.LastSpawnY)
         };
         _stats.CheckPointData.SetRespawnPos(new Vector3(data.CheckpointPosX, data.CheckpointPosY));
-        _stats.Health.Current = data.Health;
-        _stats.Manite.Current = data.Manite;
+        Debug.Log(_stats.CheckPointData.PosX);
+        _stats.Health.SetMax(_data.MaxHealth);
+        _stats.Manite.SetMax(_data.MaxManite);
+        _stats.Health.SetCurrent(data.Health);
+        _stats.Manite.SetCurrent(data.Manite);
         _stats.HasPound = data.HasPound;
         _stats.HasDash = data.HasDash;
         _stats.HasInvisibility = data.HasInvisibility;
@@ -681,15 +687,17 @@ public class CharacterController2D : MonoBehaviour, ISaveable
 
     public void SaveData()
     {
-        PlayerSavableData data = new PlayerSavableData();
-        data.ID = "PlayerStats";
         
-        Debug.Log("SAVING DATA : " + _lastSpawnPosition.position.x);
+
+        
+        
 
         data.LastSpawnX = _lastSpawnPosition.position.x;
         data.LastSpawnY = _lastSpawnPosition.position.y;
         data.CheckpointPosX = _stats.CheckPointData.PosX;
         data.CheckpointPosY = _stats.CheckPointData.PosY;
+
+
         data.Health = _stats.Health.Current;
         data.Manite = _stats.Manite.Current;
         data.HasThrust = _stats.HasThrust;

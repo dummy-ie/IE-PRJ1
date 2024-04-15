@@ -310,9 +310,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3983012199411502577}
+  - component: {fileID: 3489200118419860923}
   - component: {fileID: 5962612819004959911}
   - component: {fileID: 207511811344072622}
-  - component: {fileID: 3489200118419860923}
   - component: {fileID: 6500837453471319468}
   - component: {fileID: 8300612678563695145}
   - component: {fileID: 2499320351120869182}
@@ -346,6 +346,44 @@ Transform:
   - {fileID: 9146055774910419433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3489200118419860923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933529248856894337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drawGizmos: 0
+  _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
+  _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
+  data:
+    _dataId: PlayerStats
+    newData: 1
+    LastSpawnX: 0
+    LastSpawnY: 0
+    CheckpointPosX: 0
+    CheckpointPosY: 0
+    Health: 0
+    Manite: 0
+    HasThrust: 0
+    HasDash: 0
+    HasSlash: 0
+    HasPound: 0
+    HasInvisibility: 0
+  _animator: {fileID: 0}
+  _render2D: {fileID: 7954051531114291530}
+  _model3D: {fileID: 2659381263334121756}
+  _flashMaterial: {fileID: 2100000, guid: 5b7f5ac84fb7be943b4a9e45125de095, type: 2}
+  _boxCastDistance: 0.47
+  _boxSize: {x: 0.3, y: 0.4}
+  CanAttack: 1
+  _isGrounded: 0
+  InvisibilityTime: 0.3
 --- !u!70 &5962612819004959911
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -408,30 +446,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3489200118419860923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6933529248856894337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f59107b0b956d944b28a440adae776c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _drawGizmos: 1
-  _data: {fileID: 11400000, guid: 9761379dd796d50429863d62a6ed1b20, type: 2}
-  _stats: {fileID: 11400000, guid: 3a8d80162670ce64b86f93503f5c9ff9, type: 2}
-  _animator: {fileID: 0}
-  _render2D: {fileID: 7954051531114291530}
-  _model3D: {fileID: 2659381263334121756}
-  _flashMaterial: {fileID: 2100000, guid: 5b7f5ac84fb7be943b4a9e45125de095, type: 2}
-  _boxCastDistance: 0.47
-  _boxSize: {x: 0.3, y: 0.4}
-  CanAttack: 1
-  _isGrounded: 0
-  InvisibilityTime: 0.3
 --- !u!114 &6500837453471319468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 7742219906878768100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: -90}
+  m_LocalPosition: {x: 0, y: 0.40000153, z: -90}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

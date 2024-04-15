@@ -27,20 +27,7 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
     {
         DataManager instance = Instance;
         SetPaths();
-        
-        
-
-        /*try
-        {
-            if (!Directory.Exists(_persistentPath))
-            {
-                Directory.CreateDirectory(_persistentPath);
-            }
-
-        }
-        catch (IOException ex)
-        {
-        }*/
+       
         LoadRepository();
     }
 
@@ -107,11 +94,11 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
     public void SaveAll()
     {
         Debug.Log("Saving All Data");
-        /*ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>().ToArray();
+        ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>().ToArray();
         foreach (var saver in saveables)
         {
             saver.SaveData();
-        }*/
+        }
 
         SaveRepository();
 
