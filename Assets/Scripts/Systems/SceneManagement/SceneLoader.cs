@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -151,10 +152,10 @@ public class SceneLoader : Singleton<SceneLoader>
 
     private void OnSceneLoad(TransitionData transitionData)
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        IOnSceneLoad[] objects = FindObjectsOfType<MonoBehaviour>(true).OfType<IOnSceneLoad>().ToArray();
+        foreach (IOnSceneLoad obj in objects)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<CharacterController2D>().OnSceneLoad(transitionData);
+            obj.OnSceneLoad(transitionData);
         }
     }
 }

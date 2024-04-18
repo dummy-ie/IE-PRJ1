@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : Singleton<AudioManager>, IOnSceneLoad
 {
-
-    private AudioSource _bgmSource;
-    private AudioSource _sfxSource;
+    public AudioSource _bgmSource;
+    public AudioSource SFXSource;
 
     private float _sfxVolume = 1.0f;
     public float SFXVolume { get { return _sfxVolume; } set { _sfxVolume = value; } }
 
     private float _masterVolume = 1.0f;
+
+    [SerializeField]
+    private AudioObject _bgmTheme;
+
+    [SerializeField]
+    private List<AudioObject> _sfxObjects = new List<AudioObject>();
 
     public float GetMasterVolume()
     {
@@ -35,46 +40,36 @@ public class AudioManager : Singleton<AudioManager>
         _bgmSource.volume = _musicVolume;
     }
 
-    [SerializeField]
-    private AudioClip _bgmTheme;
-
-    [SerializeField]
-    private List<AudioClip> _sfxClips = new List<AudioClip>();
-
-    public void PlaySFX(EClipIndex index)
+    public void PlaySFX(EClipIndex index, Vector3 position)
     {
-        this._sfxSource.clip = this._sfxClips[(int)index];
-        if (!this._sfxSource.isPlaying)
-            this._sfxSource.PlayOneShot(this._sfxSource.clip, SFXVolume);
+        AudioSource source = Instantiate(SFXSource, position, Quaternion.identity);
+        this._sfxObjects[(int)index].Clone(source);
+        source.Play();
     }
 
-    public void StopSFX()
-    {
-        this._sfxSource.Stop();
-    }
+    //public void StopSFX()
+    //{
+    //    this._sfxSource.Stop();
+    //}
 
-    public void ChangeBGM(AudioClip bgm)
+    public void ChangeBGM(AudioObject bgm)
     {
-        if (bgm != null)
+        if (bgm.clip != null)
         {
-
-            Debug.Log("Audio clip found of name" + bgm.name);
-            if (_bgmSource.clip.name == bgm.name)
+            Debug.Log("Audio clip found of name" + bgm.clip.name);
+            if (_bgmSource.clip.name == bgm.clip.name)
                 return;
-
+            Debug.Log("Playing new BGM");
             _bgmSource.Stop();
-            _bgmSource.clip = bgm;
+            bgm.Clone(_bgmSource);
             _bgmSource.Play();
-
         }
-
         else
             Debug.Log("No audio clip found");
 
     }
 
-    public void StopBGM()
-    {
+    public void StopBGM() {
         this._bgmSource.Stop();
     }
 
@@ -95,10 +90,11 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
-        this._bgmSource = this.transform.Find("BGM").GetComponent<AudioSource>();
-        this._bgmSource.clip = this._bgmTheme;
-
-        this._sfxSource = this.transform.Find("SFX").GetComponent<AudioSource>();
+        this._bgmSource = transform.Find("BGM").GetComponent<AudioSource>();
+        //this._bgmTheme.Clone(this._bgmSource);
+        if (_bgmTheme != null)
+            this._bgmTheme.Clone(this._bgmSource);
+        //this._sfxSource = this.transform.Find("SFX").GetComponent<AudioSource>();
 
         this._bgmSource.Play();
 
@@ -111,6 +107,10 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
             LoadVolumeSettings();
+    }
 
+    public void OnSceneLoad(SceneLoader.TransitionData transitionData)
+    {
+        ChangeBGM(transitionData.currentScene.sceneBGM);
     }
 }

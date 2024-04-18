@@ -7098,14 +7098,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1492313557}
   - component: {fileID: 1492313558}
-  - component: {fileID: 1492313559}
   m_Layer: 0
   m_Name: Scene BGM
   m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1492313557
 Transform:
   m_ObjectHideFlags: 0
@@ -7217,18 +7216,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1492313559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492313556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aebe634c8ad9c443ac9d3be2af21b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1537780267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6685732554811339411, guid: 71d4f5a2820baa046a43b77623b51ff1, type: 3}
@@ -27721,7 +27708,7 @@ PrefabInstance:
     - target: {fileID: 8242075267692113777, guid: dccf1e83c903fc445a14588ee594c787, type: 3}
       propertyPath: _bgmTheme
       value: 
-      objectReference: {fileID: 8300000, guid: dda66eb5251626745915675aa5094f9f, type: 3}
+      objectReference: {fileID: 11400000, guid: d4d1091d9024aa644824c74a8c731358, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28590,11 +28577,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -95.78
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.140003
+      value: 4.9900002
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
