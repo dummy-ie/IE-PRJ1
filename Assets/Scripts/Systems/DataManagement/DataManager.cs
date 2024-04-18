@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.Util;
 
 [CreateAssetMenu(fileName = "DataManager", menuName = "Scriptable Singletons/DataManager")]
 public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IInitializableSingleton
 {
+    
 
     private string _savePath;
     private string _persistentPath;
@@ -99,6 +101,8 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         {
             saver.SaveData();
         }
+
+        this._dataRepository.SavedScene = SceneLoader.Instance.ActiveSceneReference.AssetGUID;
 
         SaveRepository();
 

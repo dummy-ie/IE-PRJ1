@@ -1084,6 +1084,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   _playButton: {fileID: 679154547}
+  _loadButton: {fileID: 550269201}
   _settingsButton: {fileID: 1270399710}
   _quitButton: {fileID: 1884858069}
 --- !u!1 &1107556236

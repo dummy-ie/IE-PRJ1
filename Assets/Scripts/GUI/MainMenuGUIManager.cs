@@ -13,12 +13,14 @@ public class MainMenuGUIManager : MonoBehaviour
     AssetReference _settingsSceneReference;
 
     [SerializeField] private Button _playButton;
+    [SerializeField] private Button _loadButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _quitButton;
 
     void Start()
     {
         _playButton.onClick.AddListener(OnPlayButtonClicked);
+        _loadButton.onClick.AddListener(OnLoadButtonClicked);
         _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         _quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
@@ -26,6 +28,11 @@ public class MainMenuGUIManager : MonoBehaviour
     void OnPlayButtonClicked()
     {
         SceneLoader.Instance.LoadSceneWithFade(_gameSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
+    }
+
+    void OnLoadButtonClicked()
+    {
+        SceneLoader.Instance.LoadSceneWithFade(new AssetReference(DataManager.Instance.Repository.SavedScene), new SceneLoader.TransitionData { spawnPoint = "default" });
     }
 
     void OnSettingsButtonClicked()

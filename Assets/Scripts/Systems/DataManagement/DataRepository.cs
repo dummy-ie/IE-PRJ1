@@ -2,6 +2,7 @@ using Ink.Runtime;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 using UnityEngine;
 
 [Serializable]
@@ -17,7 +18,14 @@ public class DataRepository
     [SerializeField]
     List<string> jsonStrings = new List<string>();
 
-    
+    [JsonProperty]
+    private string _savedSceneGUID;
+    [JsonIgnore]
+    public string SavedScene
+    {
+        get { return _savedSceneGUID; }
+        set { _savedSceneGUID = value; }
+    }
 
     public void AddData<T>(T newData) where T : BaseData
     {

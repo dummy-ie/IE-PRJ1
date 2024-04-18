@@ -58,6 +58,7 @@ public class SceneLoader : Singleton<SceneLoader>
                 Debug.LogError($"{sceneData.RuntimeKey}.");
         };*/
         _activeSceneReference = sceneData;
+        
         StartCoroutine(SceneLoad(LoadScene(sceneData), transitionData));
     }
     public void LoadSceneWithFade(AssetReference sceneData, TransitionData transitionData)
