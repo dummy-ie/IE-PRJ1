@@ -17,6 +17,6 @@ MonoBehaviour:
   priority: 128
   volume: 0.4
   pitch: 1
-  spatialBlend: 1
+  spatialBlend: 0
   minDistance: 1
   maxDistance: 500
