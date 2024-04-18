@@ -12,7 +12,7 @@ using UnityEngine.ResourceManagement.Util;
 [CreateAssetMenu(fileName = "DataManager", menuName = "Scriptable Singletons/DataManager")]
 public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IInitializableSingleton
 {
-    
+    private int _selectedSave = -1;    
 
     private string _savePath;
     private string _persistentPath;
@@ -29,8 +29,8 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
     {
         DataManager instance = Instance;
         SetPaths();
-       
-        LoadRepository();
+
+        //LoadRepository(1);
     }
 
     private void SetPaths()
@@ -53,7 +53,7 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
 
     public void SaveRepository()
     {
-        string savePath = this._savePath + "SaveData.json";
+        string savePath = this._savePath + "SaveData_" + this._selectedSave + ".json";
 
         Debug.Log("Saving data at " + savePath);
 
@@ -65,11 +65,13 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         writer.Write(json);
     }
 
-    public void LoadRepository()
+    public void LoadRepository(int selectedSave)
     {
         Debug.Log("--LOADING REPOSITORY--");
 
-        string loadPath = this._savePath + "SaveData.json";
+        this._selectedSave = selectedSave;
+
+        string loadPath = this._savePath + "SaveData_" + this._selectedSave + ".json";
 
         if (File.Exists(loadPath))
         {
@@ -86,7 +88,7 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         }
         else
         {
-            Debug.Log("Save Data does not exist");
+            Debug.Log("Save File "+ this._selectedSave +" does not exist");
             this._dataRepository = new();
         }
 

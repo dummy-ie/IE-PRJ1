@@ -27,11 +27,13 @@ public class MainMenuGUIManager : MonoBehaviour
 
     void OnPlayButtonClicked()
     {
+        DataManager.Instance.LoadRepository(1);
         SceneLoader.Instance.LoadSceneWithFade(_gameSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
     }
 
     void OnLoadButtonClicked()
     {
+        DataManager.Instance.LoadRepository(1);
         SceneLoader.Instance.LoadSceneWithFade(new AssetReference(DataManager.Instance.Repository.SavedScene), new SceneLoader.TransitionData { spawnPoint = "default" });
     }
 
