@@ -21,7 +21,7 @@ MonoBehaviour:
   AllowDoubleJump: 1
   JumpForce: 17
   FallMultiplier: 4
-  LowJumpMultiplier: 0.3
+  LowJumpMultiplier: 0.96
   CoyoteTime: 0.1
   JumpBufferTime: 0.2
   DashOriginalSpeed: 20
