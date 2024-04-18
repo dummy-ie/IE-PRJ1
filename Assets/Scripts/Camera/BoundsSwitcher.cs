@@ -36,8 +36,8 @@ public class BoundsSwitcher : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SceneBounds"))
         {
-            if (GetComponent<CinemachineConfiner2D>().m_BoundingShape2D == collision.GetComponent<CompositeCollider2D>())
-                GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = null;
+            //if (GetComponent<CinemachineConfiner2D>().m_BoundingShape2D == collision.GetComponent<CompositeCollider2D>())
+            //    GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = null;
         }
     }
 }
