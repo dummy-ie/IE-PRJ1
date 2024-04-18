@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
             // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
 
-            AudioManager.Instance.PlaySFX(EClipIndex.NORMAL_ATTACK);
+            AudioManager.Instance.PlaySFX(EClipIndex.NORMAL_ATTACK, transform.position);
             isAttacking = true;
             _controller.CanAttack = false;
 

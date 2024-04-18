@@ -15,6 +15,8 @@ public class SceneData : ScriptableObject
         GAME_OVER
     }
 
+    public AudioObject sceneBGM;
+
     public SceneType sceneType;
 
     public AssetReference SceneReference;
