@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
         set { _lastSpawnPosition = value; }
     }
 
+    private CharacterSpawnPoint _lastGroundedPosition;
+
     [Header("Player Data")]
     [SerializeField]
     PlayerData _data;
@@ -108,7 +110,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
         get { return _isInvisible; }
     }
     private float _invisibilityTicks = 0.0f;
-    public float InvisibilityTime = 1.0f;
+    public float InvisibilityTime = 5.0f;
 
     private bool _onLadder = false;
     public bool OnLadder
@@ -150,8 +152,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
 
             if (_invisibilityTicks >= InvisibilityTime)
             {
-                _stats.Manite.Current -= 1;
-                _invisibilityTicks = 0.0f;
+                DeactivateInvisible();
             }
 
         }
@@ -344,6 +345,16 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
             // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
             if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
             {
+                if (_isGrounded)
+                {
+                    bool faceRight = FacingDirection == 1;
+                    CharacterSpawnPoint lastGroundedPosition = new CharacterSpawnPoint()
+                    {
+                        position = transform.position,
+                        faceToRight = faceRight
+                    };
+                    _lastGroundedPosition = lastGroundedPosition;
+                }
                 AudioManager.Instance.PlaySFX(EClipIndex.JUMP, transform.position);
                 _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
                 _jumpBufferCounter = 0f;
@@ -569,6 +580,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
     public void ActivateInvisible()
     {
         _isInvisible = true;
+        _invisibilityTicks = 0.0f;
     }
 
     public void DeactivateInvisible()
@@ -580,7 +592,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
     {
         if (_stats.HasInvisibility)
         {
+            _invisibilityTicks = 0.0f;
             _isInvisible = !_isInvisible;
+            if (_isInvisible)
+                Stats.Manite.Current -= 35;
         }
     }
 
@@ -624,6 +639,12 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
     {
         transform.position = _lastSpawnPosition.position;
         FlipTo(_lastSpawnPosition.faceToRight ? 1 : -1);
+    }
+
+    public void RespawnOnLastGroundedPosition()
+    {
+        transform.position = _lastGroundedPosition.position;
+        FlipTo(_lastGroundedPosition.faceToRight ? 1 : -1);
     }
 
     private void CollisionChecks()
