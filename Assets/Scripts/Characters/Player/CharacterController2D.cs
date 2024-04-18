@@ -183,7 +183,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
         Jump();
         Dash();
         CollisionChecks();
-        if (_onLadder)
+        if (_onLadder && !GetComponent<GroundPound>().IsGroundPound)
             _rb.gravityScale = 0;
         else
         {
@@ -300,7 +300,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
         {
             if (!(_isDashing || _isHit || (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)))
                 _rb.velocity = new Vector2(_deltaX * _data.Speed, _rb.velocity.y);
-            if (_onLadder)
+            if (_onLadder && !GetComponent<GroundPound>().IsGroundPound)
                 _rb.velocity = new Vector2(_rb.velocity.x, _deltaY * _data.Speed);
         }
         // interpolate the camera towards where the player is currently moving if they are moving?
