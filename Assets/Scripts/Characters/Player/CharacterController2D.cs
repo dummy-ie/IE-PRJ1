@@ -6,7 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour, ISaveable
+public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
 {
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
@@ -285,7 +285,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             _dashSpeed = _data.DashOriginalSpeed;
             UpdateDashDuration();
             if (!_isDashing)
-                AudioManager.Instance.PlaySFX(EClipIndex.MANITE_DASH);
+                AudioManager.Instance.PlaySFX(EClipIndex.MANITE_DASH, transform.position);
             _isDashing = true;
             _aerialDash = false;
 
@@ -319,7 +319,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             if (_isGrounded = IsGrounded())
             {
                 if (!_extraJump)
-                    AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING);
+                    AudioManager.Instance.PlaySFX(EClipIndex.JUMP_LANDING, transform.position);
                 _coyoteTimeCounter = _data.CoyoteTime;
                 _extraJump = true; // refresh double jump
                 _aerialDash = true; //refresh aerialDash
@@ -344,7 +344,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable
             // Jump if the buffer counter is active AND if coyote time is active OR you have an extra jump AND you can double jump
             if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || (_extraJump && _data.AllowDoubleJump)))
             {
-                AudioManager.Instance.PlaySFX(EClipIndex.JUMP);
+                AudioManager.Instance.PlaySFX(EClipIndex.JUMP, transform.position);
                 _rb.velocity = new Vector2(_rb.velocity.x, _data.JumpForce);
                 _jumpBufferCounter = 0f;
 

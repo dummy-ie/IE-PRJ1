@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a0e702cc2e85e488381c416cf68a76, type: 3}
   m_Name: Underground Middle
   m_EditorClassIdentifier: 
+  sceneBGM: {fileID: 11400000, guid: 972d7b17344dbfe48b1bfcb17a377087, type: 2}
+  sceneType: 0
   SceneReference:
     m_AssetGUID: 5771f2c2b9a571840b8b141c33f83f98
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  spawnPoints:
+    defaultSpawnPoint:
+      key: default
+      position: {x: 0, y: 0}
+      faceToRight: 0
+    spawnPoints: []
