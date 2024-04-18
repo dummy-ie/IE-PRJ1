@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: adc0af77e14f9154992a862fd7b61c48, type: 2}
   _targetPlayer: {fileID: 0}
+  _currentHealth: 0
   _targetLoc: {x: 0, y: 0, z: 0}
   floatingValueX: 2
   floatingValueY: 6
