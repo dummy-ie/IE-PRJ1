@@ -7,7 +7,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : Singleton<SceneLoader> {
+public class SceneLoader : Singleton<SceneLoader>
+{
 
     public struct TransitionData
     {
@@ -27,6 +28,9 @@ public class SceneLoader : Singleton<SceneLoader> {
     {
         get { return _activeScene; }
     }
+
+    private AsyncOperationHandle<SceneData> _sceneDataAssetHandle;
+
     private AssetReference _activeSceneReference;
     public AssetReference ActiveSceneReference
     {
@@ -36,14 +40,15 @@ public class SceneLoader : Singleton<SceneLoader> {
     {
         LoadSceneWithoutFade(_mainMenuReference, new TransitionData());
     }
-    public void LoadSceneWithoutFade(string sceneName) { 
+    public void LoadSceneWithoutFade(string sceneName)
+    {
         _sceneName = sceneName;
         SceneManager.LoadScene(_sceneName);
     }
 
     public void LoadSceneWithoutFade(AssetReference sceneData, TransitionData transitionData)
     {
-        _activeSceneReference = sceneData;
+        /*_activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
@@ -51,11 +56,13 @@ public class SceneLoader : Singleton<SceneLoader> {
                 StartCoroutine(SceneLoad((SceneData)sceneData.Asset, transitionData));
             else
                 Debug.LogError($"{sceneData.RuntimeKey}.");
-        };
+        };*/
+        _activeSceneReference = sceneData;
+        StartCoroutine(SceneLoad(LoadScene(sceneData), transitionData));
     }
     public void LoadSceneWithFade(AssetReference sceneData, TransitionData transitionData)
     {
-        _activeSceneReference = sceneData;
+        /*_activeSceneReference = sceneData;
         AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
@@ -63,15 +70,19 @@ public class SceneLoader : Singleton<SceneLoader> {
                 StartCoroutine(SceneLoadWithFade((SceneData)sceneData.Asset, transitionData));
             else
                 Debug.LogError($"{sceneData.RuntimeKey}.");
-        };
+        };*/
+        _activeSceneReference = sceneData;
+        StartCoroutine(SceneLoadWithFade(LoadScene(sceneData), transitionData));
     }
-    private IEnumerator FadeAndLoadScene() {
+    private IEnumerator FadeAndLoadScene()
+    {
         yield return ScreenFader.Instance.FadeOut();
         SceneManager.LoadScene(_sceneName);
         yield return ScreenFader.Instance.FadeIn();
     }
 
-    private IEnumerator FadeAndLoadAsyncScene() {
+    private IEnumerator FadeAndLoadAsyncScene()
+    {
         yield return ScreenFader.Instance.FadeOut();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_sceneName);
         while (!asyncLoad.isDone)
@@ -82,7 +93,8 @@ public class SceneLoader : Singleton<SceneLoader> {
         yield return ScreenFader.Instance.FadeIn();
     }
 
-    public void LoadScene(string sceneName, bool async = false) {
+    public void LoadScene(string sceneName, bool async = false)
+    {
         _sceneName = sceneName;
         if (async)
             StartCoroutine(FadeAndLoadAsyncScene());
@@ -92,6 +104,9 @@ public class SceneLoader : Singleton<SceneLoader> {
     private IEnumerator SceneLoad(SceneData sceneData, TransitionData transitionData)
     {
         Debug.Log("Loading Scene...");
+
+        if (_sceneDataAssetHandle.IsValid())
+            Addressables.ReleaseInstance(_sceneDataAssetHandle);
 
         _activeScene = sceneData;
         transitionData.currentScene = _activeScene;
@@ -110,19 +125,28 @@ public class SceneLoader : Singleton<SceneLoader> {
     {
         Debug.Log("Loading Scene...");
 
+        if (_sceneDataAssetHandle.IsValid())
+            Addressables.ReleaseInstance(_sceneDataAssetHandle);
+
         _activeScene = sceneData;
         transitionData.currentScene = _activeScene;
 
         //yield return ScreenFader.Instance.FadeOut();
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
-        
+
         while (!handle.IsDone)
         {
             yield return null;
         }
 
         OnSceneLoad(transitionData);
+    }
+
+    private SceneData LoadScene(AssetReference sceneReference)
+    {
+        _sceneDataAssetHandle = sceneReference.LoadAssetAsync<SceneData>();
+        return _sceneDataAssetHandle.WaitForCompletion();
     }
 
     private void OnSceneLoad(TransitionData transitionData)
