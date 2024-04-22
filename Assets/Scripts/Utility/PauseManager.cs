@@ -37,11 +37,11 @@ public class PauseManager : Singleton<PauseManager>
 
     void OnEnable()
     {
-        InputManager.Instance.PauseEvent += OnPauseGame;
+        InputReader.Instance.PauseEvent += OnPauseGame;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.PauseEvent -= OnPauseGame;
+        InputReader.Instance.PauseEvent -= OnPauseGame;
     }
 }

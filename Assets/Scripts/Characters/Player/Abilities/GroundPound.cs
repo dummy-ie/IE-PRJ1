@@ -22,7 +22,7 @@ public class GroundPound : AAbility
     [SerializeField]
     private float groundPoundFallMultiplier = 8.0f;
 
-    private InputAction _groundPoundAction => InputManager.Instance.InputActions.Gameplay.GroundPound;
+    private InputAction _groundPoundAction => InputReader.Instance.InputActions.Gameplay.GroundPound;
 
     private void OnPressGroundPound()
     {

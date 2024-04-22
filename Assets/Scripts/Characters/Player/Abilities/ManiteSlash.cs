@@ -22,7 +22,7 @@ public class ManiteSlash : AAbility
     [Range(0, 5)]
     private int slashSpawnDistance = 1;
 
-    private InputAction _maniteSlashAction => InputManager.Instance.InputActions.Gameplay.ManiteSlash;
+    private InputAction _maniteSlashAction => InputReader.Instance.InputActions.Gameplay.ManiteSlash;
 
     void Update()
     {

@@ -7,38 +7,11 @@ public class AudioManager : Singleton<AudioManager>, IOnSceneLoad
     public AudioSource _bgmSource;
     public AudioSource SFXSource;
 
-    private float _sfxVolume = 1.0f;
-    public float SFXVolume { get { return _sfxVolume; } set { _sfxVolume = value; } }
-
-    private float _masterVolume = 1.0f;
-
     [SerializeField]
     private AudioObject _bgmTheme;
 
     [SerializeField]
     private List<AudioObject> _sfxObjects = new List<AudioObject>();
-
-    public float GetMasterVolume()
-    {
-        return _masterVolume;
-    }
-    public void SetMasterVolume(float value)
-    {
-        _masterVolume = value;
-        AudioListener.volume = _masterVolume;
-    }
-
-    private float _musicVolume = 1.0f;
-
-    public float GetMusicVolume()
-    {
-        return _musicVolume;
-    }
-    public void SetMusicVolume(float value)
-    {
-        _musicVolume = value;
-        _bgmSource.volume = _musicVolume;
-    }
 
     public void PlaySFX(EClipIndex index, Vector3 position)
     {
@@ -73,21 +46,6 @@ public class AudioManager : Singleton<AudioManager>, IOnSceneLoad
         this._bgmSource.Stop();
     }
 
-    public void LoadVolumeSettings()
-    {
-        SetMasterVolume(PlayerPrefs.GetFloat("masterVolume"));
-        SetMusicVolume(PlayerPrefs.GetFloat("musicVolume"));
-        SFXVolume = PlayerPrefs.GetFloat("sfxVolume");
-    }
-
-    public void SaveVolumeSettings()
-    {
-        PlayerPrefs.SetFloat("masterVolume", _masterVolume);
-        PlayerPrefs.SetFloat("musicVolume", _musicVolume);
-        PlayerPrefs.SetFloat("sfxVolume", _sfxVolume);
-        PlayerPrefs.Save();
-    }
-
     private void Start()
     {
         this._bgmSource = transform.Find("BGM").GetComponent<AudioSource>();
@@ -97,16 +55,6 @@ public class AudioManager : Singleton<AudioManager>, IOnSceneLoad
         //this._sfxSource = this.transform.Find("SFX").GetComponent<AudioSource>();
 
         this._bgmSource.Play();
-
-        if (!PlayerPrefs.HasKey("masterVolume"))
-        {
-            PlayerPrefs.SetFloat("masterVolume", 1);
-            PlayerPrefs.SetFloat("musicVolume", 1);
-            PlayerPrefs.SetFloat("sfxVolume", 1);
-            LoadVolumeSettings();
-        }
-        else
-            LoadVolumeSettings();
     }
 
     public void OnSceneLoad(SceneLoader.TransitionData transitionData)

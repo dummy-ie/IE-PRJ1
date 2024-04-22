@@ -28,12 +28,12 @@ public class PlayerInteract : MonoBehaviour
 
     void OnEnable()
     {
-        InputManager.Instance.InteractEvent += Interact;
+        InputReader.Instance.InteractEvent += Interact;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.InteractEvent -= Interact;
+        InputReader.Instance.InteractEvent -= Interact;
     }
 
     private void Interact()

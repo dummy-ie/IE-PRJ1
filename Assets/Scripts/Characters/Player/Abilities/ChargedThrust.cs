@@ -20,7 +20,7 @@ public class ChargedThrust : AAbility
     [SerializeField]
     Collider2D attackHitbox;
 
-    private InputAction _chargedThrustAction => InputManager.Instance.InputActions.Gameplay.ChargedThrust;
+    private InputAction _chargedThrustAction => InputReader.Instance.InputActions.Gameplay.ChargedThrust;
 
     private void OnPressChargedThrust()
     {

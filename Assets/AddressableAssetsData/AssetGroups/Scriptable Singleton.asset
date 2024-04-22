@@ -18,13 +18,19 @@ MonoBehaviour:
   m_GUID: b071e3291e7a9b544b26b90d3e778098
   m_SerializeEntries:
   - m_GUID: 1fbcbf40dfc8ff74a8fb8b6b3b45227a
-    m_Address: InputManager
+    m_Address: InputReader
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable Singleton
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16d7530281b310a419c77bad228d1a1b
     m_Address: DataManager
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable Singleton
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87398b1df1e89a84db30d70f1351ae80
+    m_Address: GameAudioSettings
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable Singleton

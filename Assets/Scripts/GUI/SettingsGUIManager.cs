@@ -9,54 +9,52 @@ public class SettingsGUIManager : MonoBehaviour
     [SerializeField]
     AssetReference _mainMenuSceneReference;
 
+    [SerializeField]
+    AssetReference _rebindSceneReference;
+
     [SerializeField] private Button _backButton;
+    // Temporary
+    [SerializeField] private Button _rebindButton;
     [SerializeField] private Slider _master;
     [SerializeField] private Slider _music;
     [SerializeField] private Slider _sfx;
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("masterVolume"))
-        {
-            _master.value = 1;
-            _music.value = 1;
-            _sfx.value = 1;
-        }
-        else
-            LoadVolumeSettings();
-
         LoadVolumeSettings();
-
         _backButton.onClick.AddListener(OnBackButtonClicked);
+        _rebindButton.onClick.AddListener(OnRebindButtonClicked);
     }
 
     void LoadVolumeSettings()
     {
-        _master.value = AudioManager.Instance.GetMasterVolume();
-        _music.value = AudioManager.Instance.GetMusicVolume();
-        _sfx.value = AudioManager.Instance.SFXVolume;
+        _master.value = GameAudioSettings.Instance.GetMasterVolume();
+        _music.value = GameAudioSettings.Instance.GetMusicVolume();
+        _sfx.value = GameAudioSettings.Instance.GetSFXVolume();
     }
 
     public void ChangeMasterVolume()
     {
-        AudioManager.Instance.SetMasterVolume(_master.value);
-        AudioManager.Instance.SaveVolumeSettings();
+        GameAudioSettings.Instance.SetMasterVolume(_master.value);
     }
 
     public void ChangeBGMVolume()
     {
-        AudioManager.Instance.SetMusicVolume(_music.value);
-        AudioManager.Instance.SaveVolumeSettings();
+        GameAudioSettings.Instance.SetMusicVolume(_music.value);
     }
 
     public void ChangeSFXVolume()
     {
-        AudioManager.Instance.SFXVolume = _sfx.value;
-        AudioManager.Instance.SaveVolumeSettings();
+        GameAudioSettings.Instance.SetSFXVolume(_sfx.value);
     }
 
     void OnBackButtonClicked()
     {
         SceneLoader.Instance.LoadSceneWithFade(_mainMenuSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
+    }
+
+    void OnRebindButtonClicked()
+    {
+        SceneLoader.Instance.LoadSceneWithFade(_rebindSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
     }
 }

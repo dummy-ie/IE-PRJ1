@@ -201,26 +201,26 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
             _stats.Manite.CurrentChanged += HUDManager.Instance.SetManiteValue;
         }
 
-        InputManager.Instance.MoveEvent += ReadMoveInput;
+        InputReader.Instance.MoveEvent += ReadMoveInput;
 
-        InputManager.Instance.JumpEvent += OnJump;
-        InputManager.Instance.JumpEventCanceled += OnJumpCancelled;
+        InputReader.Instance.JumpEvent += OnJump;
+        InputReader.Instance.JumpEventCanceled += OnJumpCancelled;
 
-        InputManager.Instance.DashEvent += OnDash;
+        InputReader.Instance.DashEvent += OnDash;
 
-        InputManager.Instance.InvisibilityEvent += OnPressInvisibility;
+        InputReader.Instance.InvisibilityEvent += OnPressInvisibility;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.MoveEvent -= ReadMoveInput;
+        InputReader.Instance.MoveEvent -= ReadMoveInput;
 
-        InputManager.Instance.JumpEvent -= OnJump;
-        InputManager.Instance.JumpEventCanceled -= OnJumpCancelled;
+        InputReader.Instance.JumpEvent -= OnJump;
+        InputReader.Instance.JumpEventCanceled -= OnJumpCancelled;
 
-        InputManager.Instance.DashEvent -= OnDash;
+        InputReader.Instance.DashEvent -= OnDash;
 
-        InputManager.Instance.InvisibilityEvent -= OnPressInvisibility;
+        InputReader.Instance.InvisibilityEvent -= OnPressInvisibility;
     }
 
     public void FlipTo(int facingDirection)

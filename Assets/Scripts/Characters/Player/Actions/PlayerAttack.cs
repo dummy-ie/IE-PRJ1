@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     Collider2D attackHitbox;
 
-    private InputAction _attackAction => InputManager.Instance.InputActions.Gameplay.Attack;
+    private InputAction _attackAction => InputReader.Instance.InputActions.Gameplay.Attack;
 
     // Start is called before the first frame update
     void Start()
