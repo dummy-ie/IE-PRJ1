@@ -15,7 +15,10 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
 
     [SerializeField] private AttackData _aoeSlash;
     [SerializeField] private GameObject _projectileSlash;
-    [SerializeField] private GameObject _smashSpikes;
+    [SerializeField] private GameObject _smashSpikes1;
+    [SerializeField] private GameObject _smashSpikes2;
+    [SerializeField] private GameObject _smashSpikes3;
+    [SerializeField] private GameObject _shockwaveSprite;
     [SerializeField] private AttackData _backhandSwing;
     [SerializeField] private AttackData _forehandSwing;
     [SerializeField] private AttackData _shockwave;
@@ -29,7 +32,8 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
     [SerializeField] private float _backhandSwingTime = 2.0f;
     [SerializeField] private float _forehandSwingTime = 2.0f;
     [SerializeField] private float _jumpSlashTime = 3.0f;
-    [SerializeField] private float _firstAttackPatternTime = 7.0f;
+    [SerializeField] private float _firstAttackPatternTime = 14.0f;
+    [SerializeField] private float _secondAttackPatternTime = 14.0f;
     [SerializeField] private float _idleTime = 5.0f;
 
     private PreBattleState _preBattleState;
@@ -91,6 +95,9 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
         {
             _ticks = 0.0f;
             _patternCount = Random.Range(0, 4);
+            _entity._smashSpikes1.SetActive(false);
+            _entity._smashSpikes2.SetActive(false);
+            _entity._smashSpikes3.SetActive(false);
         }
 
         public override void Execute()
@@ -134,7 +141,6 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
         private bool _performedSecondSpike;
         private bool _performedThirdSpike;
 
-        private float _spikeOffset = 3.0f;
         public FirstAttackState(CenturionBehaviour entity) : base(entity) { }
         public override void Enter()
         {
@@ -185,15 +191,35 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
                 _performedSecondAttack = true;
             }
 
+            //TODO: BETTER DIRECTIONAL TRACKING: Entity does not track the player in different directions
+            //SPIKE ATTACK works in hitbox but for some reason spikes do not render.
+            // Did not edit the normal attacks but I suggest to rework it to become friendlier to just a raw hitbox instead of raycasting the hitbox.
+
             if (!_performedFirstSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime)
             {
                 PerformAttack(_entity._aoeSlash);
-                
+                _entity._smashSpikes1.SetActive(true);
+                Debug.Log("Spike1 Slash");
                 _performedFirstSpike = true;
+            }
+
+            if (!_performedSecondSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime + _entity._secondSpikeTime)
+            {
+                _entity._smashSpikes2.SetActive(true);
+                 Debug.Log("Spike2 Slash");
+                _performedSecondSpike = true;
+            }
+
+            if (!_performedThirdSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime + _entity._secondSpikeTime + _entity._thirdSpikeTime)
+            {
+                Debug.Log("Spike3 Slash");
+                _entity._smashSpikes3.SetActive(true);
+                _performedThirdSpike = true;
             }
 
             if (_elapsedTime >= _entity._firstAttackPatternTime)
             {
+                Debug.Log("Entity exceeded elapsed time.");
                 _entity.SwitchState(_entity._idleState);
             }
         }
@@ -225,13 +251,94 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
     public class SecondAttackState : StateBase
     {
         public SecondAttackState(CenturionBehaviour entity) : base(entity) { }
+         private float _elapsedTime;
+
+        private bool _performedFirstAttack;
+        private bool _performedSecondAttack;
+        private bool _performedFirstSpike;
+        private bool _performedSecondSpike;
+        private bool _performedThirdSpike;
+
+        private float _spikeOffset = 3.0f;
         public override void Enter()
         {
+            Debug.Log("hello no.2");
+            _entity.rb.velocity = Vector2.zero;
+            _elapsedTime = 0.0f;
+            _performedFirstAttack = false;
+            _performedSecondAttack = false;
+            _performedFirstSpike = false;
+            _performedSecondSpike = false;
+            _performedThirdSpike = false;
         }
 
         public override void Execute()
         {
-            _entity.SwitchState(_entity._idleState);
+            _elapsedTime += Time.deltaTime;
+
+            if (!_performedFirstAttack && _elapsedTime >= _entity._initialSlashTime)
+            {
+                Debug.Log("Initial Slash");
+                PerformAttack(_entity._initialSlash);
+                _performedFirstAttack = true;
+            }
+
+            if (!_performedSecondAttack && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime)
+            {
+                PerformAttack(_entity._initialSlash);
+                _performedSecondAttack = true;
+            }
+
+            if (!_performedFirstSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime)
+            {
+                PerformAttack(_entity._aoeSlash);
+                _entity._smashSpikes1.SetActive(true);
+                Debug.Log("Spike1 Slash");
+                _performedFirstSpike = true;
+            }
+
+            if (!_performedSecondSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime + _entity._secondSpikeTime)
+            {
+                _entity._smashSpikes2.SetActive(true);
+                 Debug.Log("Spike2 Slash");
+                _performedSecondSpike = true;
+            }
+
+            if (!_performedThirdSpike && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime + _entity._firstSpikeTime + _entity._secondSpikeTime + _entity._thirdSpikeTime)
+            {
+                Debug.Log("Spike3 Slash");
+                _entity._smashSpikes3.SetActive(true);
+                _performedThirdSpike = true;
+            }
+
+            if (_elapsedTime >= _entity._secondAttackPatternTime)
+            {
+                Debug.Log("Entity exceeded elapsed time.");
+                _entity.SwitchState(_entity._idleState);
+            }
+        }
+
+        private void PerformAttack(AttackData attack)
+        {
+            int facingRight = 1;
+            if (!_entity._isFacingRight)
+                facingRight = -1;
+            RaycastHit2D[] hits;
+            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * facingRight,
+                attack.attackCollision.y);
+            hits = Physics2D.BoxCastAll(origin,
+                new Vector2(attack.attackCollision.width, attack.attackCollision.height), 0,
+                Vector2.zero, 0);
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    hit.collider.GetComponent<CharacterController2D>()
+                        .StartHit(hitData);
+                }
+            }
         }
     }
 
@@ -266,6 +373,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
         public DeathState(CenturionBehaviour entity) : base(entity) { }
         public override void Enter()
         {
+            Destroy(this._entity.gameObject);
         }
 
         public override void Execute()
