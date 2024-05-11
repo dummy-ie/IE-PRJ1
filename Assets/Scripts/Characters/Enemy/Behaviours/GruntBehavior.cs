@@ -1,5 +1,7 @@
 
 using UnityEngine;
+using Pathfinding;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class GruntBehavior : EnemyBase<GruntBehavior>
 {
@@ -18,6 +20,7 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
     private PatrolState _patrolState;
     private ActivatedState _activeState;
     private MoveState _moveState;
+    private FollowTargetState _followTargetState;
     private ShootState _shootState;
 
     public void ActivateBoss(){
@@ -65,18 +68,93 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
         this._playerTarget = target;
     }
 
+    private bool ShouldFollowTarget() => _visionBehaviour.PlayerSeen && FollowEnabled;
+
     void Start()
     {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
+        IsJumping = false;
+        IsInAir = false;
+        isJumpOnCooldown = false;
+
+        _playerTarget = GameObject.FindGameObjectWithTag("Player");
+
         _idleState = new IdleState(this);
         _deathState = new DeathState(this);
         _patrolState = new PatrolState(this);
         _shootState = new ShootState(this);
         _moveState = new MoveState(this);
+        _followTargetState = new FollowTargetState(this);
         _activeState = new ActivatedState(this);
 
-        SwitchState(_idleState);
+        InvokeRepeating("UpdatePath", 0f, PathUpdateSeconds);
 
+        SwitchState(_idleState);
     }
+
+    private void UpdatePath()
+    {
+        if (ShouldFollowTarget() && seeker.IsDone())
+        {
+            seeker.StartPath(rb.position, _playerTarget.transform.position, OnPathComplete);
+        }
+    }
+
+    private void PathFollow()
+    {
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+            return;
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * Speed;
+
+        if (JumpEnabled && IsGrounded() && !IsInAir && !isJumpOnCooldown)
+        {
+            if (direction.y > JumpNodeHeightRequirement)
+            {
+                IsJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, JumpForce);
+                StartCoroutine(JumpCooldown());
+
+            }
+        }
+
+        if (IsGrounded())
+        {
+            IsJumping = false;
+            IsInAir = false;
+        }
+        else
+        {
+            IsInAir = true;
+        }
+
+        rb.velocity = new Vector2(force.x, rb.velocity.y);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        if (distance < NextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+
+        if (DirectionLookEnabled)
+        {
+            if (rb.velocity.x > 0.05f)
+            {
+                transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (rb.velocity.x < -0.05f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
+    }
+
+    
 
     public abstract class StateBase : EntityState<GruntBehavior>
     {
@@ -183,17 +261,24 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
 
             if(_entity._visionBehaviour.PlayerSeen == false){
 
-                _entity.SwitchState(_entity._moveState);
+                //_entity.SwitchState(_entity._moveState);
 
             }
+            // pathfinding prototype
+            else if (_entity.ShouldFollowTarget())
+            {
+                _entity.SwitchState(_entity._followTargetState);
+            }
 
-            else{
+
+            /*else{
                 _entity.SwitchState(_entity._shootState);
-            }
+            }*/
         }
 
     }
 
+     // TODO : move this state to patrol state so it can follow target if it sees while moving
     public class MoveState : StateBase{
 
         bool goToPointB = false;
@@ -208,8 +293,8 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
             _entity.CheckHealth();
 
             if(goToPointB == false){
-                    Vector2 pos = new(_entity.transform.position.x - (_entity.GetDirection(_entity._patrolTarget) * _entity._speed), 0.0f);
-                    _entity.transform.position = Vector2.MoveTowards(_entity._rb.transform.position, pos, Time.deltaTime * _entity._speed);
+                    Vector2 pos = new(_entity.transform.position.x - (_entity.GetDirection(_entity._patrolTarget)/* * _entity.Speed*/), 0.0f);
+                    _entity.transform.position = Vector2.MoveTowards(_entity.rb.transform.position, pos, Time.deltaTime * _entity.Speed);
 
                     if(fTicks >= fTimeInterval){
                         fTicks = 0.0f;
@@ -223,8 +308,8 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
                     
             else if(goToPointB == true){
 
-                Vector2 pos2 = new(_entity.transform.position.x + (_entity.GetDirection(_entity._patrolTarget2) * _entity._speed), 34.0f);
-                _entity.transform.position = Vector2.MoveTowards(_entity._rb.transform.position, pos2, Time.deltaTime * _entity._speed);
+                Vector2 pos2 = new(_entity.transform.position.x + (_entity.GetDirection(_entity._patrolTarget2)/* * _entity.Speed*/), 34.0f);
+                _entity.transform.position = Vector2.MoveTowards(_entity.rb.transform.position, pos2, Time.deltaTime * _entity.Speed);
 
                 if(fTicks >= fTimeInterval){
                     fTicks = 0.0f;
@@ -234,6 +319,33 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
                 fTicks += 0.05f;
 
                 _entity.SwitchState(_entity._patrolState);
+            }
+        }
+    }
+
+    public class FollowTargetState : StateBase
+    {
+
+        bool goToPointB = false;
+        float fTimeInterval = 150.0f;
+
+        float fTicks = 0.0f;
+
+        public FollowTargetState(GruntBehavior entity) : base(entity) { }
+
+        public override void Enter()
+        {
+            Debug.LogWarning("FOLLOWING TARGET");
+        }
+
+        public override void Execute()
+        {
+            _entity.PathFollow();
+            if (!_entity.ShouldFollowTarget())
+            {
+                Debug.LogWarning("stio folginwfing");
+                _entity.SwitchState(_entity._idleState);
+                return;
             }
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
+using Pathfinding;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable where TEnemy : EnemyBase<TEnemy>
@@ -17,10 +18,10 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
         public bool parriable;
     }
 
-    protected Rigidbody2D _rb;
-    public Rigidbody2D rb
+    protected Rigidbody2D rb;
+    public Rigidbody2D RB
     {
-        get { return _rb; }
+        get { return rb; }
     }
 
     [SerializeField]
@@ -32,10 +33,6 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
 
     [SerializeField]
     protected int _damageBuff;
-
-
-    [SerializeField]
-    protected int _speed = 1;
 
     protected Collider2D _visionCollider;
 
@@ -67,6 +64,27 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
     [SerializeField] private int _particleDropsOnHit = 3;
     [SerializeField] private int _particleDropsOnDeath = 7;
 
+    [Header("Pathfinding")]
+    public float PathUpdateSeconds = 0.5f;
+
+    [Header("Physics")]
+    public float Speed = 100f, JumpForce = 100f;
+    public float NextWaypointDistance = 3f;
+    public float JumpNodeHeightRequirement = 0.8f;
+    public float JumpModifier = 0.3f;
+    public float JumpCheckOffset = 0.1f;
+
+    [Header("Custom Behavior")]
+    public bool FollowEnabled = true;
+    public bool JumpEnabled = true, IsJumping, IsInAir;
+    public bool DirectionLookEnabled = true;
+
+    protected Path path;
+    protected int currentWaypoint = 0;
+    protected Seeker seeker;
+
+    protected bool isJumpOnCooldown = false;
+
     //private PatrolState _patrolState;
     //private DeathState _deathState;
 
@@ -95,7 +113,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
     {
         Vector2 vec = new Vector2(transform.position.x - source.position.x, transform.position.y - source.position.y);
         vec.Normalize();
-        _rb.AddForce(vec * 5, ForceMode2D.Impulse);
+        rb.AddForce(vec * 5, ForceMode2D.Impulse);
     }
 
     public bool IsGrounded()
@@ -105,7 +123,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
 
     void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
         _currentHealth = _enemyData.Health;
         //_mat = GetComponent<SpriteRenderer>().material;
@@ -129,5 +147,21 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
     {
         this._currentHealth += healthBuff;
         this._damageBuff = damageBuff;
+    }
+
+    protected void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    protected IEnumerator JumpCooldown()
+    {
+        isJumpOnCooldown = true;
+        yield return new WaitForSeconds(1f);
+        isJumpOnCooldown = false;
     }
 }

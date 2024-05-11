@@ -225,8 +225,8 @@ public class Gunship : EnemyBase<Gunship>
             _entity.CheckHealth();
 
             if(goToPointB == false){
-                    Vector2 pos = new(_entity.transform.position.x - (_entity.GetDirection(_entity._patrolObject) * _entity._speed), 34.0f);
-                    _entity.transform.position = Vector2.MoveTowards(_entity._rb.transform.position, pos, Time.deltaTime * _entity._speed);
+                    Vector2 pos = new(_entity.transform.position.x - (_entity.GetDirection(_entity._patrolObject) * _entity.Speed), 34.0f);
+                    _entity.transform.position = Vector2.MoveTowards(_entity.rb.transform.position, pos, Time.deltaTime * _entity.Speed);
 
                     if(_entity.transform.position.x <= _entity._patrolObject.transform.position.x){
                         goToPointB = true;
@@ -237,8 +237,8 @@ public class Gunship : EnemyBase<Gunship>
                     
             else if(goToPointB == true){
 
-                Vector2 pos2 = new(_entity.transform.position.x + (_entity.GetDirection(_entity._patrolObject2) * _entity._speed), 34.0f);
-                _entity.transform.position = Vector2.MoveTowards(_entity._rb.transform.position, pos2, Time.deltaTime * _entity._speed);
+                Vector2 pos2 = new(_entity.transform.position.x + (_entity.GetDirection(_entity._patrolObject2) * _entity.Speed), 34.0f);
+                _entity.transform.position = Vector2.MoveTowards(_entity.rb.transform.position, pos2, Time.deltaTime * _entity.Speed);
 
                 if(_entity.transform.position.x >= _entity._patrolObject2.transform.position.x){
                     goToPointB = false;
