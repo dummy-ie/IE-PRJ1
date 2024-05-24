@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a93bf6ca3e46bc47aaad0cc10983d5a, type: 3}
+  m_Name: GameGraphicsSettings
+  m_EditorClassIdentifier: 
+  resolutionPrefsKey: selectedResolution
+  defaultResolutionIndex: 0
+  screenResolutions:
+  - {x: 1920, y: 1080}
+  - {x: 1680, y: 1050}
+  - {x: 1280, y: 1024}
+  - {x: 1280, y: 960}
+  - {x: 1280, y: 720}
+  - {x: 1024, y: 768}
+  - {x: 800, y: 600}
+  - {x: 640, y: 480}
+  brightnessPrefsKey: selectedBrightness
+  defaultBrightnessValue: 0.5
+  fullScreenPrefsKey: isFullScreen
+  defaultFullScreenValue: 1
+  verticalSyncPrefsKey: isVerticalSync
+  defaultVerticalSyncValue: 1

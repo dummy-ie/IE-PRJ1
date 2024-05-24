@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable Singleton
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8e2729973cb5114291ae9976516ecf7
+    m_Address: GameGraphicsSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable Singleton
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 115f19d285b496f4f96f027e57d0bf4d, type: 2}
   m_SchemaSet:
