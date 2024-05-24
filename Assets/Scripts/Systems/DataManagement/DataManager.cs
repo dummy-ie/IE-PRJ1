@@ -65,11 +65,14 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         writer.Write(json);
     }
 
-    public void LoadRepository(int selectedSave)
+    public void SetSelectedSave(int selectedSave)
+    {
+        this._selectedSave = selectedSave;
+    }
+
+    public void LoadRepository()
     {
         Debug.Log("--LOADING REPOSITORY--");
-
-        this._selectedSave = selectedSave;
 
         string loadPath = this._savePath + "SaveData_" + this._selectedSave + ".json";
 
@@ -82,17 +85,23 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
             reader.Close();
 
             Debug.Log(json);
-            
+
             this._dataRepository = JsonConvert.DeserializeObject<DataRepository>(json);
 
         }
         else
         {
-            Debug.Log("Save File "+ this._selectedSave +" does not exist");
-            this._dataRepository = new();
+            Debug.Log("Save File " + this._selectedSave + " does not exist");
         }
 
         //this._dataRepository.RefreshData();
+    }
+
+    public void NewRepository()
+    {
+        Debug.Log("--CREATING NEW REPOSITORY--");
+
+        this._dataRepository = new();
     }
 
     public void SaveAll()
