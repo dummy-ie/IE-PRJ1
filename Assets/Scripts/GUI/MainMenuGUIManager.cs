@@ -16,6 +16,7 @@ public class MainMenuGUIManager : MonoBehaviour
 
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _loadButton;
+    [SerializeField] private Button _extrasButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _quitButton;
 
@@ -32,6 +33,7 @@ public class MainMenuGUIManager : MonoBehaviour
     {
         _playButton.onClick.AddListener(OnPlayButtonClicked);
         _loadButton.onClick.AddListener(OnLoadButtonClicked);
+        _extrasButton.onClick.AddListener(OnExtrasButtonClicked);
         _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         _quitButton.onClick.AddListener(OnQuitButtonClicked);
 
@@ -53,6 +55,10 @@ public class MainMenuGUIManager : MonoBehaviour
     {
         isMakingNewGame = false;
         ToggleSaves();
+        
+    }
+
+    void OnExtrasButtonClicked(){
         
     }
 

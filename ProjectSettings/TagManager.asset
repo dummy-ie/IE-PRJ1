@@ -16,6 +16,8 @@ TagManager:
   - SceneConnection
   - SceneBounds
   - SpawnPoint
+  - PlayerUI
+  - LoadUI
   layers:
   - Default
   - TransparentFX
