@@ -5332,14 +5332,6 @@ PrefabInstance:
       propertyPath: _inputBinding.m_Groups
       value: ;Gamepad
       objectReference: {fileID: 0}
-    - target: {fileID: 4221889610032358869, guid: dbf3950b4275c9d4ab8441142d702c23, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4221889610032358869, guid: dbf3950b4275c9d4ab8441142d702c23, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 4762037545086168255, guid: dbf3950b4275c9d4ab8441142d702c23, type: 3}
       propertyPath: m_Name
       value: MoveRebindUI
