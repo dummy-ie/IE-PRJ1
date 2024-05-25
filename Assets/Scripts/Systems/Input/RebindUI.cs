@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -29,16 +30,16 @@ public class RebindUI : MonoBehaviour
     [Header("UI Fields")]
     [SerializeField]
     private TextMeshProUGUI _actionText;
-    [SerializeField]
-    private Button _rebindButton;
-    [SerializeField]
-    private TextMeshProUGUI _rebindText;
+    public Button RebindButton;
+    public TextMeshProUGUI RebindText;
     [SerializeField]
     private Button _resetButton;
 
+    public UnityEvent<RebindUI, string, string, string> UpdateBindingUIEvent;
+
     private void OnEnable()
     {
-        _rebindButton.onClick.AddListener(() => StartRebind());
+        RebindButton.onClick.AddListener(() => StartRebind());
         _resetButton.onClick.AddListener(() => ResetToDefault());
 
         if (_inputActionReference != null)
@@ -79,25 +80,38 @@ public class RebindUI : MonoBehaviour
         }
     }
 
-    private void UpdateDisplay()
+    public void UpdateDisplay()
     {
-        if (_actionText != null)
-            _actionText.text = _actionName;
+        var displayString = string.Empty;
+        var deviceLayoutName = default(string);
+        var controlPath = default(string);
 
-        if (_rebindText != null)
+        if (_inputActionReference.action != null)
+        {
+            displayString = _inputActionReference.action.GetBindingDisplayString(_bindingIndex, out deviceLayoutName, out controlPath);
+        }
+
+        if (_actionText != null)
+        {
+            _actionText.text = _actionName;
+        }
+
+        if (RebindText != null)
         {
             if (Application.isPlaying)
             {
-                _rebindText.text = InputRebinder.Instance.GetBindingName(_actionName, _bindingIndex);
+                RebindText.text = InputRebinder.Instance.GetBindingName(_actionName, _bindingIndex);
             }
             else
-                _rebindText.text = _inputActionReference.action.GetBindingDisplayString(_bindingIndex);
+                RebindText.text = displayString;
         }
+
+        UpdateBindingUIEvent?.Invoke(this, displayString, deviceLayoutName, controlPath);
     }
 
     private void StartRebind()
     {
-        InputRebinder.Instance.StartInteractiveRebind(_actionName, _bindingIndex, _rebindText, _excludeMouse, _allowDuplicate);
+        InputRebinder.Instance.StartInteractiveRebind(_actionName, _bindingIndex, RebindText, _excludeMouse, _allowDuplicate);
     }
 
     private void ResetToDefault()
