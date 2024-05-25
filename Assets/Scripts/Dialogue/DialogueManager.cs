@@ -19,7 +19,7 @@ public class DialogueManager : Singleton<DialogueManager>
         get { return dialogueIsPlaying; }
     }
 
-    private bool submitPressed;
+    private InputAction _submitAction => InputReader.Instance.InputActions.Gameplay.Submit;
 
     void Start()
     {
@@ -29,14 +29,14 @@ public class DialogueManager : Singleton<DialogueManager>
 
     void Update()
     {
-        if (!dialogueIsPlaying)
-            return;
-
-
-        if (GetSubmitPressed())
+        if (_submitAction.WasPressedThisFrame())
         {
             ContinueStory();
         }
+
+
+        if (!dialogueIsPlaying)
+            return;
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -67,31 +67,4 @@ public class DialogueManager : Singleton<DialogueManager>
         else
             StartCoroutine(ExitDialogueMode());
     }
-
-
-    public void SubmitPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log("Pressed Stuff");
-            submitPressed = true;
-        }
-        else if (context.canceled)
-        {
-            submitPressed = false;
-        }
-    }
-
-    public bool GetSubmitPressed()
-    {
-        bool result = submitPressed;
-        submitPressed = false;
-        return result;
-    }
-
-    public void RegisterSubmitPressed()
-    {
-        submitPressed = false;
-    }
-
 }
