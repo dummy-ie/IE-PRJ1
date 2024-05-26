@@ -54,7 +54,7 @@ public class MainMenuGUIManager : CanvasMenu
     {
         activeScreen = null;
         isEnabled = true;
-        _mainGroup.FadeGroup(true, 0.3f);
+        _mainGroup.FadeGroup(true, UIUtility.TransitionTime);
     }
     private void CloseMenu()
     {

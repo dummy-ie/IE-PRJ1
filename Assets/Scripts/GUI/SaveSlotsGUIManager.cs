@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -11,19 +12,23 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
 
     [SerializeField] private CanvasGroup _canvasGroup;
 
-    [SerializeField] private Button _slot1Button;
-    [SerializeField] private Button _slot2Button;
-    [SerializeField] private Button _slot3Button;
+    [SerializeField] private List<Button> _slotButtons = new List<Button>();
+    [SerializeField] private List<Button> _clearButtons = new List<Button>();
 
     public event System.Action OnMenuDisable;
 
-    private bool isMakingNewGame = false;
     // Start is called before the first frame update
     void Start()
     {
-        _slot1Button.onClick.AddListener(OnSlot1ButtonClicked);
-        _slot2Button.onClick.AddListener(OnSlot2ButtonClicked);
-        _slot3Button.onClick.AddListener(OnSlot3ButtonClicked);
+        _slotButtons[0].onClick.AddListener(OnSlot1ButtonClicked);
+        _slotButtons[1].onClick.AddListener(OnSlot2ButtonClicked);
+        _slotButtons[2].onClick.AddListener(OnSlot3ButtonClicked);
+
+        _clearButtons[0].onClick.AddListener(OnClear1ButtonClicked);
+        _clearButtons[1].onClick.AddListener(OnClear2ButtonClicked);
+        _clearButtons[2].onClick.AddListener(OnClear3ButtonClicked);
+
+        LoadSaves();
     }
 
     void OnSlot1ButtonClicked()
@@ -44,20 +49,55 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
         InitializeGame(3);
     }
 
+
+    void OnClear1ButtonClicked()
+    {
+        Debug.Log("Slot 1 Cleared");
+        ClearSave(1);
+    }
+
+    void OnClear2ButtonClicked()
+    {
+        Debug.Log("Slot 2 Cleared");
+        ClearSave(2);
+    }
+
+    void OnClear3ButtonClicked()
+    {
+        Debug.Log("Slot 3 Cleared");
+        ClearSave(3);
+    }
+
     void InitializeGame(int slotNum)
     {
-        if (isMakingNewGame)
+        AssetReference _newGameSceneReference = _gameSceneReference;
+
+        DataRepository tempRepo;
+
+        DataManager.Instance.LoadRepository(slotNum);
+        if (DataManager.Instance.CheckSaveExists(slotNum))
+            _newGameSceneReference = new AssetReference(DataManager.Instance.Repository.SavedScene);
+        SceneLoader.Instance.LoadSceneWithFade(_newGameSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
+    }
+
+
+
+    void LoadSaves()
+    {
+        int i = 1;
+        foreach (Button slot in _slotButtons)
         {
-            DataManager.Instance.SetSelectedSave(slotNum);
-            DataManager.Instance.NewRepository();
-            SceneLoader.Instance.LoadSceneWithFade(_gameSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
+            TMP_Text buttonText = slot.gameObject.GetComponentInChildren<TMP_Text>();
+            if (DataManager.Instance.CheckSaveExists(i)) buttonText.text = "Load Save " + i;
+            else buttonText.text = "Empty";
+            i++;
         }
-        else
-        {
-            DataManager.Instance.SetSelectedSave(slotNum);
-            DataManager.Instance.LoadRepository();
-            SceneLoader.Instance.LoadSceneWithFade(new AssetReference(DataManager.Instance.Repository.SavedScene), new SceneLoader.TransitionData { spawnPoint = "default" });
-        }
+    }
+
+    void ClearSave(int slotNum)
+    {
+        DataManager.Instance.DeleteSaveFile(slotNum);
+        LoadSaves();
     }
 
     public void ActivateMenu()

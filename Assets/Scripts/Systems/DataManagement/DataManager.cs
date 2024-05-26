@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.Util;
@@ -70,13 +71,14 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         this._selectedSave = selectedSave;
     }
 
-    public void LoadRepository()
+    public void LoadRepository(int slotNum)
     {
         Debug.Log("--LOADING REPOSITORY--");
 
-        string loadPath = this._savePath + "SaveData_" + this._selectedSave + ".json";
+        string loadPath = this._savePath + "SaveData_" + slotNum + ".json";
 
-        if (File.Exists(loadPath))
+
+        if (CheckSaveExists(slotNum))
         {
             using StreamReader reader = new StreamReader(loadPath);
             Debug.Log("Loading data from " + loadPath);
@@ -87,14 +89,36 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
             Debug.Log(json);
 
             this._dataRepository = JsonConvert.DeserializeObject<DataRepository>(json);
-
         }
         else
         {
             Debug.Log("Save File " + this._selectedSave + " does not exist");
+            NewRepository();
         }
 
+        SetSelectedSave(slotNum);
+
         //this._dataRepository.RefreshData();
+    }
+
+    public bool CheckSaveExists(int slotNum)
+    {
+        Debug.Log("--CHECKING FILE--");
+        Debug.Log("save path ->" + this._savePath);
+        string loadPath = this._savePath + "SaveData_" + slotNum + ".json";
+        Debug.Log(loadPath);
+
+        return File.Exists(loadPath) ? true : false;
+    }
+
+    public void DeleteSaveFile(int slotNum)
+    {
+        Debug.Log("--DELETING FILE--");
+
+        string path = this._savePath + "SaveData_" + slotNum + ".json";
+
+        FileUtil.DeleteFileOrDirectory(path);
+        AssetDatabase.Refresh();
     }
 
     public void NewRepository()

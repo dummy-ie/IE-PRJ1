@@ -26,6 +26,18 @@ public class DataRepository
         get { return _savedSceneGUID; }
         set { _savedSceneGUID = value; }
     }
+ 
+    public struct SaveInfo
+    {
+        public int playerHealth;
+        public int playerManite;
+        public string biomeText;
+        public DateTime lastPlayed;
+        public Time timeElapsed;
+    }
+
+    [JsonProperty]
+    SaveInfo saveInfo;
 
     public void AddData<T>(T newData) where T : BaseData
     {
