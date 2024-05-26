@@ -10,7 +10,7 @@ using TMPro;
 /// A Scriptable Singleton that handles events on player input.
 /// </summary>
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Singletons/InputReader")]
-public class InputReader : ScriptableSingleton<InputReader>, Controls.IGameplayActions, GameInitializer.IInitializableSingleton//, Controls.IUIActions
+public class InputReader : ScriptableSingleton<InputReader>, Controls.IGameplayActions, GameInitializer.IInitializableSingleton, Controls.IMenuActions
 {
     public void Initialize()
     {
@@ -27,30 +27,39 @@ public class InputReader : ScriptableSingleton<InputReader>, Controls.IGameplayA
     public event Action InvisibilityEvent;
     public event Action PauseEvent;
 
+    public event Action MenuCloseEvent;
+
     private void OnEnable()
     {
         if (InputActions == null)
         {
             InputActions = new Controls();
+
             InputActions.Gameplay.SetCallbacks(this);
+            InputActions.Menu.SetCallbacks(this);
         }
-        InputActions.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        InputActions.Gameplay.Disable();
+        DisableAllInput();
     }
 
     public void EnableGameplayInput()
     {
-        InputActions.UI.Disable();
+        InputActions.Menu.Disable();
         InputActions.Gameplay.Enable();
+    }
+
+    public void EnableMenuInput()
+    {
+        InputActions.Menu.Enable();
+        InputActions.Gameplay.Disable();
     }
 
     public void DisableAllInput() {
         InputActions.Gameplay.Disable();
-        InputActions.UI.Disable();
+        InputActions.Menu.Disable();
     }
 
     #region GameplayInput
@@ -130,6 +139,50 @@ public class InputReader : ScriptableSingleton<InputReader>, Controls.IGameplayA
     {
         if (context.phase == InputActionPhase.Started)
             PauseEvent?.Invoke();
+    }
+    #endregion
+
+    #region MenuInput
+    void Controls.IMenuActions.OnNavigate(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnSubmit(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnCancel(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            MenuCloseEvent?.Invoke();
+    }
+
+    void Controls.IMenuActions.OnClick(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnPoint(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnRightClick(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnScrollWheel(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnMiddleClick(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnTrackedDeviceOrientation(InputAction.CallbackContext context)
+    {
+    }
+
+    void Controls.IMenuActions.OnTrackedDevicePosition(InputAction.CallbackContext context)
+    {
     }
     #endregion
 }
