@@ -3,116 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
+using DG;
+using DG.Tweening;
 
-public class MainMenuGUIManager : MonoBehaviour
+public class MainMenuGUIManager : CanvasMenu
 {
-    [SerializeField]
-    AssetReference _gameSceneReference;
-    
-    [SerializeField]
-    AssetReference _settingsSceneReference;
+    [SerializeField] private CanvasGroup _mainGroup;
 
-    [SerializeField] private Canvas _mainButtons;
+    [SerializeField] private SaveSlotsGUIManager _saveSlots;
+    [SerializeField] private OptionsGUIManager _options;
+    [SerializeField] private ExtrasGUIManager _extras;
 
     [SerializeField] private Button _playButton;
-    [SerializeField] private Button _loadButton;
     [SerializeField] private Button _extrasButton;
-    [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _optionsButton;
     [SerializeField] private Button _quitButton;
 
-    [SerializeField] private Canvas _saveSlots;
+    public IMenuScreen activeScreen;
 
-    [SerializeField] private Button _slot1Button;
-    [SerializeField] private Button _slot2Button;
-    [SerializeField] private Button _slot3Button;
-    [SerializeField] private Button _backButton;
-
-    private bool isMakingNewGame = false;
-
-    void Start()
+    private void Awake()
     {
         _playButton.onClick.AddListener(OnPlayButtonClicked);
-        _loadButton.onClick.AddListener(OnLoadButtonClicked);
+        _optionsButton.onClick.AddListener(OnOptionsButtonClicked);
         _extrasButton.onClick.AddListener(OnExtrasButtonClicked);
-        _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         _quitButton.onClick.AddListener(OnQuitButtonClicked);
 
-        _slot1Button.onClick.AddListener(OnSlot1ButtonClicked);
-        _slot2Button.onClick.AddListener(OnSlot2ButtonClicked);
-        _slot3Button.onClick.AddListener(OnSlot3ButtonClicked);
-        _backButton.onClick.AddListener(OnBackButtonClicked);
-
-        _saveSlots.enabled = false;
+        _saveSlots.OnMenuDisable += ActivateMenu;
+        _options.OnMenuDisable += ActivateMenu;
+        _extras.OnMenuDisable += ActivateMenu;
+        InputReader.Instance.MenuCloseEvent += CloseMenu;
+        InputReader.Instance.EnableMenuInput();
     }
 
-    void OnPlayButtonClicked()
+    private void OnDestroy()
     {
-        isMakingNewGame = true;
-        ToggleSaves();
+        InputReader.Instance.MenuCloseEvent -= CloseMenu;
     }
 
-    void OnLoadButtonClicked()
+    void OnPlayButtonClicked() => SwitchToScreen(_saveSlots);
+    void OnOptionsButtonClicked() => SwitchToScreen(_options);
+    void OnExtrasButtonClicked() => SwitchToScreen(_extras);
+    public void SwitchToScreen(IMenuScreen screen)
     {
-        isMakingNewGame = false;
-        ToggleSaves();
-        
+        Debug.Log("Switching");
+        _mainGroup.FadeGroup(false, UIUtility.TransitionTime, screen.ActivateMenu);
+        isEnabled = false;
+        activeScreen = screen;
     }
-
-    void OnExtrasButtonClicked(){
-        
-    }
-
-    void OnSettingsButtonClicked()
+    public void ActivateMenu()
     {
-        SceneLoader.Instance.LoadSceneWithFade(_settingsSceneReference, new SceneLoader.TransitionData {spawnPoint = "default"});
-
+        activeScreen = null;
+        isEnabled = true;
+        _mainGroup.FadeGroup(true, 0.3f);
     }
-
-    void OnSlot1ButtonClicked()
+    private void CloseMenu()
     {
-        Debug.Log("Slot 1 Selected");
-        InitializeGame(1);
+        activeScreen?.DeactivateMenu();
     }
-
-    void OnSlot2ButtonClicked()
-    {
-        Debug.Log("Slot 2 Selected");
-        InitializeGame(2);
-    }
-
-    void OnSlot3ButtonClicked()
-    {
-        Debug.Log("Slot 3 Selected");
-        InitializeGame(3);
-    }
-
-    void OnBackButtonClicked()
-    {
-        ToggleSaves();
-    }
-
-    void InitializeGame(int slotNum)
-    {
-        if (isMakingNewGame)
-        {
-            DataManager.Instance.SetSelectedSave(slotNum);
-            DataManager.Instance.NewRepository();
-            SceneLoader.Instance.LoadSceneWithFade(_gameSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
-        }
-        else
-        {
-            DataManager.Instance.SetSelectedSave(slotNum);
-            DataManager.Instance.LoadRepository();
-            SceneLoader.Instance.LoadSceneWithFade(new AssetReference(DataManager.Instance.Repository.SavedScene), new SceneLoader.TransitionData { spawnPoint = "default" });
-        }
-    }
-
-    void ToggleSaves()
-    {
-        _saveSlots.enabled = !_saveSlots.enabled;
-        _mainButtons.enabled = !_mainButtons.enabled;
-    }
-
     void OnQuitButtonClicked()
     {
 #if UNITY_EDITOR

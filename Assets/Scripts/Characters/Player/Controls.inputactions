@@ -1,5 +1,5 @@
 {
-    "name": "Stuck in Between",
+    "name": "Controls",
     "maps": [
         {
             "name": "Gameplay",
@@ -585,7 +585,7 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "Menu",
             "id": "08938613-0b82-4f83-9d8b-8b80b8331eea",
             "actions": [
                 {
