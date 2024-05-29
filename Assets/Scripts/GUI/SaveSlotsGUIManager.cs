@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,7 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
 
     [SerializeField] private List<Button> _slotButtons = new List<Button>();
     [SerializeField] private List<Button> _clearButtons = new List<Button>();
+    [SerializeField] private List<SaveInfoGUI> _saveInfos = new List<SaveInfoGUI>();
 
     public event System.Action OnMenuDisable;
 
@@ -77,6 +79,7 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
         DataManager.Instance.LoadRepository(slotNum);
         if (DataManager.Instance.CheckSaveExists(slotNum))
             _newGameSceneReference = new AssetReference(DataManager.Instance.Repository.SavedScene);
+        DataManager.Instance.UpdateTimeStarted();
         SceneLoader.Instance.LoadSceneWithFade(_newGameSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
     }
 
@@ -88,10 +91,35 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
         foreach (Button slot in _slotButtons)
         {
             TMP_Text buttonText = slot.gameObject.GetComponentInChildren<TMP_Text>();
-            if (DataManager.Instance.CheckSaveExists(i)) buttonText.text = "Load Save " + i;
-            else buttonText.text = "Empty";
+            if (DataManager.Instance.CheckSaveExists(i))
+            {
+                buttonText.text = "Load Save " + i;
+                LoadSaveInfo(_saveInfos[i-1]);
+            }
+            else
+            {
+                buttonText.text = "Empty";
+                _saveInfos[i - 1].DeactivateMenu();
+            }
             i++;
         }
+    }
+
+    void LoadSaveInfo(SaveInfoGUI saveInfo)
+    { 
+        DataRepository.SaveInfo repositorySaveInfo = new();
+
+        saveInfo.ActivateMenu();
+        saveInfo.HealthText = "Health: " + repositorySaveInfo.playerHealth.ToString();
+        saveInfo.ManiteText = "Manite: " + repositorySaveInfo.playerManite.ToString();
+        saveInfo.BiomeText = "Biome: " + repositorySaveInfo.biomeText;
+
+        TimeSpan time = TimeSpan.FromSeconds(repositorySaveInfo.timeElapsed);
+        string displayTime = time.ToString("hh':'mm':'ss");
+        Debug.Log(displayTime);
+        saveInfo.TimePlayedText = "Time: " + displayTime;
+
+        saveInfo.LastPlayedText = "Last Played: " + repositorySaveInfo.lastPlayed.ToString("yyyy-MM-dd");
     }
 
     void ClearSave(int slotNum)

@@ -11,6 +11,11 @@ public class DataRepository
 {
     [JsonIgnore]
     private Dictionary<string, BaseData> _dataList = new();
+    [JsonIgnore]
+    public Dictionary<string, BaseData> DataList
+    {
+        get { return _dataList; }
+    }
 
     [JsonProperty]
     private Dictionary<string, string> _jsonList = new();
@@ -33,11 +38,11 @@ public class DataRepository
         public int playerManite;
         public string biomeText;
         public DateTime lastPlayed;
-        public Time timeElapsed;
+        public double timeElapsed;
     }
 
     [JsonProperty]
-    SaveInfo saveInfo;
+    public SaveInfo _saveInfo;
 
     public void AddData<T>(T newData) where T : BaseData
     {

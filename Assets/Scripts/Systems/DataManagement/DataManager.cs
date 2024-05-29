@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.PlayerLoop;
 using UnityEngine.ResourceManagement.Util;
 
 [CreateAssetMenu(fileName = "DataManager", menuName = "Scriptable Singletons/DataManager")]
@@ -24,6 +25,8 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
     public DataRepository Repository { get { return _dataRepository; } }
 
     List<BaseData> datas = new List<BaseData>();
+
+    private DateTime _timeStarted;
 
     // Start is called before the first frame update
     public void Initialize()
@@ -52,6 +55,8 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         //return this._dataRepository.DataList[data.ID] as T;
     }
 
+
+
     public void SaveRepository()
     {
         string savePath = this._savePath + "SaveData_" + this._selectedSave + ".json";
@@ -66,29 +71,13 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         writer.Write(json);
     }
 
-    public void SetSelectedSave(int selectedSave)
-    {
-        this._selectedSave = selectedSave;
-    }
-
     public void LoadRepository(int slotNum)
     {
         Debug.Log("--LOADING REPOSITORY--");
 
-        string loadPath = this._savePath + "SaveData_" + slotNum + ".json";
-
-
         if (CheckSaveExists(slotNum))
         {
-            using StreamReader reader = new StreamReader(loadPath);
-            Debug.Log("Loading data from " + loadPath);
-
-            string json = reader.ReadToEnd();
-            reader.Close();
-
-            Debug.Log(json);
-
-            this._dataRepository = JsonConvert.DeserializeObject<DataRepository>(json);
+            this._dataRepository = RetrieveRepository(slotNum);
         }
         else
         {
@@ -99,6 +88,27 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         SetSelectedSave(slotNum);
 
         //this._dataRepository.RefreshData();
+    }
+
+    public DataRepository RetrieveRepository(int slotNum)
+    {
+        string loadPath = this._savePath + "SaveData_" + slotNum + ".json";
+
+        using StreamReader reader = new StreamReader(loadPath);
+        Debug.Log("Loading data from " + loadPath);
+
+        string json = reader.ReadToEnd();
+        reader.Close();
+
+        Debug.Log(json);
+
+        return JsonConvert.DeserializeObject<DataRepository>(json);
+    }
+
+
+    public void SetSelectedSave(int selectedSave)
+    {
+        this._selectedSave = selectedSave;
     }
 
     public bool CheckSaveExists(int slotNum)
@@ -139,8 +149,10 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
 
         this._dataRepository.SavedScene = SceneLoader.Instance.ActiveSceneReference.AssetGUID;
 
-        SaveRepository();
+        UpdateSaveInfo();
+        UpdateTimeStarted();
 
+        SaveRepository();
     }
 
     public void LoadAll()
@@ -151,5 +163,20 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         {
             saver.LoadData();
         }
+    }
+
+    private void UpdateSaveInfo()
+    {
+        PlayerSavableData playerData = (PlayerSavableData)this._dataRepository.DataList["PlayerStats"];
+        this._dataRepository._saveInfo.playerHealth = playerData.Health;
+        this._dataRepository._saveInfo.playerManite = playerData.Manite;
+        this._dataRepository._saveInfo.biomeText = "Biome";
+        this._dataRepository._saveInfo.timeElapsed += DateTime.Now.Subtract(this._timeStarted).TotalSeconds;
+        this._dataRepository._saveInfo.lastPlayed = DateTime.Today;
+    }
+
+    public void UpdateTimeStarted()
+    {
+        this._timeStarted = DateTime.Now;
     }
 }
