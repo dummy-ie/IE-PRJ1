@@ -318,6 +318,119 @@ Transform:
   - {fileID: 1967454225}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &63849161
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101172922811561807, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Name
+      value: LoadingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101172922811561807, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101172922811561807, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_TagString
+      value: LoadUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004811602330311927, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004811602330311927, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a25351b427e61a5468981248965daaaf, type: 3}
 --- !u!1 &77408514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1612,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1902375054}
   _rangeBehaviour: {fileID: 1879256518}
   _wallDetectBehaviour: {fileID: 0}
@@ -1512,6 +1624,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -5378,7 +5502,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 745594669}
   _rangeBehaviour: {fileID: 1716341336}
   _wallDetectBehaviour: {fileID: 0}
@@ -5391,6 +5514,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -6538,7 +6673,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1677277405}
   _rangeBehaviour: {fileID: 92650494}
   _wallDetectBehaviour: {fileID: 0}
@@ -6551,6 +6685,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -12600,7 +12746,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 8268199399036797494}
   _rangeBehaviour: {fileID: 3281103715365620790}
   _wallDetectBehaviour: {fileID: 0}
@@ -12613,6 +12758,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -14204,6 +14361,7 @@ SceneRoots:
   - {fileID: 1834520784699016820}
   - {fileID: 415893456}
   - {fileID: 1929352636}
+  - {fileID: 63849161}
   - {fileID: 163711578}
   - {fileID: 2044071352}
   - {fileID: 28626652}

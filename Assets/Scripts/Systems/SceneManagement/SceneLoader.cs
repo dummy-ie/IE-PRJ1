@@ -21,6 +21,9 @@ public class SceneLoader : Singleton<SceneLoader>
     private AssetReference _mainMenuReference;
     private string _sceneName;
 
+    [SerializeField]
+    private LoadingScreenGUIManager _loadingScreenUI;
+
     private GameObject[] _spawnPoints;
     private GameObject[] sceneConnections;
 
@@ -127,6 +130,8 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         Debug.Log("Loading Scene...");
 
+        this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
+
         if (_sceneDataAssetHandle.IsValid())
             Addressables.ReleaseInstance(_sceneDataAssetHandle);
 
@@ -139,6 +144,7 @@ public class SceneLoader : Singleton<SceneLoader>
 
         while (!handle.IsDone)
         {
+            this._loadingScreenUI.triggerLoadingPanel(true);
             yield return null;
         }
 
@@ -158,5 +164,8 @@ public class SceneLoader : Singleton<SceneLoader>
         {
             obj.OnSceneLoad(transitionData);
         }
+
+        this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
+        this._loadingScreenUI.triggerLoadingPanel(false);
     }
 }

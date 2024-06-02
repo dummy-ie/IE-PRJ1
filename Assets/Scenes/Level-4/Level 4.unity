@@ -238,11 +238,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 141.77003
+      value: 325.4037
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.420002
+      value: -23.147871
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -505,7 +505,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1713091554}
   _rangeBehaviour: {fileID: 689774232}
   _wallDetectBehaviour: {fileID: 0}
@@ -518,6 +517,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -2993,7 +3004,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 967969274}
   _rangeBehaviour: {fileID: 2041641953}
   _wallDetectBehaviour: {fileID: 0}
@@ -3006,6 +3016,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -3407,7 +3429,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1065770527}
   _rangeBehaviour: {fileID: 128685973}
   _wallDetectBehaviour: {fileID: 0}
@@ -3420,6 +3441,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -5129,7 +5162,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 2047101753}
   _rangeBehaviour: {fileID: 1540846596}
   _wallDetectBehaviour: {fileID: 0}
@@ -5142,6 +5174,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -5376,7 +5420,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 766744868}
   _rangeBehaviour: {fileID: 1030288113}
   _wallDetectBehaviour: {fileID: 0}
@@ -5389,6 +5432,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -8851,7 +8906,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1172897601}
   _rangeBehaviour: {fileID: 1827146030}
   _wallDetectBehaviour: {fileID: 0}
@@ -8864,6 +8918,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -9449,7 +9515,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 343838440}
   _rangeBehaviour: {fileID: 929587441}
   _wallDetectBehaviour: {fileID: 0}
@@ -9462,6 +9527,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -9967,6 +10044,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1424041673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424041674}
+  m_Layer: 0
+  m_Name: -----------UI/LOADING-------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424041674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424041673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2142754585}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1455791724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10559,7 +10668,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 2140380065}
   _rangeBehaviour: {fileID: 1798480318}
   _wallDetectBehaviour: {fileID: 0}
@@ -10572,6 +10680,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -10715,7 +10835,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1216622412}
   _rangeBehaviour: {fileID: 1720423711}
   _wallDetectBehaviour: {fileID: 0}
@@ -10728,6 +10847,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -64029,7 +64160,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 753936761}
   _rangeBehaviour: {fileID: 222857088}
   _wallDetectBehaviour: {fileID: 0}
@@ -64042,6 +64172,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -66489,7 +66631,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 2088986525}
   _rangeBehaviour: {fileID: 1206105500}
   _wallDetectBehaviour: {fileID: 0}
@@ -66502,6 +66643,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -67668,6 +67821,108 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 22.130259, y: 2.103899}
   m_EdgeRadius: 0
+--- !u!1001 &2142754584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1424041674}
+    m_Modifications:
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101172922811561807, guid: a25351b427e61a5468981248965daaaf, type: 3}
+      propertyPath: m_Name
+      value: LoadingPanel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a25351b427e61a5468981248965daaaf, type: 3}
+--- !u!224 &2142754585 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1263673646502514615, guid: a25351b427e61a5468981248965daaaf, type: 3}
+  m_PrefabInstance: {fileID: 2142754584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2144283374
 GameObject:
   m_ObjectHideFlags: 0
@@ -68995,7 +69250,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 6713013271109572306}
   _rangeBehaviour: {fileID: 152898064858929362}
   _wallDetectBehaviour: {fileID: 0}
@@ -69008,6 +69262,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -69067,3 +69333,4 @@ SceneRoots:
   - {fileID: 128021862}
   - {fileID: 714419849}
   - {fileID: 1733497905}
+  - {fileID: 1424041674}
