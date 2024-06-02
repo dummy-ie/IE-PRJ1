@@ -57,6 +57,9 @@ public class CheckpointController : MonoBehaviour, ISaveable
             PlayAnimation();
         }
 
+        //yield return new WaitForSeconds(2f);
+        //if (gameObject.name == "Checkpoint (1)") OnInteract();
+
     }
 
     public void LoadData()

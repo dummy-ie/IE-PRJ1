@@ -94,7 +94,7 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
             if (DataManager.Instance.CheckSaveExists(i))
             {
                 buttonText.text = "Load Save " + i;
-                LoadSaveInfo(_saveInfos[i-1]);
+                LoadSaveInfo(i);
             }
             else
             {
@@ -105,9 +105,10 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
         }
     }
 
-    void LoadSaveInfo(SaveInfoGUI saveInfo)
-    { 
-        DataRepository.SaveInfo repositorySaveInfo = new();
+    void LoadSaveInfo(int slotNum)
+    {
+        SaveInfoGUI saveInfo = this._saveInfos[slotNum-1];
+        DataRepository.SaveInfo repositorySaveInfo = DataManager.Instance.RetrieveRepository(slotNum)._saveInfo;
 
         saveInfo.ActivateMenu();
         saveInfo.HealthText = "Health: " + repositorySaveInfo.playerHealth.ToString();
