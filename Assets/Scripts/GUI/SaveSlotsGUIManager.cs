@@ -81,6 +81,7 @@ public class SaveSlotsGUIManager : CanvasMenu, IMenuScreen
             _newGameSceneReference = new AssetReference(DataManager.Instance.Repository.SavedScene);
         DataManager.Instance.UpdateTimeStarted();
         SceneLoader.Instance.LoadSceneWithFade(_newGameSceneReference, new SceneLoader.TransitionData { spawnPoint = "default" });
+        InputReader.Instance.EnableGameplayInput();
     }
 
 
