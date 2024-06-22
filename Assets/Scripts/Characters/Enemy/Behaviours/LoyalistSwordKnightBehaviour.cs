@@ -86,7 +86,7 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
         if (currentWaypoint >= path.vectorPath.Count)
             return;
         
-        FlipTo(_playerTarget.transform.position.x);
+        FlipToGameObject(_playerTarget);
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         float force = _followTargetSpeed * _facingDirection;
@@ -132,7 +132,6 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
         public override void Enter()
         {
-            Debug.Log("ENTER IWDILEO");
             _entity.rb.velocity = Vector2.zero;
             currentTick = 0;
         }
@@ -170,9 +169,8 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
         public override void Enter()
         {
-            Debug.Log("LOYALIST ENTER PATROL");
-            walkTime = UnityEngine.Random.Range(_entity._minPatrolTime, _entity._maxPatrolTime);
-            _entity.Flip(System.Convert.ToBoolean(Random.Range(0, 2)) ? 1 : -1);
+            walkTime = UnityEngine.Random.Range(_entity._minPatrolTime, _entity._maxPatrolTime); // TODO : CREATE A RANGE FLOAT VARIABLE TO EASE MY MIND
+            _entity.RandomizeFlip();
             elapsedTime = 0;
         }
         public override void Execute()
@@ -226,16 +224,17 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             }
 
             // TODO: Add a flip when it hits a wall or a cliff
-            Debug.Log("WAWAW");
+
             _entity.rb.velocity = new Vector2(_entity._facingDirection * _entity._patrolMoveSpeed,
                 _entity.rb.velocity.y);
         }
     }
+    // TODO
     public class DeathState : StateBase
     {
         public DeathState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
     }
-
+    // TODO
     public class HurtState : StateBase
     {
         public HurtState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
@@ -243,17 +242,7 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
     public class FollowTargetState : StateBase
     {
-        bool goToPointB = false;
-        float fTimeInterval = 150.0f;
-
-        float fTicks = 0.0f;
-
         public FollowTargetState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
-
-        public override void Enter()
-        {
-            Debug.LogWarning("FOLLOWING TARGET");
-        }
 
         public override void Execute()
         {
@@ -265,7 +254,6 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             
             if (!_entity.ShouldFollowTarget())
             {
-                Debug.LogWarning("stio folginwfing");
                 _entity.SwitchState(_entity._patrolState);
                 return;
             }
@@ -289,7 +277,7 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             performedSecondSlash = false;
             performedThirdSlash = false;
             elapsedTime = 0;
-            _entity.FlipTo(_entity._playerTarget.transform.position.x); // TODO: Make this into a function so I don't have to type it all
+            _entity.FlipToGameObject(_entity._playerTarget);
             //entity.PlayAnimation("Attack");
         }
 
@@ -323,40 +311,20 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
         private void PerformAttack(AttackData attack)
         {
-            _entity.FlipTo(_entity._playerTarget.transform.position.x);
+            _entity.FlipToGameObject(_entity._playerTarget);
 
             float hitDistance = attack.moveOffset;// * _entity.m_RngStrength.RandomRange();
             RaycastHit2D hit = Physics2D.Raycast(_entity.rb.position, new Vector2(_entity._facingDirection, 0).normalized, hitDistance, _entity._groundLayer);
+            
+            // TODO: POSSIBLY CHANGE THIS SO IT'S A FADE MOVE INSTEAD OF INSTANTLY MOVING THE MODEL
             if (hit)
                 _entity.rb.MovePosition(new Vector2(hit.point.x - (0.5f * _entity._facingDirection * 1.5f/*_entity.bounds.size.x*/), hit.point.y));
             else
                 _entity.rb.MovePosition(new Vector2(_entity.rb.position.x + (hitDistance * _entity._facingDirection), _entity.rb.position.y));
 
-            CastEntityBoxHit(_entity.rb.position + (attack.attackCollision.center * _entity.transform.localScale),
+            CombatUtility.CastEntityBoxHit(_entity.rb.position + (attack.attackCollision.center * _entity.transform.localScale),
                 attack.attackCollision.size, _hits, _entity._playerLayer, attack.damage,
                 new Vector2(attack.knockbackForce.x * _entity._facingDirection, attack.knockbackForce.y));
-        }
-
-        // TODO : PUT THIS INTO A UTILITY CLASS
-        public void CastEntityBoxHit(Vector2 position, Vector2 size, Collider2D[] hits, LayerMask targetLayer, float damage, Vector2 knockbackForce)
-        {
-            int hitsCount = Physics2D.OverlapBoxNonAlloc(position, size, 0, hits, targetLayer);
-            if (hitsCount == 0)
-                return;
-
-            HitData hitData = new HitData(damage, knockbackForce);
-
-            for (int i = 0; i < hitsCount; i++)
-            {
-                Collider2D hit = hits[i];
-                if (hit.gameObject.CompareTag("Player"))
-                {
-                    // TODO : MAKE THE PLAYER BE IHITTABLE TOO
-                    hit.GetComponent<CharacterController2D>().StartHit(hitData);
-                    //if (hit.TryGetComponent<IHittable>(out IHittable hittableTarget))
-                    //hittableTarget.OnHit(hitData);
-                }
-            }
         }
     }
 

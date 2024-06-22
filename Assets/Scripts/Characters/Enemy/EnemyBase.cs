@@ -5,7 +5,7 @@ using UnityEngine.Android;
 using Pathfinding;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable where TEnemy : EnemyBase<TEnemy>
+public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable, IHittable where TEnemy : EnemyBase<TEnemy>
 {
     [System.Serializable]
     protected struct AttackData
@@ -146,6 +146,9 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
             scale.x *= -1;
         transform.localScale = scale;
     }
+
+    protected void RandomizeFlip() => Flip(System.Convert.ToBoolean(Random.Range(0, 2)) ? 1 : -1);
+    protected void FlipToGameObject(GameObject obj) => FlipTo(obj.transform.position.x);
 
     virtual public void Buff(int healthBuff, int damageBuff)
     {
