@@ -44,6 +44,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
     private SecondAmuletState _secondAmuletState;
     private DeathState _deathState;
 
+    private Transform _target;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +56,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
         _secondAmuletState = new SecondAmuletState(this);
         _deathState = new DeathState(this);
 
-        FlipTo();
+        FlipTo(_target.position.x);
         SwitchState(_preBattleState);
     }
 
@@ -167,14 +168,11 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
 
             if (!_performedSecondAttack && _elapsedTime >= _entity._smashSlashTime + _entity._initialSlashTime)
             {
-                int facingRight = 1;
-                if (!_entity._isFacingRight)
-                    facingRight = -1;
                 PerformAttack(_entity._smashSlash);
 
                 GameObject projectile = Instantiate(
                 _entity._projectileSlash,
-                new Vector3(_entity.transform.position.x + 3.0f * facingRight, _entity.transform.position.y, _entity.transform.position.z),
+                new Vector3(_entity.transform.position.x + 3.0f * _entity._facingDirection, _entity.transform.position.y, _entity.transform.position.z),
                 Quaternion.identity);
 
                 var temp = projectile.GetComponent<HorizontalProjectile>();
@@ -182,7 +180,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
                 temp.Damage = 1;
 
                 Vector3 projectileScale = projectile.transform.localScale;
-                projectileScale.y *= -facingRight;
+                projectileScale.y *= -_entity._facingDirection;
                 projectile.transform.localScale = projectileScale;
 
                 // rotate dat bitch
@@ -226,11 +224,8 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
 
         private void PerformAttack(AttackData attack)
         {
-            int facingRight = 1;
-            if (!_entity._isFacingRight)
-                facingRight = -1;
             RaycastHit2D[] hits;
-            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * facingRight,
+            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * _entity._facingDirection,
                 attack.attackCollision.y);
             hits = Physics2D.BoxCastAll(origin,
                 new Vector2(attack.attackCollision.width, attack.attackCollision.height), 0,
@@ -240,7 +235,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * _entity._facingDirection, attack.knockbackForce.y));
                     hit.collider.GetComponent<CharacterController2D>()
                         .StartHit(hitData);
                 }
@@ -320,11 +315,8 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
 
         private void PerformAttack(AttackData attack)
         {
-            int facingRight = 1;
-            if (!_entity._isFacingRight)
-                facingRight = -1;
             RaycastHit2D[] hits;
-            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * facingRight,
+            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * _entity._facingDirection,
                 attack.attackCollision.y);
             hits = Physics2D.BoxCastAll(origin,
                 new Vector2(attack.attackCollision.width, attack.attackCollision.height), 0,
@@ -334,7 +326,7 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * _entity._facingDirection, attack.knockbackForce.y));
                     hit.collider.GetComponent<CharacterController2D>()
                         .StartHit(hitData);
                 }

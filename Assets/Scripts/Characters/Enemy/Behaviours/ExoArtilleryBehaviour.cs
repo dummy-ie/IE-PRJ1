@@ -51,7 +51,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
         _phase1LeapState = new Phase1LeapState(this);
         _damagePhaseState = new DamagePhaseState(this);
         _deathState = new DeathState(this);
-        FlipTo();
+        FlipTo(_target.position.x);
         SwitchState(_preBattleState);
     }
 
@@ -138,13 +138,10 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
             if (_stompTicks >= 1.0f)
             {
-                int facingRight = 1;
-                if (!_entity._isFacingRight)
-                    facingRight = -1;
                 _stompTicks = 0.0f;
                 _stomping = true;
                 _oldPos = _entity.transform.position;
-                _newPos = _entity.transform.position += new Vector3(2.0f * facingRight, 0); ;
+                _newPos = _entity.transform.position += new Vector3(2.0f * _entity._facingDirection, 0); ;
             }
 
             if (_stomping)
@@ -257,9 +254,6 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    int facingRight = 1;
-                    if (!_entity._isFacingRight)
-                        facingRight = -1;
                     HitData hitData = new HitData(attack.damage, attack.knockbackForce);
                     hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
@@ -267,11 +261,8 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
         }
         private void PerformAttack(AttackData attack)
         {
-            int facingRight = 1;
-            if (!_entity._isFacingRight)
-                facingRight = -1;
             RaycastHit2D[] hits;
-            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * facingRight,
+            Vector3 origin = _entity.transform.position + new Vector3(attack.attackCollision.x * _entity._facingDirection,
                 attack.attackCollision.y);
             hits = Physics2D.BoxCastAll(origin,
                 new Vector2(attack.attackCollision.width, attack.attackCollision.height), 0,
@@ -281,7 +272,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * facingRight, attack.knockbackForce.y));
+                    HitData hitData = new HitData(attack.damage, new Vector2(attack.knockbackForce.x * _entity._facingDirection, attack.knockbackForce.y));
                     hit.collider.GetComponent<CharacterController2D>().StartHit(hitData);
                 }
             }
@@ -309,9 +300,6 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
 
             _oldPos = _entity.transform.position;
 
-            int facingRight = 1;
-            if (!_entity._isFacingRight)
-                facingRight = -1;
             if (_entity._phase1Count >= 3)
             {
                 _nextPos = _entity.transform.position + new Vector3(0.0f, 20.0f);
@@ -320,7 +308,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             else
             {
 
-                _nextPos = _entity.transform.position + new Vector3(26 * facingRight, 20.0f);
+                _nextPos = _entity.transform.position + new Vector3(26 * _entity._facingDirection, 20.0f);
                 _nextState = _entity._phase1State;
             }
         }
@@ -339,7 +327,7 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
             {
                 if (_entity.IsGrounded())
                 {
-                    _entity.FlipTo();
+                    _entity.FlipTo(_entity._target.position.x);
                     _entity.SwitchState(_nextState);
                 }
             }

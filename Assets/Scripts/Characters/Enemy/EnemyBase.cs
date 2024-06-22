@@ -38,7 +38,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
 
     private Material _mat;
 
-    protected bool _isFacingRight = true;
+    protected int _facingDirection = 1;
     protected Vector3 _patrolDirection = Vector3.right;
     public Vector3 PatrolDirection
     {
@@ -55,7 +55,7 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
-    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] protected LayerMask _groundLayer;
 
     /** Particle System Test **/
     [SerializeField]
@@ -131,16 +131,20 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable,IHittable
         //_particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    virtual protected void FlipTo()
+    virtual protected void FlipTo(float targetPosition)
     {
-        _isFacingRight = !_isFacingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        float posX = rb.position.x;
+        if ((posX < targetPosition && _facingDirection == -1) || (posX > targetPosition && _facingDirection == 1))
+            Flip(_facingDirection * -1);
     }
-    virtual protected void Flip()
+
+    virtual protected void Flip(int direction)
     {
-        Vector3 localScale = transform.localScale;
-        localScale.x = PatrolDirection.x;
-        transform.localScale = localScale;
+        _facingDirection = direction;
+        Vector3 scale = transform.localScale;
+        if ((scale.x < 0 && _facingDirection == 1) || (scale.x > 0 && _facingDirection == -1))
+            scale.x *= -1;
+        transform.localScale = scale;
     }
 
     virtual public void Buff(int healthBuff, int damageBuff)

@@ -50,8 +50,7 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
         
     }
 
-    public void SetPatrolTarget(GameObject position, int nPoint){
-
+    public void SetPatrolTarget(GameObject position, int nPoint) {
         if(nPoint == 1){
             _patrolTarget = position;
         }
@@ -59,10 +58,7 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
         else {
             _patrolTarget2 = position;
         }
-        
     }
-
-    
 
     public void SetTarget(GameObject target){
         this._playerTarget = target;
@@ -259,10 +255,8 @@ public class GruntBehavior : EnemyBase<GruntBehavior>
 
             _entity.CheckHealth();
 
-            if(_entity._visionBehaviour.PlayerSeen == false){
-
+            if(_entity._visionBehaviour.PlayerSeen == false) {
                 //_entity.SwitchState(_entity._moveState);
-
             }
             // pathfinding prototype
             else if (_entity.ShouldFollowTarget())

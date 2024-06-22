@@ -126,6 +126,7 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
     private void Awake()
     {
         StartCoroutine(LoadBuffer());
+        InputReader.Instance.EnableGameplayInput();
     }
 
     private void Start()
