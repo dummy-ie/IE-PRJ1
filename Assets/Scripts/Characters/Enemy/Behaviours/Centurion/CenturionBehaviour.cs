@@ -61,9 +61,8 @@ public class CenturionBehaviour : EnemyBase<CenturionBehaviour>
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         if (_currentHealth <= 0)
             SwitchState(_deathState);
     }

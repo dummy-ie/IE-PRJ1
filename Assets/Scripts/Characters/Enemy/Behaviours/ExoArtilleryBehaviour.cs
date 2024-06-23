@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using static PlayerData;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
+public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>, IEntityHittable
 {
 
     [SerializeField] AttackData _stompAttack;
@@ -38,9 +38,9 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
     private DeathState _deathState;
 
     public UnityEvent OnDeathEvents;
-    public override void OnHit(Transform source, int damage)
+    public void OnHit(HitData hitData)
     {
-        _currentHealth -= damage;
+        _currentHealth -= (int)hitData.damage;
     }
 
     protected virtual void Start()
@@ -55,12 +55,11 @@ public class ExoArtilleryBehaviour : EnemyBase<ExoArtilleryBehaviour>
         SwitchState(_preBattleState);
     }
 
-    protected override void Update()
+    protected void Update()
     {
         if (_currentHealth <= 0)
             SwitchState(_deathState);
         _bossBar.SetHealth(_currentHealth, _maxHealth);
-        base.Update();
     }
 
     public abstract class StateBase : EntityState<ExoArtilleryBehaviour>

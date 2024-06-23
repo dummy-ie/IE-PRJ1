@@ -35,12 +35,11 @@ public class IsometrusBehaviour : LM40DroneBase<IsometrusBehaviour>, IBuffable, 
     }
 
     // TEMPORARY
-    protected override void Update()
+    protected void Update()
     {
         if (_currentHealth <= 0)
             _results.SetActive(true);
         _bossBar.SetHealth(_currentHealth, _maxHealth);
-        base.Update();
     }
 
     public void TriggerEncounter()

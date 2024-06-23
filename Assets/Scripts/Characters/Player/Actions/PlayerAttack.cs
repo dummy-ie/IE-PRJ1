@@ -75,10 +75,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == 6)
                     break;
-                IHittable handler = hit.collider.gameObject.GetComponent<IHittable>();
+                IEntityHittable handler = hit.collider.gameObject.GetComponent<IEntityHittable>();
                 if (handler != null)
                 {
-                    handler.OnHit(transform, _controller.Data.FirstAttack.Damage);
+                    HitData hitData = new HitData(_controller.Data.FirstAttack.Damage,
+                        new Vector2(_controller.Data.FirstAttack.HorizontalMoveOffset, 0));
+                    handler.OnHit(hitData);
                 }
             }
 

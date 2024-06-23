@@ -13,7 +13,7 @@ public abstract class StateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (currentState != null)
         {

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class CliffDetectBehaviour : MonoBehaviour
 {
-    //[SerializeField]
-    //EnemyBase _enemyScript;
-
     [SerializeField]
     private List<Collider2D> detectedColliders;
+
+    public bool CliffDetected = false;
 
     void Awake()
     {
@@ -19,23 +18,22 @@ public class CliffDetectBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-        //if (collision.gameObject.layer == 6 && _enemyScript.CurrentState == EnemyBase.State.Patrol)
-        //{
-        //detectedColliders.Add(collision);
-
-        //}
+        if (collision.gameObject.layer == 6)
+        {
+            detectedColliders.Add(collision);
+            if (detectedColliders.Count > 0)
+                CliffDetected = false;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         
-        /*if (collision.gameObject.layer == 6 && _enemyScript.CurrentState == EnemyBase.State.Patrol)
+        if (collision.gameObject.layer == 6)
         {
             detectedColliders.Remove(collision);
-            if (_enemyScript.IsGrounded() && detectedColliders.Count == 0)
-            {
-                _enemyScript.PatrolDirection *= -1;
-            }
-        }*/
+            if (detectedColliders.Count == 0)
+                CliffDetected = true;
+        }
     }
 }

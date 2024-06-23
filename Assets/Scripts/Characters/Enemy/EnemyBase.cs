@@ -5,7 +5,7 @@ using UnityEngine.Android;
 using Pathfinding;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable, IHittable where TEnemy : EnemyBase<TEnemy>
+public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable where TEnemy : EnemyBase<TEnemy>
 {
     [System.Serializable]
     protected struct AttackData
@@ -53,16 +53,16 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable, IHittabl
     [SerializeField] protected CliffDetectBehaviour _cliffDetectBehaviour;
 
     [Header("Ground Check Box Cast")]
-    [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
-    [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
+    [Range(0, 5)][SerializeField] protected float _boxCastDistance = 0.4f;
+    [SerializeField] protected Vector2 _boxSize = new(0.3f, 0.4f);
     [SerializeField] protected LayerMask _groundLayer;
 
     /** Particle System Test **/
     [SerializeField]
     private GameObject _particleSystem;
 
-    [SerializeField] private int _particleDropsOnHit = 3;
-    [SerializeField] private int _particleDropsOnDeath = 7;
+    [SerializeField] protected int _particleDropsOnHit = 3;
+    [SerializeField] protected int _particleDropsOnDeath = 7;
 
     [Header("Pathfinding")]
     public float PathUpdateSeconds = 0.5f;
@@ -98,22 +98,6 @@ public class EnemyBase<TEnemy> : EntityStateMachine<TEnemy>, IBuffable, IHittabl
         emission.enabled = true;
         emission.burstCount = particlesDropped;
         particleSystem.Play();
-    }
-
-    virtual public void OnHit(Transform source, int damage)
-    {
-        //Stagger(source);
-        DropParticle(_particleDropsOnHit);
-        _currentHealth -= damage;
-        //StartCoroutine(Blink());
-        Debug.Log("Hit");
-    }
-
-    protected void Stagger(Transform source)
-    {
-        Vector2 vec = new Vector2(transform.position.x - source.position.x, transform.position.y - source.position.y);
-        vec.Normalize();
-        rb.AddForce(vec * 5, ForceMode2D.Impulse);
     }
 
     public bool IsGrounded()

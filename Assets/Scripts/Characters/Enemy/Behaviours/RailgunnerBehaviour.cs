@@ -11,7 +11,6 @@ public class RailgunnerBehaviour : EnemyBase<RailgunnerBehaviour>
 
     [SerializeField] AttackData _attack;
 
-
     [Header("Laser")] [SerializeField] private Transform _target;
     [SerializeField] private LineRenderer _line;
     [SerializeField] private float _timeToShoot = 1.5f;

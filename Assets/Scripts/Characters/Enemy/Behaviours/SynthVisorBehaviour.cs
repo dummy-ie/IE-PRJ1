@@ -1,35 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Pathfinding;
 using UnityEngine;
 
 
-public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehaviour>, IEntityHittable
+public class SynthVisorBehaviour : EnemyBase<SynthVisorBehaviour>, IEntityHittable
 {
     [Header("Attack")]
     [SerializeField] private LayerMask _playerLayer;
+
+    [SerializeField] private GameObject _projectile;
     [SerializeField] private float _attackDuration;
-    [SerializeField] AttackData _firstSlash;
-    [SerializeField] private float _firstSlashTime;
-    [SerializeField] AttackData _secondSlash;
-    [SerializeField] private float _secondSlashTime;
-    [SerializeField] AttackData _thirdSlash;
-    [SerializeField] private float _thirdSlashTime;
+    [SerializeField] private float _firstAttackTime;
+    [SerializeField] private float _secondAttackTime;
+    [SerializeField] private float _thirdAttackTime;
     [SerializeField] private float _attackCooldown;
 
     [Header("Follow Target")]
     [SerializeField] private float _followTargetSpeed;
+    [SerializeField] private float _followWhileAttackSpeed;
+    [SerializeField] private float _backwardSpeed;
 
     [Header("Patrol")]
     [SerializeField, Range(0, 100)] private float _patrolChance;
     [SerializeField, Range(0, 30)] private float _minPatrolTime;
     [SerializeField, Range(0, 30)] private float _maxPatrolTime;
     [SerializeField] private float _patrolMoveSpeed;
-    [SerializeField] private GameObject _patrolTarget;
-    [SerializeField] private GameObject _patrolTarget2;
+
+    private GameObject _playerTarget;
 
     private float _attackCooldownTicks = 0;
     private bool _attackOnCooldown;
-
-    private GameObject _playerTarget;
 
     private DeathState _deathState;
     private IdleState _idleState;
@@ -78,7 +80,10 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
         this._playerTarget = target;
     }
     private bool ShouldFollowTarget() => _visionBehaviour.PlayerSeen && FollowEnabled;
-    private bool TryEnterAttackState() => _rangeBehaviour.InRange && !_attackOnCooldown;
+    // TODO CHANGE EVERYTHING TO DISTANCE INSTEAD OF COLLIDER BEHAVIOURS AND HAVE A DISTANCE TO ATTACK SERIALIZED VARIABLE
+    private bool ShouldFlee() => Vector2.Distance(transform.position, _playerTarget.transform.position) < 4;
+    private bool ShouldFollowWhileAttack() => Vector2.Distance(transform.position, _playerTarget.transform.position) > 6;
+    private bool TryEnterAttackState() => Vector2.Distance(transform.position, _playerTarget.transform.position) < 10;
     private bool ShouldFlip() => _wallDetectBehaviour.WallDetected || (_cliffDetectBehaviour.CliffDetected && IsGrounded());
     private void UpdatePath()
     {
@@ -87,7 +92,6 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             seeker.StartPath(rb.position, _playerTarget.transform.position, OnPathComplete);
         }
     }
-
     public void OnHit(HitData hitData)
     {
         _currentHealth -= (int)hitData.damage;
@@ -136,15 +140,15 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
         }
     }
 
-    public abstract class StateBase : EntityState<LoyalistSwordKnightBehaviour>
+    public abstract class StateBase : EntityState<SynthVisorBehaviour>
     {
-        protected StateBase(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        protected StateBase(SynthVisorBehaviour entity) : base(entity) { }
     }
 
     public class IdleState : StateBase
     {
         private float currentTick;
-        public IdleState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        public IdleState(SynthVisorBehaviour entity) : base(entity) { }
 
         public override void Enter()
         {
@@ -181,7 +185,7 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
         private float elapsedTime;
         private float walkTime;
 
-        public PatrolState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        public PatrolState(SynthVisorBehaviour entity) : base(entity) { }
 
         public override void Enter()
         {
@@ -240,10 +244,8 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             }
 
             // TODO: Add a flip when it hits a wall or a cliff
-            Debug.LogWarning(_entity.IsGrounded());
             if (_entity.ShouldFlip())
             {
-                
                 _entity.Flip(_entity._facingDirection * -1);
             }
 
@@ -251,11 +253,12 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
                 _entity.rb.velocity.y);
         }
     }
+
     // TODO
     public class DeathState : StateBase
     {
         private float elapsedTime;
-        public DeathState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        public DeathState(SynthVisorBehaviour entity) : base(entity) { }
 
         public override void Enter()
         {
@@ -273,12 +276,13 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             }
         }
     }
+
     // TODO
     public class HurtState : StateBase
     {
         private float elapsedTime;
         public HitData lastHitData;
-        public HurtState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        public HurtState(SynthVisorBehaviour entity) : base(entity) { }
         public override void Enter()
         {
             elapsedTime = 0;
@@ -290,14 +294,14 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
         public override void Execute()
         {
             elapsedTime += Time.deltaTime;
-            if (elapsedTime >= 0.6f) 
+            if (elapsedTime >= 0.6f)
                 _entity.SwitchState(_entity._idleState);
         }
     }
 
     public class FollowTargetState : StateBase
     {
-        public FollowTargetState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        public FollowTargetState(SynthVisorBehaviour entity) : base(entity) { }
 
         public override void Execute()
         {
@@ -321,16 +325,12 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
     {
         private Collider2D[] _hits = new Collider2D[8];
         private float elapsedTime;
-        private bool performedFirstSlash;
-        private bool performedSecondSlash;
-        private bool performedThirdSlash;
-        public AttackState(LoyalistSwordKnightBehaviour entity) : base(entity) { }
+        private bool performedFirstAttack;
+        private bool performedSecondAttack;
+        private bool performedThirdAttack;
+        public AttackState(SynthVisorBehaviour entity) : base(entity) { }
         public override void Enter()
         {
-            _entity.rb.velocity = Vector2.zero;
-            performedFirstSlash = false;
-            performedSecondSlash = false;
-            performedThirdSlash = false;
             elapsedTime = 0;
             _entity.FlipToGameObject(_entity._playerTarget);
             //TODO : PLAY ANIMATION STATE
@@ -338,38 +338,59 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
         public override void Execute()
         {
-            elapsedTime += Time.deltaTime;
-
-            if (!performedFirstSlash && elapsedTime >= _entity._firstSlashTime)
+            if (!_entity._attackOnCooldown)
             {
-                PerformAttack(_entity._firstSlash);
-                performedFirstSlash = true;
+                elapsedTime += Time.deltaTime;
+                if (!performedFirstAttack && elapsedTime >= _entity._firstAttackTime)
+                {
+                    PerformAttack();
+                    performedFirstAttack = true;
+                }
+
+                if (!performedSecondAttack && elapsedTime >= _entity._secondAttackTime)
+                {
+                    PerformAttack();
+                    performedSecondAttack = true;
+                }
+
+                if (!performedThirdAttack && elapsedTime >= _entity._thirdAttackTime)
+                {
+                    PerformAttack();
+                    performedThirdAttack = true;
+                }
+
+                if (elapsedTime >= _entity._attackDuration)
+                {
+                    elapsedTime = 0;
+                    _entity._attackOnCooldown = true;
+                    performedFirstAttack = false;
+                    performedSecondAttack = false;
+                    performedThirdAttack = false;
+                }
             }
 
-            if (!performedSecondSlash && elapsedTime >= _entity._secondSlashTime)
-            {
-                PerformAttack(_entity._secondSlash);
-                performedSecondSlash = true;
-            }
+            if (_entity.ShouldFlee())
+                _entity.rb.velocity = new Vector2(-_entity._facingDirection * _entity._backwardSpeed,
+                    _entity.rb.velocity.y);
+            else if (_entity.ShouldFollowWhileAttack())
+                _entity.rb.velocity = new Vector2(_entity._facingDirection * _entity._followWhileAttackSpeed,
+                    _entity.rb.velocity.y);
+            else _entity.rb.velocity = Vector2.zero;
 
-            if (!performedThirdSlash && elapsedTime >= _entity._thirdSlashTime)
-            {
-                PerformAttack(_entity._thirdSlash);
-                performedThirdSlash = true;
-            }
-
-            if (elapsedTime >= _entity._attackDuration)
-            {
+            if (!_entity.TryEnterAttackState())
                 _entity.SwitchState(_entity._idleState);
-            }
         }
 
-        public override void Exit()
+        private void PerformAttack()
         {
-            _entity._attackCooldownTicks = 0.0f;
-            _entity._attackOnCooldown = true;
-        }
+            _entity.FlipToGameObject(_entity._playerTarget);
 
+            GameObject projectile = Instantiate(_entity._projectile, new Vector3(_entity.transform.position.x + 0.2f * _entity._facingDirection, _entity.transform.position.y + 0.1f, _entity.transform.position.z), Quaternion.identity);
+            var temp = projectile.GetComponent<HorizontalProjectile>();
+            projectile.transform.localScale = _entity.transform.localScale;
+            temp.SourcePlayer = _entity.gameObject;
+        }
+        /*
         private void PerformAttack(AttackData attack)
         {
             _entity.FlipToGameObject(_entity._playerTarget);
@@ -379,22 +400,19 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
             
             // TODO: POSSIBLY CHANGE THIS SO IT'S A FADE MOVE INSTEAD OF INSTANTLY MOVING THE MODEL
             if (hit)
-                _entity.rb.MovePosition(new Vector2(hit.point.x - (0.5f * _entity._facingDirection * 1.5f/*_entity.bounds.size.x*/), hit.point.y));
-            else
+                _entity.rb.MovePosition(new Vector2(hit.point.x - (0.5f * _entity._facingDirection * 1.5f/*_entity.bounds.size.x*///), hit.point.y));
+      /*      else
                 _entity.rb.MovePosition(new Vector2(_entity.rb.position.x + (hitDistance * _entity._facingDirection), _entity.rb.position.y));
 
             CombatUtility.CastEntityBoxHit(_entity.rb.position + (attack.attackCollision.center * _entity.transform.localScale),
                 attack.attackCollision.size, _hits, _entity._playerLayer, attack.damage,
                 new Vector2(attack.knockbackForce.x * _entity._facingDirection, attack.knockbackForce.y));
-        }
+        }*/
     }
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position - Vector3.up * _boxCastDistance, _boxSize);
-        DrawAttack(_firstSlash);
-        DrawAttack(_secondSlash);
-        DrawAttack(_thirdSlash);
+
         void DrawAttack(AttackData attack)
         {
             Gizmos.DrawWireCube(transform.position + new Vector3(attack.attackCollision.x, attack.attackCollision.y),
