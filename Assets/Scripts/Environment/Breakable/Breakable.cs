@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : MonoBehaviour, IHittable
+public class Breakable : MonoBehaviour, IEntityHittable
 {
     [SerializeField]
     protected int _health = 3;
@@ -10,7 +10,7 @@ public class Breakable : MonoBehaviour, IHittable
     [SerializeField]
     public InteractableData _breakData;
 
-    public void OnHit(Transform source, int damage)
+    public void OnHit(HitData hitData)
     {
         // Debug.Log(name + " OnHit from: " + source.name);
         if (_health - 1 >= 0)

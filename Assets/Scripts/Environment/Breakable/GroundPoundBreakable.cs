@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundPoundBreakable : MonoBehaviour, IHittable
+public class GroundPoundBreakable : MonoBehaviour, IEntityHittable
 {
     [SerializeField]
     protected int _health = 1;
@@ -14,15 +14,13 @@ public class GroundPoundBreakable : MonoBehaviour, IHittable
     void Start()
     {
     }
-    public void OnHit(Transform source, int damage)
+    public void OnHit(HitData hitData)
     {
-        Debug.Log(name + " OnHit from: " + source.name);
         if (GameObject.FindGameObjectWithTag("Player").GetComponent<GroundPound>() != null)
         {
             Debug.Log("ground pound not null");
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<GroundPound>().IsGroundPound)
             {
-                Debug.Log(name + " hit");
                 if (_health - 1 >= 0)
                     _health--;
 

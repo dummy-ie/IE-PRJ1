@@ -81,12 +81,12 @@ public class GroundPound : AAbility
                 {
                     //if (hit.collider.gameObject.layer == 6)
                     //    break;
-                    IHittable handler = hit.collider.gameObject.GetComponentInParent<IHittable>();
+                    IEntityHittable handler = hit.collider.gameObject.GetComponentInParent<IEntityHittable>();
                     Debug.Log(hit.transform.gameObject.name);
                     if (handler != null)
                     {
                         Debug.Log("hit");
-                        handler.OnHit(transform, 3);
+                        handler.OnHit(new HitData(3, new Vector2(1,0)));
                     }
                 }
                 isGroundPound = false;

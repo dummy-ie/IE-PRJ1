@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>, IOnSceneLoad
+public class AudioManager : Singleton<AudioManager>, IScenePersistable
 {
     public AudioSource _bgmSource;
     public AudioSource SFXSource;

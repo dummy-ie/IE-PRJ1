@@ -6,7 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour, ISaveable, IOnSceneLoad
+public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
 {
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;

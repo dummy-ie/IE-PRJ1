@@ -691,8 +691,9 @@ MonoBehaviour:
   _attackCooldown: 3
   _followTargetSpeed: 3
   _patrolChance: 35
-  _minPatrolTime: 3
-  _maxPatrolTime: 8
+  _patrolTime:
+    min: 3
+    max: 6
   _patrolMoveSpeed: 1.5
   _patrolTarget: {fileID: 7515615774727405101}
   _patrolTarget2: {fileID: 4435236617389711934}

@@ -43,9 +43,9 @@ public class ChargedThrust : AAbility
                     if (hit.collider.gameObject.CompareTag("Breakable"))
                     {
                         //hit.collider.gameObject.GetComponent<EnemyBaseScript>().Hit(gameObject, gameObject.transform.position);
-                        if (hit.collider.TryGetComponent<IHittable>(out var handler))
+                        if (hit.collider.TryGetComponent<IEntityHittable>(out var handler))
                         {
-                            handler.OnHit(transform, 0);
+                            handler.OnHit(new HitData(3, Vector2.zero));
                             Debug.Log("hit obj: " + hit.collider.gameObject.name);
                         }
                     }
