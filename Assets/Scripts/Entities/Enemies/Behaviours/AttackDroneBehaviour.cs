@@ -96,22 +96,7 @@ public class AttackDroneBehaviour : EnemyBase< AttackDroneBehaviour>, IEntityHit
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         float force = _followTargetSpeed * _facingDirection;
 
-        if (JumpEnabled && IsGrounded() && !isJumpOnCooldown)
-        {
-            if (direction.y > JumpNodeHeightRequirement)
-            {
-                IsJumping = true;
-                rb.velocity = new Vector2(rb.velocity.x, JumpForce);
-                StartCoroutine(JumpCooldown());
-            }
-        }
-
-        if (IsGrounded())
-        {
-            IsJumping = false;
-        }
-
-        rb.velocity = new Vector2(force, rb.velocity.y);
+        rb.velocity = new Vector2(force, force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < NextWaypointDistance)
@@ -212,7 +197,7 @@ public class AttackDroneBehaviour : EnemyBase< AttackDroneBehaviour>, IEntityHit
             }
 
             _entity.rb.velocity = new Vector2(_entity._facingDirection * _entity._patrolMoveSpeed,
-                _entity.rb.velocity.y);
+                _entity._facingDirection * _entity._patrolMoveSpeed);
         }
     }
     public class DeathState : StateBase
@@ -299,6 +284,7 @@ public class AttackDroneBehaviour : EnemyBase< AttackDroneBehaviour>, IEntityHit
             if (elapsedTime >= _entity._attackDelay)
             {
                 //PerformAttack();
+                Debug.Log("Attack Drone shoots...");
                 _entity.SwitchState(_entity._idleState);
             }
         }

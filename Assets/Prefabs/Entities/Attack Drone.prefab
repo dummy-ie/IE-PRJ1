@@ -559,8 +559,8 @@ MonoBehaviour:
   JumpCheckOffset: 0.1
   FollowEnabled: 1
   JumpEnabled: 0
-  IsJumping: 1
-  IsInAir: 0
+  IsJumping: 0
+  IsInAir: 1
   DirectionLookEnabled: 1
   _playerLayer:
     serializedVersion: 2
@@ -640,7 +640,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
