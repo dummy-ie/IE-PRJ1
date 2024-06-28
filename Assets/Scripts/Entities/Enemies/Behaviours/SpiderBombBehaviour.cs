@@ -19,9 +19,6 @@ public class SpiderBombBehaviour : EnemyBase<SpiderBombBehaviour>, IEntityHittab
     [SerializeField] private RangeFloat _patrolTime;
     [SerializeField] private float _patrolMoveSpeed;
 
-    private float _attackCooldownTicks = 0;
-    private bool _attackOnCooldown;
-
     private GameObject _playerTarget;
 
     private DeathState _deathState;
@@ -59,7 +56,7 @@ public class SpiderBombBehaviour : EnemyBase<SpiderBombBehaviour>, IEntityHittab
         this._playerTarget = target;
     }
     private bool ShouldFollowTarget() => _visionBehaviour.PlayerSeen && FollowEnabled;
-    private bool TryEnterAttackState() => _rangeBehaviour.InRange && !_attackOnCooldown;
+    private bool TryEnterAttackState() => _rangeBehaviour.InRange;
     private bool ShouldFlip() => _wallDetectBehaviour.WallDetected || (_cliffDetectBehaviour.CliffDetected && IsGrounded());
     private void UpdatePath()
     {
@@ -217,7 +214,7 @@ public class SpiderBombBehaviour : EnemyBase<SpiderBombBehaviour>, IEntityHittab
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= 2)
             {
-                _entity.DropParticle(_entity._particleDropsOnDeath);
+                //play explosion anim
                 Destroy(_entity.gameObject);
             }
         }
@@ -295,8 +292,6 @@ public class SpiderBombBehaviour : EnemyBase<SpiderBombBehaviour>, IEntityHittab
 
         public override void Exit()
         {
-            _entity._attackCooldownTicks = 0.0f;
-            _entity._attackOnCooldown = true;
         }
 
         private void PerformAttack(AttackData attack)

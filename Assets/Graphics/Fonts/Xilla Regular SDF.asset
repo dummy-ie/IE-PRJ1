@@ -979,6 +979,21 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
+  - m_Index: 40
+    m_Metrics:
+      m_Width: 41.984375
+      m_Height: 65.984375
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 65.984375
+      m_HorizontalAdvance: 47.984375
+    m_GlyphRect:
+      m_X: 266
+      m_Y: 272
+      m_Width: 42
+      m_Height: 66
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
@@ -1187,6 +1202,10 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 70
     m_GlyphIndex: 34
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 76
+    m_GlyphIndex: 40
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: -8552074531178805010}
@@ -1398,6 +1417,10 @@ MonoBehaviour:
     m_Y: 353
     m_Width: 61
     m_Height: 85
+  - m_X: 256
+    m_Y: 262
+    m_Width: 61
+    m_Height: 85
   m_FreeGlyphRects:
   - m_X: 43
     m_Y: 0
@@ -1499,10 +1522,6 @@ MonoBehaviour:
     m_Y: 201
     m_Width: 43
     m_Height: 6
-  - m_X: 232
-    m_Y: 262
-    m_Width: 791
-    m_Height: 30
   - m_X: 239
     m_Y: 61
     m_Width: 784
@@ -1523,34 +1542,42 @@ MonoBehaviour:
     m_Y: 548
     m_Width: 809
     m_Height: 475
-  - m_X: 287
-    m_Y: 0
-    m_Width: 736
-    m_Height: 353
-  - m_X: 293
-    m_Y: 0
-    m_Width: 730
-    m_Height: 1023
   - m_X: 207
     m_Y: 353
     m_Width: 25
     m_Height: 49
-  - m_X: 281
-    m_Y: 201
-    m_Width: 742
-    m_Height: 152
   - m_X: 232
     m_Y: 438
     m_Width: 791
     m_Height: 25
-  - m_X: 256
-    m_Y: 262
-    m_Width: 767
-    m_Height: 91
   - m_X: 263
     m_Y: 438
     m_Width: 760
     m_Height: 585
+  - m_X: 232
+    m_Y: 262
+    m_Width: 24
+    m_Height: 30
+  - m_X: 287
+    m_Y: 0
+    m_Width: 736
+    m_Height: 262
+  - m_X: 293
+    m_Y: 347
+    m_Width: 730
+    m_Height: 676
+  - m_X: 317
+    m_Y: 0
+    m_Width: 706
+    m_Height: 1023
+  - m_X: 281
+    m_Y: 201
+    m_Width: 742
+    m_Height: 61
+  - m_X: 256
+    m_Y: 347
+    m_Width: 767
+    m_Height: 6
   m_fontInfo:
     Name: 
     PointSize: 0

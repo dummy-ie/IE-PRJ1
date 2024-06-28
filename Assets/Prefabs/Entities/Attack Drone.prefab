@@ -79,7 +79,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.85, y: -0.85}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 3949324791504699602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -199,7 +199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.95299, y: 1}
+  m_Size: {x: 9.22, y: 6.8997054}
   m_EdgeRadius: 0
 --- !u!114 &3073428040112387144
 MonoBehaviour:
@@ -332,7 +332,7 @@ Transform:
   m_GameObject: {fileID: 5530294378410887866}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,7 +455,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.40844202}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -466,7 +466,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3, y: 1.816884}
+  m_Size: {x: 10.55, y: 8.3}
   m_EdgeRadius: 0
 --- !u!114 &6328381873882838375
 MonoBehaviour:
@@ -490,13 +490,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 356990376798249702}
+  - component: {fileID: 126038317538960970}
   - component: {fileID: 4478638830684088495}
   - component: {fileID: 4962073293594266483}
   - component: {fileID: 8532056608049701934}
-  - component: {fileID: 5210198550407318223}
-  - component: {fileID: 4740882433759443899}
+  - component: {fileID: 9205432348312390861}
   m_Layer: 0
-  m_Name: Spider Bomb
+  m_Name: Attack Drone
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,6 +523,56 @@ Transform:
   - {fileID: 7042532144284471175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &126038317538960970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060218829071539946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9579e81c8941d5b4baa3d6f354e73074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyData: {fileID: 11400000, guid: d7ed34d97157dc7458290f1a232198b0, type: 2}
+  _currentHealth: 0
+  _damageBuff: 0
+  _visionBehaviour: {fileID: 3073428040112387144}
+  _rangeBehaviour: {fileID: 6328381873882838375}
+  _wallDetectBehaviour: {fileID: 8916761016640998918}
+  _cliffDetectBehaviour: {fileID: 8138087796901793253}
+  _boxCastDistance: 0.4
+  _boxSize: {x: 0.3, y: 0.4}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
+  _particleDropsOnHit: 1
+  _particleDropsOnDeath: 4
+  PathUpdateSeconds: 0.5
+  Speed: 10
+  JumpForce: 0
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 0
+  IsJumping: 1
+  IsInAir: 0
+  DirectionLookEnabled: 1
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _attackDelay: 1
+  _attackCooldown: 3
+  _followTargetSpeed: 10
+  _patrolChance: 38.9
+  _patrolTime:
+    min: 2
+    max: 5
+  _patrolMoveSpeed: 5
 --- !u!212 &4478638830684088495
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -637,68 +687,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.003921509, y: 0}
   m_Size: {x: 0.6996765, y: 1.3333334}
   m_Direction: 0
---- !u!114 &5210198550407318223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060218829071539946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d820a1b56189bcf44892360c6abe5a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: 7eb2630fc449fe94790bce23047fcffa, type: 2}
-  _currentHealth: 0
-  _damageBuff: 0
-  _visionBehaviour: {fileID: 3073428040112387144}
-  _rangeBehaviour: {fileID: 6328381873882838375}
-  _wallDetectBehaviour: {fileID: 8916761016640998918}
-  _cliffDetectBehaviour: {fileID: 8138087796901793253}
-  _boxCastDistance: 0.4
-  _boxSize: {x: 0.3, y: 0.4}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
-  _particleDropsOnHit: 1
-  _particleDropsOnDeath: 3
-  PathUpdateSeconds: 0.5
-  Speed: 5
-  JumpForce: 1
-  NextWaypointDistance: 3
-  JumpNodeHeightRequirement: 0.8
-  JumpModifier: 0.3
-  JumpCheckOffset: 0.1
-  FollowEnabled: 1
-  JumpEnabled: 1
-  IsJumping: 0
-  IsInAir: 0
-  DirectionLookEnabled: 1
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  _explosionDelay: 1
-  _explosionAttack:
-    drawGizmos: 1
-    moveOffset: 0
-    attackCollision:
-      serializedVersion: 2
-      x: 0
-      y: 0.59
-      width: 6
-      height: 2.81
-    damage: 20
-    knockbackForce: {x: 15, y: 0}
-    parriable: 0
-  _followTargetSpeed: 5
-  _patrolChance: 20.4
-  _patrolTime:
-    min: 2
-    max: 3
-  _patrolMoveSpeed: 5
---- !u!114 &4740882433759443899
+--- !u!114 &9205432348312390861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
