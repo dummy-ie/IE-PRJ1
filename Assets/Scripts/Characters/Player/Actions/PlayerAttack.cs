@@ -45,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (_controller.CanAttack && _attackAction.WasPressedThisFrame())
         {
+            _controller.GetComponentInChildren<Animator>().Play("attack 1");
             // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
 

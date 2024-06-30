@@ -228,9 +228,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4243640993955781323, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433422045894740116, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191093027715363295, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4863d8f025eda9d4db7310b0717d919e, type: 2}
     - target: {fileID: 6933529248856894337, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954051531114291530, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 211359020, guid: 3c6208d620667654eb7c16b0a944a4d9, type: 3}
+    - target: {fileID: 8262986793799257400, guid: 0c98e961383dbe34f8e00ae67858dc37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

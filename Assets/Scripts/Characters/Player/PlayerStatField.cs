@@ -9,8 +9,6 @@ public class PlayerStatField : ScriptableObject, ISerializationCallbackReceiver
     
     public CheckpointData CheckPointData;
 
-
-
     [Serializable]
     public class PlayerHealthField
     {

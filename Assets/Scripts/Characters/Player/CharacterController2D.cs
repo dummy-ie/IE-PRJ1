@@ -6,11 +6,13 @@ using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
+public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable//, IEntityHittable
 {
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
 #endif
+
+    private Rigidbody2D _rb;
 
     CharacterSpawnPoint _lastSpawnPosition;
     public CharacterSpawnPoint LastSpawnPosition
@@ -40,9 +42,10 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
     PlayerSavableData data;
 
     [Header("Player Render")]
+    [SerializeField] private GameObject _graphicsObject;
     [SerializeField] Animator _animator;
-    [SerializeField] SpriteRenderer _render2D;
-    [SerializeField] MeshRenderer _model3D;
+    [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] MeshRenderer _meshRenderer;
     [SerializeField] private Material _flashMaterial;
 
     private Material _original2DMaterial;
@@ -51,8 +54,6 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
     [Header("Ground Check Box Cast")]
     [Range(0, 5)][SerializeField] private float _boxCastDistance = 0.4f;
     [SerializeField] Vector2 _boxSize = new(0.3f, 0.4f);
-
-    private Rigidbody2D _rb;
 
     private float _deltaX = 0f;
     private float _deltaY = 0f;
@@ -125,17 +126,19 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = _graphicsObject.GetComponent<Animator>();
+        _spriteRenderer = _graphicsObject.GetComponentInChildren<SpriteRenderer>();
+        _meshRenderer = _graphicsObject.GetComponentInChildren<MeshRenderer>();
+
         StartCoroutine(LoadBuffer());
-        InputReader.Instance.EnableGameplayInput();
+        InputReader.Instance.EnableGameplayInput(); // TEMPORARY
     }
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-
-        _original2DMaterial = _render2D.material;
-        _original3DMaterial = _model3D.material;
+        _original2DMaterial = _spriteRenderer.material;
+        _original3DMaterial = _meshRenderer.material;
     }
 
     private void Update()
@@ -147,9 +150,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
         {
             _invisibilityTicks += Time.deltaTime;
 
-            Color color = _render2D.color;
+            Color color = _spriteRenderer.color;
             color.a = 0.5f;
-            _render2D.color = color;
+            _spriteRenderer.color = color;
 
             if (_invisibilityTicks >= InvisibilityTime)
             {
@@ -159,9 +162,9 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
         }
         else
         {
-            Color color = _render2D.color;
+            Color color = _spriteRenderer.color;
             color.a = 1f;
-            _render2D.color = color;
+            _spriteRenderer.color = color;
         }
 
 
@@ -468,14 +471,14 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
 
     public void ShiftTo2D()
     {
-        _render2D.enabled = true;
-        _model3D.enabled = false;
+        _spriteRenderer.enabled = true;
+        _meshRenderer.enabled = false;
     }
 
     public void ShiftTo3D()
     {
-        _render2D.enabled = false;
-        _model3D.enabled = true;
+        _spriteRenderer.enabled = false;
+        _meshRenderer.enabled = true;
     }
 
     public void StartHit(HitData hitData)
@@ -516,13 +519,13 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
     private IEnumerator Blink()
     {
             Debug.Log("Is blinking");
-            _render2D.material = _flashMaterial;
-            _model3D.material = _flashMaterial;
+            _spriteRenderer.material = _flashMaterial;
+            _meshRenderer.material = _flashMaterial;
 
             yield return new WaitForSeconds(Data.invincibilityFlickerChange);
 
-            _render2D.material = _original2DMaterial;
-            _model3D.material = _original3DMaterial;
+            _spriteRenderer.material = _original2DMaterial;
+            _meshRenderer.material = _original3DMaterial;
 
             yield return new WaitForSeconds(Data.invincibilityFlickerChange);
     }
