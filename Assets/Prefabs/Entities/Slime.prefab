@@ -169,7 +169,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: adc0af77e14f9154992a862fd7b61c48, type: 2}
   _currentHealth: 0
   _damageBuff: 0
-  _speed: 1
   _visionBehaviour: {fileID: 0}
   _rangeBehaviour: {fileID: 0}
   _wallDetectBehaviour: {fileID: 0}
@@ -182,7 +181,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
-  _slimeState: 0
+  PathUpdateSeconds: 0.5
+  Speed: 5
+  JumpForce: 1
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
 --- !u!212 &5584740821290689839
 SpriteRenderer:
   m_ObjectHideFlags: 0

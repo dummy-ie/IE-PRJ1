@@ -700,14 +700,19 @@ public class CharacterController2D : MonoBehaviour, ISaveable, IScenePersistable
         Debug.Log(_stats.CheckPointData.PosX);
         _stats.Health.SetMax(_data.MaxHealth);
         _stats.Manite.SetMax(_data.MaxManite);
-        _stats.Health.SetCurrent(data.Health);
-        _stats.Manite.SetCurrent(data.Manite);
+        
         _stats.HasPound = data.HasPound;
         _stats.HasDash = data.HasDash;
         _stats.HasInvisibility = data.HasInvisibility;
         _stats.HasSlash = data.HasSlash;
         _stats.HasThrust = data.HasThrust;
         _stats.Loaded = true;
+
+
+        _stats.Health.SetCurrent(data.Health);
+        _stats.Manite.SetCurrent(data.Manite);
+        HUDManager.Instance.SetHearts(data.Health);
+        HUDManager.Instance.SetManiteValue(data.Manite);
     }
 
     public void SaveData()
