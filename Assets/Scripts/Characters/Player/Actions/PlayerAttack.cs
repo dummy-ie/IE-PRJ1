@@ -12,9 +12,11 @@ public class PlayerAttack : MonoBehaviour
     private Animator _animator;
 
     private bool isAttacking = false;
+    private bool _doNextAttack = false;
     //private float attackDuration = 0.1f;
     private float attackTime;
 
+    private int _attackStringNumber = 0;
     //[SerializeField]
     //private bool canAttack = true;
 
@@ -43,9 +45,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnPressAttack()
     {
-        if (_controller.CanAttack && _attackAction.WasPressedThisFrame())
+        if (!_doNextAttack && _attackAction.WasPressedThisFrame())
+            _doNextAttack = true;
+        if (!isAttacking && _doNextAttack && _attackAction.WasPressedThisFrame())
         {
-            _controller.GetComponentInChildren<Animator>().Play("attack 1");
+            _doNextAttack = false;
+            _controller.GetComponentInChildren<Animator>().Play($"Attack {_attackStringNumber + 1}");
+            _attackStringNumber++;
+            _attackStringNumber = _attackStringNumber % 3;
             // DISABLE INVISIBILITY
             _controller.DeactivateInvisible();
 
@@ -105,6 +112,9 @@ public class PlayerAttack : MonoBehaviour
             attackHitboxVDebug.enabled = false;
             isAttacking = false;
         }
+
+        if (!isAttacking && !_doNextAttack)
+            _attackStringNumber = 0;
     }
 
     void TriggerCooldown()
