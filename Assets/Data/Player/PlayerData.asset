@@ -28,7 +28,7 @@ MonoBehaviour:
   DashCooldown: 0.5
   DashDistance: 4
   FirstAttack:
-    Damage: 1
+    Damage: 10
     Cooldown: 0.3
     Duration: 0.3
     HorizontalMoveOffset: 0

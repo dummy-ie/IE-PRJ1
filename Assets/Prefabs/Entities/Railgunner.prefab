@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedColliders: []
+  CliffDetected: 0
 --- !u!61 &5638163132753483809
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -303,7 +304,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17, y: 1}
+  m_Size: {x: 17, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &3073428040112387144
 MonoBehaviour:
@@ -364,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6db1fd16a435ea48a7e3fd88af188f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallDetected: 0
 --- !u!61 &349638053872648457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -485,7 +487,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 15}
+  m_Size: {x: 12, y: 15}
   m_EdgeRadius: 0
 --- !u!114 &6328381873882838375
 MonoBehaviour:
@@ -510,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 356990376798249702}
   - component: {fileID: 5660472233051159915}
+  - component: {fileID: 8428049134066750603}
   - component: {fileID: 4478638830684088495}
   - component: {fileID: 4962073293594266483}
   - component: {fileID: 8532056608049701934}
@@ -555,12 +558,11 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: 39a738df6c146eb49a6a7b05108d9990, type: 2}
   _currentHealth: 0
   _damageBuff: 0
-  _speed: 1
   _visionBehaviour: {fileID: 3073428040112387144}
   _rangeBehaviour: {fileID: 6328381873882838375}
   _wallDetectBehaviour: {fileID: 8916761016640998918}
   _cliffDetectBehaviour: {fileID: 8138087796901793253}
-  _boxCastDistance: 0.4
+  _boxCastDistance: 0.6
   _boxSize: {x: 0.3, y: 0.4}
   _groundLayer:
     serializedVersion: 2
@@ -568,7 +570,22 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
-  _attack:
+  PathUpdateSeconds: 0.5
+  Speed: 1
+  JumpForce: 1
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _hitscanAttack:
     drawGizmos: 0
     moveOffset: 0
     attackCollision:
@@ -577,13 +594,60 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
-    damage: 15
-    knockbackForce: {x: 5, y: 1}
+    damage: 25
+    knockbackForce: {x: 0, y: 0}
     parriable: 0
-  _target: {fileID: 0}
+  _burstAttack:
+    drawGizmos: 0
+    moveOffset: 0
+    attackCollision:
+      serializedVersion: 2
+      x: 4
+      y: 0
+      width: 7
+      height: 1.5
+    damage: 7
+    knockbackForce: {x: 1, y: 1}
+    parriable: 0
   _line: {fileID: 1601637729005887619}
   _timeToShoot: 1.5
   _rotationSpeed: 25
+  _followTargetSpeed: 5
+  _followWhileAttackSpeed: 0
+  _backwardSpeed: 1.5
+  _patrolChance: 50
+  _patrolTime:
+    min: 3
+    max: 6
+  _patrolMoveSpeed: 1
+--- !u!114 &8428049134066750603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060218829071539946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!212 &4478638830684088495
 SpriteRenderer:
   m_ObjectHideFlags: 0

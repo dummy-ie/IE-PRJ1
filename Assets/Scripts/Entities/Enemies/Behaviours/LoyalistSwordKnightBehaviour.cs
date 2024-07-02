@@ -20,7 +20,7 @@ public class LoyalistSwordKnightBehaviour : EnemyBase<LoyalistSwordKnightBehavio
 
     [Header("Patrol")]
     [SerializeField, Range(0, 100)] private float _patrolChance;
-    [SerializeField] private RangeFloat _patrolTime;
+    [SerializeField, RangedValue(0, 30)] private RangeFloat _patrolTime;
     [SerializeField] private float _patrolMoveSpeed;
 
     private float _attackCooldownTicks = 0;

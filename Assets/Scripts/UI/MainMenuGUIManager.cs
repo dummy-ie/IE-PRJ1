@@ -5,6 +5,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using DG;
 using DG.Tweening;
+using TMPro;
 
 public class MainMenuGUIManager : CanvasMenu
 {
@@ -19,6 +20,8 @@ public class MainMenuGUIManager : CanvasMenu
     [SerializeField] private Button _optionsButton;
     [SerializeField] private Button _quitButton;
 
+    [SerializeField] private TMP_Text _versionText;
+
     public IMenuScreen activeScreen;
 
     private void Awake()
@@ -31,6 +34,9 @@ public class MainMenuGUIManager : CanvasMenu
         _saveSlots.OnMenuDisable += ActivateMenu;
         _options.OnMenuDisable += ActivateMenu;
         _extras.OnMenuDisable += ActivateMenu;
+
+        _versionText.text = Application.version;
+
         InputReader.Instance.MenuCloseEvent += CloseMenu;
         InputReader.Instance.EnableMenuInput();
     }

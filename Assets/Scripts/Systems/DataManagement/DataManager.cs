@@ -127,8 +127,8 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
 
         string path = this._savePath + "SaveData_" + slotNum + ".json";
 
-        FileUtil.DeleteFileOrDirectory(path);
-        AssetDatabase.Refresh();
+        //FileUtil.DeleteFileOrDirectory(path);
+        //AssetDatabase.Refresh();
     }
 
     public void NewRepository()

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b28754a50fbbf4e9cf4d2afeece73b, type: 3}
-  m_Name: Railgunner
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: DebugBuild_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  _enemyName: Railgunner
-  _description: test
-  _health: 210
+  m_Group: {fileID: 11400000, guid: 18176048194c31c4eba1748631fc2575, type: 2}
+  m_StaticContent: 0

@@ -130,7 +130,7 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         Debug.Log("Loading Scene...");
 
-        this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
+        //this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
 
         if (_sceneDataAssetHandle.IsValid())
             Addressables.ReleaseInstance(_sceneDataAssetHandle);
@@ -165,7 +165,7 @@ public class SceneLoader : Singleton<SceneLoader>
             obj.OnSceneLoad(transitionData);
         }
 
-        this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
-        this._loadingScreenUI.triggerLoadingPanel(false);
+        //this._loadingScreenUI = GameObject.FindGameObjectWithTag("LoadUI").GetComponent<LoadingScreenGUIManager>();
+        //this._loadingScreenUI.triggerLoadingPanel(false);
     }
 }

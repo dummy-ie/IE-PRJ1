@@ -2332,7 +2332,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 745020645}
   _rangeBehaviour: {fileID: 721972018}
   _wallDetectBehaviour: {fileID: 0}
@@ -2345,6 +2344,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -4755,7 +4766,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 714275235}
   _rangeBehaviour: {fileID: 1182255588}
   _wallDetectBehaviour: {fileID: 0}
@@ -4768,6 +4778,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -6636,7 +6658,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1162970825}
   _rangeBehaviour: {fileID: 635684257}
   _wallDetectBehaviour: {fileID: 0}
@@ -6649,6 +6670,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -10833,7 +10866,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 1000520715}
   _rangeBehaviour: {fileID: 396976414}
   _wallDetectBehaviour: {fileID: 0}
@@ -10846,6 +10878,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -14335,7 +14379,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 956940840}
   _rangeBehaviour: {fileID: 182644433}
   _wallDetectBehaviour: {fileID: 0}
@@ -14348,6 +14391,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -21846,7 +21901,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 950066132}
   _rangeBehaviour: {fileID: 1867779904}
   _wallDetectBehaviour: {fileID: 0}
@@ -21859,6 +21913,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -24853,7 +24919,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 502746945}
   _rangeBehaviour: {fileID: 709596495}
   _wallDetectBehaviour: {fileID: 0}
@@ -24866,6 +24931,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0
@@ -25581,11 +25658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -81.509995
+      value: 15.969999
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.15
+      value: 2.6999998
       objectReference: {fileID: 0}
     - target: {fileID: 7898876436040966766, guid: d4e2f8983c13b294783299559fb6ce6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26151,7 +26228,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2011527962}
   - component: {fileID: 2011527964}
-  - component: {fileID: 2011527963}
   m_Layer: 0
   m_Name: Scene BGM
   m_TagString: Sound
@@ -26174,18 +26250,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1381361940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2011527963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011527961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aebe634c8ad9c443ac9d3be2af21b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2011527964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29342,7 +29406,6 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: f32a645dbbd030e47ad57a5a9b9e44df, type: 2}
   _currentHealth: 3
   _damageBuff: 0
-  _speed: 6
   _visionBehaviour: {fileID: 2927807078268070571}
   _rangeBehaviour: {fileID: 8617621379689227435}
   _wallDetectBehaviour: {fileID: 0}
@@ -29355,6 +29418,18 @@ MonoBehaviour:
   _particleSystem: {fileID: 8607921304609559199, guid: b36ab79dc95bc5b4cbf19590b0acf1a8, type: 3}
   _particleDropsOnHit: 3
   _particleDropsOnDeath: 7
+  PathUpdateSeconds: 0.5
+  Speed: 100
+  JumpForce: 100
+  NextWaypointDistance: 3
+  JumpNodeHeightRequirement: 0.8
+  JumpModifier: 0.3
+  JumpCheckOffset: 0.1
+  FollowEnabled: 1
+  JumpEnabled: 1
+  IsJumping: 0
+  IsInAir: 0
+  DirectionLookEnabled: 1
   _attack:
     drawGizmos: 0
     moveOffset: 0

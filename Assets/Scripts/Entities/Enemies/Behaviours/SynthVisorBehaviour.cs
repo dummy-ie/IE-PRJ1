@@ -24,8 +24,7 @@ public class SynthVisorBehaviour : EnemyBase<SynthVisorBehaviour>, IEntityHittab
 
     [Header("Patrol")]
     [SerializeField, Range(0, 100)] private float _patrolChance;
-    [SerializeField, Range(0, 30)] private float _minPatrolTime;
-    [SerializeField, Range(0, 30)] private float _maxPatrolTime;
+    [SerializeField, RangedValue(0, 30)] private RangeFloat _patrolTime;
     [SerializeField] private float _patrolMoveSpeed;
 
     private GameObject _playerTarget;
@@ -189,7 +188,7 @@ public class SynthVisorBehaviour : EnemyBase<SynthVisorBehaviour>, IEntityHittab
 
         public override void Enter()
         {
-            walkTime = UnityEngine.Random.Range(_entity._minPatrolTime, _entity._maxPatrolTime); // TODO : CREATE A RANGE FLOAT VARIABLE TO EASE MY MIND
+            walkTime = _entity._patrolTime.RandomRange();
             _entity.RandomizeFlip();
             elapsedTime = 0;
         }

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: d1a4531c56e316f46844ce6a39d02965
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 50f9d105a90c18f1dbe2600864d14f6d
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: aa0c2cf30d8587c409d78660b8f2cb83, type: 2}
   - {fileID: 11400000, guid: 6707c7f0da9b9ae4d84f677d684006cc, type: 2}
+  - {fileID: 11400000, guid: 18176048194c31c4eba1748631fc2575, type: 2}
   - {fileID: 11400000, guid: 7b2d3f31717284547bb8f6253dcf3dbf, type: 2}
   - {fileID: 11400000, guid: efb32740be0313447976e6f4fc0411b1, type: 2}
   - {fileID: 11400000, guid: 2a663d35d5c640e4e9427dadec62897e, type: 2}
@@ -102,6 +103,7 @@ MonoBehaviour:
     - Singleton
     - Settings
     - Scriptable Singleton
+    - Debug
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e5920883618bb57458b9c8a2bf00ac68, type: 2}
