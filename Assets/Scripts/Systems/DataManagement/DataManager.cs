@@ -75,7 +75,7 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
     {
         Debug.Log("--LOADING REPOSITORY--");
 
-        if (CheckSaveExists(slotNum))
+        if (CheckExistingSave(slotNum))
         {
             this._dataRepository = RetrieveRepository(slotNum);
         }
@@ -111,14 +111,14 @@ public class DataManager : ScriptableSingleton<DataManager>, GameInitializer.IIn
         this._selectedSave = selectedSave;
     }
 
-    public bool CheckSaveExists(int slotNum)
+    public bool CheckExistingSave(int slotNum)
     {
         Debug.Log("--CHECKING FILE--");
         Debug.Log("save path ->" + this._savePath);
         string loadPath = this._savePath + "SaveData_" + slotNum + ".json";
         Debug.Log(loadPath);
 
-        return File.Exists(loadPath) ? true : false;
+        return File.Exists(loadPath);
     }
 
     public void DeleteSaveFile(int slotNum)
